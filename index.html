@@ -4,15 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guide Voyage Madagascar</title>
+  <meta name="theme-color" content="#4da167">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#FC3D32">
-  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="icon-192.png">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <!-- Carte interactive -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
 <body>
   <header>
-    <h1>Guide Madagascar 🇲🇬</h1>
+    <h1>Guide Madagascar <span class="flag">🇲🇬</span></h1>
     <nav>
       <ul>
         <li><a href="#itineraire" class="nav-link active">Itinéraires</a></li>
@@ -22,7 +23,7 @@
         <li><a href="#carte" class="nav-link">Carte</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
       </ul>
-      <button id="theme-toggle">☀️ / 🌙</button>
+      <button id="theme-toggle" title="Basculer thème">☀️ / 🌙</button>
     </nav>
   </header>
   <main>
@@ -30,13 +31,15 @@
     <section id="spots" style="display:none"></section>
     <section id="gallery" style="display:none"></section>
     <section id="infos" style="display:none"></section>
-    <section id="carte" style="display:none"><div id="map"></div></section>
+    <section id="carte" style="display:none"><div id="map" style="height:350px;"></div></section>
     <section id="faq" style="display:none"></section>
   </main>
   <footer>
-    <small> 🇲🇬 Guide interactif Madagascar | Couleurs du drapeau : <span class="rouge"></span> <span class="vert"></span> <span class="blanc"></span></small>
+    <small>© Guide interactif Madagascar — v2025</small>
   </footer>
+  <!-- Librairie Leaflet pour la carte -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>

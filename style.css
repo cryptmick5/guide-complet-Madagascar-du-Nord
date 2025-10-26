@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rouge-malgache: #FC3D32;
+    --vert-malgache: #007E3A;
+    --blanc-malgache: #FFFFFF;
+    --bg-light: #F8F9FA;
+    --text-light: #212529;
+    --card-light: #FFFFFF;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+}
+
+[data-theme="dark"] {
+    --bg-light: #1a1a1a;
+    --text-light: #e0e0e0;
+    --card-light: #2d2d2d;
+    --shadow-light: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.premium-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--silver) 100%);
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+header {
+    background: linear-gradient(135deg, var(--rouge-malgache) 0%, var(--vert-malgache) 100%);
+    color: var(--blanc-malgache);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--blanc-malgache);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+nav {
+    background: var(--card-light);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 140px;
+    z-index: 999;
+}
+
+.nav-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--rouge-malgache);
+    background: var(--blanc-malgache);
+    color: var(--rouge-malgache);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: var(--rouge-malgache);
+    color: var(--blanc-malgache);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#map {
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px var(--shadow-light);
+    margin-bottom: 2rem;
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.destination-card {
+    background: var(--card-light);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.destination-card:hover {
+    transform: translateY(-5px);
+}
+
+.destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.destination-card .content {
+    padding: 1.5rem;
+}
+
+.destination-card h3 {
+    color: var(--rouge-malgache);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.itineraire {
+    background: var(--bg-light);
+    border-left: 4px solid var(--vert-malgache);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+}
+
+.itineraire h4 {
+    color: var(--vert-malgache);
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    display: inline-block;
+    background: var(--vert-malgache);
+    color: var(--blanc-malgache);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.spot-local {
+    background: linear-gradient(135deg, var(--rouge-malgache) 0%, var(--vert-malgache) 100%);
+    color: var(--blanc-malgache);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.spot-local h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--blanc-malgache);
+    color: var(--rouge-malgache);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0.25rem;
+}
+
+.expressions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.expression-card {
+    background: var(--card-light);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--rouge-malgache);
+}
+
+.expression-card strong {
+    color: var(--rouge-malgache);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.info-box {
+    background: var(--card-light);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.info-box h3 {
+    color: var(--vert-malgache);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+footer {
+    background: linear-gradient(135deg, var(--vert-malgache) 0%, var(--rouge-malgache) 100%);
+    color: var(--blanc-malgache);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.search-bar {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    background: var(--rouge-malgache);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0 1.5rem;
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: var(--card-light);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: var(--rouge-malgache);
+    color: white;
+    border-color: var(--rouge-malgache);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.stat-card {
+    background: var(--card-light);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: var(--rouge-malgache);
+    margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--vert-malgache);
+}
+
+.premium-feature {
+    border: 2px solid var(--gold);
+    position: relative;
+}
+
+.premium-feature::before {
+    content: "⭐ PREMIUM";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: var(--gold);
+    color: #000;
+    padding: 0.2rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.offline-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--rouge-malgache);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: none;
+    z-index: 1002;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    nav {
+        top: 120px;
+    }
+
+    .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #map {
+        height: 400px;
+    }
+}
+
+/* Styles pour PWA */
+@media (display-mode: standalone) {
+    header {
+        padding-top: 2rem;
+    }
+    
+    .premium-badge {
+        top: 3rem;
+    }
+}

@@ -1,74 +1,89 @@
-// --- Sélecteurs des éléments de navigation ---
-const navLinks = document.querySelectorAll("nav a");
-const main = document.querySelector("main");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Script chargé avec succès");
 
-// --- Thème clair/sombre ---
-const toggleTheme = document.querySelector(".toggle-theme");
-toggleTheme?.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";
-});
+  const main = document.querySelector("main") || document.querySelector("#main");
+  const navLinks = document.querySelectorAll("nav a");
 
-// --- Contenu de chaque section ---
-const sections = {
-  itinéraires: `
-    <h2>🗺️ Itinéraires</h2>
-    <p>Explore les plus belles routes de Madagascar :</p>
-    <ul>
-      <li><strong>RN7</strong> — De Tana à Tuléar, un voyage entre hauts plateaux et océan.</li>
-      <li><strong>RN2</strong> — Vers Toamasina, entre forêts tropicales et cascades.</li>
-      <li><strong>Nosy Be</strong> — L'île parfumée, entre plages et plongées paradisiaques.</li>
-    </ul>
-  `,
-  "spots locaux": `
-    <h2>📸 Spots Locaux</h2>
-    <p>Découvre quelques lieux incontournables :</p>
-    <div class="gallery">
-      <img src="assets/images/baobabs.jpg" alt="Allée des Baobabs">
-      <img src="assets/images/nosybe.jpg" alt="Plage de Nosy Be">
-      <img src="assets/images/tsingy.jpg" alt="Tsingy de Bemaraha">
-    </div>
-  `,
-  "galerie": `
-    <h2>🖼️ Galerie</h2>
-    <p>Une sélection d'images pour t'inspirer avant ton voyage.</p>
-    <div class="gallery-placeholder">[Galerie en cours de création]</div>
-  `,
-  "infos pratiques": `
-    <h2>ℹ️ Infos Pratiques</h2>
-    <ul>
-      <li>Langue : Malgache & Français</li>
-      <li>Monnaie : Ariary (MGA)</li>
-      <li>Prise électrique : Type C & E (comme en France)</li>
-      <li>Visa : Disponible à l'arrivée pour la plupart des nationalités</li>
-    </ul>
-  `,
-  "carte": `
-    <h2>🗺️ Carte</h2>
-    <p>Carte interactive à venir (Google Maps ou OpenStreetMap).</p>
-  `,
-  "faq": `
-    <h2>❓ FAQ</h2>
-    <p>Quelques réponses rapides :</p>
-    <ul>
-      <li><strong>Quand partir ?</strong> — D'avril à octobre, pendant la saison sèche.</li>
-      <li><strong>Est-ce dangereux ?</strong> — Globalement non, mais reste prudent la nuit.</li>
-      <li><strong>Comment se déplacer ?</strong> — Taxi-brousse, chauffeur privé, ou location de 4x4.</li>
-    </ul>
-  `
-};
+  if (!main) {
+    console.error("❌ Impossible de trouver la balise <main>");
+    return;
+  }
 
-// --- Gestion du clic sur les onglets ---
-navLinks.forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    navLinks.forEach(a => a.classList.remove("active"));
-    link.classList.add("active");
+  // --- Contenu de chaque onglet ---
+  const sections = {
+    itinéraires: `
+      <section>
+        <h2>🗺️ Itinéraires</h2>
+        <p>Découvrez trois parcours magnifiques à travers Madagascar :</p>
+        <ul>
+          <li><strong>RN7</strong> — D'Antananarivo à Tuléar : Hautes Terres, parcs nationaux, plages.</li>
+          <li><strong>RN5A</strong> — De Diego Suarez à Nosy Be : paysages côtiers et forêts tropicales.</li>
+          <li><strong>RN2</strong> — Vers Toamasina : cascades, forêts et villages typiques.</li>
+        </ul>
+      </section>
+    `,
+    "spots locaux": `
+      <section>
+        <h2>📍 Spots Locaux</h2>
+        <p>Les lieux les plus populaires du nord de Madagascar :</p>
+        <div class="gallery">
+          <img src="assets/images/baobabs.jpg" alt="Allée des Baobabs">
+          <img src="assets/images/nosybe.jpg" alt="Plage de Nosy Be">
+          <img src="assets/images/tsingy.jpg" alt="Tsingy de Bemaraha">
+        </div>
+      </section>
+    `,
+    galerie: `
+      <section>
+        <h2>🖼️ Galerie</h2>
+        <p>Photos du voyage — bientôt disponibles.</p>
+      </section>
+    `,
+    "infos pratiques": `
+      <section>
+        <h2>ℹ️ Infos Pratiques</h2>
+        <ul>
+          <li>Langue : malgache et français</li>
+          <li>Monnaie : Ariary (MGA)</li>
+          <li>Visa : disponible à l'arrivée</li>
+          <li>Période idéale : avril à octobre</li>
+        </ul>
+      </section>
+    `,
+    carte: `
+      <section>
+        <h2>🗺️ Carte</h2>
+        <p>Une carte interactive sera intégrée ici prochainement.</p>
+      </section>
+    `,
+    faq: `
+      <section>
+        <h2>❓ FAQ</h2>
+        <ul>
+          <li><strong>Quand partir ?</strong> Avril à octobre.</li>
+          <li><strong>Comment se déplacer ?</strong> Taxi-brousse, chauffeur privé ou location.</li>
+          <li><strong>Est-ce sûr ?</strong> Oui, mais évite de circuler la nuit hors des villes.</li>
+        </ul>
+      </section>
+    `
+  };
 
-    const sectionName = link.textContent.trim().toLowerCase();
-    main.innerHTML = sections[sectionName] || "<p>Section en construction...</p>";
+  // --- Fonction d'affichage d'une section ---
+  const afficherSection = (nom) => {
+    const contenu = sections[nom.toLowerCase()] || "<p>Section en construction...</p>";
+    main.innerHTML = contenu;
+  };
+
+  // --- Navigation entre les onglets ---
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+      afficherSection(link.textContent.trim());
+    });
   });
-});
 
-// --- Affichage par défaut ---
-main.innerHTML = sections["itinéraires"];
+  // --- Affichage par défaut ---
+  afficherSection("itinéraires");
+});

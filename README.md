@@ -1,2 +1,2 @@
-# guide-complet-Madagascar-du-Nord
-Visite du nord de Madagascar 
+# Guide Voyage Madagascar 🇲🇬
+Application Web PWA mobile & desktop : itinéraires, spots locaux, galerie photo, infos pratiques, carte interactive, mode sombre, offline.

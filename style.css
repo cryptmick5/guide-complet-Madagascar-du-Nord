@@ -1,0 +1,50 @@
+:root {
+  --rouge-mg: #FC3D32;
+  --vert-mg: #007E3A;
+  --blanc-mg: #FFFFFF;
+  --bg-light: #F8F9FA;
+  --bg-dark: #1a1a1a;
+  --text-light: #212529;
+  --text-dark: #e0e0e0;
+  --card-light: #fff;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Verdana, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.3s, color 0.3s;
+}
+header {
+  background: linear-gradient(135deg, var(--rouge-mg) 0, var(--vert-mg) 100%);
+  color: var(--blanc-mg);
+  text-align: center;
+  padding: 18px 6px 8px 6px;
+}
+nav ul {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  list-style: none; margin: 0; padding: 0;
+}
+nav li { margin: 0 10px; }
+nav a.nav-link {
+  color: var(--blanc-mg);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.2em 0.6em;
+  border-radius: 5px;
+  transition: background 0.1s;
+}
+nav a.active, nav a.nav-link:hover {
+  background: var(--vert-mg);
+}
+nav { display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap;}
+#theme-toggle { margin-left: 14px; font-size: 1.12em; background: none; border: none; cursor:pointer;}
+main { max-width: 1020px; margin: 32px auto; padding: 0 14px;}
+section { margin-bottom: 32px;}
+footer { background: var(--vert-mg); color: var(--blanc-mg); text-align: center; padding: 10px;}
+.rouge { background:var(--rouge-mg); border-radius:50%; width:18px; height:18px; display:inline-block; vertical-align:middle;}
+.vert { background:var(--vert-mg); border-radius:50%; width:18px; height:18px; display:inline-block; vertical-align:middle;}
+.blanc { background:var(--blanc-mg); border-radius:50%; width:18px; height:18px; display:inline-block; vertical-align:middle;}

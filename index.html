@@ -1,252 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇲🇬 Guide Voyage Madagascar Premium</title>
-    <meta name="description" content="Guide complet de voyage à Madagascar">
-    <meta name="theme-color" content="#FC3D32">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Bibliothèques externes -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Notre CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇲🇬 Guide Voyage Madagascar Premium</title>
+  <meta name="description" content="Guide complet de voyage à Madagascar">
+  <meta name="theme-color" content="#FC3D32">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Bibliothèques externes -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Notre CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="premium-badge">PREMIUM EDITION</div>
-    
-    <header>
-        <button class="theme-toggle" id="themeToggle">🌙</button>
-        <h1>🇲🇬 Guide Voyage Madagascar Premium</h1>
-        <p>Itinéraires authentiques & Spots secrets locaux</p>
-    </header>
+  <div class="premium-badge">PREMIUM EDITION</div>
 
-    <nav>
-        <button class="nav-btn active" data-section="carte">🗺️ Carte</button>
-        <button class="nav-btn" data-section="antananarivo">Antananarivo</button>
-        <button class="nav-btn" data-section="majunga">Majunga</button>
-        <button class="nav-btn" data-section="diego">Diego</button>
-        <button class="nav-btn" data-section="nosy-be">Nosy Be</button>
-        <button class="nav-btn" data-section="spots-locaux">🔥 Spots</button>
-        <button class="nav-btn" data-section="malagasy">🗣️ Langue</button>
-        <button class="nav-btn" data-section="infos">ℹ️ Infos</button>
-    </nav>
+  <header>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    <h1>🇲🇬 Guide Voyage Madagascar Premium</h1>
+    <p>Itinéraires authentiques & Spots secrets locaux</p>
+  </header>
 
-    <div class="container">
-        <!-- SECTION CARTE -->
-        <section id="carte" class="section active">
-            <h2>🗺️ Carte Interactive</h2>
-            <div class="search-bar">
-                <input type="text" id="mapSearch" placeholder="Rechercher un lieu...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">Tout</button>
-                <button class="filter-btn" data-filter="parcs">🏞️ Parcs</button>
-                <button class="filter-btn" data-filter="plages">🏖️ Plages</button>
-                <button class="filter-btn" data-filter="villes">🏙️ Villes</button>
-            </div>
-            <div id="map"></div>
-        </section>
+  <nav>
+    <button class="nav-btn active" data-section="carte">🗺️ Carte</button>
+    <button class="nav-btn" data-section="antananarivo">Antananarivo</button>
+    <button class="nav-btn" data-section="majunga">Majunga</button>
+    <button class="nav-btn" data-section="diego">Diego</button>
+    <button class="nav-btn" data-section="nosy-be">Nosy Be</button>
+    <button class="nav-btn" data-section="spots-locaux">🔥 Spots</button>
+    <button class="nav-btn" data-section="malagasy">🗣️ Langue</button>
+  </nav>
 
-        <!-- SECTION ANTANANARIVO -->
-        <section id="antananarivo" class="section">
-            <h2>🏙️ Antananarivo (Tana)</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>1.3M</h3>
-                    <p>Habitants</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-mountain"></i>
-                    <h3>1,276m</h3>
-                    <p>Altitude</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-cloud-sun"></i>
-                    <h3>20°C</h3>
-                    <p>Température</p>
-                </div>
-            </div>
-            
-            <div class="info-box">
-                <h3>Attractions Principales</h3>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=400" alt="Rova">
-                        <div class="content">
-                            <h3>Palais de la Reine</h3>
-                            <p>Ancienne résidence des souverains merina</p>
-                            <span class="price">26,000 Ar</span>
-                            <span class="badge">Patrimoine UNESCO</span>
-                        </div>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1598894596017-8c7ab42b2d6a?w=400" alt="Marché">
-                        <div class="content">
-                            <h3>Marché d'Analakely</h3>
-                            <p>Cœur commerçant de Tana</p>
-                            <span class="badge">Authentique</span>
-                        </div>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400" alt="Lemur Park">
-                        <div class="content">
-                            <h3>Lemur's Park</h3>
-                            <p>9 espèces de lémuriens</p>
-                            <span class="price">62,400 Ar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- Autres sections existantes ... -->
 
-        <!-- SECTION MAJUNGA -->
-        <section id="majunga" class="section">
-            <h2>🌺 Majunga (Mahajanga)</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>220,000</h3>
-                    <p>Habitants</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-umbrella-beach"></i>
-                    <h3>28°C</h3>
-                    <p>Température</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-tree"></i>
-                    <h3>800</h3>
-                    <p>Ans (baobab)</p>
-                </div>
-            </div>
-            
-            <div class="info-box">
-                <h3>Attractions Principales</h3>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400" alt="Cirque Rouge">
-                        <div class="content">
-                            <h3>Cirque Rouge</h3>
-                            <p>Formation de grès rouge spectaculaire</p>
-                            <span class="price">10,000 Ar</span>
-                        </div>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Baobab">
-                        <div class="content">
-                            <h3>Baobab Sacré</h3>
-                            <p>Arbre légendaire de 800 ans</p>
-                            <span class="badge">Lieu sacré</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section id="spots-locaux" class="section premium-grid">
+    <h2 class="section-title">Top 5 Spots & Restaurants - Antananarivo</h2>
+    <p class="section-subtitle">Sélection premium: cuisine locale, vues, rapport qualité-prix, et ambiance.</p>
 
-        <!-- SECTION DIEGO SUAREZ -->
-        <section id="diego" class="section">
-            <h2>⛰️ Diego Suarez</h2>
-            <div class="info-box">
-                <h3>Attractions Principales</h3>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Mer d'Émeraude">
-                        <div class="content">
-                            <h3>Mer d'Émeraude</h3>
-                            <p>Eaux turquoise incroyables</p>
-                            <span class="price">50,000 Ar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="cards">
+      <!-- 1. Sakamanga -->
+      <article class="card premium">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop" alt="Restaurant Sakamanga Antananarivo"/>
+          <span class="badge">Best Value</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Sakamanga</h3>
+          <p class="card-desc">Institution d'Antananarivo: cuisine malgache revisitée, ambiance cosy, service pro.</p>
+          <ul class="meta">
+            <li><i class="fa-solid fa-clock"></i> Lun-Dim 11:30–14:30, 18:30–22:00</li>
+            <li><i class="fa-solid fa-money-bill-wave"></i> Ar 25 000–55 000 (7–12€)</li>
+            <li><i class="fa-solid fa-map-pin"></i> Isoraka, Tana Centre</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sakamanga+Hotel+Restaurant+Antananarivo">Google Maps</a>
+            <button class="btn-outline" data-tip="Réservez le soir, complet rapidement">Tips insider</button>
+          </div>
+        </div>
+      </article>
 
-        <!-- SECTION NOSY BE -->
-        <section id="nosy-be" class="section">
-            <h2>🏝️ Nosy Be</h2>
-            <div class="info-box">
-                <h3>Attractions Principales</h3>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Nosy Iranja">
-                        <div class="content">
-                            <h3>Nosy Iranja</h3>
-                            <p>Île aux tortues magnifique</p>
-                            <span class="price">100,000 Ar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- 2. La Varangue -->
+      <article class="card premium">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="La Varangue Antananarivo"/>
+          <span class="badge badge-gold">Signature</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">La Varangue</h3>
+          <p class="card-desc">Gastro à la malgache: produits du terroir, cave sérieuse, déco vintage.</p>
+          <ul class="meta">
+            <li><i class="fa-solid fa-clock"></i> Lun-Sam 12:00–14:00, 19:00–22:00</li>
+            <li><i class="fa-solid fa-money-bill-wave"></i> Ar 60 000–130 000 (12–25€)</li>
+            <li><i class="fa-solid fa-map-pin"></i> Centre-ville, près de l'Avenue de l'Indépendance</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=La+Varangue+Restaurant+Antananarivo">Google Maps</a>
+            <button class="btn-outline" data-tip="Prenez la terrasse couverte pour le déjeuner">Tips insider</button>
+          </div>
+        </div>
+      </article>
 
-        <!-- SECTION SPOTS LOCAUX -->
-        <section id="spots-locaux" class="section">
-            <h2>🔥 Spots Locaux Secrets</h2>
-            <div class="info-box">
-                <h3>Restaurants cachés des locaux</h3>
-                <div class="spot-local">
-                    <h4>🍜 "Chez Gasy" - Antananarivo</h4>
-                    <p>Petit resto familial où les Malgaches mangent le dimanche</p>
-                    <p><strong>Spécialités :</strong> Vary amin'anana, Henakisoa sy voatabia</p>
-                    <p><strong>Prix :</strong> 8,000-15,000 Ar</p>
-                </div>
-            </div>
-        </section>
+      <!-- 3. Kudeta Urban Club -->
+      <article class="card premium">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop" alt="Kudeta Urban Club Antananarivo"/>
+          <span class="badge">Nightlife</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Kudeta Urban Club</h3>
+          <p class="card-desc">Cocktails, tapas malagasy/asia, DJ sets le week-end, déco industrielle chic.</p>
+          <ul class="meta">
+            <li><i class="fa-solid fa-clock"></i> Mar-Dim 12:00–14:30, 18:00–01:00</li>
+            <li><i class="fa-solid fa-money-bill-wave"></i> Ar 30 000–70 000 (6–14€)</li>
+            <li><i class="fa-solid fa-map-pin"></i> Isoraka</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kudeta+Restaurant+Lounge+Antananarivo">Google Maps</a>
+            <button class="btn-outline" data-tip="Arrivez avant 20:00 pour une table sans résa">Tips insider</button>
+          </div>
+        </div>
+      </article>
 
-        <!-- SECTION LANGUE -->
-        <section id="malagasy" class="section">
-            <h2>🗣️ Langue Malagasy</h2>
-            <div class="info-box">
-                <h3>Expressions essentielles</h3>
-                <div class="expressions-grid">
-                    <div class="expression-card">
-                        <strong>Salama</strong>
-                        <p>Bonjour</p>
-                    </div>
-                    <div class="expression-card">
-                        <strong>Misaotra</strong>
-                        <p>Merci</p>
-                    </div>
-                    <div class="expression-card">
-                        <strong>Ohatrinona ?</strong>
-                        <p>Combien ça coûte ?</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- 4. Café de la Gare -->
+      <article class="card premium">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Café de la Gare Antananarivo"/>
+          <span class="badge">Iconique</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Café de la Gare</h3>
+          <p class="card-desc">Brasserie historique dans l'ancienne gare Soarano, grande terrasse lumineuse.</p>
+          <ul class="meta">
+            <li><i class="fa-solid fa-clock"></i> Lun-Dim 08:00–22:00</li>
+            <li><i class="fa-solid fa-money-bill-wave"></i> Ar 20 000–50 000 (4–10€)</li>
+            <li><i class="fa-solid fa-map-pin"></i> Soarano</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Cafe+de+la+Gare+Soarano+Antananarivo">Google Maps</a>
+            <button class="btn-outline" data-tip="Petit-déj tôt pour lumière dorée et calme">Tips insider</button>
+          </div>
+        </div>
+      </article>
 
-        <!-- SECTION INFOS PRATIQUES -->
-        <section id="infos" class="section">
-            <h2>ℹ️ Infos Pratiques</h2>
-            <div class="info-box">
-                <h3>Numéros d'urgence</h3>
-                <p><strong>Police :</strong> 17</p>
-                <p><strong>Pompiers :</strong> 18</p>
-                <p><strong>SAMU :</strong> +261 20 22 357 53</p>
-            </div>
-        </section>
+      <!-- 5. Le Rossini -->
+      <article class="card premium">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1533777419517-3e4017b9c712?q=80&w=1200&auto=format&fit=crop" alt="Le Rossini Antananarivo"/>
+          <span class="badge">Vue Rooftop</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Le Rossini</h3>
+          <p class="card-desc">Rooftop élégant avec vue sur Tana, carte franco-malgache, bons cocktails.</p>
+          <ul class="meta">
+            <li><i class="fa-solid fa-clock"></i> Mar-Dim 12:00–14:30, 18:00–23:00</li>
+            <li><i class="fa-solid fa-money-bill-wave"></i> Ar 45 000–95 000 (9–18€)</li>
+            <li><i class="fa-solid fa-map-pin"></i> Ambatonakanga</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Le+Rossini+Antananarivo">Google Maps</a>
+            <button class="btn-outline" data-tip="Golden hour: arrivez 30 min avant coucher du soleil">Tips insider</button>
+          </div>
+        </div>
+      </article>
     </div>
 
-    <footer>
-        <p><strong>🇲🇬 Madagascar Premium - Mora Mora !</strong></p>
-        <p>Guide créé en 2024 | Taux: 1 EUR ≈ 5,200 Ar</p>
-    </footer>
+    <div class="note">
+      Photos figuratives libres de droits (Unsplash). Vérifiez horaires/prix sur place, sujets à changement.
+    </div>
+  </section>
 
-    <!-- Bibliothèques JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- Notre JavaScript -->
-    <script src="app.js"></script>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

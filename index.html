@@ -1,158 +1,228 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🇲🇬 Guide Voyage Madagascar Premium</title>
-  <meta name="description" content="Guide premium Madagascar: carte, onglets, Antananarivo détaillé, restaurants, tips." />
-  <meta name="theme-color" content="#FC3D32" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    :root{--bg:#101316;--fg:#e8edf2;--muted:#9fb0c3;--card:#151a1f;--accent:#FC3D32;--gold:#e7b008}
-    *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    header{position:sticky;top:0;z-index:20;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(180deg,rgba(16,19,22,.95),rgba(16,19,22,.85));border-bottom:1px solid #1e242b}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700}
-    .premium-badge{position:fixed;right:12px;bottom:12px;background:linear-gradient(135deg,var(--gold),#ffd56a);color:#1a1400;font-weight:800;padding:6px 10px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:50}
-    nav.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;background:#0c0f12;border-bottom:1px solid #1e242b;position:sticky;top:56px;z-index:19}
-    .nav-btn{border:1px solid #26303a;background:#0f1419;color:var(--fg);padding:8px 12px;border-radius:10px;cursor:pointer}
-    .nav-btn.active,.nav-btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px rgba(252,61,50,.15)}
-    main{max-width:1100px;margin:0 auto;padding:16px}
-    .section{display:none}
-    .section.active{display:block}
-    .section-title{margin:10px 0 6px;font-size:1.35rem}
-    .section-subtitle{margin:0 0 14px;color:var(--muted)}
-    .grid,.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-    .card{background:var(--card);border:1px solid #26303a;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-    .card-media{position:relative;height:150px;background:#0f1419}
-    .card-media img{width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;left:10px;top:10px;background:#0f1419;border:1px solid #2b3641;color:#fff;padding:4px 8px;border-radius:999px;font-size:.75rem}
-    .badge-gold{background:linear-gradient(135deg,var(--gold),#ffd56a);color:#1a1400;border-color:#e7b008}
-    .card-body{padding:12px}
-    .card-title{margin:0 0 6px;font-size:1.05rem}
-    .card-desc{margin:0 0 10px;color:var(--muted)}
-    .meta{list-style:none;padding:0;margin:0 0 10px;color:#cbd7e3}
-    .meta li{margin:3px 0;font-size:.92rem}
-    .actions{display:flex;gap:8px;flex-wrap:wrap}
-    .btn,.btn-outline{padding:8px 10px;border-radius:10px;border:1px solid #2b3641;background:#111820;color:#e8edf2;text-decoration:none;cursor:pointer}
-    .btn{border-color:var(--accent)}
-    .note{margin-top:10px;color:var(--muted)}
-    #map{width:100%;height:360px;border:1px solid #26303a;border-radius:12px}
-    .pill{display:inline-flex;gap:6px;align-items:center;background:#10161d;border:1px solid #2b3641;padding:6px 10px;border-radius:999px;color:#dbe7f3}
-    details{background:#0f1419;border:1px solid #26303a;border-radius:10px;padding:8px}
-    footer{margin:28px 0;color:#8ca0b4;text-align:center}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇲🇬 Guide Voyage Madagascar Premium</title>
+    <meta name="description" content="Guide de voyage complet, interactif et premium pour Madagascar : Itinéraires, spots, conseils et infos pratiques.">
+    <link rel="icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
 </head>
 <body>
-  <div class="premium-badge">PREMIUM</div>
-  <header>
-    <div class="brand"><button id="themeToggle" class="nav-btn" aria-label="Basculer thème">🌙</button> <span>🇲🇬 Guide Voyage Madagascar Premium</span></div>
-    <span class="pill"><i class="fa-solid fa-shield"></i> Offline-ready</span>
-  </header>
-
-  <nav class="tabs" aria-label="Navigation principale">
-    <button class="nav-btn active" data-section="carte">🗺️ Carte</button>
-    <button class="nav-btn" data-section="antananarivo">Antananarivo</button>
-    <button class="nav-btn" data-section="majunga">Majunga</button>
-    <button class="nav-btn" data-section="diego">Diego</button>
-    <button class="nav-btn" data-section="nosy-be">Nosy Be</button>
-    <button class="nav-btn" data-section="malagasy">🗣️ Langue</button>
-  </nav>
-
-  <main>
-    <section id="carte" class="section active" aria-labelledby="title-carte">
-      <h2 id="title-carte" class="section-title">Carte interactive</h2>
-      <p class="section-subtitle">Repérez rapidement les spots clés à Antananarivo. D'autres régions arrivent.</p>
-      <div id="map" role="application" aria-label="Carte Madagascar"></div>
-      <details><summary>Conseil pro</summary><p>Activez votre GPS. Téléchargez la carte pour usage hors ligne.</p></details>
-    </section>
-
-    <section id="antananarivo" class="section" aria-labelledby="title-tana">
-      <h2 id="title-tana" class="section-title">Antananarivo — 10 attractions incontournables</h2>
-      <p class="section-subtitle">Horaires, prix indicatifs (Ar), Google Maps et tips insiders.</p>
-      <div class="grid" id="tana-attractions"></div>
-      <h3 class="section-title">Restaurants premium (5)</h3>
-      <div class="cards" id="tana-restos"></div>
-      <div class="note">Photos indicatives (Unsplash). Prix/horaires susceptibles de changer.</div>
-    </section>
-
-    <section id="majunga" class="section" aria-labelledby="title-mj">
-      <h2 id="title-mj" class="section-title">Majunga</h2>
-      <p class="section-subtitle">Contenu premium à venir. Restez connectés.</p>
-    </section>
-
-    <section id="diego" class="section" aria-labelledby="title-di">
-      <h2 id="title-di" class="section-title">Diego Suarez</h2>
-      <p class="section-subtitle">Contenu premium à venir. Restez connectés.</p>
-    </section>
-
-    <section id="nosy-be" class="section" aria-labelledby="title-nb">
-      <h2 id="title-nb" class="section-title">Nosy Be</h2>
-      <p class="section-subtitle">Contenu premium à venir. Restez connectés.</p>
-    </section>
-
-    <section id="malagasy" class="section" aria-labelledby="title-lang">
-      <h2 id="title-lang" class="section-title">Expressions malagasy utiles</h2>
-      <div class="grid">
-        <div class="card"><div class="card-body"><h3>Salama</h3><p class="card-desc">Bonjour</p></div></div>
-        <div class="card"><div class="card-body"><h3>Misaotra</h3><p class="card-desc">Merci</p></div></div>
-        <div class="card"><div class="card-body"><h3>Azafady</h3><p class="card-desc">S'il vous plaît / pardon</p></div></div>
-        <div class="card"><div class="card-body"><h3>Ohatrinona?</h3><p class="card-desc">Combien ça coûte ?</p></div></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>© 2025 Guide Madagascar Premium — PWA installable. Données carto: © OpenStreetMap.</footer>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    // Tabs
-    const buttons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('.section');
-    buttons.forEach(b=>b.addEventListener('click',()=>{
-      buttons.forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-      sections.forEach(s=>s.classList.remove('active'));
-      document.getElementById(b.dataset.section).classList.add('active');
-      if(b.dataset.section==='carte'){ setTimeout(()=>map.invalidateSize(), 150); }
-    }));
-
-    // Theme toggle
-    const themeToggle=document.getElementById('themeToggle');
-    let dark=true; themeToggle?.addEventListener('click',()=>{
-      dark=!dark; document.documentElement.style.setProperty('--bg', dark?'#101316':'#f5f7fb');
-      document.documentElement.style.setProperty('--fg', dark?'#e8edf2':'#0c1117');
-      document.documentElement.style.setProperty('--card', dark?'#151a1f':'#ffffff');
-      document.body.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg');
-    });
-
-    // Data: 10 attractions Antananarivo
-    const tanaAttractions = [
-      { t:'Rova de Manjakamiadana (Palais de la Reine)', img:'https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1200&auto=format&fit=crop', q:'Haute Ville', h:'08:00–17:00', p:'10 000 Ar', maps:'https://maps.google.com/?q=rova+antananarivo', tip:'Arrivez tôt, lumière douce et moins d’affluence.' },
-      { t:'Avenue de l’Indépendance (Analakely)', img:'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1200&auto=format&fit=crop', q:'Analakely', h:'Libre', p:'Gratuit', maps:'https://maps.google.com/?q=avenue+independance+analakely', tip:'Surveillez vos effets, préférez la journée.' },
-      { t:'Lac Anosy & Monument aux Morts', img:'https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1200&auto=format&fit=crop', q:'Centre', h:'Libre', p:'Gratuit', maps:'https://maps.google.com/?q=lac+anosy+antananarivo', tip:'Golden hour depuis le sud du lac.' },
-      { t:'Marché artisanal La Digue', img:'https://images.unsplash.com/photo-1512203492609-8f7f960c48f2?q=80&w=1200&auto=format&fit=crop', q:'La Digue', h:'09:00–17:30', p:'Libre | Négociation', maps:'https://maps.google.com/?q=marche+artisanal+la+digue', tip:'Emportez du cash, comparez plusieurs stands.' },
-      { t:'Parc Botanique & Zoologique de Tsimbazaza', img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop', q:'Tsimbazaza', h:'09:00–17:00', p:'10 000–20 000 Ar', maps:'https://maps.google.com/?q=tsimbazaza+zoo', tip:'Lémuriens et plantes endémiques, idéal avec enfants.' },
-      { t:'Ambatovinaky & Escaliers historiques', img:'https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1200&auto=format&fit=crop', q:'Haute Ville', h:'Libre', p:'Gratuit', maps:'https://maps.google.com/?q=ambatovinaky+escaliers', tip:'Chaussures confort, belles vues sur la ville.' },
-      { t:'Cathédrale d’Andohalo', img:'https://images.unsplash.com/photo-1585169727212-3d9a59f42ba8?q=80&w=1200&auto=format&fit=crop', q:'Haute Ville', h:'08:00–18:00', p:'Gratuit', maps:'https://maps.google.com/?q=cath%C3%A9drale+andohalo', tip:'Respectez les offices; spot photo panoramique.' },
-      { t:'Isoraka – Quartier vivant', img:'https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=1200&auto=format&fit=crop', q:'Isoraka', h:'Soirée', p:'Selon lieux', maps:'https://maps.google.com/?q=isoraka+antananarivo', tip:'Ambiance bars/restos, restez sur les axes éclairés.' },
-      { t:'Musée de la Photographie de Madagascar', img:'https://images.unsplash.com/photo-1520975693416-6c0d7b67da7b?q=80&w=1200&auto=format&fit=crop', q:'Anjohy', h:'10:00–18:00', p:'10 000 Ar', maps:'https://maps.google.com/?q=mus%C3%A9e+photographie+madagascar', tip:'Expositions rares, parfait pour comprendre l’histoire.' },
-      { t:"Parc de Lemurs’ Park (périphérie Ouest)", img:'https://images.unsplash.com/photo-1526481280698-8fcc13fd65bb?q=80&w=1200&auto=format&fit=crop', q:'Imerintsiatosika', h:'09:00–16:00', p:'40 000–60 000 Ar', maps:'https://maps.google.com/?q=lemurs+park+antananarivo', tip:'Navette/taxi recommandés; anti-moustique.' }
-    ];
-
-    // Render attractions
-    const atcWrap = document.getElementById('tana-attractions');
-    atcWrap.innerHTML = tanaAttractions.map(a=>`
-      <article class="card">
-        <div class="card-media"><img alt="${a.t}" src="${a.img}" /><span class="badge">${a.q}</span></div>
-        <div class="card-body">
-          <h3 class="card-title">${a.t}</h3>
-          <ul class="meta">
-            <li><i class="fa-solid fa-clock"></i> ${a.h}</li>
-            <li><i class="fa-solid fa-money-bill-wave"></i> ${a.p}</li>
-            <li><i class="fa-solid fa-map-pin"></i> ${a.q}</li>
-          </ul>
-          <div class="actions">
-            <a class
+    <header>
+        <h1>🇲🇬 Guide Voyage Madagascar <span class="premium-badge">PREMIUM</span></h1>
+        <p class="subtitle">Découvre le nord de Madagascar autrement — Itinéraires exclusifs, spots secrets et conseils locaux.</p>
+        <button class="theme-toggle">🌖</button>
+    </header>
+    <nav>
+        <button class="nav-btn active" data-section="carte">🗺️ Carte</button>
+        <button class="nav-btn" data-section="antananarivo">🏙️ Antananarivo</button>
+        <button class="nav-btn" data-section="majunga">🌺 Majunga</button>
+        <button class="nav-btn" data-section="diego">⛰️ Diego Suarez</button>
+        <button class="nav-btn" data-section="nosybe">🏝️ Nosy Be</button>
+        <button class="nav-btn" data-section="spots-locaux">🔥 Spots locaux</button>
+        <button class="nav-btn" data-section="malagasy">🗣️ Malagasy</button>
+        <button class="nav-btn" data-section="infos">ℹ️ Infos</button>
+    </nav>
+    <main>
+        <section id="carte" class="section active">
+            <h2>Carte Interactive</h2>
+            <div id="map" style="width: 100%; height: 350px; border-radius: 10px; margin-bottom:1rem"></div>
+            <p>Repère rapidement les spots clés du nord de Madagascar. Autres régions à venir.</p>
+            <p class="premium">Conseil pro : Active ton GPS et télécharge la carte pour un usage hors-ligne.</p>
+        </section>
+        <section id="antananarivo" class="section">
+            <h2>🏙️ Antananarivo — 10 attractions premium</h2>
+            <div class="destinations-grid">
+                <!-- Palais de la Reine -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=400" alt="Rova Antananarivo">
+                    <div class="content">
+                        <h3>Palais de la Reine (Rova)</h3>
+                        <span class="price">26 000 Ar (5 €) – Guide : 15 000 Ar (2,9 €)</span>
+                        <p>Site royal classé, panorama <strong>premium</strong>. <br>Horaires : 9h–17h, fermé lundi.<br>
+                        <a href="https://goo.gl/maps/WCga2W6FnyCEqZKx9" target="_blank">Google Maps</a><br>
+                        Conseil : Arrivez tôt pour la lumière du matin.</p>
+                    </div>
+                </div>
+                <!-- Lemur’s Park -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400" alt="Lemurs Park">
+                    <div class="content">
+                        <h3>Lemurs’ Park</h3>
+                        <span class="price">50 000 Ar (9,6 €) – Enf. : 25 000 Ar</span>
+                        <p>Eco-parc, 9 espèces de lémuriens.<br>Horaires : 9h–17h.<br>
+                        <a href="https://goo.gl/maps/aRht5NjcPmF6kjzv6" target="_blank">Google Maps</a><br>
+                        Conseil : Visite guidée 11h = maximum faune.</p>
+                    </div>
+                </div>
+                <!-- Ambohimanga -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Ambohimanga">
+                    <div class="content">
+                        <h3>Colline Royale d’Ambohimanga (UNESCO)</h3>
+                        <span class="price">25 000 Ar (4,8 €) + Guide : 30 000 Ar</span>
+                        <p>Panorama, histoire royale.<br>Horaires : 8h–17h.<br>
+                        <a href="https://goo.gl/maps/RAL9CvcuMdK2" target="_blank">Google Maps</a><br>
+                        Conseil : Moment magique au lever du soleil.</p>
+                    </div>
+                </div>
+                <!-- Croc Farm -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1598894596017-8c7ab42b2d6a?w=400" alt="Croc Farm">
+                    <div class="content">
+                        <h3>Croc Farm</h3>
+                        <span class="price">25 000 Ar (4,8 €)</span>
+                        <p>Ferme de crocodiles.<br>Snack sur place.<br>
+                        <a href="https://goo.gl/maps/q4QfHSf5yR52" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Musée photo -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1598894596017-8c7ab42b2d6a?w=400" alt="Musée Photo">
+                    <div class="content">
+                        <h3>Musée de la Photographie</h3>
+                        <span class="price">10 000 Ar (1,9 €) – Fermé dim.</span>
+                        <p>Histoire visuelle, terrasse panoramique.<br>
+                        <a href="https://goo.gl/maps/t9BWDQn29VpcwMCfA" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Tsimbazaza zoo/botanique -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400" alt="Zoo Tsimbazaza">
+                    <div class="content">
+                        <h3>Parc Tsimbazaza (zoo/botanique)</h3>
+                        <span class="price">10 000 Ar (1,9 €)</span>
+                        <p>Parc nature/faune malgache.<br>Horaires : 8h30–17h.<br>
+                        <a href="https://goo.gl/maps/PXmzpZgh1Kv5qS2L7" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Marché Analakely -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1511149755252-35875b273fd6?w=400" alt="Marché Analakely">
+                    <div class="content">
+                        <h3>Marché Analakely</h3>
+                        <span class="price">Accès libre (prévoir cash !)</span>
+                        <p>Vie locale, shopping, food.<br>
+                        <a href="https://goo.gl/maps/YsGc7Uv4SA6HNzHK8" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Andafiavaratra Palace -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400" alt="Palais Andafiavaratra">
+                    <div class="content">
+                        <h3>Andafiavaratra Palace</h3>
+                        <span class="price">20 000 Ar (3,8 €)</span>
+                        <p>Expos royales, musée.<br>Horaires : 9h–16h.<br>
+                        <a href="https://goo.gl/maps/jjRkKaeSdz62" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Jardin Ambohijatovo -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400" alt="Jardin Ambohijatovo">
+                    <div class="content">
+                        <h3>Jardin d’Ambohijatovo</h3>
+                        <span class="price">Gratuit</span>
+                        <p>Poumon vert, concerts week-ends.<br>
+                        <a href="https://goo.gl/maps/6NcSQSP5tvjmo9My6" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+                <!-- Cathédrale Andohalo -->
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400" alt="Cathédrale Andohalo">
+                    <div class="content">
+                        <h3>Cathédrale Andohalo</h3>
+                        <span class="price">Gratuit</span>
+                        <p>Vue sur la vieille ville, concerts d’orgue dim. matin.<br>
+                        <a href="https://goo.gl/maps/Vev2EZ2RMaghft5dA" target="_blank">Google Maps</a></p>
+                    </div>
+                </div>
+            </div>
+        <h2>🍽️ Top 5 Restaurants & Spots Locaux</h2>
+        <div class="destinations-grid">
+    <!-- - - ANATANANARIVO SPOTS/RESTAURANTS LOCAUX PREMIUM - - -->
+        <!-- Chez Sucett's -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Chez Sucett's">
+            <div class="content">
+                <h3>Chez Sucett's</h3>
+                <span class="price">13 000-18 000 Ar (2,5–3,5 €)</span>
+                <p>Resto local, plats malgaches typiques.<br>
+                Horaires : 8h–21h (fermé dim. aprem).<br>
+                <a href="https://goo.gl/maps/u2ZC7gNAU2F2" target="_blank">Google Maps</a><br>
+                Conseil : testez le “Henakisoa sy voatabia”.</p>
+            </div>
+        </div>
+        <!-- Le Carnivore -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400" alt="Le Carnivore">
+            <div class="content">
+                <h3>Le Carnivore</h3>
+                <span class="price">22 000–41 000 Ar (4,2–8 €)</span>
+                <p>Grillades, buffet viandes.<br>
+                Horaires : 12h–22h (fermé lundi midi).<br>
+                <a href="https://goo.gl/maps/w4PvJknKS22wSboa8" target="_blank">Google Maps</a><br>
+                Conseil : buffet vendredi soir, ambiance festive.</p>
+            </div>
+        </div>
+        <!-- Buffet du Jardin -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1502741126161-b048400d98b5?w=400" alt="Buffet du Jardin">
+            <div class="content">
+                <h3>Buffet du Jardin (Analakely)</h3>
+                <span class="price">19 000 Ar (3,7 €)</span>
+                <p>Buffet très local réputé.<br>
+                Horaires : 11h30–15h (fermé samedi/dim.).<br>
+                <a href="https://goo.gl/maps/STnhF2DYV3rLsoRv9" target="_blank">Google Maps</a><br>
+                Conseil : arriver avant 12h20 pour tout choisir.</p>
+            </div>
+        </div>
+        <!-- Coin du Foie Gras -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400" alt="Coin du Foie Gras">
+            <div class="content">
+                <h3>Coin du Foie Gras</h3>
+                <span class="price">25 000–47 000 Ar (4,8–9 €)</span>
+                <p>Bistrot local/français.<br>
+                Horaires : 12h–14h, 19h–22h (fermé dim soir).<br>
+                <a href="https://goo.gl/maps/jYrCRjqX7d7dt5JV6" target="_blank">Google Maps</a><br>
+                Conseil : planche trio foie gras = top.</p>
+            </div>
+        </div>
+        <!-- Chez Gasy -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Chez Gasy">
+            <div class="content">
+                <h3>Chez Gasy</h3>
+                <span class="price">9 000–15 000 Ar (1,7–2,9 €)</span>
+                <p>Cantine familiale locale.<br>
+                Horaires : 7h–14h (fermé dim.).<br>
+                <a href="https://goo.gl/maps/E1h6gBn7wAmqtM8BA" target="_blank">Google Maps</a><br>
+                Conseil : pour une vraie ambiance “Tana”.</p>
+            </div>
+        </div>
+    </div>
+</section>
+        </section>
+        <section id="majunga" class="section">
+            <h2>🌺 Majunga</h2>
+            <p class="premium">Contenu premium à venir pour Majunga : top attractions, spots locaux, conseils insider, cartes, photos.</p>
+        </section>
+        <section id="diego" class="section">
+            <h2>⛰️ Diego Suarez</h2>
+            <p class="premium">Contenu premium à venir pour Diego Suarez : top sites, activités, adresses secrètes, cartes, photos.</p>
+        </section>
+        <section id="nosybe" class="section">
+            <h2>🏝️ Nosy Be</h2>
+            <p class="premium">Contenu premium à venir pour Nosy Be : plages, hôtels, restaurants, carte interactive, bons plans locaux.</p>
+        </section>
+        <section id="spots-locaux" class="section">
+            <h2>🔥 Spots Locaux Exclusifs</h2>
+            <p>Retrouve ici : adresses cachées, marchés rares, lieux festifs… (à venir ville par ville).</p>
+        </section>
+        <section id="malagasy" class="section">
+            <h2>🗣️ Langue Malagasy – Mots Essentiels</h2>
+            <ul>
+               

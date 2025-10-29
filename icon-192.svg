@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <!-- Fond dégradé avec les couleurs du thème -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e55a2b;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="islandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5016;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4a7c59;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d5016;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fond circulaire -->
+  <circle cx="96" cy="96" r="88" fill="url(#bgGradient)" stroke="#1a1a1a" stroke-width="4"/>
+  
+  <!-- Forme simplifiée de Madagascar -->
+  <path d="M 96 30 
+           C 110 35, 125 45, 130 65
+           C 135 85, 132 105, 128 125
+           C 125 140, 120 155, 110 165
+           C 95 170, 85 168, 80 160
+           C 75 150, 78 135, 82 120
+           C 85 105, 88 90, 85 75
+           C 82 60, 85 45, 96 30 Z" 
+        fill="url(#islandGradient)" 
+        stroke="#ffffff" 
+        stroke-width="2"/>
+  
+  <!-- Points pour représenter les villes principales -->
+  <circle cx="100" cy="50" r="3" fill="#ffeb3b"/> <!-- Diego-Suarez -->
+  <circle cx="85" cy="60" r="3" fill="#ffeb3b"/>  <!-- Nosy Be -->
+  <circle cx="75" cy="90" r="3" fill="#ffeb3b"/>  <!-- Mahajanga -->
+  <circle cx="96" cy="130" r="3" fill="#ffeb3b"/> <!-- Antananarivo -->
+  
+  <!-- Texte MG -->
+  <text x="96" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">MG</text>
+</svg>

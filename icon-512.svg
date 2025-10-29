@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Fond dégradé avec les couleurs du thème -->
+  <defs>
+    <radialGradient id="bgGradient512" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#e55a2b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d44a1f;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="islandGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5016;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#4a7c59;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#5d8f6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d5016;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#1a1a1a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Fond circulaire avec ombre -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient512)" stroke="#1a1a1a" stroke-width="8" filter="url(#shadow)"/>
+  
+  <!-- Forme plus détaillée de Madagascar -->
+  <path d="M 256 80 
+           C 285 90, 320 110, 340 150
+           C 350 180, 355 210, 350 240
+           C 345 270, 340 300, 330 330
+           C 315 360, 295 385, 270 400
+           C 245 410, 220 408, 200 395
+           C 180 380, 175 360, 180 335
+           C 185 310, 195 285, 205 260
+           C 215 235, 220 210, 215 185
+           C 210 160, 215 135, 230 115
+           C 240 100, 248 88, 256 80 Z" 
+        fill="url(#islandGradient512)" 
+        stroke="#ffffff" 
+        stroke-width="4"
+        filter="url(#shadow)"/>
+  
+  <!-- Points pour représenter les villes principales (plus gros) -->
+  <circle cx="270" cy="120" r="8" fill="#ffeb3b" stroke="#ffffff" stroke-width="2"/> <!-- Diego-Suarez -->
+  <circle cx="235" cy="140" r="8" fill="#ffeb3b" stroke="#ffffff" stroke-width="2"/> <!-- Nosy Be -->
+  <circle cx="195" cy="200" r="8" fill="#ffeb3b" stroke="#ffffff" stroke-width="2"/> <!-- Mahajanga -->
+  <circle cx="256" cy="300" r="8" fill="#ffeb3b" stroke="#ffffff" stroke-width="2"/> <!-- Antananarivo -->
+  <circle cx="280" cy="350" r="6" fill="#ffeb3b" stroke="#ffffff" stroke-width="1"/> <!-- Isalo -->
+  
+  <!-- Éléments décoratifs - petites îles -->
+  <circle cx="210" cy="120" r="4" fill="#4a7c59" stroke="#ffffff" stroke-width="1"/> <!-- Nosy Be -->
+  <circle cx="300" cy="380" r="3" fill="#4a7c59" stroke="#ffffff" stroke-width="1"/> <!-- Sainte-Marie -->
+  
+  <!-- Texte MG GUIDE en bas -->
+  <text x="256" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" stroke="#1a1a1a" stroke-width="1">MG GUIDE</text>
+</svg>

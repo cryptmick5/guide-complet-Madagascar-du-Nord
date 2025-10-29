@@ -1,0 +1,27 @@
+{
+  "name": "MG Guide Voyage Madagascar",
+  "short_name": "MG Guide",
+  "description": "Guide de voyage complet pour Madagascar avec 55 attractions, carte interactive et mode offline",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "navigation", "lifestyle"],
+  "lang": "fr",
+  "dir": "ltr"
+}

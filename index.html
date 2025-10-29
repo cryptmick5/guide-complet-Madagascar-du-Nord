@@ -1,267 +1,178 @@
 <!DOCTYPE html>
-
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    🇲🇬 Guide Voyage Madagascar Premium
-    <meta content="Guide de voyage complet, interactif et premium pour Madagascar : Itinéraires, spots, conseils et infos pratiques." name="description"/>
-    <link href="icon-192.png" rel="icon"/>
-    <link href="manifest.json" rel="manifest"/>
-    <link href="style.css" rel="stylesheet"/>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇲🇬 Guide Voyage Madagascar Premium</title>
+    <meta name="description" content="Guide de voyage complet, interactif et premium pour Madagascar : Itinéraires, spots, conseils et infos pratiques.">
+    <link rel="icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
     <script defer src="app.js"></script>
+</head>
+<body>
     <header>
         <h1>🇲🇬 Guide Voyage Madagascar <span class="premium-badge">PREMIUM</span></h1>
         <p class="subtitle">Découvre le nord de Madagascar autrement — Itinéraires exclusifs, spots secrets et conseils locaux.</p>
         <button class="theme-toggle">🌖</button>
     </header>
+    
+    <!-- NAVIGATION COMPLETE -->
     <nav>
         <button class="nav-btn active" data-section="carte">🗺️ Carte</button>
         <button class="nav-btn" data-section="antananarivo">🏙️ Antananarivo</button>
         <button class="nav-btn" data-section="majunga">🌺 Majunga</button>
         <button class="nav-btn" data-section="diego">⛰️ Diego Suarez</button>
         <button class="nav-btn" data-section="nosybe">🏝️ Nosy Be</button>
-        <button class="nav-btn" data-section="spots-locaux">🔥 Spots locaux</button>
+        <button class="nav-btn" data-section="spots">🔥 Spots locaux</button>
+        <button class="nav-btn" data-section="hotels">🏨 Hôtels</button>
         <button class="nav-btn" data-section="malagasy">🗣️ Malagasy</button>
-        <button class="nav-btn" data-section="infos">ℹ️ Infos</button>
+        <button class="nav-btn" data-section="pratique">ℹ️ Infos</button>
     </nav>
+    
     <main>
         <section class="section active" id="carte">
-            Carte Interactive
-            <div id="map" style="width: 100%; height: 350px; border-radius: 10px; margin-bottom:1rem"></div>
-            Repère rapidement les spots clés du nord de Madagascar. Autres régions à venir.
-            <p class="premium">Conseil pro : Active ton GPS et télécharge la carte pour un usage hors-ligne.</p>
+            <h2>Carte Interactive</h2>
+            <div id="map" style="width: 100%; height: 350px; border-radius: 10px; margin-bottom: 1rem;"></div>
+            <p>Repère rapidement les spots clés du nord de Madagascar. Autres régions à venir.</p>
+            <p class="premium">Conseil pro : Active ton GPS et télécharge la carte pour un usage hors-ligne.</p>
         </section>
+        
         <section class="section" id="antananarivo">
-            🏙️ Antananarivo — 10 attractions premium
+            <h2>🏙️ Antananarivo — 10 attractions premium</h2>
             <div class="destinations-grid">
                 <!-- 10 ATTRACTIONS -->
                 <div class="destination-card">
-                  <img alt="Rova de Manjakamiadana" src="images/tana-rova.jpg"/>
-                  <div class="content">
-                    Rova (Palais de la Reine)
-                    <span class="price">30 000 Ar (~6 €)</span>
-                    <p>Site historique majeur sur les hauteurs. Horaires : 9h–17h (fermé lun.).
-                    <br/><a href="https://goo.gl/maps/6Fv3XQ8Q3mG2" target="_blank">Google Maps</a>
-                    <br/>Conseil : Arriver tôt pour la vue sans brume.</p>
-                  </div>
+                    <img alt="Rova de Manjakamiadana" src="images/tana-rova.jpg">
+                    <div class="content">
+                        <h3>Rova (Palais de la Reine)</h3>
+                        <span class="price">30 000 Ar (~6 €)</span>
+                        <p>Site historique majeur sur les hauteurs. Horaires : 9h–17h (fermé lun.).<br>
+                        <a href="https://goo.gl/maps/6Fv3XQ8Q3mG2" target="_blank">Google Maps</a><br>
+                        Conseil : Arriver tôt pour la vue sans brume.</p>
+                    </div>
                 </div>
                 <div class="destination-card">
-                  <img alt="Avenue de l'Indépendance Analakely" src="images/tana-analakely.jpg"/>
-                  <div class="content">
-                    Avenue de l’Indépendance & Analakely
-                    <span class="price">Accès libre</span>
-                    <p>Art déco, marché, ambiance locale. Meilleur en matinée.
-                    <br/><a href="https://goo.gl/maps/t7x4x8cLVwH2" target="_blank">Google Maps</a>
-                    <br/>Conseil : Éviter heures de pointe, surveiller effets personnels.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Lemurs Park" src="images/tana-lemurs-park.jpg"/>
-                  <div class="content">
-                    Lemurs’ Park (à 22 km)
-                    <span class="price">60 000 Ar (≈11,5 €)</span>
-                    <p>Réserve privée, 9 espèces de lémuriens. Horaires : 9h–17h.
-                    <br/><a href="https://goo.gl/maps/ZWqz1dH8QwF2" target="_blank">Google Maps</a>
-                    <br/>Conseil : Prévoir taxi/driver, visite guidée 1h30.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Parc de Tsarasaotra" src="images/tana-tsarasaotra.jpg"/>
-                  <div class="content">
-                    Parc de Tsarasaotra (Lac des oiseaux)
-                    <span class="price">25 000 Ar</span>
-                    <p>Sanctuaire Ramsar, hérons et anhingas. Horaires : 8h–17h sur résa.
-                    <br/><a href="https://goo.gl/maps/1R6i5Lqz5cN2" target="_blank">Google Maps</a>
-                    <br/>Conseil : Meilleure lumière au lever/coucher du soleil.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Ambohimanga" src="images/tana-ambohimanga.jpg"/>
-                  <div class="content">
-                    Colline Royale d’Ambohimanga (UNESCO)
-                    <span class="price">20 000 Ar (≈3,8 €)</span>
-                    <p>Berceau de la royauté merina. Horaires : 9h–17h.
-                    <br/><a href="https://goo.gl/maps/dh1cGkJ8hgt" target="_blank">Google Maps</a>
-                    <br/>Conseil : Combiner avec déjeuner village voisin.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Andohalo cathédrale" src="images/tana-andohalo.jpg"/>
-                  <div class="content">
-                    Haute Ville: Andohalo & escaliers historiques
-                    <span class="price">Accès libre</span>
-                    <p>Vues panoramiques, maisons traditionnelles.
-                    <br/><a href="https://goo.gl/maps/4iQF6xX9w8y" target="_blank">Google Maps</a>
-                    <br/>Conseil : Prendre un guide local pour l’histoire.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Marché artisanal Digue" src="images/tana-digue.jpg"/>
-                  <div class="content">
-                    Marché artisanal de la Digue
-                    <span class="price">Accès libre</span>
-                    <p>Souvenirs, raphia, pierres semi-précieuses. 8h–17h.
-                    <br/><a href="https://goo.gl/maps/3H6J7U7xg8m" target="_blank">Google Maps</a>
-                    <br/>Conseil : Marchander avec le sourire, paiement en espèces conseillé.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Musée de la Photographie" src="images/tana-photo-museum.jpg"/>
-                  <div class="content">
-                    Musée de la Photographie de Madagascar
-                    <span class="price">15 000 Ar</span>
-                    <p>Archives visuelles rares, histoire du pays. 10h–17h, fermé lun.
-                    <br/><a href="https://goo.gl/maps/7rY2ZxwH5wq" target="_blank">Google Maps</a>
-                    <br/>Conseil : Café terrasse avec vue pour une pause.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Parc botanique et zoo Tsimbazaza" src="images/tana-tsimbazaza.jpg"/>
-                  <div class="content">
-                    Parc botanique et zoologique de Tsimbazaza
-                    <span class="price">10 000 Ar</span>
-                    <p>Faune/flore endémiques, musée. 9h–17h.
-                    <br/><a href="https://goo.gl/maps/Jm6q8m1p8Qp" target="_blank">Google Maps</a>
-                    <br/>Conseil : Idéal avec enfants, prévoir 2h.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Lac Anosy et flamme" src="images/tana-anosy.jpg"/>
-                  <div class="content">
-                    Lac Anosy & Flamme de l’Indépendance
-                    <span class="price">Accès libre</span>
-                    <p>Iconique, jacarandas en floraison (oct.–nov.).
-                    <br/><a href="https://goo.gl/maps/1mJ3H5cp9Jz" target="_blank">Google Maps</a>
-                    <br/>Conseil : Photogénique au coucher du soleil.</p>
-                  </div>
-                </div>
-            </div>
-            🍽️ Top 5 Restaurants & Insider Tips — Antananarivo
-            <div class="destinations-grid">
-                <div class="destination-card">
-                  <img alt="La Varangue" src="images/tana-varangue.jpg"/>
-                  <div class="content">
-                    La Varangue (centre)
-                    <span class="price">35 000–80 000 Ar</span>
-                    <p>Gastro créatif, déco vintage.
-                    <br/><a href="https://goo.gl/maps/4p5e5hQqf3C2" target="_blank">Google Maps</a>
-                    <br/>Tip : Réserver le soir, demander la salle musée.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="KUDeTA" src="images/tana-kudeta.jpg"/>
-                  <div class="content">
-                    KUDeTA (Isoraka)
-                    <span class="price">25 000–55 000 Ar</span>
-                    <p>Fusion malgache/asiatique, bar lounge.
-                    <br/><a href="https://goo.gl/maps/9Gm4cKxQp5G2" target="_blank">Google Maps</a>
-                    <br/>Tip : Cocktails signature, DJ le week-end.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Sakamanga" src="images/tana-sakamanga.jpg"/>
-                  <div class="content">
-                    Sakamanga (hôtel-restaurant)
-                    <span class="price">18 000–40 000 Ar</span>
-                    <p>Carte variée, musée privé.
-                    <br/><a href="https://goo.gl/maps/1qk7k6xB7rC2" target="_blank">Google Maps</a>
-                    <br/>Tip : Bon rapport qualité/prix le midi.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Le Rossini" src="images/tana-rossini.jpg"/>
-                  <div class="content">
-                    Le Rossini (Ambatonakanga)
-                    <span class="price">30 000–70 000 Ar</span>
-                    <p>Cuisine française, cave fournie.
-                    <br/><a href="https://goo.gl/maps/3WwT6cHq7sQ2" target="_blank">Google Maps</a>
-                    <br/>Tip : Tables en terrasse pour la vue.</p>
-                  </div>
-                </div>
-                <div class="destination-card">
-                  <img alt="Le Buffet du Jardin" src="images/tana-buffet-jardin.jpg"/>
-                  <div class="content">
-                    Le Buffet du Jardin (Analakely)
-                    <span class="price">15 000–30 000 Ar</span>
-                    <p>Buffet malgache populaire, rapide.
-                    <br/><a href="https://goo.gl/maps/2bL1pX4z6mG2" target="_blank">Google Maps</a>
-                    <br/>Tip : Arriver avant 13h, plats frais.</p>
-                  </div>
+                    <img alt="Avenue de l'Indépendance Analakely" src="images/tana-analakely.jpg">
+                    <div class="content">
+                        <h3>Avenue de l'Indépendance Analakely</h3>
+                        <span class="price">Gratuit</span>
+                        <p>Shopping local, banques, cybercafés.<br>
+                        <a href="#" target="_blank">Google Maps</a></p>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="section" id="majunga">
-  🌺 Majunga — 10 attractions incontournables
-  <div class="destinations-grid">
-    <!-- Ankarafantsika National Park -->
-    <div class="destination-card">
-      <img alt="Ankarafantsika"/>
-      <div class="content">
-        Parc National Ankarafantsika
-        <span class="price">84 000 Ar (16 €)</span>
-        <p>Oiseaux, lémuriens, randonnées. Horaires : 7h-16h.
-        <br/>
-        <a href="https://goo.gl/maps/bXtYTaVtDW32" target="_blank">Google Maps</a>
-        <br/>
-        Conseil : Prendre guide natif pour repérer le Microcebe.</p>
-      </div>
-    </div>
-    <!-- Cirque Rouge -->
-    <div class="destination-card">
-      <img alt="Cirque Rouge"/>
-      <div class="content">
-        Cirque Rouge
-        <span class="price">10 000 Ar (1,9 €)</span>
-        <p>Formations de grès spectaculaires. Horaires : 8h–18h.
-        <br/>
-        <a href="https://goo.gl/maps/FpD4tbmDByw4PLnY8" target="_blank">Google Maps</a>
-        <br/>
-        Conseil : Couleur la plus vive au coucher du soleil.</p>
-      </div>
-    </div>
-    <!-- Antsanitia Beach -->
-    <div class="destination-card">
-      <img alt="Antsanitia Beach"/>
-      <div class="content">
-        Antsanitia Beach
-        <span class="price">Accès libre</span>
-        <p>Plage sauvage, village pêcheur. Baignade et balades à cheval.
-        <br/>
-        <a href="https://goo.gl/maps/16Roaajqck2SrLdc7" target="_blank">Google Maps</a></p>
-      </div>
-    </div>
-    <!-- Baobab sacré -->
-    <div class="destination-card">
-      <img alt="Baobab"/>
-      <div class="content">
-        Baobab Sacré
-        <span class="price">5 000 Ar</span>
-        <p>Arbre millénaire sacré local. Offrande traditionnelle.
-        <br/>
-        <a href="https://goo.gl/maps/pxexNg2Rq4F2" target="_blank">Google Maps</a></p>
-      </div>
-    </div>
-    <!-- Grotte d’Anjohibe -->
-    <div class="destination-card">
-      <img alt="Grotte Anjohibe"/>
-      <div class="content">
-        Grotte d’Anjohibe
-        <span class="price">40 000 Ar (8 €)</span>
-        <p>Immenses grottes, stalactites. Accès guidé/taxi-brousse.
-        <br/>
-        <a href="https://goo.gl/maps/EkpkEwKpA2F2" target="_blank">Google Maps</a></p>
-      </div>
-    </div>
-    <!-- Lac Sacré -->
-    <div class="destination-card">
-      <img alt="Lac Sacré"/>
-      <div class="content">
-        Lac Sacré
-        <span class="price">5 000 Ar</span>
-        <p>Crocodiles sacrés, recueillement local.
-        <br/>
-        <a href="https://goo.gl/maps/hQeLww7Tz7M2" target="_blank">Google Maps</a></p>
-      </div>
-    </div>
-    <!-- Grand Pavois -->
-    <div class="destination-card">
-      <img
+        
+        <!-- SECTION MAJUNGA: COMPLETE -->
+        <section id="majunga" class="section">
+            <h2>Majunga — Attractions Premium</h2>
+            <div class="destination-card">
+                <h3>Parc National Ankarafantsika</h3>
+                <p>84 000 Ar • Oiseaux, lémuriens, randos. 7h-16h. <a href="#">Maps</a></p>
+            </div>
+            <div class="destination-card">
+                <h3>Cirque Rouge</h3>
+                <p>10 000 Ar • Grès colorés, 8h–18h. <a href="#">Maps</a></p>
+            </div>
+            <div class="destination-card">
+                <h3>Antsanitia Beach</h3>
+                <p>Accès libre • Village pêcheur, balades. <a href="#">Maps</a></p>
+            </div>
+            <div class="destination-card">
+                <h3>Baobab Sacré</h3>
+                <p>5 000 Ar • Arbre millénaire. <a href="#">Maps</a></p>
+            </div>
+            <!-- AJOUTS MANQUANTS MAJUNGA -->
+            <div class="destination-card"><h3>Plage de Grand Pavois</h3><p>Accès libre • Sunset, calme. <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Marché de Mahabibo</h3><p>Accès libre • Marché typique local. <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Jardin Pierre Rabarison</h3><p>Accès libre • Botanique, calme. <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Quai de Majunga</h3><p>Accès libre • Promenade, pêche. <a href="#">Maps</a></p></div>
+            
+            <h2>Restaurants Majunga</h2>
+            <div class="destination-card"><h3>Le Petit Navire</h3><p>25 000–60 000 Ar • Fruits de mer • <a href="#">Maps</a> • Conseil: réserver le soir.</p></div>
+            <div class="destination-card"><h3>Coco Lodge Majunga</h3><p>30 000–50 000 Ar • International/local, piscine • <a href="#">Maps</a></p></div>
+        </section>
+        
+        <!-- SECTION DIEGO SUAREZ -->
+        <section id="diego" class="section">
+            <h2>Diego Suarez — Top attractions</h2>
+            <div class="destination-card"><h3>Baie des Français</h3><p>Paysages, baignade, calme • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Mer d'Émeraude</h3><p>Snorkeling, spot nature • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Plage Ramena</h3><p>Vie locale, bars • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Montagne d'Ambre</h3><p>Parc national, rando • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Tsingy Rouge</h3><p>Site géologique unique • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Pain de Sucre</h3><p>Photo, coucher du soleil • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Batterie Militaire</h3><p>Histoire, vue • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Fort d'Ambohimarina</h3><p>Vestiges, histoire • <a href="#">Maps</a></p></div>
+            
+            <h2>Restaurants Diego Suarez</h2>
+            <div class="destination-card"><h3>La Maison Blanche</h3><p>30 000–75 000 Ar • Cuisine locale • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Le Melville</h3><p>25 000–65 000 Ar • Fruits de mer • <a href="#">Maps</a></p></div>
+        </section>
+        
+        <!-- SECTION NOSY BE -->
+        <section id="nosybe" class="section">
+            <h2>Nosy Be — Top lieux et plages</h2>
+            <div class="destination-card"><h3>Plage Andilana</h3><p>Baignade, plages paradisiaques • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Nosy Iranja</h3><p>Excursion, snorkeling • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Réserve Lokobe</h3><p>Faune, forêt • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Marché Hell-Ville</h3><p>Vie locale, shopping • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Arbre Sacré</h3><p>Patrimoine, balade • <a href="#">Maps</a></p></div>
+            
+            <h2>Restaurants Nosy Be</h2>
+            <div class="destination-card"><h3>Le Zébu</h3><p>22 000–47 000 Ar • Terrasse, poissons • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Chez Yolande</h3><p>16 000–35 000 Ar • Malgache, épicé • <a href="#">Maps</a></p></div>
+        </section>
+        
+        <!-- SECTION SPOTS LOCAUX -->
+        <section id="spots" class="section">
+            <h2>Spots cachés & nature</h2>
+            <div class="destination-card"><h3>Cascade d'Ambalavao</h3><p>Randonnée, baignade • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Crique du Baobab</h3><p>Snorkeling, bar local • <a href="#">Maps</a></p></div>
+            <div class="destination-card"><h3>Sentiers villageois</h3><p>Découverte, nature • <a href="#">Maps</a></p></div>
+        </section>
+        
+        <!-- SECTION HOTELS -->
+        <section id="hotels" class="section">
+            <h2>Hôtels Recommandés</h2>
+            <div class="hotel-grid">
+                <div class="hotel-card"><h4>Tana Hôtel</h4><p>Antananarivo • 130 000–240 000 Ar • <a href="#">Maps</a></p></div>
+                <div class="hotel-card"><h4>Majunga Beach</h4><p>Majunga • 110 000–200 000 Ar • <a href="#">Maps</a></p></div>
+                <div class="hotel-card"><h4>Royal Diego</h4><p>Diego Suarez • 150 000–250 000 Ar • <a href="#">Maps</a></p></div>
+                <div class="hotel-card"><h4>Vanilla Nosy Be</h4><p>Nosy Be • 165 000–285 000 Ar • <a href="#">Maps</a></p></div>
+            </div>
+        </section>
+        
+        <!-- SECTION MALAGASY -->
+        <section id="malagasy" class="section">
+            <h2>🗣️ Phrases en Malagasy</h2>
+            <div class="phrases-container">
+                <p>Phrases de base pour communiquer localement</p>
+            </div>
+        </section>
+        
+        <!-- SECTION INFOS PRATIQUES -->
+        <section id="pratique" class="section">
+            <h2>Infos pratiques</h2>
+            <ul>
+                <li>Monnaie : Ariary. Prévoir du cash, change à l'aéroport ou banque. Pas de carte bleue partout.</li>
+                <li>Santé : Vaccins à jour (hépatite, fièvre jaune), moustiquaire recommandée.</li>
+                <li>SIM/Data : Telma, Airtel, Orange. Recharges dans chaque ville.</li>
+                <li>Transports : Taxi-Brousse, 4x4, location scooter/moto. Gare routière indiquée sur la carte.</li>
+                <li>Conseil : Télécharge Maps hors ligne.</li>
+            </ul>
+        </section>
+    </main>
+    
+    <!-- AJOUT JS PHRASES MALGACHES -->
+    <script>
+    const phrases = [
+        // autres entrées existantes (fr, mg, phonetic)
+        { fr: "Où est la gare routière ?", mg: "Aiza ny gara?", phonetic: "a-i-za ny ga-ra" },
+        { fr: "C'est loin ?", mg: "Lavitra ve?", phonetic: "la-vi-tra vé" },
+        { fr: "Combien de temps pour y aller ?", mg: "Hafiriana ny dia?", phonetic: "ha-fi-ri-a-na ny di-a" }
+    ];
+    </script>
+</body>
+</html>

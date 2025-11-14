@@ -1,0 +1,83 @@
+[
+  {
+    "nom": "Tsingy Rouge",
+    "latitude": -12.9165,
+    "longitude": 49.2936,
+    "type": "spot-local",
+    "prix": "< 10 000 Ar",
+    "description": "Un paysage surréaliste de formations de grès rouge sculptées par l'érosion.",
+    "image": "images/spots/tsingy-rouge.jpg"
+  },
+  {
+    "nom": "Montagne d'Ambre",
+    "latitude": -12.5186,
+    "longitude": 49.1769,
+    "type": "nature",
+    "prix": ">= 10 000 Ar",
+    "description": "Un parc national luxuriant avec des cascades, des lacs de cratère et une faune endémique.",
+    "image": "images/spots/montagne-ambre.jpg"
+  },
+  {
+    "nom": "Ankarana",
+    "latitude": -12.9167,
+    "longitude": 49.0833,
+    "type": "nature",
+    "prix": ">= 10 000 Ar",
+    "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
+    "image": "images/spots/ankarana.jpg"
+  },
+  {
+    "nom": "Diego-Suarez",
+    "latitude": -12.2792,
+    "longitude": 49.2919,
+    "type": "ville",
+    "prix": "gratuit",
+    "description": "Une ville portuaire animée avec une architecture coloniale et une baie spectaculaire.",
+    "image": "images/villes/diego-suarez.jpg"
+  },
+  {
+    "nom": "Baie Sakalava",
+    "latitude": -12.2167,
+    "longitude": 49.4167,
+    "type": "plage",
+    "prix": "gratuit",
+    "description": "Une baie magnifique avec des plages de sable blanc et des eaux turquoise, idéale pour le kitesurf.",
+    "image": "images/iles/baie-sakalava.jpg"
+  },
+  {
+    "nom": "Mer d'Émeraude",
+    "latitude": -12.3333,
+    "longitude": 49.4833,
+    "type": "plage",
+    "prix": "< 10 000 Ar",
+    "description": "Un lagon aux eaux cristallines et aux couleurs éblouissantes, parfait pour la plongée en apnée.",
+    "image": "images/iles/mer-emeraude.jpg"
+  },
+  {
+    "nom": "Pain de Sucre",
+    "latitude": -12.2667,
+    "longitude": 49.3333,
+    "type": "spot-local",
+    "prix": "gratuit",
+    "description": "Un îlot emblématique au milieu de la baie de Diego-Suarez, offrant une vue panoramique.",
+    "image": "images/spots/pain-de-sucre.jpg"
+  },
+  {
+    "nom": "Windsor Castle",
+    "latitude": -12.35,
+    "longitude": 49.3,
+    "type": "spot-local",
+    "prix": "gratuit",
+    "description": "Une formation rocheuse offrant une vue imprenable sur la baie de Diego-Suarez.",
+    "image": "images/spots/windsor-castle.jpg"
+  },
+  {
+    "nom": "Réserve Ankarana",
+    "latitude": -12.8333,
+    "longitude": 49.1167,
+    "type": "nature",
+    "prix": ">= 10 000 Ar",
+    "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
+    "image": "images/spots/ankarana.jpg"
+  }
+]

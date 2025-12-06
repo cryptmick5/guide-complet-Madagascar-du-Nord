@@ -1360,21 +1360,22 @@
             </div>
         </div>
     </header>
-    <div class="main-nav" id="mainNav">
-        <button class="nav-btn active" data-page="carte">🗺️ Carte</button>
-        <button class="nav-btn" data-page="antananarivo">🏛️ Antananarivo</button>
-        <button class="nav-btn" data-page="diego">🏝️ Diego-Suarez</button>
-        <button class="nav-btn" data-page="nosybe">🌴 Nosy Be</button>
-        <button class="nav-btn" data-page="mahajanga">🌊 Mahajanga</button>
-        <button class="nav-btn" data-page="andasibe">🌿 Andasibe</button>
-        <button class="nav-btn" data-page="isalo">🏜️ Isalo</button>
-        <button class="nav-btn" data-page="ifaty">🏖️ Ifaty</button>
-        <button class="nav-btn" data-page="ankarana">🕳️ Ankarana</button>
-        <button class="nav-btn" data-page="mananara">🐊 Mananara</button>
-        <button class="nav-btn" data-page="spots">🔥 Spots Locaux</button>
-        <button class="nav-btn" data-page="langue">🗣️ Langue</button>
-        <button class="nav-btn" data-page="outils">🧰 Outils</button>
-    </div>
+    <nav class="nav-container">
+        <div class="main-nav" id="mainNav">
+            <button class="nav-btn active" data-page="carte">🗺️ Carte</button>
+            <button class="nav-btn" data-page="antananarivo">🏛️ Antananarivo</button>
+            <button class="nav-btn" data-page="diego">🏝️ Diego-Suarez</button>
+            <button class="nav-btn" data-page="nosybe">🌴 Nosy Be</button>
+            <button class="nav-btn" data-page="mahajanga">🌊 Mahajanga</button>
+            <button class="nav-btn" data-page="andasibe">🌿 Andasibe</button>
+            <button class="nav-btn" data-page="isalo">🏜️ Isalo</button>
+            <button class="nav-btn" data-page="ifaty">🏖️ Ifaty</button>
+            <button class="nav-btn" data-page="ankarana">🕳️ Ankarana</button>
+            <button class="nav-btn" data-page="mananara">🐊 Mananara</button>
+            <button class="nav-btn" data-page="spots">🔥 Spots Locaux</button>
+            <button class="nav-btn" data-page="langue">🗣️ Langue</button>
+            <button class="nav-btn" data-page="outils">🧰 Outils</button>
+        </div>
     </nav>
 
     <!-- Main Content -->
@@ -2899,7 +2900,7 @@
                     <div class="popup-content">
                         <div style="position:relative;">
                             <div class="popup-title">${lieu.nom}</div>
-                            <button onclick="toggleFavorite(${lieu.id}, this)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}" style="top:-5px; right:0;">
+                            <button onclick="toggleFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}" style="top:-5px; right:0;">
                                 ${isFavorite(lieu.id) ? '❤️' : '🤍'}
                             </button>
                         </div>
@@ -2975,8 +2976,8 @@
         // ============================================
         // GESTION DES FAVORIS
         // ============================================
-        function toggleFavorite(id, btnElement) {
-            event.stopPropagation(); // Avoid triggering card click
+        function toggleFavorite(id, btnElement, event) {
+            if (event) event.stopPropagation(); // Avoid triggering card click
             const index = favorites.indexOf(id);
 
             if (index === -1) {
@@ -3292,7 +3293,7 @@
 
             return `
                 <article class="lieu-card" style="position: relative;">
-                    <button onclick="toggleFavorite(${lieu.id}, this)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
+                    <button onclick="toggleFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
                         ${isFavorite(lieu.id) ? '❤️' : '🤍'}
                     </button>
                     <img src="${lieu.image}" alt="${lieu.nom}" class="lieu-image" loading="lazy">

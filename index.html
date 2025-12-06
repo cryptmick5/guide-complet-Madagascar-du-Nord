@@ -2969,14 +2969,24 @@
                     <div class="modal-info-label">Note</div>
                     <div class="modal-info-value">⭐ ${lieu.note}</div>
                 </div>
+                ${lieu.duree ? `
+                <div class="modal-info-item">
+                    <div class="modal-info-label">Durée</div>
+                    <div class="modal-info-value">⏱️ ${lieu.duree}</div>
+                </div>` : ''}
             `;
 
             // Sections
             let sectionsHTML = `
                 <div class="modal-section">
                     <div class="modal-section-title">Description</div>
-                    <div class="modal-section-content">${lieu.description}</div>
+                    <div class="modal-section-content" style="line-height: 1.6;">${lieu.description}</div>
                 </div>
+                ${lieu.conseil ? `
+                <div class="modal-section" style="background: rgba(255, 215, 0, 0.1); border-left: 3px solid #FFD700; padding: 10px;">
+                    <div class="modal-section-title" style="color: #FFD700;">💡 Conseil du Local</div>
+                    <div class="modal-section-content">${lieu.conseil}</div>
+                </div>` : ''}
                 <div class="modal-section">
                     <div class="modal-section-title">Accès</div>
                     <div class="modal-section-content">${lieu.acces}</div>

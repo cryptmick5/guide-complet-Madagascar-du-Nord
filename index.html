@@ -504,6 +504,28 @@
             transition: all 0.2s ease;
         }
 
+        .btn-website {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #2E7D32, #1B5E20);
+            color: white;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.2s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-website:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
         .btn-details:hover {
             background: #A12929;
             transform: scale(1.02);
@@ -1539,7 +1561,8 @@
                 horaires: "9h-17h tous les jours",
                 respect: "Tenue correcte exigée, pas de short",
                 conseil: "Prenez un guide officiel à l'entrée pour comprendre l'histoire complexe des incendies et de la reconstruction.",
-                duree: "1h30"
+                duree: "1h30",
+                siteWeb: "https://www.facebook.com/RovanMadagasikaraOfficiel"
             },
             {
                 id: 2,
@@ -1557,7 +1580,8 @@
                 acces: "Avenue de l'Indépendance",
                 horaires: "8h-18h du lundi au samedi",
                 conseil: "Le marchandage est de rigueur ici ! Divisez le premier prix annoncé par deux ou trois, toujours avec le sourire.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://tourisme-antananarivo.com/"
             },
             {
                 id: 3,
@@ -1575,7 +1599,8 @@
                 acces: "Quartier Tsarasaotra",
                 horaires: "7h-17h tous les jours",
                 conseil: "Apportez des jumelles si vous en avez, c'est un paradis pour l'ornithologie, surtout tôt le matin.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://www.ramsar.org/fr/pentes/parc-de-tsarasaotra"
             },
             {
                 id: 4,
@@ -1594,7 +1619,8 @@
                 contactLocal: "Le gardien de l'église (présent le matin)",
                 respect: "Offrande traditionnelle recommandée, silence requis, ne pas toucher l'eau sans permission",
                 conseil: "Montrez du respect et demandez toujours la permission avant de prendre une photo. Une petite pièce au gardien est appréciée.",
-                duree: "30 min"
+                duree: "30 min",
+                siteWeb: "https://tourisme-antananarivo.com/"
             },
             {
                 id: 5,
@@ -1612,7 +1638,8 @@
                 acces: "Rue Printsy Ratsimamanga, Isoraka",
                 horaires: "12h-14h30 et 19h-22h",
                 conseil: "Réservez une table en terrasse ou près de la cheminée en hiver. Essayez leur foie gras maison.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://www.hotel-restaurant-lavarangue-tananarive.com"
             },
             {
                 id: 6,
@@ -1630,7 +1657,8 @@
                 acces: "18 km de Diego, taxi-brousse ou taxi",
                 horaires: "Accessible 24h/24",
                 conseil: "Commandez des brochettes de poisson dans une gargote le midi. Le soir, attention aux moustiques !",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 7,
@@ -1648,7 +1676,8 @@
                 acces: "Excursion bateau depuis Ramena (45 min)",
                 horaires: "Départ 8h-9h, retour 16h-17h",
                 conseil: "Le vent souffle fort (Varatraza) l'après-midi, idéal pour le kite mais protégez-vous du sable.",
-                duree: "Journée"
+                duree: "Journée",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 8,
@@ -1666,7 +1695,8 @@
                 acces: "Excursion bateau depuis Diego",
                 horaires: "Journée complète recommandée",
                 conseil: "Faites la balade à pied d'une baie à l'autre (environ 3h de marche facile) pour profiter pleinement des paysages.",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 9,
@@ -1684,7 +1714,8 @@
                 acces: "30 km au sud de Diego par RN6, depuis Joffreville",
                 horaires: "8h-16h avec guide obligatoire",
                 conseil: "Prévoyez un vêtement de pluie et de bonnes chaussures, le climat est humide et plus frais qu'en ville.",
-                duree: "4h à 6h"
+                duree: "4h à 6h",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 10,
@@ -1702,7 +1733,8 @@
                 acces: "60 km de Diego, route de Joffreville",
                 horaires: "Lever/coucher de soleil recommandé",
                 conseil: "La lumière de fin d'après-midi (Golden Hour) rend le rouge de la roche particulièrement intense.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 11,
@@ -1720,7 +1752,8 @@
                 acces: "Accessible depuis Diego, sentier de randonnée",
                 horaires: "Matinée recommandée (chaleur)",
                 conseil: "Partez très tôt le matin pour éviter la grosse chaleur pendant la montée des marches.",
-                duree: "3h"
+                duree: "3h",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 12,
@@ -1738,7 +1771,8 @@
                 acces: "7 km au sud de Diego, accessible en taxi",
                 horaires: "6h-18h, guide recommandé",
                 conseil: "L'ascension est exposée au soleil, faites-la très tôt le matin ou en fin de journée pour la vue.",
-                duree: "3h"
+                duree: "3h",
+                siteWeb: "http://montagnedesfrancais-anosiravo.com"
             },
             {
                 id: 13,
@@ -1756,7 +1790,8 @@
                 acces: "Front de mer de Diego, centre-ville",
                 horaires: "11h-22h, fermé lundi",
                 conseil: "Commandez le crabe farci, c'est leur spécialité reconnue dans toute la ville.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://www.hotels-diego.com/en/restaurant-bar"
             },
             {
                 id: 14,
@@ -1774,7 +1809,8 @@
                 acces: "Centre-ville de Diego, rue Colbert",
                 horaires: "12h-14h et 19h-22h",
                 conseil: "Leurs carpaccios de poisson (esadon, thon) sont d'une fraîcheur absolue, à tester en entrée.",
-                duree: "1h30"
+                duree: "1h30",
+                siteWeb: "https://www.tripadvisor.fr/Restaurant_Review-g303985-d2217997-Reviews-La_Cambusa-Antsiranana_Diego_Suarez_Diana_Region.html"
             },
             {
                 id: 15,
@@ -1792,7 +1828,8 @@
                 acces: "Excursion bateau depuis Diego (30 min)",
                 horaires: "Matinée recommandée",
                 conseil: "Demandez à votre piroguier de s'approcher doucement pour voir les oiseaux nichant dans la paroi.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 16,
@@ -1812,7 +1849,8 @@
                 contactLocal: "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
                 respect: "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
                 conseil: "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
-                duree: "45 min"
+                duree: "45 min",
+                siteWeb: "http://www.office-tourisme-diego-suarez.com"
             },
             {
                 id: 17,
@@ -1830,7 +1868,8 @@
                 acces: "Nord de Nosy Be, 25 km de Hell-Ville",
                 horaires: "Accessible 24h/24",
                 conseil: "Allez-y en semaine pour éviter la foule du dimanche, où les familles locales viennent pique-niquer.",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://andilanaresort.com"
             },
             {
                 id: 18,
@@ -1848,7 +1887,8 @@
                 acces: "Bateau depuis Ambatoloaka (25 min)",
                 horaires: "Excursion journée ou demi-journée",
                 conseil: "Prévoyez des bananes (souvent fournies par les guides) pour attirer les lémuriens sur vos épaules pour la photo !",
-                duree: "3h"
+                duree: "3h",
+                siteWeb: "https://nosykomba.com"
             },
             {
                 id: 19,
@@ -1866,7 +1906,8 @@
                 acces: "Excursion bateau, tous clubs de plongée",
                 horaires: "Sortie journée avec déjeuner",
                 conseil: "Montez jusqu'au phare au sommet de l'île pour une vue panoramique incroyable sur l'archipel.",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "http://www.tanikely.com"
             },
             {
                 id: 20,
@@ -1884,7 +1925,8 @@
                 acces: "Excursion bateau (1h30), départ Hell-Ville",
                 horaires: "Journée complète, départ 7h",
                 conseil: "Attention au soleil ! Le sable blanc réfléchit énormément, crème solaire haute protection obligatoire.",
-                duree: "Journée"
+                duree: "Journée",
+                siteWeb: "https://nosyiranja.com"
             },
             {
                 id: 21,
@@ -1902,7 +1944,8 @@
                 acces: "Sud-est de l'île, accessible en bateau + randonnée",
                 horaires: "Excursions guidées matin (fraîcheur)",
                 conseil: "L'arrivée en pirogue à rames est magique, profitez du silence pour observer les martins-pêcheurs.",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 22,
@@ -1920,7 +1963,8 @@
                 acces: "Centre de l'île, 15 km de Hell-Ville",
                 horaires: "Lever/coucher de soleil recommandés",
                 conseil: "Arrivez au moins 30 minutes avant le coucher du soleil pour avoir une bonne place sur la terrasse panoramique.",
-                duree: "1h30"
+                duree: "1h30",
+                siteWeb: "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/"
             },
             {
                 id: 23,
@@ -1938,7 +1982,8 @@
                 acces: "Route Hell-Ville - Andilana, bien indiqué",
                 horaires: "8h-17h tous les jours",
                 conseil: "La visite guidée de la distillerie est incluse, ne la manquez pas pour tout savoir sur l'essence de parfum.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://lemurialand.com"
             },
             {
                 id: 24,
@@ -1956,7 +2001,8 @@
                 acces: "5 km de Hell-Ville, taxi ou location",
                 horaires: "24h/24, vie nocturne dès 19h",
                 conseil: "Parfait pour un apéro au coucher du soleil au 'Badamera', mais préférez Andilana pour le calme absolu.",
-                duree: "Soirée"
+                duree: "Soirée",
+                siteWeb: "https://nosybe-tourisme.com"
             },
             {
                 id: 25,
@@ -1974,7 +2020,8 @@
                 acces: "Bateau (20 min) depuis côte ouest Nosy Be",
                 horaires: "Excursion journée avec guide local",
                 conseil: "Le déjeuner chez l'habitant sur la plage est souvent un délice (poisson coco).",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://sakatia.com"
             },
             {
                 id: 26,
@@ -1992,7 +2039,8 @@
                 acces: "Plage d'Andilana, nord de l'île",
                 horaires: "10h-22h tous les jours",
                 conseil: "Réservez le buffet de fruits de mer du dimanche midi, c'est gargantuesque et très couru !",
-                duree: "3h (repas + plage)"
+                duree: "3h (repas + plage)",
+                siteWeb: "https://www.facebook.com/cacaobeachnosybe"
             },
             {
                 id: 27,
@@ -2010,7 +2058,8 @@
                 acces: "Hell-Ville, près du front de mer",
                 horaires: "12h-14h et 19h-22h, fermé dimanche",
                 conseil: "La terrasse est petite, réservez votre table en bordure pour avoir la vue plongeante sur la mer.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://heurebleue.com"
             },
             {
                 id: 28,
@@ -2028,7 +2077,8 @@
                 acces: "Clubs de plongée à Madirokely, Ambatoloaka",
                 horaires: "Sorties matin et après-midi",
                 conseil: "Si vous êtes débutant, demandez un baptême à Tanikely, les conditions sont parfaites (peu profond, clair).",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://nosybe-tourisme.com"
             },
             {
                 id: 29,
@@ -2046,7 +2096,8 @@
                 acces: "Plusieurs distilleries sur l'île, guides locaux",
                 horaires: "8h-16h, meilleur en matinée",
                 conseil: "Achetez votre huile essentielle ici, c'est bien moins cher et garanti pur par rapport aux revendeurs de plage.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://ylang-ylang-nosybe.com"
             },
             {
                 id: 30,
@@ -2066,7 +2117,8 @@
                 contactLocal: "Marie, sur la plage d'Ambatoloaka, reconnaissable à sa cabane bleue",
                 respect: "Bougie d'offrande recommandée (5000 Ar), silence dans la grotte, respecter les prières en cours",
                 conseil: "Parlez à Marie, la gardienne des lieux, elle connaît toutes les histoires et légendes de la grotte.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://nosybe-tourisme.com"
             },
             {
                 id: 31,
@@ -2084,7 +2136,8 @@
                 acces: "12 km au nord, piste praticable",
                 horaires: "Tôt le matin ou fin d'après-midi (chaleur)",
                 conseil: "Ramassez un petit échantillon de sable coloré dans une bouteille (souvenir classique), mais restez raisonnable pour préserver le site.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 32,
@@ -2102,7 +2155,8 @@
                 acces: "Route de Katsepy, 15 km",
                 horaires: "Lever et coucher de soleil recommandés",
                 conseil: "Respectez les tissus rouges et les objets (bouteilles, pièces) au pied de l'arbre, ne les touchez surtout pas.",
-                duree: "30 min"
+                duree: "30 min",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 33,
@@ -2122,7 +2176,8 @@
                 contactLocal: "Demander au directeur de l'école qui indique le chemin",
                 respect: "Offrande traditionnelle obligatoire (rhum, miel), ne pas se baigner",
                 conseil: "Ne portez pas de rouge (fady/tabou) lors de votre visite à la source.",
-                duree: "45 min"
+                duree: "45 min",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 34,
@@ -2140,7 +2195,8 @@
                 acces: "Centre-ville, front de mer (boulevard Poincaré)",
                 horaires: "Accessible 24h/24, meilleur au coucher de soleil",
                 conseil: "Goûtez absolument aux 'Masikita' (brochettes de zébu) vendues par les marchands ambulants le soir.",
-                duree: "Soirée"
+                duree: "Soirée",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 35,
@@ -2158,7 +2214,8 @@
                 acces: "115 km sur RN4, accessible en taxi-brousse ou 4x4",
                 horaires: "7h-17h avec guide obligatoire",
                 conseil: "Faites le circuit du canyon pour voir les formations géologiques 'Lavaka', c'est impressionnant.",
-                duree: "Journée"
+                duree: "Journée",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 36,
@@ -2176,7 +2233,8 @@
                 acces: "Bac depuis le port de Mahajanga (30 min de traversée)",
                 horaires: "Bacs : 6h, 8h, 11h, 14h, 16h",
                 conseil: "Goûtez au crabe à la noix de coco préparé par Mme Chabaud, une institution locale à Katsepy.",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 37,
@@ -2194,7 +2252,8 @@
                 acces: "85 km sur RN4 puis piste. Excursion journée avec guide local",
                 horaires: "Excursion départ 7h, retour 17h",
                 conseil: "La piste est difficile, un vrai 4x4 est indispensable. Partez très tôt le matin.",
-                duree: "Journée complète"
+                duree: "Journée complète",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 38,
@@ -2212,7 +2271,8 @@
                 acces: "Boulevard Poincaré, front de mer",
                 horaires: "11h-22h tous les jours",
                 conseil: "Leur 'Capitaine à la plancha' est un délice absolu, demandez la sauce à l'ail à part.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://www.facebook.com/ChezKaronMajunga"
             },
             {
                 id: 39,
@@ -2230,7 +2290,8 @@
                 acces: "Centre-ville, rue du Commerce",
                 horaires: "5h-18h, meilleur en matinée",
                 conseil: "Achetez ici votre poivre sauvage de Madagascar et de la vanille, les prix sont bien meilleurs qu'en boutique.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 40,
@@ -2248,7 +2309,8 @@
                 acces: "Quartier Ankorondrano, bien indiqué",
                 horaires: "8h-18h en semaine, 8h-20h weekend",
                 conseil: "La piscine est très fréquentée le mercredi après-midi et le week-end, préférez le matin pour nager.",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 41,
@@ -2266,7 +2328,8 @@
                 acces: "RN2, 140 km d'Antananarivo (3h)",
                 horaires: "Circuits 4h à 6h avec guide obligatoire",
                 conseil: "Le matin très tôt (6h-7h) est le meilleur moment pour entendre le chant des Indris.",
-                duree: "4h"
+                duree: "4h",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 42,
@@ -2284,7 +2347,8 @@
                 acces: "À côté du parc, bien indiqué",
                 horaires: "8h-17h tous les jours",
                 conseil: "Attention à vos lunettes de soleil et chapeaux, les lémuriens sont des petits voleurs espiègles !",
-                duree: "2h"
+                duree: "2h",
+                siteWeb: "https://vakonaforestlodge.com"
             },
             {
                 id: 43,
@@ -2304,7 +2368,8 @@
                 contactLocal: "Jean, guide à l'entrée de Vakona (gilet orange)",
                 respect: "Ne pas laisser de déchets, baignade autorisée",
                 conseil: "Le sentier peut être glissant après la pluie, prévoyez de bonnes chaussures ou des sandales de marche.",
-                duree: "1h30"
+                duree: "1h30",
+                siteWeb: "https://vakonaforestlodge.com"
             },
             {
                 id: 44,
@@ -2322,7 +2387,8 @@
                 acces: "RN7, entre Tuléar et Fianarantsoa",
                 horaires: "Circuits à la journée avec guide obligatoire",
                 conseil: "Ne manquez pas le coucher de soleil à la 'Fenêtre de l'Isalo', un classique mais toujours spectaculaire.",
-                duree: "Journée"
+                duree: "Journée",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 45,
@@ -2340,7 +2406,8 @@
                 acces: "Circuit de 2-3h dans le parc",
                 horaires: "Matin recommandé (moins de monde)",
                 conseil: "L'eau est très fraîche, même en été, ça surprend après la chaleur du canyon !",
-                duree: "1h (pause)"
+                duree: "1h (pause)",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 46,
@@ -2360,7 +2427,8 @@
                 contactLocal: "Famille Rakoto au village de Ranohira, demander 'Papa Koto'",
                 respect: "Coucher de soleil uniquement, ne pas sortir du sentier",
                 conseil: "Demandez à Papa Koto de vous raconter l'histoire des tombeaux que l'on aperçoit dans la falaise en face.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 47,
@@ -2378,7 +2446,8 @@
                 acces: "27 km au nord de Tuléar par piste",
                 horaires: "Accessible 24h/24",
                 conseil: "Faites une sortie en pirogue Vezo à balancier tôt le matin pour aller voir le récif.",
-                duree: "Séjour"
+                duree: "Séjour",
+                siteWeb: "https://madagascar-tourisme.com"
             },
             {
                 id: 48,
@@ -2396,7 +2465,8 @@
                 acces: "Village de Mangily, guide local recommandé",
                 horaires: "Matin ou fin d'après-midi (chaleur)",
                 conseil: "Visitez le parc 'Mosa' juste à côté pour voir des lémuriens et des tortues radiata.",
-                duree: "1h30"
+                duree: "1h30",
+                siteWeb: "https://www.reniala.com"
             },
             {
                 id: 49,
@@ -2416,7 +2486,8 @@
                 contactLocal: "Chef du village d'Ifaty (mairie)",
                 respect: "Offrande traditionnelle obligatoire (rhum, tabac), ne pas toucher l'arbre",
                 conseil: "Soyez très respectueux et ne touchez l'arbre que si le guide vous y invite explicitement.",
-                duree: "45 min"
+                duree: "45 min",
+                siteWeb: "https://madagascar-tourisme.com"
             },
             {
                 id: 50,
@@ -2434,7 +2505,8 @@
                 acces: "108 km au sud de Diego-Suarez",
                 horaires: "Circuits guidés, harnais fourni",
                 conseil: "Il fait très chaud dans les Tsingy (réverbération). Partez à l'aube et prenez beaucoup d'eau.",
-                duree: "Journée"
+                duree: "Journée",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 51,
@@ -2452,7 +2524,8 @@
                 acces: "Sentier depuis l'entrée du parc",
                 horaires: "Lampe frontale obligatoire",
                 conseil: "L'odeur de guano peut être forte, un foulard ou un masque peut être utile.",
-                duree: "1h"
+                duree: "1h",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 52,
@@ -2472,7 +2545,8 @@
                 contactLocal: "Papa Solo (guide agréé), bureau près du marché central Diego",
                 respect: "Interdiction photos, offrande obligatoire, vêtements couvrants",
                 conseil: "Prévoyez un budget pour les offrandes rituelles (miel, rhum, zébu parfois selon les cérémonies).",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://tourisme-majunga.com"
             },
             {
                 id: 53,
@@ -2490,7 +2564,8 @@
                 acces: "Côte est, 250 km de Toamasina (difficile)",
                 horaires: "Excursions guidées",
                 conseil: "L'accès est difficile (piste ou bateau), c'est une expédition pour les aventuriers, pas pour le tourisme de masse.",
-                duree: "2 jours"
+                duree: "2 jours",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 54,
@@ -2508,7 +2583,8 @@
                 acces: "Pirogue depuis Mananara (15 min)",
                 horaires: "Départs matin et après-midi",
                 conseil: "C'est un spot de réserve de Biosphère, respectez scrupuleusement les consignes (pas de coquillages, pas de touche au corail).",
-                duree: "Demi-journée"
+                duree: "Demi-journée",
+                siteWeb: "https://www.parcs-madagascar.com"
             },
             {
                 id: 55,
@@ -3025,6 +3101,7 @@
                     <div class="modal-section-title">Accès</div>
                     <div class="modal-section-content">${lieu.acces}</div>
                 </div>
+                ${lieu.siteWeb ? `<a href="${lieu.siteWeb}" target="_blank" class="btn-website">🌍 Visiter le site web</a>` : ''}
             `;
 
             if (lieu.horaires) {

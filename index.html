@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
     <!-- Leaflet CSS -->
@@ -41,26 +41,31 @@
            VARIABLES CSS & RESET
            ============================================ */
         :root {
-            /* Couleurs principales (identité malgache) */
-            --laterite: #C13535;
-            --foret: #3A5F3A;
+            /* Couleurs principales (identité malgache préservée) */
+            --laterite: #b03030;
+            /* Légèrement plus profond pour le premium */
+            --foret: #2d4a2d;
+            /* Plus profond/élégant */
             --sable: #D8B48F;
-            --creme: #F9F5F0;
-            --noir: #12100E;
+            --creme: #FAF9F6;
+            /* Off-white plus pur */
+            --noir: #1A1A1A;
+            /* Noir moins dur */
 
             /* Statuts */
             --gratuit: #16A34A;
             --abordable: #F59E0B;
             --premium: #DC2626;
 
-            /* UI */
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
-            --radius: 12px;
+            /* UI Premium */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --radius: 16px;
+            /* Plus moderne */
             --radius-sm: 8px;
 
-            /* Typographie */
-            --font-display: 'Quicksand', sans-serif;
+            /* Typographie Premium */
+            --font-display: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
 
@@ -68,18 +73,19 @@
             --bg-primary: var(--creme);
             --bg-secondary: #FFFFFF;
             --text-primary: var(--noir);
-            --text-secondary: #6B7280;
-            --border-color: #E5E7EB;
+            --text-secondary: #525252;
+            /* Gris plus chaud */
+            --border-color: #E5E5E5;
         }
 
         [data-theme="dark"] {
-            --bg-primary: #1A1A1A;
-            --bg-secondary: #2D2D2D;
-            --text-primary: #F9F5F0;
-            --text-secondary: #9CA3AF;
-            --border-color: #404040;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #EDE9E4;
+            --text-secondary: #A3A3A3;
+            --border-color: #262626;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
         }
 
         * {

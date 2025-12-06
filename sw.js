@@ -1,10 +1,9 @@
-const CACHE_NAME = 'mg-guide-cache-v1';
+const CACHE_NAME = 'mg-guide-cache-v2';
 const urlsToCache = [
-  '/',
-  'index.html',
-  'manifest.json',
-  'icon-192.svg',
-  'icon-512.svg',
+  './',
+  './index.html',
+  './manifest.json',
+  './images/logo/favicon.png',
   // Les données sont intégrées dans index.html, donc pas besoin de les mettre en cache séparément.
   // Les dépendances externes (Leaflet, Google Fonts) ne peuvent pas être mises en cache directement ici.
 ];
@@ -29,6 +28,6 @@ self.addEventListener('fetch', event => {
         }
         return fetch(event.request);
       }
-    )
+      )
   );
 });

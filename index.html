@@ -1445,22 +1445,47 @@
                         <label for="filter-economique" class="filter-label">&lt; 10 000 Ar</label>
 
                         <input type="checkbox" id="filter-moyen" class="filter-checkbox" checked>
-                        <h3 class="shortcut-title">Spots Locaux</h3>
-                        <p class="shortcut-desc">9 lieux secrets accessibles uniquement via contact local</p>
-                    </div>
-
-                    <div class="shortcut-card" data-goto="langue">
-                        <div class="shortcut-icon">🗣️</div>
-                        <h3 class="shortcut-title">50+ Expressions</h3>
-                        <p class="shortcut-desc">Phrases essentielles en malgache avec prononciation audio</p>
-                    </div>
-
-                    <div class="shortcut-card" data-goto="outils">
-                        <div class="shortcut-icon">🧰</div>
-                        <h3 class="shortcut-title">Outils Terrain</h3>
-                        <p class="shortcut-desc">Convertisseur devises, checklist voyage, numéros utiles</p>
+                        <label for="filter-moyen" class="filter-label">≥ 10 000 Ar</label>
                     </div>
                 </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">❤️ Mes Préférences</div>
+                    <div class="filter-options">
+                        <input type="checkbox" id="filter-favorites" class="filter-checkbox">
+                        <label for="filter-favorites" class="filter-label">Mes Favoris Uniquement</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte -->
+            <div id="map-container" style="position: relative;">
+                <div id="map"></div>
+                <button id="btnLocateMe" class="btn-locate">
+                    <i class="fas fa-location-crosshairs"></i> Autour de moi
+                </button>
+            </div>
+
+            <!-- Shortcuts -->
+            <div class="shortcuts-grid">
+                <div class="shortcut-card" data-goto="spots">
+                    <div class="shortcut-icon">🔥</div>
+                    <h3 class="shortcut-title">Spots Locaux</h3>
+                    <p class="shortcut-desc">9 lieux secrets accessibles uniquement via contact local</p>
+                </div>
+
+                <div class="shortcut-card" data-goto="langue">
+                    <div class="shortcut-icon">🗣️</div>
+                    <h3 class="shortcut-title">50+ Expressions</h3>
+                    <p class="shortcut-desc">Phrases essentielles en malgache avec prononciation audio</p>
+                </div>
+
+                <div class="shortcut-card" data-goto="outils">
+                    <div class="shortcut-icon">🧰</div>
+                    <h3 class="shortcut-title">Outils Terrain</h3>
+                    <p class="shortcut-desc">Convertisseur devises, checklist voyage, numéros utiles</p>
+                </div>
+            </div>
         </section>
 
         <!-- Pages Villes (template dynamique) -->

@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Le guide ultime pour voyager à Madagascar - Spots locaux authentiques, carte interactive offline, expressions malgaches">
+    <meta name="description"
+        content="Le guide ultime pour voyager à Madagascar - Spots locaux authentiques, carte interactive offline, expressions malgaches">
     <meta name="theme-color" content="#C13535">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+
     <title>MG Guide Voyage Madagascar - Le guide que seuls les Malgaches connaissent</title>
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="shortcut icon" href="icons/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles-map.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    
+
     <style>
         /* ============================================
            VARIABLES CSS & RESET
@@ -42,23 +48,23 @@
             --sable: #D8B48F;
             --creme: #F9F5F0;
             --noir: #12100E;
-            
+
             /* Statuts */
             --gratuit: #16A34A;
             --abordable: #F59E0B;
             --premium: #DC2626;
-            
+
             /* UI */
-            --shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --shadow-lg: 0 4px 16px rgba(0,0,0,0.15);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
             --radius: 12px;
             --radius-sm: 8px;
-            
+
             /* Typographie */
             --font-display: 'Quicksand', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
-            
+
             /* Mode clair (défaut) */
             --bg-primary: var(--creme);
             --bg-secondary: #FFFFFF;
@@ -66,28 +72,28 @@
             --text-secondary: #6B7280;
             --border-color: #E5E7EB;
         }
-        
+
         [data-theme="dark"] {
             --bg-primary: #1A1A1A;
             --bg-secondary: #2D2D2D;
             --text-primary: #F9F5F0;
             --text-secondary: #9CA3AF;
             --border-color: #404040;
-            --shadow: 0 2px 8px rgba(0,0,0,0.3);
-            --shadow-lg: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html {
             scroll-behavior: smooth;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
             font-family: var(--font-body);
             background-color: var(--bg-primary);
@@ -96,7 +102,7 @@
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+
         /* ============================================
            HEADER PREMIUM (NON SCROLLABLE)
            ============================================ */
@@ -109,7 +115,7 @@
             padding: 16px 20px;
             box-shadow: var(--shadow-lg);
         }
-        
+
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -118,11 +124,11 @@
             align-items: center;
             gap: 16px;
         }
-        
+
         .header-left {
             flex: 1;
         }
-        
+
         .header-title {
             font-family: var(--font-display);
             font-size: 1.5rem;
@@ -132,7 +138,7 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .badge-premium {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             color: var(--noir);
@@ -142,16 +148,16 @@
             font-weight: 700;
             letter-spacing: 0.5px;
         }
-        
+
         .header-tagline {
             font-size: 0.875rem;
             opacity: 0.95;
             font-style: italic;
         }
-        
+
         .theme-toggle {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 24px;
             width: 48px;
             height: 48px;
@@ -163,16 +169,16 @@
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
-        
+
         .theme-toggle:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
         }
-        
+
         .theme-toggle:active {
             transform: scale(0.95);
         }
-        
+
         /* ============================================
            NAVIGATION SCROLLABLE
            ============================================ */
@@ -187,18 +193,18 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
-        
+
         .nav-container::-webkit-scrollbar {
             display: none;
         }
-        
+
         .main-nav {
             display: flex;
             gap: 8px;
             padding: 12px 20px;
             min-width: max-content;
         }
-        
+
         .nav-btn {
             background: var(--bg-primary);
             border: 2px solid var(--border-color);
@@ -217,21 +223,21 @@
             align-items: center;
             gap: 6px;
         }
-        
+
         .nav-btn:hover {
             background: var(--laterite);
             border-color: var(--laterite);
             color: white;
             transform: translateY(-2px);
         }
-        
+
         .nav-btn.active {
             background: var(--laterite);
             border-color: var(--laterite);
             color: white;
             font-weight: 600;
         }
-        
+
         /* ============================================
            MAIN CONTENT
            ============================================ */
@@ -240,27 +246,28 @@
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         .page-section {
             display: none;
             animation: fadeIn 0.3s ease;
         }
-        
+
         .page-section.active {
             display: block;
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         /* ============================================
            CARTE INTERACTIVE
            ============================================ */
@@ -271,7 +278,7 @@
             box-shadow: var(--shadow-lg);
             margin-bottom: 20px;
         }
-        
+
         .map-filters {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -279,32 +286,32 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow);
         }
-        
+
         .filter-group {
             margin-bottom: 16px;
         }
-        
+
         .filter-group:last-child {
             margin-bottom: 0;
         }
-        
+
         .filter-title {
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-primary);
             font-size: 0.95rem;
         }
-        
+
         .filter-options {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-        
+
         .filter-checkbox {
             display: none;
         }
-        
+
         .filter-label {
             background: var(--bg-primary);
             border: 2px solid var(--border-color);
@@ -315,18 +322,18 @@
             transition: all 0.2s ease;
             user-select: none;
         }
-        
-        .filter-checkbox:checked + .filter-label {
+
+        .filter-checkbox:checked+.filter-label {
             background: var(--laterite);
             border-color: var(--laterite);
             color: white;
             font-weight: 500;
         }
-        
+
         .filter-label:hover {
             border-color: var(--laterite);
         }
-        
+
         /* ============================================
            SHORTCUTS RAPIDES
            ============================================ */
@@ -336,7 +343,7 @@
             gap: 16px;
             margin: 20px 0;
         }
-        
+
         .shortcut-card {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -346,18 +353,18 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
-        
+
         .shortcut-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
             border-color: var(--laterite);
         }
-        
+
         .shortcut-icon {
             font-size: 2.5rem;
             margin-bottom: 12px;
         }
-        
+
         .shortcut-title {
             font-family: var(--font-display);
             font-size: 1.25rem;
@@ -365,12 +372,12 @@
             margin-bottom: 8px;
             color: var(--text-primary);
         }
-        
+
         .shortcut-desc {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        
+
         /* ============================================
            CARDS LIEUX
            ============================================ */
@@ -380,7 +387,7 @@
             gap: 20px;
             margin-top: 20px;
         }
-        
+
         .lieu-card {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -389,24 +396,24 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
-        
+
         .lieu-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
             border-color: var(--laterite);
         }
-        
+
         .lieu-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             background: var(--sable);
         }
-        
+
         .lieu-content {
             padding: 16px;
         }
-        
+
         .lieu-header {
             display: flex;
             justify-content: space-between;
@@ -414,7 +421,7 @@
             gap: 12px;
             margin-bottom: 12px;
         }
-        
+
         .lieu-title {
             font-family: var(--font-display);
             font-size: 1.1rem;
@@ -422,7 +429,7 @@
             color: var(--text-primary);
             flex: 1;
         }
-        
+
         .badge-spot {
             background: var(--laterite);
             color: white;
@@ -433,7 +440,7 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-        
+
         .badge-type {
             background: var(--foret);
             color: white;
@@ -443,7 +450,7 @@
             font-weight: 600;
             white-space: nowrap;
         }
-        
+
         .lieu-meta {
             display: flex;
             justify-content: space-between;
@@ -452,37 +459,37 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        
+
         .lieu-prix {
             font-family: var(--font-mono);
             font-weight: 500;
             font-size: 0.9rem;
         }
-        
+
         .lieu-prix.gratuit {
             color: var(--gratuit);
         }
-        
+
         .lieu-prix.abordable {
             color: var(--abordable);
         }
-        
+
         .lieu-prix.premium {
             color: var(--premium);
         }
-        
+
         .lieu-note {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        
+
         .lieu-desc {
             color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 16px;
         }
-        
+
         .btn-details {
             width: 100%;
             background: var(--laterite);
@@ -496,16 +503,16 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .btn-details:hover {
             background: #A12929;
             transform: scale(1.02);
         }
-        
+
         .btn-details:active {
             transform: scale(0.98);
         }
-        
+
         /* ============================================
            MODAL DÉTAILS
            ============================================ */
@@ -516,19 +523,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 10000;
             overflow-y: auto;
             animation: fadeIn 0.2s ease;
         }
-        
+
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
-        
+
         .modal-content {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -540,23 +547,24 @@
             box-shadow: var(--shadow-lg);
             animation: slideUp 0.3s ease;
         }
-        
+
         @keyframes slideUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .modal-close {
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             border-radius: 50%;
@@ -570,22 +578,22 @@
             z-index: 1;
             transition: all 0.2s ease;
         }
-        
+
         .modal-close:hover {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             transform: scale(1.1);
         }
-        
+
         .modal-image {
             width: 100%;
             height: 300px;
             object-fit: cover;
         }
-        
+
         .modal-body {
             padding: 24px;
         }
-        
+
         .modal-title {
             font-family: var(--font-display);
             font-size: 1.8rem;
@@ -593,48 +601,48 @@
             margin-bottom: 16px;
             color: var(--text-primary);
         }
-        
+
         .modal-section {
             margin-bottom: 20px;
         }
-        
+
         .modal-section-title {
             font-weight: 600;
             font-size: 1.1rem;
             margin-bottom: 8px;
             color: var(--laterite);
         }
-        
+
         .modal-section-content {
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        
+
         .modal-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 12px;
             margin-bottom: 20px;
         }
-        
+
         .modal-info-item {
             background: var(--bg-primary);
             padding: 12px;
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--laterite);
         }
-        
+
         .modal-info-label {
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-bottom: 4px;
         }
-        
+
         .modal-info-value {
             font-weight: 600;
             color: var(--text-primary);
         }
-        
+
         /* ============================================
            LANGUE - ACCORDÉONS
            ============================================ */
@@ -646,13 +654,13 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        
+
         .search-box {
             flex: 1;
             min-width: 250px;
             position: relative;
         }
-        
+
         .search-input {
             width: 100%;
             padding: 12px 16px 12px 44px;
@@ -664,13 +672,13 @@
             color: var(--text-primary);
             transition: all 0.2s ease;
         }
-        
+
         .search-input:focus {
             outline: none;
             border-color: var(--laterite);
-            box-shadow: 0 0 0 3px rgba(193,53,53,0.1);
+            box-shadow: 0 0 0 3px rgba(193, 53, 53, 0.1);
         }
-        
+
         .search-icon {
             position: absolute;
             left: 16px;
@@ -679,13 +687,13 @@
             font-size: 1.2rem;
             color: var(--text-secondary);
         }
-        
+
         .accordion-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
+
         .accordion-item {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -694,11 +702,11 @@
             border: 2px solid transparent;
             transition: border-color 0.2s ease;
         }
-        
+
         .accordion-item.open {
             border-color: var(--laterite);
         }
-        
+
         .accordion-header {
             display: flex;
             justify-content: space-between;
@@ -709,11 +717,11 @@
             background: var(--bg-secondary);
             transition: background 0.2s ease;
         }
-        
+
         .accordion-header:hover {
             background: var(--bg-primary);
         }
-        
+
         .accordion-title {
             font-family: var(--font-display);
             font-size: 1.1rem;
@@ -723,30 +731,30 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .accordion-icon {
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
-        
+
         .accordion-item.open .accordion-icon {
             transform: rotate(180deg);
         }
-        
+
         .accordion-body {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
-        
+
         .accordion-item.open .accordion-body {
             max-height: 2000px;
         }
-        
+
         .accordion-content {
             padding: 0 20px 20px 20px;
         }
-        
+
         .phrase-item {
             display: flex;
             align-items: center;
@@ -757,39 +765,39 @@
             margin-bottom: 8px;
             transition: all 0.2s ease;
         }
-        
+
         .phrase-item:hover {
             background: var(--bg-secondary);
             transform: translateX(4px);
         }
-        
+
         .phrase-content {
             flex: 1;
         }
-        
+
         .phrase-fr {
             font-weight: 500;
             color: var(--text-primary);
             margin-bottom: 4px;
         }
-        
+
         .phrase-mg {
             color: var(--laterite);
             font-weight: 600;
             margin-bottom: 2px;
         }
-        
+
         .phrase-phonetic {
             color: var(--text-secondary);
             font-size: 0.85rem;
             font-style: italic;
         }
-        
+
         .phrase-actions {
             display: flex;
             gap: 8px;
         }
-        
+
         .btn-icon {
             background: var(--laterite);
             color: white;
@@ -804,21 +812,21 @@
             font-size: 1rem;
             transition: all 0.2s ease;
         }
-        
+
         .btn-icon:hover {
             background: #A12929;
             transform: scale(1.1);
         }
-        
+
         .btn-icon:active {
             transform: scale(0.9);
         }
-        
+
         .btn-icon.favorite.active {
             background: #FFD700;
             color: var(--noir);
         }
-        
+
         /* ============================================
            OUTILS
            ============================================ */
@@ -827,14 +835,14 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-        
+
         .tool-card {
             background: var(--bg-secondary);
             border-radius: var(--radius);
             padding: 24px;
             box-shadow: var(--shadow);
         }
-        
+
         .tool-title {
             font-family: var(--font-display);
             font-size: 1.3rem;
@@ -845,19 +853,19 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .converter-inputs {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
+
         .converter-row {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .converter-input {
             flex: 1;
             padding: 12px;
@@ -870,18 +878,18 @@
             color: var(--text-primary);
             text-align: center;
         }
-        
+
         .converter-input:focus {
             outline: none;
             border-color: var(--laterite);
         }
-        
+
         .converter-label {
             font-weight: 600;
             color: var(--text-secondary);
             min-width: 50px;
         }
-        
+
         .rate-info {
             text-align: center;
             padding: 12px;
@@ -891,7 +899,7 @@
             font-size: 0.9rem;
             margin-top: 8px;
         }
-        
+
         .btn-modify {
             margin-top: 12px;
             background: var(--foret);
@@ -904,17 +912,17 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .btn-modify:hover {
             background: #2D4A2D;
         }
-        
+
         .checklist-items {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        
+
         .checklist-item {
             display: flex;
             align-items: center;
@@ -925,12 +933,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .checklist-item:hover {
             background: var(--bg-secondary);
             transform: translateX(4px);
         }
-        
+
         .checklist-checkbox {
             width: 24px;
             height: 24px;
@@ -942,73 +950,73 @@
             transition: all 0.2s ease;
             flex-shrink: 0;
         }
-        
+
         .checklist-item.checked .checklist-checkbox {
             background: var(--gratuit);
             border-color: var(--gratuit);
         }
-        
+
         .checklist-checkbox::after {
             content: '✓';
             color: white;
             font-weight: bold;
             display: none;
         }
-        
+
         .checklist-item.checked .checklist-checkbox::after {
             display: block;
         }
-        
+
         .checklist-label {
             flex: 1;
             color: var(--text-primary);
         }
-        
+
         .checklist-item.checked .checklist-label {
             text-decoration: line-through;
             opacity: 0.6;
         }
-        
+
         .seasonal-advice {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        
+
         .advice-item {
             padding: 16px;
             border-radius: var(--radius-sm);
             border-left: 4px solid;
         }
-        
+
         .advice-item.good {
-            background: rgba(22,163,74,0.1);
+            background: rgba(22, 163, 74, 0.1);
             border-color: var(--gratuit);
         }
-        
+
         .advice-item.warning {
-            background: rgba(245,158,11,0.1);
+            background: rgba(245, 158, 11, 0.1);
             border-color: var(--abordable);
         }
-        
+
         .advice-title {
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-primary);
         }
-        
+
         .advice-list {
             color: var(--text-secondary);
             font-size: 0.9rem;
             list-style-position: inside;
         }
-        
+
         .contacts-list {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        
+
         .contact-group-title {
             font-weight: 600;
             color: var(--laterite);
@@ -1017,7 +1025,7 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .contact-item {
             display: flex;
             justify-content: space-between;
@@ -1025,17 +1033,17 @@
             background: var(--bg-primary);
             border-radius: var(--radius-sm);
         }
-        
+
         .contact-name {
             color: var(--text-primary);
         }
-        
+
         .contact-number {
             font-family: var(--font-mono);
             color: var(--laterite);
             font-weight: 500;
         }
-        
+
         /* ============================================
            RESPONSIVE
            ============================================ */
@@ -1043,117 +1051,117 @@
             .header-title {
                 font-size: 1.2rem;
             }
-            
+
             .header-tagline {
                 font-size: 0.8rem;
             }
-            
+
             .theme-toggle {
                 width: 44px;
                 height: 44px;
             }
-            
+
             .nav-container {
                 top: 72px;
             }
-            
+
             .main-nav {
                 padding: 10px 16px;
                 gap: 6px;
             }
-            
+
             .nav-btn {
                 padding: 8px 16px;
                 font-size: 0.85rem;
             }
-            
+
             .main-content {
                 padding: 16px;
             }
-            
+
             #map {
                 height: 400px;
             }
-            
+
             .shortcuts-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .lieux-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .modal-content {
                 margin: 10px;
             }
-            
+
             .modal-title {
                 font-size: 1.5rem;
             }
         }
-        
+
         @media (min-width: 1024px) {
             #map {
                 height: 600px;
             }
         }
-        
+
         /* ============================================
            UTILITAIRES
            ============================================ */
         .hidden {
             display: none !important;
         }
-        
+
         .text-center {
             text-align: center;
         }
-        
+
         .mt-20 {
             margin-top: 20px;
         }
-        
+
         .mb-20 {
             margin-bottom: 20px;
         }
-        
+
         /* Leaflet popup customization */
         .leaflet-popup-content-wrapper {
             border-radius: var(--radius-sm);
             box-shadow: var(--shadow-lg);
         }
-        
+
         .leaflet-popup-content {
             margin: 12px;
             font-family: var(--font-body);
         }
-        
+
         .popup-content {
             min-width: 200px;
         }
-        
+
         .popup-title {
             font-weight: 600;
             font-size: 1rem;
             margin-bottom: 6px;
             color: var(--noir);
         }
-        
+
         .popup-price {
             font-family: var(--font-mono);
             font-size: 0.9rem;
             margin-bottom: 4px;
         }
-        
+
         .popup-rating {
             font-size: 0.85rem;
             color: #666;
         }
-        
+
         /* Installation prompt */
         .install-prompt {
             position: fixed;
@@ -1171,11 +1179,11 @@
             z-index: 9999;
             animation: slideUp 0.3s ease;
         }
-        
+
         .install-prompt.active {
             display: flex;
         }
-        
+
         .install-btn {
             background: white;
             color: var(--laterite);
@@ -1186,11 +1194,11 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .install-btn:hover {
             transform: scale(1.05);
         }
-        
+
         .install-close {
             background: none;
             border: none;
@@ -1202,6 +1210,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header Premium -->
     <header class="header-premium">
@@ -1218,7 +1227,7 @@
             </button>
         </div>
     </header>
-    
+
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="main-nav" id="mainNav">
@@ -1237,7 +1246,7 @@
             <button class="nav-btn" data-page="outils">🧰 Outils</button>
         </div>
     </nav>
-    
+
     <!-- Main Content -->
     <main class="main-content">
         <!-- Page Carte -->
@@ -1249,73 +1258,73 @@
                     <div class="filter-options">
                         <input type="checkbox" id="filter-antananarivo" class="filter-checkbox" checked>
                         <label for="filter-antananarivo" class="filter-label">Antananarivo</label>
-                        
+
                         <input type="checkbox" id="filter-diego" class="filter-checkbox" checked>
                         <label for="filter-diego" class="filter-label">Diego-Suarez</label>
-                        
+
                         <input type="checkbox" id="filter-nosybe" class="filter-checkbox" checked>
                         <label for="filter-nosybe" class="filter-label">Nosy Be</label>
-                        
+
                         <input type="checkbox" id="filter-mahajanga" class="filter-checkbox" checked>
                         <label for="filter-mahajanga" class="filter-label">Mahajanga</label>
-                        
+
                         <input type="checkbox" id="filter-andasibe" class="filter-checkbox" checked>
                         <label for="filter-andasibe" class="filter-label">Andasibe</label>
-                        
+
                         <input type="checkbox" id="filter-isalo" class="filter-checkbox" checked>
                         <label for="filter-isalo" class="filter-label">Isalo</label>
-                        
+
                         <input type="checkbox" id="filter-ifaty" class="filter-checkbox" checked>
                         <label for="filter-ifaty" class="filter-label">Ifaty</label>
-                        
+
                         <input type="checkbox" id="filter-ankarana" class="filter-checkbox" checked>
                         <label for="filter-ankarana" class="filter-label">Ankarana</label>
-                        
+
                         <input type="checkbox" id="filter-mananara" class="filter-checkbox" checked>
                         <label for="filter-mananara" class="filter-label">Mananara</label>
                     </div>
                 </div>
-                
+
                 <div class="filter-group">
                     <div class="filter-title">🏷️ Types</div>
                     <div class="filter-options">
                         <input type="checkbox" id="filter-incontournable" class="filter-checkbox" checked>
                         <label for="filter-incontournable" class="filter-label">Incontournable</label>
-                        
+
                         <input type="checkbox" id="filter-spotlocal" class="filter-checkbox" checked>
                         <label for="filter-spotlocal" class="filter-label">Spot Local</label>
-                        
+
                         <input type="checkbox" id="filter-nature" class="filter-checkbox" checked>
                         <label for="filter-nature" class="filter-label">Nature</label>
-                        
+
                         <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
                         <label for="filter-restaurant" class="filter-label">Restaurant</label>
-                        
+
                         <input type="checkbox" id="filter-culture" class="filter-checkbox" checked>
                         <label for="filter-culture" class="filter-label">Culture</label>
                     </div>
                 </div>
-                
+
                 <div class="filter-group">
                     <div class="filter-title">💰 Prix</div>
                     <div class="filter-options">
                         <input type="checkbox" id="filter-gratuit" class="filter-checkbox" checked>
                         <label for="filter-gratuit" class="filter-label">Gratuit</label>
-                        
+
                         <input type="checkbox" id="filter-economique" class="filter-checkbox" checked>
                         <label for="filter-economique" class="filter-label">&lt; 10 000 Ar</label>
-                        
+
                         <input type="checkbox" id="filter-moyen" class="filter-checkbox" checked>
                         <label for="filter-moyen" class="filter-label">≥ 10 000 Ar</label>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Carte -->
             <div id="map-container">
                 <div id="map"></div>
             </div>
-            
+
             <!-- Shortcuts -->
             <div class="shortcuts-grid">
                 <div class="shortcut-card" data-goto="spots">
@@ -1323,13 +1332,13 @@
                     <h3 class="shortcut-title">Spots Locaux</h3>
                     <p class="shortcut-desc">9 lieux secrets accessibles uniquement via contact local</p>
                 </div>
-                
+
                 <div class="shortcut-card" data-goto="langue">
                     <div class="shortcut-icon">🗣️</div>
                     <h3 class="shortcut-title">50+ Expressions</h3>
                     <p class="shortcut-desc">Phrases essentielles en malgache avec prononciation audio</p>
                 </div>
-                
+
                 <div class="shortcut-card" data-goto="outils">
                     <div class="shortcut-icon">🧰</div>
                     <h3 class="shortcut-title">Outils Terrain</h3>
@@ -1337,7 +1346,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Pages Villes (template dynamique) -->
         <section id="page-antananarivo" class="page-section"></section>
         <section id="page-diego" class="page-section"></section>
@@ -1348,33 +1357,40 @@
         <section id="page-ifaty" class="page-section"></section>
         <section id="page-ankarana" class="page-section"></section>
         <section id="page-mananara" class="page-section"></section>
-        
+
         <!-- Page Spots Locaux -->
         <section id="page-spots" class="page-section">
-            <h2 class="page-title" style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--laterite);">🔥 Spots Locaux Authentiques</h2>
+            <h2 class="page-title"
+                style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--laterite);">
+                🔥 Spots Locaux Authentiques</h2>
             <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
-                Ces lieux sont <strong>inaccessibles sans contact humain local</strong>. Non référencés sur Google Maps, absents des guides touristiques traditionnels.
+                Ces lieux sont <strong>inaccessibles sans contact humain local</strong>. Non référencés sur Google Maps,
+                absents des guides touristiques traditionnels.
             </p>
             <div id="spotsContainer" class="lieux-grid"></div>
         </section>
-        
+
         <!-- Page Langue -->
         <section id="page-langue" class="page-section">
             <div class="langue-header">
-                <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--text-primary);">🗣️ Expressions Malgaches</h2>
+                <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--text-primary);">🗣️
+                    Expressions Malgaches</h2>
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="langueSearch" class="search-input" placeholder="Rechercher une expression...">
+                    <input type="text" id="langueSearch" class="search-input"
+                        placeholder="Rechercher une expression...">
                 </div>
             </div>
-            
+
             <div id="accordionContainer" class="accordion-container"></div>
         </section>
-        
+
         <!-- Page Outils -->
         <section id="page-outils" class="page-section">
-            <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px; color: var(--text-primary);">🧰 Outils Terrain</h2>
-            
+            <h2
+                style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px; color: var(--text-primary);">
+                🧰 Outils Terrain</h2>
+
             <div class="tools-grid">
                 <!-- Convertisseur -->
                 <div class="tool-card">
@@ -1395,13 +1411,13 @@
                     </div>
                     <button class="btn-modify" id="btnModifyRate">Modifier le taux</button>
                 </div>
-                
+
                 <!-- Checklist -->
                 <div class="tool-card">
                     <h3 class="tool-title">✅ Checklist Voyage</h3>
                     <div class="checklist-items" id="checklistContainer"></div>
                 </div>
-                
+
                 <!-- Conseils Saisonniers -->
                 <div class="tool-card">
                     <h3 class="tool-title">📅 Conseils Saisonniers</h3>
@@ -1424,7 +1440,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Numéros Utiles -->
                 <div class="tool-card">
                     <h3 class="tool-title">📞 Numéros Utiles</h3>
@@ -1444,7 +1460,7 @@
                                 <span class="contact-number">119</span>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="contact-group-title">🏛️ Ambassades</div>
                             <div class="contact-item">
@@ -1456,7 +1472,7 @@
                                 <span class="contact-number">+261 20 22 241 69</span>
                             </div>
                         </div>
-                        
+
                         <div>
                             <div class="contact-group-title">📶 Opérateurs</div>
                             <div class="contact-item">
@@ -1473,7 +1489,7 @@
             </div>
         </section>
     </main>
-    
+
     <!-- Modal Détails -->
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -1487,24 +1503,24 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Install Prompt -->
     <div id="installPrompt" class="install-prompt">
         <span>📱 Installer l'app pour un accès offline</span>
         <button class="install-btn" id="installBtn">Installer</button>
         <button class="install-close" id="installClose">×</button>
     </div>
-    
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
-    
+
     <script>
         // ============================================
         // DONNÉES
         // ============================================
-        
+
         const LIEUX_DATA = [
             {
                 id: 1,
@@ -1759,36 +1775,96 @@
             {
                 id: 17,
                 ville: "Nosy Be",
+                nom: "Plage d'Andilana",
+                type: "Incontournable",
+                lat: -13.2205,
+                lng: 48.1824,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.8,
+                description: "La plus belle plage de Nosy Be. Sable blanc immaculé, eau turquoise calme, cocotiers. Idéal pour la baignade et le farniente.",
+                image: "images/iles/plage-andilana.jpg",
                 acces: "Nord de Nosy Be, 25 km de Hell-Ville",
                 horaires: "Accessible 24h/24"
             },
             {
                 id: 18,
                 ville: "Nosy Be",
+                nom: "Nosy Komba",
+                type: "Incontournable",
+                lat: -13.4619,
+                lng: 48.3514,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.7,
+                description: "L'île aux lémuriens. Rencontre avec les lémuriens Macaco sauvages mais très familiers. Village artisanal de broderies.",
+                image: "images/iles/nosy-komba.jpg",
                 acces: "Bateau depuis Ambatoloaka (25 min)",
                 horaires: "Excursion journée ou demi-journée"
             },
             {
                 id: 19,
                 ville: "Nosy Be",
+                nom: "Parc Marin Nosy Tanikely",
+                type: "Nature",
+                lat: -13.4833,
+                lng: 48.2389,
+                prix: "20 000 Ar",
+                prixEur: "5 €",
+                prixNum: 20000,
+                note: 4.9,
+                description: "Aquarium naturel incroyable. Snorkeling avec tortues marines, poissons multicolores et coraux intacts. Phare historique.",
+                image: "images/iles/nosy-tanikely.jpg",
                 acces: "Excursion bateau, tous clubs de plongée",
                 horaires: "Sortie journée avec déjeuner"
             },
             {
                 id: 20,
                 ville: "Nosy Be",
+                nom: "Nosy Iranja",
+                type: "Incontournable",
+                lat: -13.5960,
+                lng: 47.8228,
+                prix: "150 000 Ar",
+                prixEur: "35 €",
+                prixNum: 150000,
+                note: 4.9,
+                description: "L'île aux tortues. Deux îlots reliés par un banc de sable blanc sublime d'1km à marée basse. Eau cristalline.",
+                image: "images/iles/nosy-iranja.jpg",
                 acces: "Excursion bateau (1h30), départ Hell-Ville",
                 horaires: "Journée complète, départ 7h"
             },
             {
                 id: 21,
                 ville: "Nosy Be",
+                nom: "Réserve Naturelle de Lokobe",
+                type: "Nature",
+                lat: -13.4147,
+                lng: 48.3117,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.6,
+                description: "Dernière forêt primaire de l'île. Randonnée à la recherche des lémuriens nocturnes, boas et caméléons.",
+                image: "images/spots/reserve-lokobe.jpg",
                 acces: "Sud-est de l'île, accessible en bateau + randonnée",
                 horaires: "Excursions guidées matin (fraîcheur)"
             },
             {
                 id: 22,
                 ville: "Nosy Be",
+                nom: "Mont Passot",
+                type: "Incontournable",
+                lat: -13.3214,
+                lng: 48.2611,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.7,
+                description: "Point culminant de Nosy Be. Vue panoramique à 360° sur les lacs sacrés et l'archipel. Coucher de soleil mythique.",
+                image: "images/spots/mont-passot.jpg",
                 acces: "Centre de l'île, 15 km de Hell-Ville",
                 horaires: "Lever/coucher de soleil recommandés"
             },
@@ -1811,12 +1887,32 @@
             {
                 id: 24,
                 ville: "Nosy Be",
+                nom: "Plage d'Ambatoloaka",
+                type: "Incontournable",
+                lat: -13.3639,
+                lng: 48.2045,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.2,
+                description: "Coeur de l'animation touristique. Bars, restaurants sur la plage, départ des excursions. Ambiance festive.",
+                image: "images/iles/plage-ambatoloaka.jpg",
                 acces: "5 km de Hell-Ville, taxi ou location",
                 horaires: "24h/24, vie nocturne dès 19h"
             },
             {
                 id: 25,
                 ville: "Nosy Be",
+                nom: "Nosy Sakatia",
+                type: "Nature",
+                lat: -13.3108,
+                lng: 48.1569,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.7,
+                description: "L'île aux orchidées. Plages sauvages, snorkeling avec les tortues vertes géantes qui broutent les herbiers.",
+                image: "images/iles/nosy-sakatia.jpg",
                 acces: "Bateau (20 min) depuis côte ouest Nosy Be",
                 horaires: "Excursion journée avec guide local"
             },
@@ -1871,6 +1967,16 @@
             {
                 id: 29,
                 ville: "Nosy Be",
+                nom: "Distillerie Ylang Ylang",
+                type: "Culture",
+                lat: -13.3508,
+                lng: 48.2831,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.5,
+                description: "Découverte de la production d'essence d'Ylang-Ylang, fleur emblématique de l'île au parfum envoûtant.",
+                image: "images/spots/ylang-ylang-distillerie.jpg",
                 acces: "Plusieurs distilleries sur l'île, guides locaux",
                 horaires: "8h-16h, meilleur en matinée"
             },
@@ -2057,12 +2163,32 @@
             {
                 id: 41,
                 ville: "Andasibe",
+                nom: "Parc National Andasibe-Mantadia",
+                type: "Nature",
+                lat: -18.9333,
+                lng: 48.4167,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.8,
+                description: "Célèbre pour l'Indri-Indri, le plus grand des lémuriens. Forêt pluviale luxuriante, orchidées et caméléons.",
+                image: "images/spots/andasibe-mantadia.jpg",
                 acces: "RN2, 140 km d'Antananarivo (3h)",
                 horaires: "Circuits 4h à 6h avec guide obligatoire"
             },
             {
                 id: 42,
                 ville: "Andasibe",
+                nom: "Réserve de Vakona",
+                type: "Nature",
+                lat: -18.9350,
+                lng: 48.4200,
+                prix: "35 000 Ar",
+                prixEur: "8 €",
+                prixNum: 35000,
+                note: 4.7,
+                description: "Réserve privée offrant une interaction unique avec les lémuriens (Ile aux lémuriens) et balade en canoë.",
+                image: "images/spots/reserve-vakona.jpg",
                 acces: "À côté du parc, bien indiqué",
                 horaires: "8h-17h tous les jours"
             },
@@ -2087,12 +2213,32 @@
             {
                 id: 44,
                 ville: "Isalo",
+                nom: "Parc National de l'Isalo",
+                type: "Incontournable",
+                lat: -22.5833,
+                lng: 45.3667,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.9,
+                description: "Le Colorado Malgache. Massifs de grès érodés, canyons profonds, oasis et piscines naturelles.",
+                image: "images/spots/parc-isalo.jpg",
                 acces: "RN7, entre Tuléar et Fianarantsoa",
                 horaires: "Circuits à la journée avec guide obligatoire"
             },
             {
                 id: 45,
                 ville: "Isalo",
+                nom: "Piscine Naturelle",
+                type: "Nature",
+                lat: -22.5500,
+                lng: 45.3833,
+                prix: "Inclus parc",
+                prixEur: "Inclus",
+                prixNum: 0,
+                note: 4.8,
+                description: "Oasis turquoise au milieu des rochers arides, bordée de palmiers. Baignade rafraîchissante après la marche.",
+                image: "images/spots/piscine-naturelle.jpg",
                 acces: "Circuit de 2-3h dans le parc",
                 horaires: "Matin recommandé (moins de monde)"
             },
@@ -2117,6 +2263,16 @@
             {
                 id: 47,
                 ville: "Ifaty",
+                nom: "Plage d'Ifaty / Mangily",
+                type: "Plage",
+                lat: -23.1500,
+                lng: 43.6167,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.5,
+                description: "Village de pêcheurs Vezo et station balnéaire populaire. Récif corallien pour le snorkeling et la plongée.",
+                image: "images/iles/plage-ifaty.jpg",
                 acces: "27 km au nord de Tuléar par piste",
                 horaires: "Accessible 24h/24"
             },
@@ -2157,6 +2313,16 @@
             {
                 id: 50,
                 ville: "Ankarana",
+                nom: "Réserve Spéciale de l'Ankarana",
+                type: "Incontournable",
+                lat: -12.9167,
+                lng: 49.0833,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.8,
+                description: "Immense plateau karstique de Tsingy gris. Grottes sacrées, forêt sèche et lémuriens couronnés.",
+                image: "images/spots/ankarana.jpg",
                 acces: "108 km au sud de Diego-Suarez",
                 horaires: "Circuits guidés, harnais fourni"
             },
@@ -2213,6 +2379,16 @@
             {
                 id: 54,
                 ville: "Mananara",
+                nom: "Parc National Nosy Atafana",
+                type: "Nature",
+                lat: -16.1833,
+                lng: 49.8000,
+                prix: "20 000 Ar",
+                prixEur: "5 €",
+                prixNum: 20000,
+                note: 4.7,
+                description: "Îlots coralliens protégés faisant partie de la biosphère. Fonds marins exceptionnels et oiseaux marins.",
+                image: "images/spots/parc-mananara-nord.jpg",
                 acces: "Pirogue depuis Mananara (15 min)",
                 horaires: "Départs matin et après-midi"
             },
@@ -2235,7 +2411,7 @@
                 respect: "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise"
             }
         ];
-        
+
         const PHRASES_DATA = {
             "Salutations & Politesse": [
                 { fr: "Bonjour", mg: "Manao ahoana", phonetic: "man-ao a-ho-ana" },
@@ -2305,7 +2481,7 @@
                 { fr: "Il pleut", mg: "Avy ny orana", phonetic: "a-vy ni o-ra-na" }
             ]
         };
-        
+
         const CHECKLIST_ITEMS = [
             "SIM locale Telma",
             "Argent liquide (CB rare)",
@@ -2318,11 +2494,11 @@
             "Répulsif anti-moustiques",
             "Trousse premiers secours"
         ];
-        
+
         // ============================================
         // VARIABLES GLOBALES
         // ============================================
-        
+
         let map;
         let markersLayer;
         let currentTheme = localStorage.getItem('theme') || 'light';
@@ -2330,11 +2506,11 @@
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         let checklist = JSON.parse(localStorage.getItem('checklist')) || [];
         let deferredPrompt;
-        
+
         // ============================================
         // INITIALISATION
         // ============================================
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             initNavigation();
@@ -2347,15 +2523,15 @@
             initInstallPrompt();
             registerServiceWorker();
         });
-        
+
         // ============================================
         // THÈME
         // ============================================
-        
+
         function initTheme() {
             document.documentElement.setAttribute('data-theme', currentTheme);
             updateThemeToggle();
-            
+
             document.getElementById('themeToggle').addEventListener('click', () => {
                 currentTheme = currentTheme === 'light' ? 'dark' : 'light';
                 document.documentElement.setAttribute('data-theme', currentTheme);
@@ -2363,27 +2539,27 @@
                 updateThemeToggle();
             });
         }
-        
+
         function updateThemeToggle() {
             const toggle = document.getElementById('themeToggle');
             toggle.textContent = currentTheme === 'light' ? '☀️' : '🌙';
         }
-        
+
         // ============================================
         // NAVIGATION
         // ============================================
-        
+
         function initNavigation() {
             const navBtns = document.querySelectorAll('.nav-btn');
             const shortcuts = document.querySelectorAll('.shortcut-card');
-            
+
             navBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const page = btn.dataset.page;
                     navigateToPage(page);
                 });
             });
-            
+
             shortcuts.forEach(card => {
                 card.addEventListener('click', () => {
                     const page = card.dataset.goto;
@@ -2391,78 +2567,78 @@
                 });
             });
         }
-        
+
         function navigateToPage(pageName) {
             // Cacher toutes les sections
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
-            
+
             // Retirer active de tous les boutons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
+
             // Afficher la section demandée
             const pageSection = document.getElementById(`page-${pageName}`);
             if (pageSection) {
                 pageSection.classList.add('active');
             }
-            
+
             // Activer le bouton correspondant
             const activeBtn = document.querySelector(`[data-page="${pageName}"]`);
             if (activeBtn) {
                 activeBtn.classList.add('active');
                 activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
-            
+
             // Scroll en haut
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
+
         // ============================================
         // CARTE
         // ============================================
-        
+
         function initMap() {
             map = L.map('map').setView([-18.8792, 47.5079], 6);
-            
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors',
                 maxZoom: 18
             }).addTo(map);
-            
+
             markersLayer = L.markerClusterGroup({
                 chunkedLoading: true,
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true
             });
-            
+
             updateMapMarkers();
             map.addLayer(markersLayer);
-            
+
             // Filtres
             document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
                 checkbox.addEventListener('change', updateMapMarkers);
             });
         }
-        
+
         function updateMapMarkers() {
             markersLayer.clearLayers();
-            
+
             const filters = getActiveFilters();
-            const filteredLieux = LIEUX_DATA.filter(lieu => matchesFilters(lieu, filters));
-            
+            const filteredLieux = LIEUX_DATA.filter(lieu => lieu.nom && matchesFilters(lieu, filters));
+
             filteredLieux.forEach(lieu => {
                 const icon = L.divIcon({
                     className: 'custom-marker',
                     html: lieu.spotLocal ? '📍' : '📌',
                     iconSize: [32, 32]
                 });
-                
+
                 const marker = L.marker([lieu.lat, lieu.lng], { icon });
-                
+
                 const popupContent = `
                     <div class="popup-content">
                         <div class="popup-title">${lieu.nom}</div>
@@ -2471,21 +2647,21 @@
                         ${lieu.spotLocal ? '<div class="badge-spot">📍 Spot Local</div>' : ''}
                     </div>
                 `;
-                
+
                 marker.bindPopup(popupContent);
                 marker.on('click', () => showLieuDetails(lieu));
-                
+
                 markersLayer.addLayer(marker);
             });
         }
-        
+
         function getActiveFilters() {
             const filters = {
                 villes: [],
                 types: [],
                 prix: []
             };
-            
+
             // Villes
             document.querySelectorAll('[id^="filter-"][id$="antananarivo"], [id$="diego"], [id$="nosybe"], [id$="mahajanga"], [id$="andasibe"], [id$="isalo"], [id$="ifaty"], [id$="ankarana"], [id$="mananara"]').forEach(cb => {
                 if (cb.checked) {
@@ -2504,28 +2680,28 @@
                     filters.villes.push(villeMap[ville]);
                 }
             });
-            
+
             // Types
             if (document.getElementById('filter-incontournable').checked) filters.types.push('Incontournable');
             if (document.getElementById('filter-spotlocal').checked) filters.types.push('Spot Local');
             if (document.getElementById('filter-nature').checked) filters.types.push('Nature');
             if (document.getElementById('filter-restaurant').checked) filters.types.push('Restaurant');
             if (document.getElementById('filter-culture').checked) filters.types.push('Culture');
-            
+
             // Prix
             if (document.getElementById('filter-gratuit').checked) filters.prix.push('gratuit');
             if (document.getElementById('filter-economique').checked) filters.prix.push('economique');
             if (document.getElementById('filter-moyen').checked) filters.prix.push('moyen');
-            
+
             return filters;
         }
-        
+
         function matchesFilters(lieu, filters) {
             // Ville
             if (filters.villes.length > 0 && !filters.villes.includes(lieu.ville)) {
                 return false;
             }
-            
+
             // Type
             if (filters.types.length > 0) {
                 const lieuTypes = [lieu.type];
@@ -2534,26 +2710,26 @@
                     return false;
                 }
             }
-            
+
             // Prix
             if (filters.prix.length > 0) {
                 let prixCategory;
                 if (lieu.prixNum === 0) prixCategory = 'gratuit';
                 else if (lieu.prixNum < 10000) prixCategory = 'economique';
                 else prixCategory = 'moyen';
-                
+
                 if (!filters.prix.includes(prixCategory)) {
                     return false;
                 }
             }
-            
+
             return true;
         }
-        
+
         // ============================================
         // PAGES VILLES
         // ============================================
-        
+
         function initCityPages() {
             // Mapping explicite ville → ID de page HTML
             const villeToPageId = {
@@ -2567,7 +2743,7 @@
                 'Ankarana': 'page-ankarana',
                 'Mananara': 'page-mananara'
             };
-            
+
             Object.keys(villeToPageId).forEach(ville => {
                 const pageId = villeToPageId[ville];
                 const pageElement = document.getElementById(pageId);
@@ -2575,9 +2751,9 @@
                     console.warn(`Page non trouvée pour ${ville} (ID: ${pageId})`);
                     return;
                 }
-                
-                const lieuxVille = LIEUX_DATA.filter(l => l.ville === ville);
-                
+
+                const lieuxVille = LIEUX_DATA.filter(l => l.ville === ville && l.nom);
+
                 const html = `
                     <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px; color: var(--text-primary);">
                         ${getVilleEmoji(ville)} ${ville}
@@ -2586,9 +2762,9 @@
                         ${lieuxVille.map(lieu => createLieuCard(lieu)).join('')}
                     </div>
                 `;
-                
+
                 pageElement.innerHTML = html;
-                
+
                 // Event listeners
                 pageElement.querySelectorAll('.btn-details').forEach(btn => {
                     btn.addEventListener('click', (e) => {
@@ -2599,7 +2775,7 @@
                 });
             });
         }
-        
+
         function getVilleEmoji(ville) {
             const emojis = {
                 'Antananarivo': '🏛️',
@@ -2614,10 +2790,10 @@
             };
             return emojis[ville] || '📍';
         }
-        
+
         function createLieuCard(lieu) {
             const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
-            
+
             return `
                 <article class="lieu-card">
                     <img src="${lieu.image}" alt="${lieu.nom}" class="lieu-image" loading="lazy">
@@ -2636,17 +2812,17 @@
                 </article>
             `;
         }
-        
+
         // ============================================
         // PAGE SPOTS LOCAUX
         // ============================================
-        
+
         function initSpotsPage() {
             const spotsContainer = document.getElementById('spotsContainer');
-            const spots = LIEUX_DATA.filter(l => l.spotLocal);
-            
+            const spots = LIEUX_DATA.filter(l => l.spotLocal && l.nom);
+
             spotsContainer.innerHTML = spots.map(lieu => createLieuCard(lieu)).join('');
-            
+
             spotsContainer.querySelectorAll('.btn-details').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const lieuId = parseInt(e.target.dataset.lieuId);
@@ -2655,26 +2831,26 @@
                 });
             });
         }
-        
+
         // ============================================
         // MODAL
         // ============================================
-        
+
         function initModal() {
             const modal = document.getElementById('modal');
             const closeBtn = document.getElementById('modalClose');
-            
+
             closeBtn.addEventListener('click', () => {
                 modal.classList.remove('active');
             });
-            
+
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.remove('active');
                 }
             });
         }
-        
+
         function showLieuDetails(lieu) {
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modalImage');
@@ -2682,11 +2858,11 @@
             const modalBadges = document.getElementById('modalBadges');
             const modalInfoGrid = document.getElementById('modalInfoGrid');
             const modalSections = document.getElementById('modalSections');
-            
+
             modalImage.src = lieu.image;
             modalImage.alt = lieu.nom;
             modalTitle.textContent = lieu.nom;
-            
+
             // Badges
             let badgesHTML = '';
             if (lieu.spotLocal) {
@@ -2694,7 +2870,7 @@
             }
             badgesHTML += `<span class="badge-type">${lieu.type}</span>`;
             modalBadges.innerHTML = badgesHTML;
-            
+
             // Infos grille
             modalInfoGrid.innerHTML = `
                 <div class="modal-info-item">
@@ -2710,7 +2886,7 @@
                     <div class="modal-info-value">⭐ ${lieu.note}</div>
                 </div>
             `;
-            
+
             // Sections
             let sectionsHTML = `
                 <div class="modal-section">
@@ -2722,7 +2898,7 @@
                     <div class="modal-section-content">${lieu.acces}</div>
                 </div>
             `;
-            
+
             if (lieu.horaires) {
                 sectionsHTML += `
                     <div class="modal-section">
@@ -2731,7 +2907,7 @@
                     </div>
                 `;
             }
-            
+
             if (lieu.contactLocal) {
                 sectionsHTML += `
                     <div class="modal-section">
@@ -2740,7 +2916,7 @@
                     </div>
                 `;
             }
-            
+
             if (lieu.respect) {
                 sectionsHTML += `
                     <div class="modal-section">
@@ -2749,41 +2925,41 @@
                     </div>
                 `;
             }
-            
+
             modalSections.innerHTML = sectionsHTML;
-            
+
             modal.classList.add('active');
         }
-        
+
         // ============================================
         // PAGE LANGUE
         // ============================================
-        
+
         function initLanguePage() {
             const container = document.getElementById('accordionContainer');
             const searchInput = document.getElementById('langueSearch');
-            
+
             Object.keys(PHRASES_DATA).forEach((category, index) => {
                 const accordionHTML = createAccordion(category, PHRASES_DATA[category], index);
                 container.insertAdjacentHTML('beforeend', accordionHTML);
             });
-            
+
             // Event listeners accordéons
             document.querySelectorAll('.accordion-header').forEach(header => {
                 header.addEventListener('click', () => {
                     const item = header.parentElement;
                     const wasOpen = item.classList.contains('open');
-                    
+
                     // Fermer tous
                     document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-                    
+
                     // Ouvrir celui-ci si fermé
                     if (!wasOpen) {
                         item.classList.add('open');
                     }
                 });
             });
-            
+
             // Recherche
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase();
@@ -2797,7 +2973,7 @@
                     }
                 });
             });
-            
+
             // Boutons actions phrases
             container.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-audio')) {
@@ -2809,7 +2985,7 @@
                 }
             });
         }
-        
+
         function createAccordion(category, phrases, index) {
             const phrasesHTML = phrases.map((phrase, i) => `
                 <div class="phrase-item">
@@ -2825,7 +3001,7 @@
                     </div>
                 </div>
             `).join('');
-            
+
             return `
                 <div class="accordion-item ${index === 0 ? 'open' : ''}">
                     <div class="accordion-header">
@@ -2842,7 +3018,7 @@
                 </div>
             `;
         }
-        
+
         function getCategoryEmoji(category) {
             const emojis = {
                 "Salutations & Politesse": "👋",
@@ -2855,7 +3031,7 @@
             };
             return emojis[category] || "💬";
         }
-        
+
         function playAudio(text) {
             // Simulation audio (Speech Synthesis API)
             const utterance = new SpeechSynthesisUtterance(text);
@@ -2863,18 +3039,18 @@
             utterance.rate = 0.8;
             window.speechSynthesis.speak(utterance);
         }
-        
+
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 // Feedback visuel
                 alert('Copié dans le presse-papiers !');
             });
         }
-        
+
         function toggleFavorite(btn) {
             const key = `${btn.dataset.category}-${btn.dataset.index}`;
             const index = favorites.indexOf(key);
-            
+
             if (index > -1) {
                 favorites.splice(index, 1);
                 btn.classList.remove('active');
@@ -2882,33 +3058,33 @@
                 favorites.push(key);
                 btn.classList.add('active');
             }
-            
+
             localStorage.setItem('favorites', JSON.stringify(favorites));
         }
-        
+
         // ============================================
         // PAGE OUTILS
         // ============================================
-        
+
         function initOutilsPage() {
             // Convertisseur
             const inputAr = document.getElementById('inputAr');
             const inputEuro = document.getElementById('inputEuro');
             const rateDisplay = document.getElementById('rateDisplay');
             const btnModifyRate = document.getElementById('btnModifyRate');
-            
+
             rateDisplay.textContent = exchangeRate;
-            
+
             inputAr.addEventListener('input', () => {
                 const ar = parseFloat(inputAr.value) || 0;
                 inputEuro.value = (ar / exchangeRate).toFixed(2);
             });
-            
+
             inputEuro.addEventListener('input', () => {
                 const euro = parseFloat(inputEuro.value) || 0;
                 inputAr.value = Math.round(euro * exchangeRate);
             });
-            
+
             btnModifyRate.addEventListener('click', () => {
                 const newRate = prompt('Entrez le nouveau taux (1 € = X Ar)', exchangeRate);
                 if (newRate && !isNaN(newRate)) {
@@ -2919,10 +3095,10 @@
                     inputAr.dispatchEvent(new Event('input'));
                 }
             });
-            
+
             // Checklist
             const checklistContainer = document.getElementById('checklistContainer');
-            
+
             CHECKLIST_ITEMS.forEach((item, index) => {
                 const checked = checklist.includes(index);
                 const html = `
@@ -2933,14 +3109,14 @@
                 `;
                 checklistContainer.insertAdjacentHTML('beforeend', html);
             });
-            
+
             checklistContainer.addEventListener('click', (e) => {
                 const item = e.target.closest('.checklist-item');
                 if (!item) return;
-                
+
                 const index = parseInt(item.dataset.index);
                 const checklistIndex = checklist.indexOf(index);
-                
+
                 if (checklistIndex > -1) {
                     checklist.splice(checklistIndex, 1);
                     item.classList.remove('checked');
@@ -2948,44 +3124,44 @@
                     checklist.push(index);
                     item.classList.add('checked');
                 }
-                
+
                 localStorage.setItem('checklist', JSON.stringify(checklist));
             });
         }
-        
+
         // ============================================
         // PWA
         // ============================================
-        
+
         function initInstallPrompt() {
             const installPrompt = document.getElementById('installPrompt');
             const installBtn = document.getElementById('installBtn');
             const installClose = document.getElementById('installClose');
-            
+
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
                 installPrompt.classList.add('active');
             });
-            
+
             installBtn.addEventListener('click', async () => {
                 if (!deferredPrompt) return;
-                
+
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
-                
+
                 if (outcome === 'accepted') {
                     installPrompt.classList.remove('active');
                 }
-                
+
                 deferredPrompt = null;
             });
-            
+
             installClose.addEventListener('click', () => {
                 installPrompt.classList.remove('active');
             });
         }
-        
+
         function registerServiceWorker() {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js')
@@ -2995,4 +3171,5 @@
         }
     </script>
 </body>
+
 </html>

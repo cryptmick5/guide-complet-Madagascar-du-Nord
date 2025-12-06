@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const markers = L.markerClusterGroup();
 
     LIEUX_DATA.forEach(lieu => {
-        if (lieu.lat && lieu.lng) {
+        if (lieu.lat && lieu.lng && lieu.nom) {
             const marker = L.marker([lieu.lat, lieu.lng]);
             marker.bindPopup(getPopupContent(lieu));
             markers.addLayer(marker);

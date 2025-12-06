@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mg-guide-cache-v4';
+const CACHE_NAME = 'mg-guide-cache-v5';
 const urlsToCache = [
   './',
   './index.html',

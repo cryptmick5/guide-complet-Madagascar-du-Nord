@@ -3604,6 +3604,7 @@
                     // Déterminer la catégorie principale pour le data-attribute
                     let mainCat = 'Autre';
                     if (categoryMapping['Manger'].includes(lieu.type)) mainCat = 'Manger';
+                    else if (categoryMapping['Sortir'].includes(lieu.type)) mainCat = 'Sortir';
                     else if (categoryMapping['Explorer'].includes(lieu.type)) mainCat = 'Explorer';
                     else if (categoryMapping['Dormir'].includes(lieu.type)) mainCat = 'Dormir';
                     else if (categoryMapping['Utile'].includes(lieu.type)) mainCat = 'Utile';

@@ -447,6 +447,126 @@
         }
 
         /* ============================================
+           FILTRES PREMIUM (VILLE DÉTAIL)
+           ============================================ */
+        .filter-scroll-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 4px;
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .filter-scroll-container::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #F3F4F6;
+            /* Gris très clair */
+            color: var(--noir);
+            border: 1px solid transparent;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-right: 10px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .filter-chip:last-child {
+            margin-right: 0;
+        }
+
+        .filter-chip svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-chip:hover {
+            background-color: #E5E7EB;
+        }
+
+        .filter-chip.active {
+            background-color: var(--noir);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .filter-chip.active svg {
+            transform: scale(1.1);
+        }
+
+        /* Animation Fade pour le filtrage */
+        .lieu-card.fade-in {
+            animation: cardFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Bannière Agenda (Invisible par défaut) */
+        .agenda-banner {
+            display: none;
+            /* Caché par défaut */
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            align-items: center;
+            gap: 12px;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .agenda-icon {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* ============================================
            CARDS LIEUX
            ============================================ */
         .lieux-grid {
@@ -3262,28 +3382,90 @@
                 'Mananara': 'page-mananara'
             };
 
+            // Mapping types pour les filtres
+            const categoryMapping = {
+                'Manger': ['Restaurant', 'Bar', 'Gargote'],
+                'Explorer': ['Nature', 'Culture', 'Incontournable', 'Spot Local', 'Plage'],
+                'Dormir': ['Hotel', 'Auberge', 'Lodge'],
+                'Utile': ['Banque', 'Change', 'Police', 'Hopital']
+            };
+
+            const categoryIcons = {
+                'Tout': '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>', // Maison
+                'Manger': '<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>', // Marmite/Cuisine
+                'Explorer': '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>', // Boussole
+                'Dormir': '<svg viewBox="0 0 24 24"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg>', // Lit
+                'Utile': '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>' // Valise/Outils
+            };
+
             Object.keys(villeToPageId).forEach(ville => {
                 const pageId = villeToPageId[ville];
                 const pageElement = document.getElementById(pageId);
-                if (!pageElement) {
-                    console.warn(`Page non trouvée pour ${ville} (ID: ${pageId})`);
-                    return;
-                }
+                if (!pageElement) return;
 
                 const lieuxVille = LIEUX_DATA.filter(l => l.ville === ville && l.nom);
 
+                // Analyse des catégories présentes
+                const presentCategories = new Set(['Tout']);
+                lieuxVille.forEach(lieu => {
+                    if (categoryMapping['Manger'].includes(lieu.type)) presentCategories.add('Manger');
+                    if (categoryMapping['Explorer'].includes(lieu.type)) presentCategories.add('Explorer');
+                    if (categoryMapping['Dormir'].includes(lieu.type)) presentCategories.add('Dormir');
+                    if (categoryMapping['Utile'].includes(lieu.type)) presentCategories.add('Utile');
+                });
+
+                // Génération des filtres HTML
+                let filtersHTML = '<div class="filter-scroll-container">';
+                ['Tout', 'Manger', 'Explorer', 'Dormir', 'Utile'].forEach(cat => {
+                    if (presentCategories.has(cat)) {
+                        filtersHTML += `
+                            <div class="filter-chip ${cat === 'Tout' ? 'active' : ''}" data-category="${cat}" onclick="filterCityItems('${pageId}', '${cat}', this)">
+                                ${categoryIcons[cat]}
+                                <span>${cat}</span>
+                            </div>
+                        `;
+                    }
+                });
+                filtersHTML += '</div>';
+
+                // Génération Agenda Banner (Placeholder logique)
+                // Ici on vérifie si un événement existe pour aujourd'hui (fictif pour l'instant)
+                const hasEvent = false; // Mettre à true si data events existe
+                const agendaHTML = `
+                    <div class="agenda-banner" ${hasEvent ? 'style="display:flex"' : ''}>
+                        <div class="agenda-icon">📅</div>
+                        <div class="agenda-content">
+                            <div style="font-weight:700; font-size:1.05rem;">Événement ce soir !</div>
+                            <div style="font-size:0.9rem; opacity:0.9;">Concert de Salegy au Jao's Pub à 21h.</div>
+                        </div>
+                    </div>
+                `;
+
                 const html = `
-                    <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px; color: var(--text-primary);">
+                    <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--text-primary);">
                         ${getVilleEmoji(ville)} ${ville}
                     </h2>
-                    <div class="lieux-grid">
-                        ${lieuxVille.map(lieu => createLieuCard(lieu)).join('')}
+                    
+                    ${agendaHTML}
+                    ${filtersHTML}
+
+                    <div class="lieux-grid" id="grid-${pageId}">
+                        ${lieuxVille.map(lieu => {
+                    // Déterminer la catégorie principale pour le data-attribute
+                    let mainCat = 'Autre';
+                    if (categoryMapping['Manger'].includes(lieu.type)) mainCat = 'Manger';
+                    else if (categoryMapping['Explorer'].includes(lieu.type)) mainCat = 'Explorer';
+                    else if (categoryMapping['Dormir'].includes(lieu.type)) mainCat = 'Dormir';
+                    else if (categoryMapping['Utile'].includes(lieu.type)) mainCat = 'Utile';
+
+                    return createLieuCard(lieu, mainCat);
+                }).join('')}
                     </div>
                 `;
 
                 pageElement.innerHTML = html;
 
-                // Event listeners
+                // Event listeners Details
                 pageElement.querySelectorAll('.btn-details').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         const lieuId = parseInt(e.target.dataset.lieuId);
@@ -3293,6 +3475,32 @@
                 });
             });
         }
+
+        // Fonction de filtrage globale
+        window.filterCityItems = function (pageId, category, textElement) {
+            // Update UI des chips
+            const container = document.querySelector(`#${pageId} .filter-scroll-container`);
+            container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            textElement.classList.add('active');
+
+            // Filtrage des items
+            const grid = document.getElementById(`grid-${pageId}`);
+            const cards = grid.querySelectorAll('.lieu-card');
+
+            cards.forEach(card => {
+                const itemCat = card.dataset.category;
+
+                if (category === 'Tout' || itemCat === category) {
+                    card.style.display = 'block';
+                    // Trigger reflow pour animation
+                    card.classList.remove('fade-in');
+                    void card.offsetWidth;
+                    card.classList.add('fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
 
         function getVilleEmoji(ville) {
             const emojis = {
@@ -3309,11 +3517,11 @@
             return emojis[ville] || '📍';
         }
 
-        function createLieuCard(lieu) {
+        function createLieuCard(lieu, category = '') {
             const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
 
             return `
-                <article class="lieu-card" style="position: relative;">
+                <article class="lieu-card" data-category="${category}" style="position: relative;">
                     <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
                         ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
                     </button>

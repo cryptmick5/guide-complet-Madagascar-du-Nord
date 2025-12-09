@@ -3494,7 +3494,7 @@
             // Boutons actions phrases
             container.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-audio')) {
-                    playAudio(e.target.dataset.text);
+                    playAudio(e.target.dataset.mg, e.target.dataset.fr);
                 } else if (e.target.classList.contains('btn-copy')) {
                     copyToClipboard(e.target.dataset.text);
                 } else if (e.target.classList.contains('btn-favorite')) {
@@ -3512,7 +3512,7 @@
                         <div class="phrase-phonetic">(${phrase.phonetic})</div>
                     </div>
                     <div class="phrase-actions">
-                        <button class="btn-icon btn-audio" data-text="${phrase.mg}" title="Écouter">🔊</button>
+                        <button class="btn-icon btn-audio" data-mg="${phrase.mg}" data-fr="${phrase.fr}" title="Écouter">🔊</button>
                         <button class="btn-icon btn-copy" data-text="${phrase.mg}" title="Copier">📋</button>
                         <button class="btn-icon btn-favorite ${favorites.includes(`${category}-${i}`) ? 'active' : ''}" data-category="${category}" data-index="${i}" title="Favori">⭐</button>
                     </div>
@@ -3544,17 +3544,45 @@
                 "Négocier & Acheter": "💰",
                 "Restaurant": "🍽️",
                 "Nombres": "🔢",
-                "Urgence & Santé": "🚨"
+                "Urgence & Santé": "🚨",
+                "Hébergement & Météo": "hotel"
             };
             return emojis[category] || "💬";
         }
 
-        function playAudio(text) {
+        function playAudio(textMg, textFr) {
+            // Tentative de lecture du fichier audio généré
+            if (textFr) {
+                const filename = slugify(textFr) + '.wav';
+                const audio = new Audio('audio/' + filename);
+
+                audio.play().catch(err => {
+                    console.warn('Fichier audio introuvable, fallback sur TTS', err);
+                    speakFallback(textMg);
+                });
+            } else {
+                speakFallback(textMg);
+            }
+        }
+
+        function speakFallback(text) {
             // Simulation audio (Speech Synthesis API)
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'mg-MG';
+            utterance.lang = 'mg-MG'; // Peu de support navigateur mais mieux que rien
             utterance.rate = 0.8;
             window.speechSynthesis.speak(utterance);
+        }
+
+        function slugify(text) {
+            return text
+                .toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_-]+/g, '-')
+                .replace(/^-+|-+$/g, '');
         }
 
         function copyToClipboard(text) {

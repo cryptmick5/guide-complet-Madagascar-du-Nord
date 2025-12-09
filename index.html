@@ -2997,20 +2997,20 @@
         // ============================================
         // GESTION DES FAVORIS
         // ============================================
-        function toggleFavorite(id, btnElement, event) {
+        function toggleLieuFavorite(id, btnElement, event) {
             if (event) event.stopPropagation(); // Avoid triggering card click
             const index = favorites.indexOf(id);
 
             if (index === -1) {
                 favorites.push(id);
                 btnElement.classList.add('active');
-                btnElement.innerHTML = '❤️';
-                showToast("Ajouté aux favoris ❤️");
+                btnElement.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+                showToast("Ajouté aux favoris");
             } else {
                 favorites.splice(index, 1);
                 btnElement.classList.remove('active');
-                btnElement.innerHTML = '🤍';
-                showToast("Retiré des favoris 💔");
+                btnElement.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+                showToast("Retiré des favoris");
             }
 
             localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -3314,8 +3314,8 @@
 
             return `
                 <article class="lieu-card" style="position: relative;">
-                    <button onclick="toggleFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
-                        ${isFavorite(lieu.id) ? '❤️' : '🤍'}
+                    <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
+                        ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
                     </button>
                     <img src="${lieu.image}" alt="${lieu.nom}" class="lieu-image" loading="lazy">
                     <div class="lieu-content">
@@ -3513,7 +3513,7 @@
                 } else if (e.target.classList.contains('btn-copy')) {
                     copyToClipboard(e.target.dataset.text);
                 } else if (e.target.classList.contains('btn-favorite')) {
-                    toggleFavorite(e.target);
+                    toggleExpressionFavorite(e.target);
                 }
             });
         }
@@ -3607,7 +3607,7 @@
             });
         }
 
-        function toggleFavorite(btn) {
+        function toggleExpressionFavorite(btn) {
             const key = `${btn.dataset.category}-${btn.dataset.index}`;
             const index = favorites.indexOf(key);
 

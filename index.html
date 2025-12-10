@@ -1243,17 +1243,20 @@
             position: relative;
             padding: 0;
             margin: 0 -20px 0 -20px;
-            padding-bottom: 80px;
+            padding-bottom: 0;
+            /* Reduced from 80px */
         }
 
         #map-container {
-            /* Fixed height block */
-            height: 40vh;
-            min-height: 350px;
-            max-height: 500px;
+            /* Fixed height block - increased for better visibility */
+            height: 75vh;
+            min-height: 450px;
+            max-height: 800px;
             width: 100%;
             position: relative;
             z-index: 1;
+            overflow: hidden;
+            /* CRITIQUE: empêche la carte Leaflet de déborder */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             /* Positive margin to force shortcuts down */
             margin-bottom: 20px;

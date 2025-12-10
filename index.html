@@ -1473,6 +1473,58 @@
         .btn-favorite:hover {
             transform: scale(1.1);
         }
+
+        /* CONVERTER STYLES */
+        .converter-select {
+            flex: 1;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+        }
+
+        .btn-icon-small {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.manual {
+            background: #F59E0B;
+            color: white;
+        }
+
+        .status-badge.live {
+            background: #10B981;
+            color: white;
+        }
+
+        .btn-text-action {
+            background: none;
+            border: none;
+            color: var(--laterite);
+            font-size: 0.8rem;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -1673,23 +1725,47 @@
 
             <div class="tools-grid">
                 <!-- Convertisseur -->
+                <!-- Convertisseur Avancé -->
                 <div class="tool-card">
-                    <h3 class="tool-title">💱 Convertisseur Ar ↔ €</h3>
-                    <div class="converter-inputs">
-                        <div class="converter-row">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 class="tool-title" style="margin:0;">💱 Convertisseur</h3>
+                        <div id="converterStatus" class="status-badge manual">Mode Manuel</div>
+                    </div>
+
+                    <div class="converter-controls" style="margin-bottom: 15px; display: flex; gap: 10px;">
+                        <select id="currencySelector" class="converter-select">
+                            <option value="EUR" selected>🇪🇺 Euro (€)</option>
+                            <option value="USD">🇺🇸 Dollar ($)</option>
+                            <option value="GBP">🇬🇧 Livre (£)</option>
+                            <option value="CHF">🇨🇭 Franc Suisse</option>
+                            <option value="ZAR">🇿🇦 Rand (R)</option>
+                        </select>
+                        <button id="btnRefreshRate" class="btn-icon-small" title="Actualiser taux officiel">🔄</button>
+                    </div>
+
+                    <div class="converter-inputs" id="converterInputsContainer">
+                        <div class="converter-row" id="rowForeign">
+                            <span class="converter-label" id="foreignLabel">€</span>
+                            <input type="number" id="inputForeign" class="converter-input" value="10" min="0"
+                                step="0.01">
+                        </div>
+
+                        <div class="converter-actions" style="display:flex; justify-content:center; margin: 10px 0;">
+                            <button id="btnInvert" class="btn-icon-small" title="Inverser le sens"
+                                style="transform: rotate(90deg);">⇄</button>
+                        </div>
+
+                        <div class="converter-row" id="rowLocal">
                             <span class="converter-label">Ar</span>
-                            <input type="number" id="inputAr" class="converter-input" value="42500" min="0">
-                        </div>
-                        <div style="text-align: center; color: var(--text-secondary); font-size: 1.5rem;">⇅</div>
-                        <div class="converter-row">
-                            <span class="converter-label">€</span>
-                            <input type="number" id="inputEuro" class="converter-input" value="10" min="0" step="0.01">
+                            <input type="number" id="inputLocal" class="converter-input" value="50000" min="0">
                         </div>
                     </div>
+
                     <div class="rate-info">
-                        Taux : 1 € = <span id="rateDisplay">4250</span> Ar
+                        <span id="rateText">1 € = 5000 Ar</span>
+                        <button id="btnEditRate" class="btn-text-action">Modifier manuellement</button>
                     </div>
-                    <button class="btn-modify" id="btnModifyRate">Modifier le taux</button>
                 </div>
 
                 <!-- Checklist -->
@@ -3141,7 +3217,7 @@
                 prixNum: 40000,
                 note: 4.6,
                 description: "Une institution à Hell-Ville. Cadre colonial historique et carte variée, célèbre pour ses pizzas et fruits de mer.",
-                image: "images/restaurants/le-papillon.jpg",
+                image: "images/restaurants/le-papillon.jpg?v=2",
                 acces: "Hell-Ville, centre",
                 horaires: "11h-22h"
             },
@@ -4232,36 +4308,167 @@
         // ============================================
 
         function initOutilsPage() {
-            // Convertisseur
-            const inputAr = document.getElementById('inputAr');
-            const inputEuro = document.getElementById('inputEuro');
-            const rateDisplay = document.getElementById('rateDisplay');
-            const btnModifyRate = document.getElementById('btnModifyRate');
+            // --- CONVERTISSEUR AVANCÉ ---
+            const state = {
+                rates: JSON.parse(localStorage.getItem('currencyRates')) || { EUR: 4800, USD: 4500, GBP: 5700, CHF: 5000, ZAR: 250 },
+                currency: localStorage.getItem('selectedCurrency') || 'EUR',
+                mode: localStorage.getItem('converterMode') || 'AUTO', // 'AUTO' or 'MANUAL'
+                lastUpdate: localStorage.getItem('ratesLastUpdate') || null,
+                isInverted: false
+            };
 
-            rateDisplay.textContent = exchangeRate;
+            const currencySymbols = { EUR: '€', USD: '$', GBP: '£', CHF: 'Fr', ZAR: 'R' };
 
-            inputAr.addEventListener('input', () => {
-                const ar = parseFloat(inputAr.value) || 0;
-                inputEuro.value = (ar / exchangeRate).toFixed(2);
+            // Elements
+            const selector = document.getElementById('currencySelector');
+            const btnRefresh = document.getElementById('btnRefreshRate');
+            const statusBadge = document.getElementById('converterStatus');
+            const inputForeign = document.getElementById('inputForeign');
+            const inputLocal = document.getElementById('inputLocal'); // Ar input
+            const foreignLabel = document.getElementById('foreignLabel');
+            const rateText = document.getElementById('rateText');
+            const btnEdit = document.getElementById('btnEditRate');
+            const btnInvert = document.getElementById('btnInvert');
+            const container = document.getElementById('converterInputsContainer');
+            const rowForeign = document.getElementById('rowForeign');
+            const rowLocal = document.getElementById('rowLocal');
+
+            // Init UI
+            selector.value = state.currency;
+            updateUI();
+
+            // Auto-fetch if old data (> 24h) and online
+            if (navigator.onLine && state.mode === 'AUTO') {
+                const now = Date.now();
+                if (!state.lastUpdate || (now - state.lastUpdate > 86400000)) {
+                    fetchRates();
+                }
+            }
+
+            // --- LISTENERS ---
+
+            selector.addEventListener('change', (e) => {
+                state.currency = e.target.value;
+                localStorage.setItem('selectedCurrency', state.currency);
+                updateUI();
+                recalcFromForeign();
             });
 
-            inputEuro.addEventListener('input', () => {
-                const euro = parseFloat(inputEuro.value) || 0;
-                inputAr.value = Math.round(euro * exchangeRate);
+            btnRefresh.addEventListener('click', () => {
+                state.mode = 'AUTO';
+                localStorage.setItem('converterMode', 'AUTO');
+                fetchRates();
             });
 
-            btnModifyRate.addEventListener('click', () => {
-                const newRate = prompt('Entrez le nouveau taux (1 € = X Ar)', exchangeRate);
+            btnEdit.addEventListener('click', () => {
+                const currentRate = state.rates[state.currency];
+                const newRate = prompt(`Entrez votre taux manuel pour 1 ${state.currency} :`, currentRate);
                 if (newRate && !isNaN(newRate)) {
-                    exchangeRate = parseFloat(newRate);
-                    localStorage.setItem('exchangeRate', exchangeRate);
-                    rateDisplay.textContent = exchangeRate;
-                    // Recalculer
-                    inputAr.dispatchEvent(new Event('input'));
+                    state.rates[state.currency] = parseFloat(newRate);
+                    state.mode = 'MANUAL';
+                    saveState();
+                    updateUI();
+                    recalcFromForeign();
                 }
             });
 
-            // Checklist
+            btnInvert.addEventListener('click', () => {
+                state.isInverted = !state.isInverted;
+                // Swap DOM elements
+                if (state.isInverted) {
+                    container.insertBefore(rowLocal, rowForeign); // Ar on top
+                    btnInvert.style.transform = "rotate(270deg)";
+                } else {
+                    container.insertBefore(rowForeign, rowLocal); // Foreign on top
+                    btnInvert.style.transform = "rotate(90deg)";
+                }
+            });
+
+            inputForeign.addEventListener('input', recalcFromForeign);
+            inputLocal.addEventListener('input', recalcFromLocal);
+
+            // --- FUNCTIONS ---
+
+            function fetchRates() {
+                btnRefresh.classList.add('fa-spin'); // Animation
+
+                // API Gratuite (Open Exchange Rates fallback or similar free json)
+                // Ici on utilise open.er-api.com qui est gratuit et stable
+                fetch('https://open.er-api.com/v6/latest/EUR')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.rates && data.rates.MGA) {
+                            const eurToMga = data.rates.MGA;
+
+                            // Déduire les autres par cross-calculation si l'API est base EUR
+                            // (ou fetcher chaque, mais cross-calc suffit pour estimation)
+                            const rates = {
+                                EUR: eurToMga,
+                                USD: eurToMga / data.rates.USD,
+                                GBP: eurToMga / data.rates.GBP,
+                                CHF: eurToMga / data.rates.CHF,
+                                ZAR: eurToMga / data.rates.ZAR
+                            };
+
+                            // Arrondir
+                            Object.keys(rates).forEach(k => rates[k] = Math.round(rates[k]));
+
+                            state.rates = rates;
+                            state.lastUpdate = Date.now();
+                            state.mode = 'AUTO';
+                            saveState();
+                            updateUI();
+                            recalcFromForeign();
+
+                            alert('Taux mis à jour avec succès !');
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('Erreur connexion. Vérifiez internet.');
+                    })
+                    .finally(() => {
+                        btnRefresh.classList.remove('fa-spin');
+                    });
+            }
+
+            function updateUI() {
+                const rate = Math.round(state.rates[state.currency]);
+                const symbol = currencySymbols[state.currency];
+
+                foreignLabel.textContent = symbol;
+                rateText.textContent = `1 ${symbol} = ${rate} Ar`;
+
+                if (state.mode === 'AUTO') {
+                    statusBadge.textContent = "🟢 Taux Réel";
+                    statusBadge.className = "status-badge live";
+                    statusBadge.title = "Taux officiel via internet";
+                } else {
+                    statusBadge.textContent = "🔴 Mode Manuel";
+                    statusBadge.className = "status-badge manual";
+                    statusBadge.title = "Taux défini par l'utilisateur";
+                }
+            }
+
+            function recalcFromForeign() {
+                const val = parseFloat(inputForeign.value) || 0;
+                const rate = state.rates[state.currency];
+                inputLocal.value = Math.round(val * rate);
+            }
+
+            function recalcFromLocal() {
+                const val = parseFloat(inputLocal.value) || 0;
+                const rate = state.rates[state.currency];
+                inputForeign.value = (val / rate).toFixed(2);
+            }
+
+            function saveState() {
+                localStorage.setItem('currencyRates', JSON.stringify(state.rates));
+                localStorage.setItem('converterMode', state.mode);
+                if (state.lastUpdate) localStorage.setItem('ratesLastUpdate', state.lastUpdate);
+            }
+
+            // --- CHECKLIST EXISTANTE (Code inchangé) ---
             const checklistContainer = document.getElementById('checklistContainer');
 
             CHECKLIST_ITEMS.forEach((item, index) => {
@@ -4289,7 +4496,6 @@
                     checklist.push(index);
                     item.classList.add('checked');
                 }
-
                 localStorage.setItem('checklist', JSON.stringify(checklist));
             });
         }

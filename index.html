@@ -1330,36 +1330,131 @@
         }
 
         /* Leaflet popup customization */
+        /* Leaflet popup customization - Premium */
         .leaflet-popup-content-wrapper {
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-lg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 0;
+            overflow: hidden;
+            border: 2px solid var(--laterite);
+            background: var(--bg-primary);
         }
 
         .leaflet-popup-content {
-            margin: 12px;
-            font-family: var(--font-body);
+            margin: 0;
+            width: 280px !important;
         }
 
-        .popup-content {
-            min-width: 200px;
+        .leaflet-popup-tip {
+            background: var(--laterite);
+        }
+
+        .leaflet-container a.leaflet-popup-close-button {
+            top: 12px;
+            right: 12px;
+            color: var(--text-secondary) !important;
+            font-size: 18px;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .popup-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
         }
 
         .popup-title {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 6px;
-            color: var(--noir);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .popup-body {
+            padding: 16px;
+        }
+
+        .popup-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .popup-price {
             font-family: var(--font-mono);
-            font-size: 0.9rem;
-            margin-bottom: 4px;
+            font-weight: 700;
+            color: var(--laterite);
+            font-size: 1rem;
+            background: rgba(217, 79, 4, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
         }
 
         .popup-rating {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: #F59E0B;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-popup-details {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--laterite);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-top: 12px;
+            box-shadow: 0 4px 6px rgba(217, 79, 4, 0.2);
+        }
+
+        .btn-popup-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(217, 79, 4, 0.3);
+            background: #c2410b;
+        }
+
+        .btn-favorite-popup {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-favorite-popup.active {
+            color: var(--premium);
+            border-color: var(--premium);
+            background: #fff9e6;
+        }
+
+        .btn-favorite-popup:hover {
+            transform: scale(1.1);
         }
 
         /* Installation prompt */
@@ -1506,12 +1601,7 @@
                 <button id="themeToggle" class="theme-toggle">☀️</button>
             </div>
 
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input"
-                    placeholder="Rechercher (ex: Lémurien, Plage, Diego...)">
-                <i class="fas fa-search search-icon"></i>
-            </div>
+
         </div>
     </header>
     <nav class="nav-container">
@@ -3636,18 +3726,25 @@
                 const marker = L.marker([lieu.lat, lieu.lng], { icon });
 
                 const popupContent = `
-                    <div class="popup-content">
-                        <div class="popup-header" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
-                            <div class="popup-title" style="margin:0; font-size:1.1rem; padding-right:10px;">${lieu.nom}</div>
-                            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}" style="position:static; width:28px; height:28px; font-size:14px; box-shadow:none; border:1px solid var(--border-color);">
+                    <div class="popup-wrapper">
+                        <div class="popup-header">
+                            <h3 class="popup-title">${lieu.nom}</h3>
+                             <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-popup ${isFavorite(lieu.id) ? 'active' : ''}">
                                 ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
                             </button>
                         </div>
-                        <div class="popup-price" style="margin-bottom:4px;">${lieu.prix} (${lieu.prixEur})</div>
-                        <div class="popup-rating" style="margin-bottom:8px;">⭐ ${lieu.note}</div>
-                        ${lieu.spotLocal ? '<div class="badge-spot" style="display:inline-block; margin-bottom:8px;">📍 Spot Local</div>' : ''}
-                        
-                        <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-details" style="padding:8px; font-size:0.85rem; margin-top:5px;">Voir détails</button>
+                        <div class="popup-body">
+                            <div class="popup-meta">
+                                <div class="popup-price">${lieu.prixEur}</div>
+                                <div class="popup-rating"><i class="fas fa-star"></i> ${lieu.note}</div>
+                            </div>
+                            
+                            ${lieu.spotLocal ? '<div class="badge-spot" style="display:inline-block; margin-bottom:12px;">📍 Spot Local</div>' : ''}
+                            
+                            <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-popup-details">
+                                Voir détails <i class="fas fa-arrow-right" style="margin-left:6px; font-size:0.8em;"></i>
+                            </button>
+                        </div>
                     </div>
                 `;
 

@@ -369,12 +369,8 @@
         /* ============================================
            SHORTCUTS RAPIDES
            ============================================ */
-        .shortcuts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
+        /* Shortcuts styles defined later in the file for map page specificity */
+
 
         .shortcut-card {
             background: var(--bg-secondary);
@@ -1236,12 +1232,196 @@
         /* ============================================
            MAP STYLES
            ============================================ */
-        #map {
-            height: 500px;
+        /* ============================================
+           CARTE & FILTRES PREMIUM (Design Expert)
+           ============================================ */
+        #page-carte {
+            /* Standard block flow - height matches content */
+            display: block;
+            height: auto;
+            /* REMOVED min-height: 100vh - was causing shortcuts to float inside */
+            position: relative;
+            padding: 0;
+            margin: 0 -20px 0 -20px;
+            padding-bottom: 80px;
+        }
+
+        #map-container {
+            /* Fixed height block */
+            height: 40vh;
+            min-height: 350px;
+            max-height: 500px;
             width: 100%;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
+            position: relative;
             z-index: 1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            /* Positive margin to force shortcuts down */
+            margin-bottom: 20px;
+            border-bottom: 8px solid var(--bg-primary);
+            /* Physical separator */
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+            z-index: 1;
+        }
+
+        /* FILTRES FLOTTANTS ÉPURÉS */
+        .map-filters-overlay {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 800px;
+            z-index: 900;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 4px 8px;
+            pointer-events: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            max-width: 100%;
+        }
+
+        .filter-chip-map {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-chip-map:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-chip-map.active {
+            background: var(--laterite);
+            color: white;
+            box-shadow: 0 2px 8px rgba(217, 79, 4, 0.3);
+        }
+
+        /* BOUTON LOCALISATION */
+        .btn-locate {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            z-index: 900;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: white;
+            color: var(--laterite);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .btn-locate span {
+            display: none;
+        }
+
+        /* SHORTCUTS RAPIDES (High Visibility) */
+        /* SHORTCUTS RAPIDES (High Visibility) */
+        .shortcuts-grid {
+            /* Clear separation */
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+            clear: both;
+            /* Ensure no floating issues */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-primary);
+        }
+
+        .shortcut-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 16px;
+            /* Plus compact */
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            /* Plus subtil */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            height: 100%;
+        }
+
+        .shortcut-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--laterite);
+        }
+
+        .shortcut-icon {
+            font-size: 2rem;
+            /* Plus compact */
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .shortcut-title {
+            font-size: 1.1rem;
+            /* Plus compact */
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .shortcut-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .shortcuts-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .shortcut-card {
+                padding: 20px;
+            }
         }
 
         /* ============================================
@@ -1658,87 +1838,58 @@
         <!-- Page Carte -->
         <section id="page-carte" class="page-section active">
             <!-- Filtres -->
-            <div class="map-filters">
-                <div class="filter-group">
-                    <div class="filter-title">📍 Villes</div>
-                    <div class="filter-options">
-                        <input type="checkbox" id="filter-antananarivo" class="filter-checkbox" checked>
-                        <label for="filter-antananarivo" class="filter-label">Antananarivo</label>
-
-                        <input type="checkbox" id="filter-diego" class="filter-checkbox" checked>
-                        <label for="filter-diego" class="filter-label">Diego-Suarez</label>
-
-                        <input type="checkbox" id="filter-nosybe" class="filter-checkbox" checked>
-                        <label for="filter-nosybe" class="filter-label">Nosy Be</label>
-
-                        <input type="checkbox" id="filter-mahajanga" class="filter-checkbox" checked>
-                        <label for="filter-mahajanga" class="filter-label">Mahajanga</label>
-
-                        <input type="checkbox" id="filter-andasibe" class="filter-checkbox" checked>
-                        <label for="filter-andasibe" class="filter-label">Andasibe</label>
-
-                        <input type="checkbox" id="filter-isalo" class="filter-checkbox" checked>
-                        <label for="filter-isalo" class="filter-label">Isalo</label>
-
-                        <input type="checkbox" id="filter-ifaty" class="filter-checkbox" checked>
-                        <label for="filter-ifaty" class="filter-label">Ifaty</label>
-
-                        <input type="checkbox" id="filter-ankarana" class="filter-checkbox" checked>
-                        <label for="filter-ankarana" class="filter-label">Ankarana</label>
-
-                        <input type="checkbox" id="filter-mananara" class="filter-checkbox" checked>
-                        <label for="filter-mananara" class="filter-label">Mananara</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-title">🏷️ Types</div>
-                    <div class="filter-options">
-                        <input type="checkbox" id="filter-incontournable" class="filter-checkbox" checked>
-                        <label for="filter-incontournable" class="filter-label">Incontournable</label>
-
-                        <input type="checkbox" id="filter-spotlocal" class="filter-checkbox" checked>
-                        <label for="filter-spotlocal" class="filter-label">Spot Local</label>
-
-                        <input type="checkbox" id="filter-nature" class="filter-checkbox" checked>
-                        <label for="filter-nature" class="filter-label">Nature</label>
-
-                        <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
-                        <label for="filter-restaurant" class="filter-label">Restaurant</label>
-
-                        <input type="checkbox" id="filter-culture" class="filter-checkbox" checked>
-                        <label for="filter-culture" class="filter-label">Culture</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-title">💰 Prix</div>
-                    <div class="filter-options">
-                        <input type="checkbox" id="filter-gratuit" class="filter-checkbox" checked>
-                        <label for="filter-gratuit" class="filter-label">Gratuit</label>
-
-                        <input type="checkbox" id="filter-economique" class="filter-checkbox" checked>
-                        <label for="filter-economique" class="filter-label">&lt; 10 000 Ar</label>
-
-                        <input type="checkbox" id="filter-moyen" class="filter-checkbox" checked>
-                        <label for="filter-moyen" class="filter-label">≥ 10 000 Ar</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-title">❤️ Mes Préférences</div>
-                    <div class="filter-options">
-                        <input type="checkbox" id="filter-favorites" class="filter-checkbox">
-                        <label for="filter-favorites" class="filter-label">Mes Favoris Uniquement</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte -->
-            <div id="map-container" style="position: relative;">
+            <!-- Map Container with Overlay Filters -->
+            <!-- Map Container with Overlay Filters -->
+            <div id="map-container">
                 <div id="map"></div>
-                <button id="btnLocateMe" class="btn-locate">
-                    <i class="fas fa-location-crosshairs"></i> Autour de moi
+
+                <!-- Filters Overlay (Clean Single Row) -->
+                <div class="map-filters-overlay">
+                    <div class="filter-row">
+                        <!-- Villes Principales -->
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'antananarivo')">
+                            <input type="checkbox" id="filter-antananarivo" class="filter-checkbox" checked>
+                            🏛️ Tana
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'diego')">
+                            <input type="checkbox" id="filter-diego" class="filter-checkbox" checked>
+                            🏝️ Diego
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'nosybe')">
+                            <input type="checkbox" id="filter-nosybe" class="filter-checkbox" checked>
+                            🌴 Nosy Be
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'mahajanga')">
+                            <input type="checkbox" id="filter-mahajanga" class="filter-checkbox" checked>
+                            🌊 Majunga
+                        </div>
+
+                        <div
+                            style="width:1px; background:rgba(0,0,0,0.1); margin:0 4px; height:20px; align-self:center;">
+                        </div>
+
+                        <!-- Catégories Essentielles -->
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'incontournable')">
+                            <input type="checkbox" id="filter-incontournable" class="filter-checkbox" checked>
+                            ✨ Top
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'spotlocal')">
+                            <input type="checkbox" id="filter-spotlocal" class="filter-checkbox" checked>
+                            📍 Local
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'restaurant')">
+                            <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
+                            🍽️ Miam
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'favorites')">
+                            <input type="checkbox" id="filter-favorites" class="filter-checkbox">
+                            ❤️ Favoris
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btnLocateMe" class="btn-locate" title="Autour de moi">
+                    <i class="fas fa-location-crosshairs"></i>
                 </button>
             </div>
 
@@ -3600,6 +3751,28 @@
                     alert("Votre navigateur ne supporte pas la géolocalisation.");
                 }
             });
+        }
+
+
+        // ============================================
+        // MAP FILTER LOGIC (New)
+        // ============================================
+        function toggleFilter(chip, type) {
+            const checkbox = chip.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                // Toggle checkbox manually since we intercept click
+                checkbox.checked = !checkbox.checked;
+
+                // Update UI
+                if (checkbox.checked) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
+                }
+
+                // Update Map
+                updateMapMarkers();
+            }
         }
 
         // ============================================

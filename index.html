@@ -162,43 +162,7 @@
             letter-spacing: 0.5px;
         }
 
-        .search-container {
-            margin-top: 12px;
-            position: relative;
-        }
 
-        .search-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 10px 40px 10px 16px;
-            color: white;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            outline: none;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.8);
-            pointer-events: none;
-        }
 
         .btn-locate {
             position: absolute;
@@ -3465,77 +3429,11 @@
             initModal();
             initInstallPrompt();
             registerServiceWorker();
-            initSearch();
+
             initGeolocation();
         });
 
-        // ============================================
-        // SEARCH ENGINE
-        // ============================================
-        function initSearch() {
-            const searchInput = document.getElementById('searchInput');
-            if (!searchInput) return;
 
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
-
-                // 1. UPDATE MAP (Existing Logic)
-                if (searchTerm === '') {
-                    updateMapMarkers();
-                } else {
-                    const filteredData = LIEUX_DATA.filter(lieu =>
-                        lieu.nom.toLowerCase().includes(searchTerm) ||
-                        lieu.ville.toLowerCase().includes(searchTerm) ||
-                        (lieu.description && lieu.description.toLowerCase().includes(searchTerm))
-                    );
-
-                    markersLayer.clearLayers();
-                    filteredData.forEach(lieu => {
-                        const icon = L.divIcon({
-                            className: 'custom-marker',
-                            html: lieu.spotLocal ? '📍' : '📌',
-                            iconSize: [32, 32]
-                        });
-                        const marker = L.marker([lieu.lat, lieu.lng], { icon });
-                        const popupContent = `
-                        <div class="popup-content">
-                            <div style="position:relative;">
-                                <div class="popup-title">${lieu.nom}</div>
-                                <button onclick="toggleFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}" style="top:-5px; right:0;">
-                                    ${isFavorite(lieu.id) ? '❤️' : '🤍'}
-                                </button>
-                            </div>
-                            <div class="popup-price">${lieu.prix}</div>
-                            <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-popup" style="margin-top:5px; padding:4px 8px; background:var(--laterite); color:white; border:none; border-radius:4px; cursor:pointer;">Voir détails</button>
-                        </div>
-                    `;
-                        marker.bindPopup(popupContent);
-                        marker.on('click', () => showLieuDetails(lieu));
-                        markersLayer.addLayer(marker);
-                    });
-                }
-
-                // 2. UPDATE LIST VIEW (New Logic)
-                // Find all location cards in the DOM (across all city pages)
-                const allCards = document.querySelectorAll('.lieu-card');
-
-                allCards.forEach(card => {
-                    // Extract text content from the card to match against search
-                    const textContent = card.innerText.toLowerCase();
-                    if (searchTerm === '' || textContent.includes(searchTerm)) {
-                        card.style.display = 'block'; // Show
-                    } else {
-                        card.style.display = 'none'; // Hide
-                    }
-                });
-            });
-        }
-
-        // Helper pour ouvrir details via ID (utile pour search)
-        function showLieuDetailsByID(id) {
-            const lieu = LIEUX_DATA.find(l => l.id === id);
-            if (lieu) showLieuDetails(lieu);
-        }
 
         // ============================================
         // GEOLOCALISATION
@@ -3739,10 +3637,17 @@
 
                 const popupContent = `
                     <div class="popup-content">
-                        <div class="popup-title">${lieu.nom}</div>
-                        <div class="popup-price">${lieu.prix} (${lieu.prixEur})</div>
-                        <div class="popup-rating">⭐ ${lieu.note}</div>
-                        ${lieu.spotLocal ? '<div class="badge-spot">📍 Spot Local</div>' : ''}
+                        <div class="popup-header" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                            <div class="popup-title" style="margin:0; font-size:1.1rem; padding-right:10px;">${lieu.nom}</div>
+                            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}" style="position:static; width:28px; height:28px; font-size:14px; box-shadow:none; border:1px solid var(--border-color);">
+                                ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
+                            </button>
+                        </div>
+                        <div class="popup-price" style="margin-bottom:4px;">${lieu.prix} (${lieu.prixEur})</div>
+                        <div class="popup-rating" style="margin-bottom:8px;">⭐ ${lieu.note}</div>
+                        ${lieu.spotLocal ? '<div class="badge-spot" style="display:inline-block; margin-bottom:8px;">📍 Spot Local</div>' : ''}
+                        
+                        <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-details" style="padding:8px; font-size:0.85rem; margin-top:5px;">Voir détails</button>
                     </div>
                 `;
 
@@ -4420,12 +4325,12 @@
                             updateUI();
                             recalcFromForeign();
 
-                            alert('Taux mis à jour avec succès !');
+                            showToast('Taux mis à jour avec succès !');
                         }
                     })
                     .catch(err => {
                         console.error(err);
-                        alert('Erreur connexion. Vérifiez internet.');
+                        showToast('Erreur connexion. Vérifiez internet.');
                     })
                     .finally(() => {
                         btnRefresh.classList.remove('fa-spin');
@@ -4438,6 +4343,13 @@
 
                 foreignLabel.textContent = symbol;
                 rateText.textContent = `1 ${symbol} = ${rate} Ar`;
+
+                // Afficher date maj
+                if (state.lastUpdate) {
+                    const date = new Date(parseInt(state.lastUpdate));
+                    const dateStr = `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}h${date.getMinutes().toString().padStart(2, '0')}`;
+                    rateText.textContent += ` (Maj: ${dateStr})`;
+                }
 
                 if (state.mode === 'AUTO') {
                     statusBadge.textContent = "🟢 Taux Réel";

@@ -1798,6 +1798,81 @@
             cursor: pointer;
             margin-left: 10px;
         }
+
+        /* ============================================
+           FILTRES INTELLIGENTS (PREMIUM UI)
+           ============================================ */
+        .nav-pills {
+            display: flex;
+            gap: 12px;
+            padding: 4px 4px 12px 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .nav-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-pill {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            /* Plus subtil */
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Ombre douce initiale */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+            background: white;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-pill:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-pill.active {
+            background: linear-gradient(135deg, var(--laterite) 0%, #A12929 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 15px rgba(217, 79, 4, 0.4);
+            /* Glow rouge */
+        }
+
+        /* ICON STYLES */
+        .nav-pill i,
+        .nav-btn i,
+        .filter-chip-map i {
+            font-size: 1.1em;
+            /* Légèrement plus grand */
+            margin-right: 2px;
+        }
+
+        .nav-btn i {
+            margin-bottom: 2px;
+            /* Alignement optique */
+        }
     </style>
 </head>
 
@@ -1820,19 +1895,16 @@
     </header>
     <nav class="nav-container">
         <div class="main-nav" id="mainNav">
-            <button class="nav-btn active" data-page="carte">🗺️ Carte</button>
-            <button class="nav-btn" data-page="antananarivo">🏛️ Antananarivo</button>
-            <button class="nav-btn" data-page="diego">🏝️ Diego-Suarez</button>
-            <button class="nav-btn" data-page="nosybe">🌴 Nosy Be</button>
-            <button class="nav-btn" data-page="mahajanga">🌊 Mahajanga</button>
-            <button class="nav-btn" data-page="andasibe">🌿 Andasibe</button>
-            <button class="nav-btn" data-page="isalo">🏜️ Isalo</button>
-            <button class="nav-btn" data-page="ifaty">🏖️ Ifaty</button>
-            <button class="nav-btn" data-page="ankarana">🕳️ Ankarana</button>
-            <button class="nav-btn" data-page="mananara">🐊 Mananara</button>
-            <button class="nav-btn" data-page="spots">🔥 Spots Locaux</button>
-            <button class="nav-btn" data-page="langue">🗣️ Langue</button>
-            <button class="nav-btn" data-page="outils">🧰 Outils</button>
+            <button class="nav-btn active" data-page="carte"><i class="fa-solid fa-map-location-dot"></i> Carte</button>
+            <button class="nav-btn" data-page="antananarivo"><i class="fa-solid fa-landmark"></i> Tana</button>
+            <button class="nav-btn" data-page="antsiranana"><i class="fa-solid fa-anchor"></i> Diego</button>
+            <button class="nav-btn" data-page="fianarantsoa"><i class="fa-solid fa-train"></i> Fianar</button>
+            <button class="nav-btn" data-page="mahajanga"><i class="fa-solid fa-umbrella-beach"></i> Majunga</button>
+            <button class="nav-btn" data-page="toamasina"><i class="fa-solid fa-ship"></i> Tamatave</button>
+            <button class="nav-btn" data-page="toliara"><i class="fa-solid fa-sun"></i> Tuléar</button>
+            <button class="nav-btn" data-page="spots"><i class="fa-solid fa-fire"></i> Spots</button>
+            <button class="nav-btn" data-page="langue"><i class="fa-solid fa-language"></i> Langue</button>
+            <button class="nav-btn" data-page="outils"><i class="fa-solid fa-toolbox"></i> Outils</button>
         </div>
     </nav>
 
@@ -1849,22 +1921,30 @@
                 <!-- Filters Overlay (Clean Single Row) -->
                 <div class="map-filters-overlay">
                     <div class="filter-row">
-                        <!-- Villes Principales -->
+                        <!-- Provinces -->
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'antananarivo')">
                             <input type="checkbox" id="filter-antananarivo" class="filter-checkbox" checked>
-                            🏛️ Tana
+                            <i class="fa-solid fa-landmark"></i> Tana
                         </div>
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'diego')">
-                            <input type="checkbox" id="filter-diego" class="filter-checkbox" checked>
-                            🏝️ Diego
-                        </div>
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'nosybe')">
-                            <input type="checkbox" id="filter-nosybe" class="filter-checkbox" checked>
-                            🌴 Nosy Be
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'antsiranana')">
+                            <input type="checkbox" id="filter-antsiranana" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-anchor"></i> Nord
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'mahajanga')">
                             <input type="checkbox" id="filter-mahajanga" class="filter-checkbox" checked>
-                            🌊 Majunga
+                            <i class="fa-solid fa-umbrella-beach"></i> Ouest
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'toamasina')">
+                            <input type="checkbox" id="filter-toamasina" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-ship"></i> Est
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'toliara')">
+                            <input type="checkbox" id="filter-toliara" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-sun"></i> Sud
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'fianarantsoa')">
+                            <input type="checkbox" id="filter-fianarantsoa" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-train"></i> Fianar
                         </div>
 
                         <div
@@ -1874,19 +1954,19 @@
                         <!-- Catégories Essentielles -->
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'incontournable')">
                             <input type="checkbox" id="filter-incontournable" class="filter-checkbox" checked>
-                            ✨ Top
+                            <i class="fa-solid fa-star"></i> Top
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'spotlocal')">
                             <input type="checkbox" id="filter-spotlocal" class="filter-checkbox" checked>
-                            📍 Local
+                            <i class="fa-solid fa-location-dot"></i> Local
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'restaurant')">
                             <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
-                            🍽️ Miam
+                            <i class="fa-solid fa-utensils"></i> Miam
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'favorites')">
                             <input type="checkbox" id="filter-favorites" class="filter-checkbox">
-                            ❤️ Favoris
+                            <i class="fa-solid fa-heart"></i> Favoris
                         </div>
                     </div>
                 </div>
@@ -1918,16 +1998,13 @@
             </div>
         </section>
 
-        <!-- Pages Villes (template dynamique) -->
+        <!-- Pages Provinces (template dynamique) -->
         <section id="page-antananarivo" class="page-section"></section>
-        <section id="page-diego" class="page-section"></section>
-        <section id="page-nosybe" class="page-section"></section>
+        <section id="page-antsiranana" class="page-section"></section>
+        <section id="page-fianarantsoa" class="page-section"></section>
         <section id="page-mahajanga" class="page-section"></section>
-        <section id="page-andasibe" class="page-section"></section>
-        <section id="page-isalo" class="page-section"></section>
-        <section id="page-ifaty" class="page-section"></section>
-        <section id="page-ankarana" class="page-section"></section>
-        <section id="page-mananara" class="page-section"></section>
+        <section id="page-toamasina" class="page-section"></section>
+        <section id="page-toliara" class="page-section"></section>
 
         <!-- Page Spots Locaux -->
         <section id="page-spots" class="page-section">
@@ -3592,6 +3669,374 @@
                 description: "Pool party et DJ sets face à la mer. Très prisé le dimanche.",
                 image: "images/nightlife/beach-klub.jpg",
                 acces: "Andilana"
+            },
+            // ==========================================
+            // FIANARANTSOA - EXPLORER (Lieux)
+            // ==========================================
+            {
+                id: 300,
+                ville: "Fianarantsoa",
+                nom: "La Haute Villle (Vieille Ville)",
+                type: "Incontournable",
+                lat: -21.4536,
+                lng: 47.0858,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.8,
+                description: "Classée au patrimoine mondial, la Haute Ville est le cœur historique. C'est un dédale de ruelles pavées et de maisons traditionnelles en briques rouges aux toits de tuiles, rappelant Tana d'autrefois. La vue depuis le sommet est imprenable.",
+                image: "images/fianarantsoa/fianar_haute_ville.png",
+                acces: "Centre-ville, accès pédestre uniquement dans les ruelles",
+                horaires: "24h/24, de jour recommandé",
+                conseil: "Montez jusqu'à l'école pour le meilleur panorama au coucher du soleil.",
+                duree: "2h"
+            },
+            {
+                id: 301,
+                ville: "Fianarantsoa",
+                nom: "Gare FCE",
+                type: "Incontournable",
+                lat: -21.4447,
+                lng: 47.0889,
+                prix: "Gratuit (visite)",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.6,
+                description: "Le point de départ du mythique train Fianar-Côte Est. Même si vous ne prenez pas le train, l'ambiance de la gare, avec sa Micheline d'époque et son agitation, vaut le détour. Un saut dans le temps colonial.",
+                image: "images/fianarantsoa/fianar_gare_fce.png",
+                acces: "Quartier de la Gare, ville basse",
+                horaires: "Matin pour l'animation des départs",
+                conseil: "Vérifiez les jours de départ (souvent mardi/samedi) pour voir l'effervescence.",
+                duree: "1h"
+            },
+            {
+                id: 302,
+                ville: "Fianarantsoa",
+                nom: "Plantations de Thé Sahambavy",
+                type: "Nature",
+                lat: -21.4000,
+                lng: 47.1833,
+                prix: "15 000 Ar",
+                prixEur: "3.5 €",
+                prixNum: 15000,
+                note: 4.7,
+                description: "Les seules plantations de thé de l'île. Un paysage de collines verdoyantes à perte de vue où s'activent les cueilleuses. L'odeur du thé frais et l'usine de transformation (SIDEXAM) offrent une visite unique.",
+                image: "images/fianarantsoa/fianar_plantations_the.png",
+                acces: "23 km de Fianar (45 min), taxi ou train",
+                horaires: "8h-16h, visite guidée",
+                conseil: "Dégustez le thé sur place au Lac Hôtel voisin après la visite.",
+                duree: "Demi-journée"
+            },
+            {
+                id: 303,
+                ville: "Fianarantsoa",
+                nom: "Cathédrale d'Ambozontany",
+                type: "Culture",
+                lat: -21.4510,
+                lng: 47.0870,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.5,
+                description: "Majestueuse, cette cathédrale en briques rouges domine la ville basse. Son escalier monumental et son clocher sont les symboles de Fianarantsoa. L'intérieur est sobre mais empreint de spiritualité.",
+                image: "images/fianarantsoa/fianar_cathedrale.png",
+                acces: "Montée vers la Haute Ville",
+                horaires: "8h-17h",
+                conseil: "Assistez à la messe du dimanche pour les chants choraux magnifiques.",
+                duree: "30 min"
+            },
+            {
+                id: 304,
+                ville: "Fianarantsoa",
+                nom: "Labo Men (Pierrot Men)",
+                type: "Culture",
+                lat: -21.4480,
+                lng: 47.0860,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.9,
+                description: "La galerie du plus célèbre photographe malgache, Pierrot Men. Ses clichés en noir et blanc capturent l'âme de Madagascar. Un lieu de silence et de beauté artistique incontournable.",
+                image: "images/fianarantsoa/fianar_pierrot_men.png",
+                acces: "Ville moyenne, Suotama",
+                horaires: "9h-18h, fermé dimanche",
+                conseil: "On peut acheter des tirages ou des cartes postales signées, un souvenir précieux.",
+                duree: "1h"
+            },
+
+            // ==========================================
+            // FIANARANTSOA - MANGER (Restaurants)
+            // ==========================================
+            {
+                id: 305,
+                ville: "Fianarantsoa",
+                nom: "L'Ancre d'Or",
+                type: "Restaurant",
+                lat: -21.4490,
+                lng: 47.0850,
+                prix: "40 000 Ar",
+                prixEur: "9 €",
+                prixNum: 40000,
+                note: 4.5,
+                description: "Une institution. On y vient pour sa fameuse fondue bourguignonne de zébu et son ambiance chaleureuse un peu rétro. C'est le rendez-vous des expatriés et des voyageurs.",
+                image: "images/fianarantsoa/fianar_ancre_or.png",
+                acces: "Centre-ville, Tsianolondroa",
+                horaires: "Midi et Soir",
+                conseil: "La fondue est copieuse, à partager !",
+                duree: "2h"
+            },
+            {
+                id: 306,
+                ville: "Fianarantsoa",
+                nom: "Tsara Guest House",
+                type: "Restaurant",
+                lat: -21.4520,
+                lng: 47.0880,
+                prix: "60 000 Ar",
+                prixEur: "14 €",
+                prixNum: 60000,
+                note: 4.8,
+                description: "Le raffinement à Fianar. Une terrasse avec vue panoramique sur la ville et une cuisine gastronomique locale. Le cadre est élégant, parfait pour un dîner romantique.",
+                image: "images/fianarantsoa/fianar_tsara_guest.png",
+                acces: "Près de la Haute Ville",
+                horaires: "12h-14h, 19h-21h30",
+                conseil: "Réservez la table au bord de la terrasse pour le coucher de soleil.",
+                duree: "2h"
+            },
+            {
+                id: 307,
+                ville: "Fianarantsoa",
+                nom: "La Rizière",
+                type: "Restaurant",
+                lat: -21.4600,
+                lng: 47.0900,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.7,
+                description: "Le restaurant d'application de la célèbre école hôtelière. Service impeccable, plats soignés et créatifs préparés par les futurs grands chefs du pays. Le cadre en briques rouges est magnifique.",
+                image: "images/fianarantsoa/fianar_la_riziere.png",
+                acces: "Sortie Sud de la ville",
+                horaires: "Midi seulement (souvent)",
+                conseil: "Le menu change selon les saisons et l'apprentissage des élèves.",
+                duree: "2h"
+            },
+            {
+                id: 308,
+                ville: "Fianarantsoa",
+                nom: "Le Panda",
+                type: "Restaurant",
+                lat: -21.4460,
+                lng: 47.0840,
+                prix: "25 000 Ar",
+                prixEur: "6 €",
+                prixNum: 25000,
+                note: 4.3,
+                description: "Le bon plan populaire. Cuisine chinoise et malgache généreuse, service rapide et prix doux. C'est bruyant, vivant et toujours bon.",
+                image: "images/fianarantsoa/fianar_panda.png",
+                acces: "Centre-ville, Ampasambazaha",
+                horaires: "10h-22h",
+                conseil: "Leur soupe de nouilles est légendaire après une longue route.",
+                duree: "1h"
+            },
+            {
+                id: 309,
+                ville: "Fianarantsoa",
+                nom: "Le Zomatel",
+                type: "Restaurant",
+                lat: -21.4430,
+                lng: 47.0820,
+                prix: "35 000 Ar",
+                prixEur: "8 €",
+                prixNum: 35000,
+                note: 4.4,
+                description: "Célèbre pour ses pizzas au feu de bois et ses pâtisseries. Le cadre est celui d'un grand hôtel classique, confortable et climatisé.",
+                image: "images/fianarantsoa/fianar_zomatel.png",
+                acces: "Place du Zoma",
+                horaires: "11h-22h",
+                conseil: "Gardez de la place pour une religieuse ou un éclair en dessert !",
+                duree: "1h30"
+            },
+
+            // ==========================================
+            // FIANARANTSOA - SORTIR (Bars)
+            // ==========================================
+            {
+                id: 310,
+                ville: "Fianarantsoa",
+                nom: "La Chaud'hier",
+                type: "Bar",
+                lat: -21.4470,
+                lng: 47.0850,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.5,
+                description: "Le spot culturel et musical. Concerts live le week-end, ambiance cabaret et rencontres artistiques. L'endroit où il faut être pour sentir le pouls de la ville.",
+                image: "images/fianarantsoa/fianar_chaudhier.png",
+                acces: "Centre-ville",
+                horaires: "Soirée, concerts vend/sam",
+                conseil: "L'ambiance monte vers 22h lors des concerts.",
+                duree: "Soirée"
+            },
+            {
+                id: 311,
+                ville: "Fianarantsoa",
+                nom: "Chez Marie Zooze",
+                type: "Bar",
+                lat: -21.4455,
+                lng: 47.0835,
+                prix: "8 000 Ar",
+                prixEur: "2 €",
+                prixNum: 8000,
+                note: 4.3,
+                description: "Bar populaire et animé. On y boit de la bière THB bien fraîche et du rhum arrangé au comptoir. Ambiance authentique et sans chichis.",
+                image: "images/fianarantsoa/fianar_marie_zooze.png",
+                acces: "Quartier Ampasambazaha",
+                horaires: "Jusqu'à tard",
+                duree: "2h"
+            },
+            {
+                id: 312,
+                ville: "Fianarantsoa",
+                nom: "Discothèque du Soafia",
+                type: "Boîte de nuit",
+                lat: -21.4420,
+                lng: 47.0810,
+                prix: "15 000 Ar",
+                prixEur: "3.5 €",
+                prixNum: 15000,
+                note: 4.0,
+                description: "La référence pour danser. Située dans l'hôtel Soafia, c'est le club le plus équipé de la ville. Ambiance locale et tubes internationaux.",
+                image: "images/fianarantsoa/fianar_soafia.png",
+                acces: "Hôtel Soafia",
+                horaires: "23h - Aube",
+                duree: "Nuit"
+            },
+            {
+                id: 313,
+                ville: "Fianarantsoa",
+                nom: "Pavillon Bar (La Rizière)",
+                type: "Bar",
+                lat: -21.4605,
+                lng: 47.0905,
+                prix: "12 000 Ar",
+                prixEur: "3 €",
+                prixNum: 12000,
+                note: 4.6,
+                description: "Pour un verre au calme. Cadre apaisant avec vue sur les jardins de l'école hôtelière. Idéal pour un apéritif tranquille.",
+                image: "images/fianarantsoa/fianar_pavillon_bar.png",
+                acces: "La Rizière",
+                horaires: "Fin d'après-midi",
+                duree: "1h"
+            },
+            {
+                id: 314,
+                ville: "Fianarantsoa",
+                nom: "Bar du Sorotel",
+                type: "Bar",
+                lat: -21.4440,
+                lng: 47.0830,
+                prix: "12 000 Ar",
+                prixEur: "3 €",
+                prixNum: 12000,
+                note: 4.2,
+                description: "Ambiance lounge et fauteuils confortables. C'est le bar d'hôtel classique pour discuter affaires ou se détendre au frais.",
+                image: "images/fianarantsoa/fianar_sorotel_bar.png",
+                acces: "Hôtel Sorotel",
+                horaires: "Soirée",
+                duree: "1h"
+            },
+
+            // ==========================================
+            // FIANARANTSOA - SPOTS LOCAUX
+            // ==========================================
+            {
+                id: 315,
+                ville: "Fianarantsoa",
+                nom: "Escaliers de la Haute Ville",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -21.4530,
+                lng: 47.0865,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.7,
+                description: "Le défi sportif et photogénique. Ces grands escaliers relient la ville basse à la ville haute. La perspective est magnifique pour les photos.",
+                image: "images/fianarantsoa/fianar_escaliers.png",
+                acces: "Accès piéton partout",
+                duree: "30 min (montée !)"
+            },
+            {
+                id: 316,
+                ville: "Fianarantsoa",
+                nom: "Marché d'Anjoma",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -21.4400,
+                lng: 47.0800,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.4,
+                description: "L'effervescence pure. C'est l'un des plus grands marchés du sud. On y trouve tout : zébus, artisanat, fruits, épices. Attention aux pickpockets, mais l'ambiance est inoubliable.",
+                image: "images/fianarantsoa/fianar_marche_anjoma.png",
+                acces: "Quartier Anjoma",
+                horaires: "Matin (mardi/vendredi jours de grand marché)",
+                conseil: "Allez voir la section des vanneries Betsileo.",
+                duree: "1h"
+            },
+            {
+                id: 317,
+                ville: "Fianarantsoa",
+                nom: "Point de Vue Kianjasoa",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -21.4350,
+                lng: 47.0750,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.6,
+                description: "Une colline offrant un panorama à 360° sur toute la ville et les vallées environnantes. Un bol d'air frais à quelques minutes du centre.",
+                image: "images/fianarantsoa/fianar_vue_kianjasoa.png",
+                acces: "Piste montante, 4x4 ou marche",
+                duree: "1h"
+            },
+            {
+                id: 318,
+                ville: "Fianarantsoa",
+                nom: "Lac Anosy",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -21.4550,
+                lng: 47.0920,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.2,
+                description: "Le poumon vert de la ville basse. Une promenade agréable autour du lac artificiel, bordé de jacarandas (en fleurs en octobre/novembre).",
+                image: "images/fianarantsoa/fianar_lac_anosy.png",
+                acces: "Ville basse, pied de la colline",
+                duree: "45 min"
+            },
+            {
+                id: 319,
+                ville: "Fianarantsoa",
+                nom: "Statue de la Vierge",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -21.4580,
+                lng: 47.0890,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.5,
+                description: "Une statue blanche monumentale qui veille sur la ville. Le site offre l'un des meilleurs points de vue pour comprendre la géographie des trois niveaux de la ville.",
+                image: "images/fianarantsoa/fianar_statue_vierge.png",
+                acces: "Hauteurs sud",
+                duree: "30 min"
             }
         ];
 
@@ -3973,7 +4418,7 @@
                 `;
 
                 marker.bindPopup(popupContent);
-                marker.on('click', () => showLieuDetails(lieu));
+                // marker.on('click', () => showLieuDetails(lieu)); // Disabled to prioritize popup
 
                 markersLayer.addLayer(marker);
             });
@@ -4004,88 +4449,79 @@
 
         function getActiveFilters() {
             const filters = {
-                villes: [],
+                provinces: [],
                 types: [],
                 prix: [],
                 favorites: false
             };
 
-            // Favorites
             const fav = document.getElementById('filter-favorites');
             if (fav && fav.checked) filters.favorites = true;
 
-            // Villes
-            document.querySelectorAll('[id^="filter-"][id$="antananarivo"], [id$="diego"], [id$="nosybe"], [id$="mahajanga"], [id$="andasibe"], [id$="isalo"], [id$="ifaty"], [id$="ankarana"], [id$="mananara"]').forEach(cb => {
-                if (cb.checked) {
-                    const ville = cb.id.replace('filter-', '');
-                    const villeMap = {
+            const provinceIds = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'];
+            provinceIds.forEach(pid => {
+                const cb = document.getElementById(`filter-${pid}`);
+                if (cb && cb.checked) {
+                    const pNameMap = {
                         'antananarivo': 'Antananarivo',
-                        'diego': 'Diego-Suarez',
-                        'nosybe': 'Nosy Be',
+                        'antsiranana': 'Antsiranana',
                         'mahajanga': 'Mahajanga',
-                        'andasibe': 'Andasibe',
-                        'isalo': 'Isalo',
-                        'ifaty': 'Ifaty',
-                        'ankarana': 'Ankarana',
-                        'mananara': 'Mananara'
+                        'toamasina': 'Toamasina',
+                        'toliara': 'Toliara',
+                        'fianarantsoa': 'Fianarantsoa'
                     };
-                    filters.villes.push(villeMap[ville]);
+                    filters.provinces.push(pNameMap[pid]);
                 }
             });
 
-            // Types
-            const incont = document.getElementById('filter-incontournable');
-            if (incont && incont.checked) filters.types.push('Incontournable');
-            const spot = document.getElementById('filter-spotlocal');
-            if (spot && spot.checked) filters.types.push('Spot Local');
-            const nature = document.getElementById('filter-nature');
-            if (nature && nature.checked) filters.types.push('Nature');
-            const restau = document.getElementById('filter-restaurant');
-            if (restau && restau.checked) filters.types.push('Restaurant');
-            const culture = document.getElementById('filter-culture');
-            if (culture && culture.checked) filters.types.push('Culture');
+            const types = ['incontournable', 'spotlocal', 'nature', 'restaurant', 'culture'];
+            types.forEach(t => {
+                const cb = document.getElementById(`filter-${t}`);
+                if (cb && cb.checked) {
+                    const typeMap = {
+                        'incontournable': 'Incontournable',
+                        'spotlocal': 'Spot Local',
+                        'nature': 'Nature',
+                        'restaurant': 'Restaurant',
+                        'culture': 'Culture'
+                    };
+                    filters.types.push(typeMap[t]);
+                }
+            });
 
-            // Prix
-            const gratuit = document.getElementById('filter-gratuit');
-            if (gratuit && gratuit.checked) filters.prix.push('gratuit');
-            const economique = document.getElementById('filter-economique');
-            if (economique && economique.checked) filters.prix.push('economique');
-            const moyen = document.getElementById('filter-moyen');
-            if (moyen && moyen.checked) filters.prix.push('moyen');
+            const prix = ['gratuit', 'economique', 'moyen'];
+            prix.forEach(p => {
+                const cb = document.getElementById(`filter-${p}`);
+                if (cb && cb.checked) filters.prix.push(p);
+            });
 
             return filters;
         }
 
         function matchesFilters(lieu, filters) {
-            // Favorites
-            if (filters.favorites && !isFavorite(lieu.id)) {
-                return false;
-            }
+            if (filters.favorites && !isFavorite(lieu.id)) return false;
 
-            // Ville
-            if (filters.villes.length > 0 && !filters.villes.includes(lieu.ville)) {
-                return false;
-            }
+            const lieuProvince = getProvinceForVille(lieu.ville);
+            if (filters.provinces.length > 0 && !filters.provinces.includes(lieuProvince)) return false;
 
-            // Type
             if (filters.types.length > 0) {
-                const lieuTypes = [lieu.type];
-                if (lieu.spotLocal) lieuTypes.push('Spot Local');
-                if (!lieuTypes.some(t => filters.types.includes(t))) {
-                    return false;
+                if (!filters.types.includes(lieu.type) && !filters.types.includes('Incontournable')) {
+                    if (filters.types.includes('Spot Local') && lieu.spotLocal) {
+                        // match
+                    } else if (filters.types.includes('Incontournable') && (lieu.note >= 4.7 || lieu.id <= 5)) {
+                        // match
+                    } else if (!filters.types.includes(lieu.type)) {
+                        return false;
+                    }
                 }
             }
 
-            // Prix
             if (filters.prix.length > 0) {
-                let prixCategory;
-                if (lieu.prixNum === 0) prixCategory = 'gratuit';
-                else if (lieu.prixNum < 10000) prixCategory = 'economique';
-                else prixCategory = 'moyen';
+                let prixCat = 'moyen';
+                if (lieu.prixNum === 0) prixCat = 'gratuit';
+                else if (lieu.prixNum < 50000) prixCat = 'economique';
 
-                if (!filters.prix.includes(prixCategory)) {
-                    return false;
-                }
+                if (!filters.prix.includes(prixCat)) return false;
             }
 
             return true;
@@ -4095,143 +4531,131 @@
         // PAGES VILLES
         // ============================================
 
+        /* ============================================
+           PAGES PROVINCES (GÉNÉRATION DYNAMIQUE)
+           ============================================ */
+
+        // Mapping Villes -> Provinces
+        const COMMUNE_MAPPING = {
+            'Antananarivo': 'Antananarivo',
+            'Diego-Suarez': 'Antsiranana',
+            'Nosy Be': 'Antsiranana',
+            'Ankarana': 'Antsiranana',
+            'Ambanja': 'Antsiranana',
+            'Montagne d\'Ambre': 'Antsiranana',
+            'Mahajanga': 'Mahajanga',
+            'Andasibe': 'Toamasina',
+            'Mananara': 'Toamasina',
+            'Sainte-Marie': 'Toamasina',
+            'Isalo': 'Toliara',
+            'Ifaty': 'Toliara',
+            'Anakao': 'Toliara',
+            'Fianarantsoa': 'Fianarantsoa'
+        };
+
+        const PROVINCE_CONFIG = {
+            'Antananarivo': { emoji: '<i class="fa-solid fa-landmark"></i>', name: 'Antananarivo', desc: 'La capitale et les hautes terres' },
+            'Antsiranana': { emoji: '<i class="fa-solid fa-anchor"></i>', name: 'Antsiranana (Nord)', desc: 'Diego, Nosy Be et merveilles du Nord' },
+            'Fianarantsoa': { emoji: '<i class="fa-solid fa-train"></i>', name: 'Fianarantsoa', desc: 'Le sud des hautes terres et le train' },
+            'Mahajanga': { emoji: '<i class="fa-solid fa-umbrella-beach"></i>', name: 'Mahajanga (Ouest)', desc: 'Boeny, baobabs et grottes' },
+            'Toamasina': { emoji: '<i class="fa-solid fa-ship"></i>', name: 'Toamasina (Est)', desc: 'L\'Est sauvage, l\'Indri et les lagons' },
+            'Toliara': { emoji: '<i class="fa-solid fa-sun"></i>', name: 'Toliara (Sud)', desc: 'Le grand Sud, le désert et le lagon' }
+        };
+
+        function getProvinceForVille(villeName) {
+            return COMMUNE_MAPPING[villeName] || 'Autre';
+        }
+
         function initCityPages() {
-            // Mapping explicite ville → ID de page HTML
-            const villeToPageId = {
-                'Antananarivo': 'page-antananarivo',
-                'Diego-Suarez': 'page-diego',
-                'Nosy Be': 'page-nosybe',
-                'Mahajanga': 'page-mahajanga',
-                'Andasibe': 'page-andasibe',
-                'Isalo': 'page-isalo',
-                'Ifaty': 'page-ifaty',
-                'Ankarana': 'page-ankarana',
-                'Mananara': 'page-mananara'
-            };
+            // Group data by Province
+            const locationsByProvince = {};
 
-            // Mapping types pour les filtres
-            const categoryMapping = {
-                'Manger': ['Restaurant', 'Gargote'],
-                'Sortir': ['Bar', 'Boîte de nuit', 'Sortir'],
-                'Explorer': ['Nature', 'Culture', 'Incontournable', 'Spot Local', 'Plage'],
-                'Dormir': ['Hotel', 'Auberge', 'Lodge'],
-                'Utile': ['Banque', 'Change', 'Police', 'Hopital']
-            };
+            Object.keys(PROVINCE_CONFIG).forEach(p => locationsByProvince[p] = []);
 
-            const categoryIcons = {
-                'Tout': '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>', // Maison
-                'Manger': '<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>', // Marmite/Cuisine
-                'Sortir': '<svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>', // Musique/Haut-parleur
-                'Explorer': '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>', // Boussole
-                'Dormir': '<svg viewBox="0 0 24 24"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg>', // Lit
-                'Utile': '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>' // Valise/Outils
-            };
+            LIEUX_DATA.forEach(lieu => {
+                const prov = getProvinceForVille(lieu.ville);
+                if (locationsByProvince[prov]) {
+                    locationsByProvince[prov].push(lieu);
+                }
+            });
 
-            Object.keys(villeToPageId).forEach(ville => {
-                const pageId = villeToPageId[ville];
-                const pageElement = document.getElementById(pageId);
-                if (!pageElement) return;
+            // Generate Content for each Province
+            Object.keys(locationsByProvince).forEach(provinceKey => {
+                const container = document.getElementById(`page-${provinceKey.toLowerCase()}`);
+                if (!container) return;
 
-                const lieuxVille = LIEUX_DATA.filter(l => l.ville === ville && l.nom);
+                const config = PROVINCE_CONFIG[provinceKey];
+                const lieux = locationsByProvince[provinceKey];
 
-                // Analyse des catégories présentes
-                const presentCategories = new Set(['Tout']);
-                lieuxVille.forEach(lieu => {
-                    if (categoryMapping['Manger'].includes(lieu.type)) presentCategories.add('Manger');
-                    if (categoryMapping['Sortir'].includes(lieu.type)) presentCategories.add('Sortir');
-                    if (categoryMapping['Explorer'].includes(lieu.type)) presentCategories.add('Explorer');
-                    if (categoryMapping['Dormir'].includes(lieu.type)) presentCategories.add('Dormir');
-                    if (categoryMapping['Utile'].includes(lieu.type)) presentCategories.add('Utile');
-                });
-
-                // Génération des filtres HTML
-                let filtersHTML = '<div class="filter-scroll-container">';
-                ['Tout', 'Manger', 'Sortir', 'Explorer', 'Dormir', 'Utile'].forEach(cat => {
-                    if (presentCategories.has(cat)) {
-                        filtersHTML += `
-                            <div class="filter-chip ${cat === 'Tout' ? 'active' : ''}" data-category="${cat}" onclick="filterCityItems('${pageId}', '${cat}', this)">
-                                ${categoryIcons[cat]}
-                                <span>${cat}</span>
-                            </div>
-                        `;
-                    }
-                });
-                filtersHTML += '</div>';
-
-                // Génération Agenda Banner (Placeholder logique)
-                // Ici on vérifie si un événement existe pour aujourd'hui (fictif pour l'instant)
-                const hasEvent = false; // Mettre à true si data events existe
-                const agendaHTML = `
-                    <div class="agenda-banner" ${hasEvent ? 'style="display:flex"' : ''}>
-                        <div class="agenda-icon">📅</div>
-                        <div class="agenda-content">
-                            <div style="font-weight:700; font-size:1.05rem;">Événement ce soir !</div>
-                            <div style="font-size:0.9rem; opacity:0.9;">Concert de Salegy au Jao's Pub à 21h.</div>
-                        </div>
+                let html = `
+                    <div class="city-header">
+                        <h2 class="city-title">${config.emoji} ${config.name}</h2>
+                        <p class="city-desc">${config.desc}</p>
                     </div>
-                `;
-
-                const html = `
-                    <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--text-primary);">
-                        ${getVilleEmoji(ville)} ${ville}
-                    </h2>
                     
-                    ${agendaHTML}
-                    ${filtersHTML}
-
-                    <div class="lieux-grid" id="grid-${pageId}">
-                        ${lieuxVille.map(lieu => {
-                    // Déterminer la catégorie principale pour le data-attribute
-                    let mainCat = 'Autre';
-                    if (categoryMapping['Manger'].includes(lieu.type)) mainCat = 'Manger';
-                    else if (categoryMapping['Sortir'].includes(lieu.type)) mainCat = 'Sortir';
-                    else if (categoryMapping['Explorer'].includes(lieu.type)) mainCat = 'Explorer';
-                    else if (categoryMapping['Dormir'].includes(lieu.type)) mainCat = 'Dormir';
-                    else if (categoryMapping['Utile'].includes(lieu.type)) mainCat = 'Utile';
-
-                    return createLieuCard(lieu, mainCat);
-                }).join('')}
+                    <div class="nav-pills" style="margin-bottom: 20px; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
+                        <button class="nav-pill active" onclick="filterProvinceItems('all', '${provinceKey}', this)"><i class="fa-solid fa-layer-group"></i> Tout</button>
+                        <button class="nav-pill" onclick="filterProvinceItems('explorer', '${provinceKey}', this)"><i class="fa-solid fa-binoculars"></i> Explorer</button>
+                        <button class="nav-pill" onclick="filterProvinceItems('manger', '${provinceKey}', this)"><i class="fa-solid fa-utensils"></i> Manger</button>
+                        <button class="nav-pill" onclick="filterProvinceItems('dodo', '${provinceKey}', this)"><i class="fa-solid fa-bed"></i> Dormir</button>
+                        <button class="nav-pill" onclick="filterProvinceItems('sortir', '${provinceKey}', this)"><i class="fa-solid fa-martini-glass-citrus"></i> Sortir</button>
+                        <button class="nav-pill" onclick="filterProvinceItems('spot', '${provinceKey}', this)"><i class="fa-solid fa-map-pin"></i> Spots</button>
                     </div>
+
+                    <div class="lieux-grid" id="grid-${provinceKey}">
                 `;
 
-                pageElement.innerHTML = html;
-
-                // Event listeners Details
-                pageElement.querySelectorAll('.btn-details').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const lieuId = parseInt(e.target.dataset.lieuId);
-                        const lieu = LIEUX_DATA.find(l => l.id === lieuId);
-                        if (lieu) showLieuDetails(lieu);
+                if (lieux.length === 0) {
+                    html += `<p style="text-align:center; color:var(--text-secondary); grid-column:1/-1;">Aucun lieu pour le moment.</p>`;
+                } else {
+                    lieux.forEach(lieu => {
+                        html += createLieuCard(lieu);
                     });
-                });
+                }
+
+                html += `</div>`;
+                container.innerHTML = html;
             });
         }
 
-        // Fonction de filtrage globale
-        window.filterCityItems = function (pageId, category, textElement) {
-            // Update UI des chips
-            const container = document.querySelector(`#${pageId} .filter-scroll-container`);
-            container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-            textElement.classList.add('active');
+        window.filterProvinceItems = function (category, provinceKey, btn) {
+            const container = document.getElementById(`page-${provinceKey.toLowerCase()}`);
+            if (!container) return;
 
-            // Filtrage des items
-            const grid = document.getElementById(`grid-${pageId}`);
-            const cards = grid.querySelectorAll('.lieu-card');
+            container.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-            cards.forEach(card => {
-                const itemCat = card.dataset.category;
+            const grid = document.getElementById(`grid-${provinceKey}`);
 
-                if (category === 'Tout' || itemCat === category) {
-                    card.style.display = 'block';
-                    // Trigger reflow pour animation
-                    card.classList.remove('fade-in');
-                    void card.offsetWidth;
-                    card.classList.add('fade-in');
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            // Re-fetch locations for this province (since we are out of scope)
+            // Using global LIEUX_DATA and getProvinceForVille helper
+            const allLieux = LIEUX_DATA.filter(l => getProvinceForVille(l.ville) === provinceKey);
+
+            let filtered = [];
+            if (category === 'all') {
+                filtered = allLieux;
+            } else if (category === 'explorer') {
+                filtered = allLieux.filter(l => ['Incontournable', 'Nature', 'Culture'].includes(l.type));
+            } else if (category === 'manger') {
+                filtered = allLieux.filter(l => l.type === 'Restaurant');
+            } else if (category === 'dodo') {
+                filtered = allLieux.filter(l => l.type === 'Hotel');
+            } else if (category === 'sortir') {
+                filtered = allLieux.filter(l => ['Bar', 'Boîte de nuit'].includes(l.type));
+            } else if (category === 'spot') {
+                filtered = allLieux.filter(l => l.spotLocal === true || l.type === 'Spot Local');
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="text-align:center; color:var(--text-secondary); grid-column:1/-1;">Aucun lieu trouvé pour ce filtre.</p>`;
+            } else {
+                grid.innerHTML = filtered.map(l => createLieuCard(l)).join('');
+            }
         };
+
+        // Old filter function removed
+        window.filterCityItems = function () { }; // No-op
+
 
         function getVilleEmoji(ville) {
             const emojis = {

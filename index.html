@@ -1540,24 +1540,37 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(255, 255, 255, 0.9);
+
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            border: none;
+
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            border: none;
             cursor: pointer;
             z-index: 10;
-            color: #ccc;
-            transition: all 0.2s;
+            color: #4b5563;
+            font-size: 1.1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-favorite-popup-overlay:hover {
+            transform: scale(1.1);
+            background: #ffffff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-favorite-popup-overlay:active {
+            transform: scale(0.95);
         }
 
         .btn-favorite-popup-overlay.active {
             color: var(--premium);
-            background: #fff;
         }
 
         .popup-body {
@@ -1719,32 +1732,54 @@
         }
 
         /* FAVORITES STYLES */
+        /* FAVORITES STYLES */
         .btn-favorite {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #ccc;
-            transition: all 0.2s ease;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.8);
+
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            border: none;
+
+            background: rgba(255, 255, 255, 0.95);
+            /* Quasi opaque pour contraste max */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+            /* Ombre marquée pour détacher du fond */
+
             display: flex;
             align-items: center;
             justify-content: center;
-        }
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-        .btn-favorite.active {
-            color: var(--premium);
+            color: #4b5563;
+            /* Gris foncé neutre par défaut */
+            font-size: 1.1rem;
         }
 
         .btn-favorite:hover {
             transform: scale(1.1);
+            background: #ffffff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-favorite:active {
+            transform: scale(0.95);
+        }
+
+        .btn-favorite.active {
+            color: var(--premium);
+            /* Rouge/Or pour l'état actif */
+            /* Optionnel: fond légèrement teinté */
+            /* background: #fff5f5; */
+        }
+
+        .btn-favorite.active i {
+            /* Anime l'icône si besoin */
+            mix-blend-mode: normal;
         }
 
         /* CONVERTER STYLES */
@@ -3400,8 +3435,7 @@
                 image: "images/spots/lac-crocodiles-sacres.jpg",
                 acces: "Forêt à 5 km de Mananara, sentier depuis le village - Parler au gardien du lac",
                 contactLocal: "Gardien au village (maison toit rouge)",
-                respect: "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise",
-                siteWeb: "https://www.parcs-madagascar.com"
+                respect: "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise"
             },
             {
                 id: 56,
@@ -4037,6 +4071,459 @@
                 image: "images/fianarantsoa/fianar_statue_vierge.png",
                 acces: "Hauteurs sud",
                 duree: "30 min"
+            },
+
+            // ==========================================
+            // FIANARANTSOA - DORMIR (Hôtels)
+            // ==========================================
+            {
+                id: 320,
+                ville: "Fianarantsoa",
+                nom: "Tsara Guest House",
+                type: "Hotel",
+                lat: -21.4520,
+                lng: 47.0880,
+                prix: "180 000 Ar",
+                prixEur: "40 €",
+                prixNum: 180000,
+                note: 4.8,
+                description: "L'adresse de charme incontournable. Une architecture traditionnelle soignée, des briques rouges, et une vue imprenable sur la ville depuis la terrasse. Ambiance cosy et chaleureuse.",
+                image: "images/fianarantsoa/fianar_tsara_guest.png",
+                acces: "Près de la Haute Ville",
+                horaires: "Réception 24h/24",
+                conseil: "Demandez une chambre avec balcon pour le coucher de soleil.",
+                duree: "Nuit"
+            },
+            {
+                id: 321,
+                ville: "Fianarantsoa",
+                nom: "Zomatel Hôtel",
+                type: "Hotel",
+                lat: -21.4430,
+                lng: 47.0820,
+                prix: "200 000 Ar",
+                prixEur: "45 €",
+                prixNum: 200000,
+                note: 4.5,
+                description: "Le confort international à Fianar. Idéal pour ceux qui cherchent des services complets : grande piscine, spa, chambres modernes et spacieuses. Une valeur sûre pour le business ou la détente.",
+                image: "images/fianarantsoa/fianar_zomatel.png",
+                acces: "Place du Zoma",
+                horaires: "Réception 24h/24",
+                conseil: "Profitez de la piscine après une longue journée de route (RN7).",
+                duree: "Nuit"
+            },
+            {
+                id: 322,
+                ville: "Fianarantsoa",
+                nom: "Hôtel Cotsoyannis",
+                type: "Hotel",
+                lat: -21.4465,
+                lng: 47.0845,
+                prix: "140 000 Ar",
+                prixEur: "32 €",
+                prixNum: 140000,
+                note: 4.4,
+                description: "Un havre de paix en plein centre-ville. Des bungalows disséminés dans un jardin luxuriant et fleuri. Calme, intimiste et très bien situé.",
+                image: "images/fianarantsoa/fianar_cotsoyannis.png",
+                acces: "Centre-ville, face à la gare",
+                horaires: "Réception 24h/24",
+                conseil: "Le petit-déjeuner dans le jardin est un moment délicieux.",
+                duree: "Nuit"
+            },
+            {
+                id: 323,
+                ville: "Fianarantsoa",
+                nom: "Villa Sylvestre",
+                type: "Hotel",
+                lat: -21.4480,
+                lng: 47.0860,
+                prix: "160 000 Ar",
+                prixEur: "35 €",
+                prixNum: 160000,
+                note: 4.7,
+                description: "Une magnifique demeure coloniale des années 1920 restaurée avec goût. Parquets d'époque, varangue, charme fou. On s'y sent comme dans une maison de famille d'antan.",
+                image: "images/fianarantsoa/fianar_villa_sylvestre.png",
+                acces: "Quartier administratif",
+                horaires: "Réception 24h/24",
+                conseil: "Réservez à l'avance, il y a peu de chambres.",
+                duree: "Nuit"
+            },
+            {
+                id: 324,
+                ville: "Fianarantsoa",
+                nom: "La Rizière",
+                type: "Hotel",
+                lat: -21.4600,
+                lng: 47.0900,
+                prix: "130 000 Ar",
+                prixEur: "30 €",
+                prixNum: 130000,
+                note: 4.6,
+                description: "Plus qu'un hôtel, une école hôtelière de renom. Cadre magnifique en briques rouges entouré de jardins et rizières. Service aux petits soins par les étudiants.",
+                image: "images/fianarantsoa/fianar_la_riziere_hotel.png",
+                acces: "Sortie Sud",
+                horaires: "Réception 24h/24",
+                conseil: "Soutenez la formation des jeunes malgaches en y séjournant.",
+                duree: "Nuit"
+            },
+            // ============================================
+            // TOLIARA (TULEAR) - SUD-OUEST
+            // ============================================
+            {
+                id: 400,
+                ville: "Tuléar",
+                nom: "Arboretum d'Antsokay",
+                type: "Nature",
+                lat: -23.4167,
+                lng: 43.7500,
+                prix: "30 000 Ar",
+                prixEur: "7 €",
+                prixNum: 30000,
+                note: 4.8,
+                description: "Un conservatoire botanique unique regroupant plus de 900 espèces de plantes du sud malgache (90% endémiques). Visite guidée passionnante pour comprendre la flore épineuse.",
+                image: "images/toliara/toliara_arboretum.png",
+                acces: "12 km au sud de Toliara (RN7)",
+                horaires: "7h30 - 17h30",
+                conseil: "Visitez tôt le matin pour les oiseaux et la fraîcheur.",
+                duree: "2h",
+                siteWeb: "http://www.antsokayarboretum.org"
+            },
+            {
+                id: 401,
+                ville: "Tuléar",
+                nom: "Baie de Saint-Augustin",
+                type: "Nature",
+                lat: -23.5500,
+                lng: 43.7667,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.7,
+                description: "Site spectaculaire où le fleuve Onilahy se jette dans la mer. Falaises calcaires blanches, mangroves et flamants roses. Un paysage de bout du monde.",
+                image: "images/toliara/toliara_saint_augustin.png",
+                acces: "Piste depuis Toliara (1h30)",
+                horaires: "Journée",
+                conseil: "Spot idéal pour le snorkeling et l'observation des baleines (saison).",
+                duree: "Demi-journée"
+            },
+            {
+                id: 402,
+                ville: "Tuléar",
+                nom: "Plage d'Anakao",
+                type: "Nature",
+                lat: -23.6500,
+                lng: 43.6500,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.9,
+                description: "Village de pêcheurs Vezo authentique. Plages de sable blanc immaculé, eau turquoise. Accès bateau uniquement, garantissant une tranquillité absolue.",
+                image: "images/toliara/toliara_anakao.png",
+                acces: "Bateau depuis Toliara (1h)",
+                horaires: "Départ bateau matin",
+                conseil: "Excursion incontournable à Nosy Ve juste en face.",
+                duree: "Séjour",
+                siteWeb: "https://madagascar-tourisme.com/fr/destinations/toliara-et-le-sud-ouest/anakao/"
+            },
+            {
+                id: 403,
+                ville: "Tuléar",
+                nom: "Forêt de Baobabs Mangily",
+                type: "Nature",
+                lat: -23.1167,
+                lng: 43.6167,
+                prix: "20 000 Ar",
+                prixEur: "5 €",
+                prixNum: 20000,
+                note: 4.6,
+                description: "Réserve de Reniala : forêt de baobabs bouteilles, tortues radiata et oiseaux. Sentier facile pour découvrir ces géants millénaires.",
+                image: "images/toliara/toliara_baobabs_mangily.png",
+                acces: "Mangily / Ifaty (30 km nord)",
+                horaires: "6h - 17h",
+                conseil: "Cherchez le fameux 'Baobab théière'.",
+                duree: "1h30",
+                siteWeb: "https://reniala-ecotourisme.jimdo.com"
+            },
+            {
+                id: 404,
+                ville: "Tuléar",
+                nom: "Musée de la Mer",
+                type: "Spot Local",
+                lat: -23.3550,
+                lng: 43.6700,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.3,
+                description: "Musée de l'Institut Halieutique. Découvrez la biodiversité marine du canal du Mozambique et le célèbre cœlacanthe fossile.",
+                image: "images/toliara/toliara_musee_mer.png",
+                acces: "Port de Toliara",
+                horaires: "8h-12h, 14h-17h",
+                conseil: "Petit mais très instructif sur la faune locale.",
+                duree: "1h",
+                siteWeb: "https://www.ihsm.mg"
+            },
+            {
+                id: 405,
+                ville: "Tuléar",
+                nom: "Le Jardin de Giancarlo",
+                type: "Restaurant",
+                lat: -23.3520,
+                lng: 43.6680,
+                prix: "45 000 Ar",
+                prixEur: "10 €",
+                prixNum: 45000,
+                note: 4.7,
+                description: "Institution gastronomique italienne. Produits de la mer d'une fraîcheur absolue, cadre jardin tropical apaisant. Une valeur sûre.",
+                image: "images/toliara/toliara_giancarlo.png",
+                acces: "Centre-ville",
+                horaires: "Midi et Soir",
+                conseil: "Raviolis à la langouste recommandés.",
+                duree: "2h",
+                siteWeb: "https://www.facebook.com/giancarlo.faussone"
+            },
+            {
+                id: 406,
+                ville: "Tuléar",
+                nom: "Chez Freddy",
+                type: "Restaurant",
+                lat: -23.3540,
+                lng: 43.6690,
+                prix: "25 000 Ar",
+                prixEur: "6 €",
+                prixNum: 25000,
+                note: 4.4,
+                description: "L'ambiance routard mythique de Tuléar. Convivial, pas cher, copieux. Le point de ralliement des voyageurs pour échanger des infos.",
+                image: "images/toliara/toliara_chez_freddy.png",
+                acces: "Boulevard Lyautey",
+                horaires: "11h - 23h",
+                conseil: "Filet de zébu au poivre vert.",
+                duree: "1h30",
+                siteWeb: "https://www.facebook.com/chezfreddyifaty"
+            },
+            {
+                id: 407,
+                ville: "Tuléar",
+                nom: "L'Étoile de Mer",
+                type: "Restaurant",
+                lat: -23.3560,
+                lng: 43.6650,
+                prix: "35 000 Ar",
+                prixEur: "8 €",
+                prixNum: 35000,
+                note: 4.5,
+                description: "Terrasse vue mer agréable. Spécialiste des grillades de poissons arrivant du port tout proche. Cuisine simple et savoureuse.",
+                image: "images/toliara/toliara_etoile_mer.png",
+                acces: "Front de mer",
+                horaires: "Midi et Soir",
+                conseil: "Plateau de fruits de mer royal.",
+                duree: "2h"
+            },
+            {
+                id: 408,
+                ville: "Tuléar",
+                nom: "La Table d'Alexandre",
+                type: "Restaurant",
+                lat: -23.3500,
+                lng: 43.6720,
+                prix: "50 000 Ar",
+                prixEur: "11 €",
+                prixNum: 50000,
+                note: 4.6,
+                description: "Table élégante, cuisine fusion franco-malgache raffinée. Le chef sublime les produits locaux. Cadre soigné.",
+                image: "images/toliara/toliara_table_alexandre.png",
+                acces: "Quartier résidentiel",
+                horaires: "Soir uniquement",
+                conseil: "Réservation conseillée.",
+                duree: "2h30",
+                siteWeb: "http://www.aubergedelatable.com"
+            },
+            {
+                id: 409,
+                ville: "Tuléar",
+                nom: "Le Vezo (Anakao)",
+                type: "Restaurant",
+                lat: -23.6510,
+                lng: 43.6510,
+                prix: "30 000 Ar",
+                prixEur: "7 €",
+                prixNum: 30000,
+                note: 4.8,
+                description: "Restaurant de plage les pieds dans le sable à Anakao. Langoustes grillées pêchées du matin. Le goût du paradis.",
+                image: "images/toliara/toliara_vezo_anakao.png",
+                acces: "Plage d'Anakao",
+                horaires: "Midi",
+                conseil: "Commandez votre langouste le matin.",
+                duree: "2h",
+                siteWeb: "http://www.longovezo.com"
+            },
+            {
+                id: 410,
+                ville: "Tuléar",
+                nom: "Bakouba Concept Hotel",
+                type: "Hotel",
+                lat: -23.5400,
+                lng: 43.7600,
+                prix: "350 000 Ar",
+                prixEur: "80 €",
+                prixNum: 350000,
+                note: 4.9,
+                description: "Ovni architectural style Gaudí face à la baie de Saint-Augustin. Décoration ethnique unique, piscine à débordement. Une expérience hors du temps.",
+                image: "images/toliara/toliara_bakouba.png",
+                acces: "Saint-Augustin",
+                horaires: "24h/24",
+                conseil: "Vaut le détour même juste pour voir l'architecture.",
+                duree: "Nuit",
+                siteWeb: "http://www.bakuba-lodge.com"
+            },
+            {
+                id: 411,
+                ville: "Tuléar",
+                nom: "Moringa Hotel",
+                type: "Hotel",
+                lat: -23.3530,
+                lng: 43.6700,
+                prix: "200 000 Ar",
+                prixEur: "45 €",
+                prixNum: 200000,
+                note: 4.7,
+                description: "Le confort moderne en ville. Chambres spacieuses, grand patio verdoyant, excellent service. La valeur sûre business/détente.",
+                image: "images/toliara/toliara_moringa.png",
+                acces: "Centre-ville",
+                horaires: "24h/24",
+                conseil: "Excellent petit-déjeuner buffet.",
+                duree: "Nuit",
+                siteWeb: "http://www.moringa-tulear.mg"
+            },
+            {
+                id: 412,
+                ville: "Tuléar",
+                nom: "Peter Pan",
+                type: "Hotel",
+                lat: -23.6520,
+                lng: 43.6520,
+                prix: "150 000 Ar",
+                prixEur: "35 €",
+                prixNum: 150000,
+                note: 4.6,
+                description: "Charme italien à Anakao. Bungalows rustiques-chic, cuisine délicieuse d'inspiration italienne. Ambiance familiale et décontractée.",
+                image: "images/toliara/toliara_peter_pan.png",
+                acces: "Anakao Village",
+                horaires: "8h-20h",
+                conseil: "Leurs pizzas au feu de bois sont réputées.",
+                duree: "Nuit",
+                siteWeb: "http://www.peter-pan-anakao.com"
+            },
+            {
+                id: 413,
+                ville: "Tuléar",
+                nom: "Le Paradisier",
+                type: "Hotel",
+                lat: -23.1500,
+                lng: 43.6000,
+                prix: "300 000 Ar",
+                prixEur: "70 €",
+                prixNum: 300000,
+                note: 4.8,
+                description: "Eco-lodge de luxe à Ifaty. Bungalows pierre/bois intégrés à la dune, piscine à débordement sur le lagon. Calme absolu.",
+                image: "images/toliara/toliara_paradisier.png",
+                acces: "Sud Ifaty",
+                horaires: "24h/24",
+                conseil: "Observation des baleines depuis la terrasse en saison.",
+                duree: "Nuit",
+                siteWeb: "https://www.paradisier.net"
+            },
+            {
+                id: 414,
+                ville: "Tuléar",
+                nom: "Les Dunes d'Ifaty",
+                type: "Hotel",
+                lat: -23.1000,
+                lng: 43.6000,
+                prix: "250 000 Ar",
+                prixEur: "55 €",
+                prixNum: 250000,
+                note: 4.6,
+                description: "Complexe hôtelier confortable, villas vue mer, piscine et jardin tropical. Idéal pour familles et longs séjours.",
+                image: "images/toliara/toliara_dunes_ifaty.png",
+                acces: "Nord Ifaty/Mangily",
+                horaires: "24h/24",
+                conseil: "Nombreuses activités nautiques disponibles.",
+
+                duree: "Nuit"
+            },
+            {
+                id: 415,
+                ville: "Tuléar",
+                nom: "Le T'Hôtre Chose",
+                type: "Bar",
+                lat: -23.3570,
+                lng: 43.6700,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.4,
+                description: "Le bar-club incontournable. Ambiance festive, live music, billard. Le point de rencontre nocturne.",
+                image: "images/toliara/toliara_thotre_chose.png",
+                acces: "Centre-ville",
+                horaires: "18h - Tard",
+                conseil: "Grosse ambiance le vendredi soir.",
+                duree: "Soirée"
+            },
+            {
+                id: 416,
+                ville: "Tuléar",
+                nom: "Bar de l'Hôtel Plazza",
+                type: "Bar",
+                lat: -23.3580,
+                lng: 43.6600,
+                prix: "15 000 Ar",
+                prixEur: "3.5 €",
+                prixNum: 15000,
+                note: 4.5,
+                description: "Le spot 'Sunset'. Terrasse panoramique face au canal du Mozambique. Cocktails soignés et brise marine.",
+                image: "images/toliara/toliara_plazza.png",
+                acces: "Front de mer",
+                horaires: "16h - 22h",
+                conseil: "Arriver à 17h30 pour la meilleure vue.",
+                duree: "Soirée"
+            },
+            {
+                id: 418,
+                ville: "Tuléar",
+                nom: "Chez Alain",
+                type: "Bar",
+                lat: -23.3510,
+                lng: 43.6730,
+                prix: "12 000 Ar",
+                prixEur: "2.5 €",
+                prixNum: 12000,
+                note: 4.6,
+                description: "Cabaret-restaurant légendaire. Jazz, Blues, musique malgache de qualité. Ambiance feutrée et mélomane.",
+                image: "images/toliara/toliara_chez_alain.png",
+                acces: "Centre-ville",
+                horaires: "Soir uniquement",
+                conseil: "Vérifier la prog musicale.",
+                duree: "Soirée",
+                siteWeb: "https://www.facebook.com/chezalaintoliara/"
+            },
+            {
+                id: 419,
+                ville: "Tuléar",
+                nom: "Mangily Beach Bar",
+                type: "Bar",
+                lat: -23.1200,
+                lng: 43.6150,
+                prix: "10 000 Ar",
+                prixEur: "2 €",
+                prixNum: 10000,
+                note: 4.5,
+                description: "Le QG d'Ifaty. Les pieds dans le sable, reggae, cocktails coco. Le chill absolu.",
+                image: "images/toliara/toliara_mangily_bar.png",
+                acces: "Plage de Mangily",
+                horaires: "10h - Tard",
+                conseil: "Punch coco maison recommandé.",
+                duree: "Soirée"
             }
         ];
 
@@ -4550,6 +5037,8 @@
             'Isalo': 'Toliara',
             'Ifaty': 'Toliara',
             'Anakao': 'Toliara',
+            'Tuléar': 'Toliara',
+            'Toliara': 'Toliara',
             'Fianarantsoa': 'Fianarantsoa'
         };
 
@@ -4676,7 +5165,7 @@
             const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
 
             return `
-                <article class="lieu-card" data-category="${category}" style="position: relative;">
+                <article class="lieu-card" data-id="${lieu.id}" data-category="${category}" style="position: relative; cursor: pointer;">
                     <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
                         ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
                     </button>
@@ -4733,15 +5222,38 @@
                     modal.classList.remove('active');
                 }
             });
+            // Event Delegation pour ouvrir la modale au clic sur une carte
+            document.addEventListener('click', (e) => {
+                // Ignorer si on clique sur le bouton favori
+                if (e.target.closest('.btn-favorite')) return;
+
+                const card = e.target.closest('.lieu-card');
+                // Gestion aussi du clic sur le bouton "Voir détails" spécifique
+                const btnDetails = e.target.closest('.btn-details');
+
+                if (card || btnDetails) {
+                    const target = card || btnDetails.closest('.lieu-card');
+                    if (target) {
+                        const id = parseInt(target.dataset.id);
+                        if (!isNaN(id)) openModal(id);
+                    }
+                }
+            });
         }
 
-        function showLieuDetails(lieu) {
+        function openModal(id) {
+            const lieu = LIEUX_DATA.find(l => l.id === id);
+            if (!lieu) return;
+
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
             const modalBadges = document.getElementById('modalBadges');
             const modalInfoGrid = document.getElementById('modalInfoGrid');
             const modalSections = document.getElementById('modalSections');
+
+            // Reset Scroll
+            if (modal.querySelector('.popup-content')) modal.querySelector('.popup-content').scrollTop = 0;
 
             modalImage.src = lieu.image;
             modalImage.alt = lieu.nom;
@@ -4763,7 +5275,7 @@
                 </div>
                 <div class="modal-info-item">
                     <div class="modal-info-label">Prix</div>
-                    <div class="modal-info-value">${lieu.prix} (${lieu.prixEur})</div>
+                    <div class="modal-info-value">${lieu.prix}</div>
                 </div>
                 <div class="modal-info-item">
                     <div class="modal-info-label">Note</div>
@@ -4822,6 +5334,23 @@
             }
 
             modalSections.innerHTML = sectionsHTML;
+
+            // Gestion du bouton favori dans la modale
+            const favBtn = document.querySelector('.btn-favorite-popup-overlay');
+            if (favBtn) {
+                favBtn.classList.remove('active');
+                favBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+
+                if (isFavorite(lieu.id)) {
+                    favBtn.classList.add('active');
+                    favBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+                }
+
+                // Recreation du bouton pour clean les listeners
+                const newFavBtn = favBtn.cloneNode(true);
+                favBtn.parentNode.replaceChild(newFavBtn, favBtn);
+                newFavBtn.onclick = (e) => toggleLieuFavorite(lieu.id, newFavBtn, e);
+            }
 
             modal.classList.add('active');
         }

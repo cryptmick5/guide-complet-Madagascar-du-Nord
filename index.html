@@ -2106,9 +2106,10 @@
         <button class="install-close" id="installClose">×</button>
     </div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+
 
 
     <script>
@@ -3862,30 +3863,43 @@
         }
 
         function navigateToPage(pageName) {
-            // Cacher toutes les sections
+            console.log('Navigating to:', pageName);
+
+            // 1. Cacher toutes les sections
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
+                section.style.display = 'none'; // Force hide
             });
 
-            // Retirer active de tous les boutons
+            // 2. Retirer active de tous les boutons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // Afficher la section demandée
-            const pageSection = document.getElementById(`page-${pageName}`);
-            if (pageSection) {
-                pageSection.classList.add('active');
+            // 3. Afficher la section demandée
+            const targetSection = document.getElementById(`page-${pageName}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.style.display = 'block'; // Force show
+
+                // Hack: Si c'est la carte, forcer le resize pour éviter le gris
+                if (pageName === 'carte' && window.map) {
+                    setTimeout(() => {
+                        window.map.invalidateSize();
+                    }, 100);
+                }
+            } else {
+                console.error('Section introuvable:', `page-${pageName}`);
             }
 
-            // Activer le bouton correspondant
-            const activeBtn = document.querySelector(`[data-page="${pageName}"]`);
+            // 4. Activer le bouton correspondant
+            const activeBtn = document.querySelector(`.nav-btn[data-page="${pageName}"]`);
             if (activeBtn) {
                 activeBtn.classList.add('active');
                 activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
 
-            // Scroll en haut
+            // 5. Scroll en haut
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -3965,6 +3979,29 @@
             });
         }
 
+        /* ============================================
+           MAPPING / FILTERS LOGIC
+           ============================================ */
+
+        function toggleFilter(element, filterId) {
+            const checkbox = document.getElementById('filter-' + filterId);
+            if (checkbox) {
+                // Si on a cliqué sur le chip (et pas directement la checkbox)
+                if (event.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                }
+
+                // Update UI visually
+                if (checkbox.checked) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+
+                updateMapMarkers();
+            }
+        }
+
         function getActiveFilters() {
             const filters = {
                 villes: [],
@@ -3974,7 +4011,8 @@
             };
 
             // Favorites
-            if (document.getElementById('filter-favorites').checked) filters.favorites = true;
+            const fav = document.getElementById('filter-favorites');
+            if (fav && fav.checked) filters.favorites = true;
 
             // Villes
             document.querySelectorAll('[id^="filter-"][id$="antananarivo"], [id$="diego"], [id$="nosybe"], [id$="mahajanga"], [id$="andasibe"], [id$="isalo"], [id$="ifaty"], [id$="ankarana"], [id$="mananara"]').forEach(cb => {
@@ -3996,16 +4034,24 @@
             });
 
             // Types
-            if (document.getElementById('filter-incontournable').checked) filters.types.push('Incontournable');
-            if (document.getElementById('filter-spotlocal').checked) filters.types.push('Spot Local');
-            if (document.getElementById('filter-nature').checked) filters.types.push('Nature');
-            if (document.getElementById('filter-restaurant').checked) filters.types.push('Restaurant');
-            if (document.getElementById('filter-culture').checked) filters.types.push('Culture');
+            const incont = document.getElementById('filter-incontournable');
+            if (incont && incont.checked) filters.types.push('Incontournable');
+            const spot = document.getElementById('filter-spotlocal');
+            if (spot && spot.checked) filters.types.push('Spot Local');
+            const nature = document.getElementById('filter-nature');
+            if (nature && nature.checked) filters.types.push('Nature');
+            const restau = document.getElementById('filter-restaurant');
+            if (restau && restau.checked) filters.types.push('Restaurant');
+            const culture = document.getElementById('filter-culture');
+            if (culture && culture.checked) filters.types.push('Culture');
 
             // Prix
-            if (document.getElementById('filter-gratuit').checked) filters.prix.push('gratuit');
-            if (document.getElementById('filter-economique').checked) filters.prix.push('economique');
-            if (document.getElementById('filter-moyen').checked) filters.prix.push('moyen');
+            const gratuit = document.getElementById('filter-gratuit');
+            if (gratuit && gratuit.checked) filters.prix.push('gratuit');
+            const economique = document.getElementById('filter-economique');
+            if (economique && economique.checked) filters.prix.push('economique');
+            const moyen = document.getElementById('filter-moyen');
+            if (moyen && moyen.checked) filters.prix.push('moyen');
 
             return filters;
         }
@@ -4759,7 +4805,36 @@
                     .catch(err => console.error('Service Worker error:', err));
             }
         }
+
+        // ============================================
+        // INITIALISATION AU CHARGEMENT
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Gasikara Explorer - Initializing...');
+
+            // Initialiser les données et le thème
+            initTheme();
+
+            // Initialiser la carte
+            initMap();
+
+            // Initialiser la navigation (event listeners sur boutons et raccourcis)
+            initNavigation();
+
+            // Initialiser le contenu des pages
+            initCityPages();
+            initSpotsPage();
+            initLanguePage();
+            initOutilsPage();
+
+            // Initialiser les composants UI globaux
+            initModal();
+            initInstallPrompt();
+
+            console.log('Gasikara Explorer - Ready!');
+        });
     </script>
 </body>
 
 </html>
+```

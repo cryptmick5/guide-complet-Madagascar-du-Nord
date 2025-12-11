@@ -1999,6 +1999,14 @@
                             <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
                             <i class="fa-solid fa-utensils"></i> Miam
                         </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'hotel')">
+                            <input type="checkbox" id="filter-hotel" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-bed"></i> Dormir
+                        </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'sortir')">
+                            <input type="checkbox" id="filter-sortir" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-martini-glass"></i> Sortir
+                        </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'favorites')">
                             <input type="checkbox" id="filter-favorites" class="filter-checkbox">
                             <i class="fa-solid fa-heart"></i> Favoris
@@ -5156,7 +5164,7 @@
                 }
             });
 
-            const types = ['incontournable', 'spotlocal', 'nature', 'restaurant', 'culture'];
+            const types = ['incontournable', 'spotlocal', 'nature', 'restaurant', 'culture', 'hotel', 'sortir'];
             types.forEach(t => {
                 const cb = document.getElementById(`filter-${t}`);
                 if (cb && cb.checked) {
@@ -5167,7 +5175,18 @@
                         'restaurant': 'Restaurant',
                         'culture': 'Culture'
                     };
-                    filters.types.push(typeMap[t]);
+
+                    if (t === 'hotel') {
+                        filters.types.push('Hotel');
+                        filters.types.push('Hôtel');
+                    } else if (t === 'sortir') {
+                        filters.types.push('Sortir');
+                        filters.types.push('Boîte de nuit');
+                        filters.types.push('Bar');
+                        filters.types.push('Club');
+                    } else {
+                        filters.types.push(typeMap[t]);
+                    }
                 }
             });
 

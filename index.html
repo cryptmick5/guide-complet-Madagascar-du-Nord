@@ -4631,6 +4631,26 @@
                 siteWeb: "https://www.facebook.com"
             },
             {
+                id: 510,
+                ville: "Mahajanga",
+                nom: "Petite Plage (Amborovy)",
+                type: "Spot Local",
+                spotLocal: true,
+                lat: -15.6600,
+                lng: 46.3400,
+                prix: "Gratuit",
+                prixEur: "Gratuit",
+                prixNum: 0,
+                note: 4.6,
+                description: "Plus intime et paisible que sa grande sœur, la Petite Plage est un joyau bordé de filaos. L'eau y est calme et transparente, idéale pour la baignade en famille. C'est le lieu parfait pour admirer le coucher de soleil en toute tranquillité.",
+                image: "images/mahajanga/petite_plage_mahajanga_1765473415665.png",
+                acces: "Amborovy, après l'aéroport, suivre la piste côtière",
+                horaires: "Accès libre",
+                conseil: "Marchez jusqu'au bout de la plage pour voir les pêcheurs réparer leurs pirogues à l'ombre des arbres.",
+                duree: "Demi-journée",
+                siteWeb: "https://tourisme-majunga.com"
+            },
+            {
                 id: 505,
                 ville: "Mahajanga",
                 nom: "Baobab Tree Hôtel & Spa",
@@ -5342,9 +5362,9 @@
             } else if (category === 'manger') {
                 filtered = allLieux.filter(l => l.type === 'Restaurant');
             } else if (category === 'dodo') {
-                filtered = allLieux.filter(l => l.type === 'Hotel');
+                filtered = allLieux.filter(l => ['Hotel', 'Hôtel'].includes(l.type));
             } else if (category === 'sortir') {
-                filtered = allLieux.filter(l => ['Bar', 'Boîte de nuit'].includes(l.type));
+                filtered = allLieux.filter(l => ['Bar', 'Boîte de nuit', 'Sortir', 'Club'].includes(l.type));
             } else if (category === 'spot') {
                 filtered = allLieux.filter(l => l.spotLocal === true || l.type === 'Spot Local');
             }

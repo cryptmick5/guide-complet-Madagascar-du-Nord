@@ -599,67 +599,6 @@
             white-space: nowrap;
         }
 
-        .badge-ville {
-            background: var(--bg-primary);
-            /* Use theme bg */
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            /* Pill shape */
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            white-space: nowrap;
-            margin-left: auto;
-            /* Push to right if needed, or just gap */
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* PREMIUM SEGMENTED CONTROL */
-        .segmented-control-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 24px;
-            padding: 0 16px;
-        }
-
-        .segmented-control {
-            display: flex;
-            background: var(--bg-secondary);
-            padding: 4px;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-            width: 100%;
-            max-width: 320px;
-            position: relative;
-        }
-
-        .segment-btn {
-            flex: 1;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-family: var(--font-body);
-            /* Inter */
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-
-        .segment-btn.active {
-            background: var(--laterite);
-            color: white;
-            box-shadow: 0 2px 8px rgba(176, 48, 48, 0.25);
-        }
-
         .lieu-meta {
             display: flex;
             justify-content: space-between;
@@ -5873,16 +5812,17 @@
                 let cityFiltersHTML = '';
                 let defaultCityState = 'all';
 
-                // PREMIUM SWITCHER FOR ANTSIRANANA
                 if (provinceKey === 'Antsiranana') {
-                    defaultCityState = 'Diego-Suarez'; // Force default to Diego
+                    defaultCityState = 'Diego-Suarez'; // Force default
                     cityFiltersHTML = `
-                        <div class="segmented-control-container">
-                            <div class="segmented-control">
-                                <button class="segment-btn active" onclick="filterCity('Diego-Suarez', this)">
+                        <div class="segmented-control-container" style="display:flex; justify-content:center; margin-bottom:24px;">
+                            <div class="segmented-control" style="display:flex; background:var(--bg-secondary); padding:4px; border-radius:50px; border:1px solid var(--border-color); box-shadow:var(--shadow); width:100%; max-width:320px; position:relative;">
+                                <button class="segment-btn active" onclick="filterCity('Diego-Suarez', this)" 
+                                    style="flex:1; border:none; background:var(--laterite); color:white; box-shadow:0 2px 8px rgba(176, 48, 48, 0.25); padding:10px 20px; border-radius:40px; font-family:var(--font-body); font-weight:600; letter-spacing:0.5px; cursor:pointer; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size:14px; text-transform:uppercase;">
                                     Diego-Suarez
                                 </button>
-                                <button class="segment-btn" onclick="filterCity('Nosy Be', this)">
+                                <button class="segment-btn" onclick="filterCity('Nosy Be', this)" 
+                                    style="flex:1; border:none; background:transparent; color:var(--text-secondary); padding:10px 20px; border-radius:40px; font-family:var(--font-body); font-weight:600; letter-spacing:0.5px; cursor:pointer; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size:14px; text-transform:uppercase;">
                                     Nosy Be
                                 </button>
                             </div>
@@ -5923,6 +5863,32 @@
             });
         }
 
+        window.filterCity = function (city, btn) {
+            // Update buttons style (Segmented Control logic)
+            const container = btn.parentElement;
+            container.querySelectorAll('.segment-btn').forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'transparent';
+                b.style.color = 'var(--text-secondary)';
+                b.style.boxShadow = 'none';
+            });
+
+            // Set Active Style
+            btn.classList.add('active');
+            btn.style.background = 'var(--laterite)';
+            btn.style.color = 'white';
+            btn.style.boxShadow = '0 2px 8px rgba(176, 48, 48, 0.25)';
+
+            // Update Grid Data Attribute
+            const grid = document.getElementById('grid-Antsiranana');
+            if (grid) {
+                grid.dataset.currentCity = city;
+                // Re-trigger current category filter
+                const activeCategoryBtn = grid.parentElement.querySelector('.nav-pill.active');
+                if (activeCategoryBtn) activeCategoryBtn.click();
+            }
+        };
+
         window.filterProvinceItems = function (category, provinceKey, btn) {
             const container = document.getElementById(`page-${provinceKey.toLowerCase()}`);
             if (!container) return;
@@ -5932,57 +5898,35 @@
 
             const grid = document.getElementById(`grid-${provinceKey}`);
 
-            // 1. Get current city context (if any)
-            let currentCity = 'all';
-            if (grid.dataset.currentCity) {
-                currentCity = grid.dataset.currentCity;
-            }
+            // Re-fetch locations for this province (since we are out of scope)
+            // Using global LIEUX_DATA and getProvinceForVille helper
+            const allLieux = LIEUX_DATA.filter(l => getProvinceForVille(l.ville) === provinceKey);
 
-            // 2. Filter by Province
-            let provinceLieux = LIEUX_DATA.filter(l => getProvinceForVille(l.ville) === provinceKey);
-
-            // 3. Filter by City (Strict Mode)
-            if (currentCity !== 'all') {
-                provinceLieux = provinceLieux.filter(l => l.ville === currentCity);
+            // Filter by City if applicable
+            let filteredByCity = allLieux;
+            if (grid.dataset.currentCity && grid.dataset.currentCity !== 'all') {
+                filteredByCity = allLieux.filter(l => l.ville === grid.dataset.currentCity);
             }
 
             let filtered = [];
             if (category === 'all') {
-                filtered = provinceLieux;
+                filtered = filteredByCity;
             } else if (category === 'explorer') {
-                filtered = provinceLieux.filter(l => ['Incontournable', 'Nature', 'Culture'].includes(l.type));
+                filtered = filteredByCity.filter(l => ['Incontournable', 'Nature', 'Culture'].includes(l.type));
             } else if (category === 'manger') {
-                filtered = provinceLieux.filter(l => l.type === 'Restaurant');
+                filtered = filteredByCity.filter(l => l.type === 'Restaurant');
             } else if (category === 'dodo') {
-                filtered = provinceLieux.filter(l => ['Hotel', 'Hôtel'].includes(l.type));
+                filtered = filteredByCity.filter(l => ['Hotel', 'Hôtel'].includes(l.type));
             } else if (category === 'sortir') {
-                filtered = provinceLieux.filter(l => ['Bar', 'Boîte de nuit', 'Sortir', 'Club'].includes(l.type));
+                filtered = filteredByCity.filter(l => ['Bar', 'Boîte de nuit', 'Sortir', 'Club'].includes(l.type));
             } else if (category === 'spot') {
-                filtered = provinceLieux.filter(l => l.spotLocal === true || l.type === 'Spot Local');
+                filtered = filteredByCity.filter(l => l.spotLocal === true || l.type === 'Spot Local');
             }
 
             if (filtered.length === 0) {
                 grid.innerHTML = `<p style="text-align:center; color:var(--text-secondary); grid-column:1/-1;">Aucun lieu trouvé pour ce filtre.</p>`;
             } else {
                 grid.innerHTML = filtered.map(l => createLieuCard(l)).join('');
-            }
-        };
-
-        window.filterCity = function (city, btn) {
-            // Update buttons style (Premium Segmented Control Logic)
-            const container = btn.parentElement;
-            container.querySelectorAll('.segment-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-            btn.classList.add('active');
-
-            // Update Grid Data Attribute
-            const grid = document.getElementById('grid-Antsiranana');
-            if (grid) {
-                grid.dataset.currentCity = city;
-                // Re-trigger current category filter to apply city context
-                const activeCategoryBtn = grid.parentElement.querySelector('.nav-pill.active');
-                if (activeCategoryBtn) activeCategoryBtn.click();
             }
         };
 
@@ -6017,7 +5961,12 @@
                     <div class="lieu-content">
                         <div class="lieu-header">
                             <h3 class="lieu-title">${lieu.nom}</h3>
-                            ${lieu.spotLocal ? '<span class="badge-spot">📍 Spot Local</span>' : `<span class="badge-type">${lieu.type}</span>`}
+                            <div class="card-badges">
+                                ${lieu.spotLocal ? '<span class="badge-spot">📍 Spot Local</span>' : `<span class="badge-type">${lieu.type}</span>`}
+                                <span class="badge-ville" style="background:var(--surface); color:var(--text-secondary); border:1px solid var(--border); border-radius:12px; padding:2px 8px; font-size:0.8rem; margin-left:5px;">
+                                    ${getVilleEmoji(lieu.ville)} ${lieu.ville}
+                                </span>
+                            </div>
                         </div>
                         <div class="lieu-meta">
                             <span class="lieu-prix ${prixClass}">${lieu.prix}</span>

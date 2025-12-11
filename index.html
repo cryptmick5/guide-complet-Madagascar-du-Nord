@@ -4758,12 +4758,15 @@
             document.documentElement.setAttribute('data-theme', currentTheme);
             updateThemeToggle();
 
-            document.getElementById('themeToggle').addEventListener('click', () => {
-                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', currentTheme);
-                localStorage.setItem('theme', currentTheme);
-                updateThemeToggle();
-            });
+            const toggleBtn = document.getElementById('themeToggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', currentTheme);
+                    localStorage.setItem('theme', currentTheme);
+                    updateThemeToggle();
+                });
+            }
         }
 
         function updateThemeToggle() {

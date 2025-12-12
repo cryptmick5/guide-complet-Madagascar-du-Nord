@@ -7,6 +7,7 @@
     <meta name="description"
         content="Le guide ultime pour voyager à Madagascar - Spots locaux authentiques, carte interactive offline, expressions malgaches">
     <meta name="theme-color" content="#C13535">
+    <meta name="color-scheme" content="light dark">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -24,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
     <!-- Leaflet CSS -->
@@ -106,6 +107,12 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Apply to HTML/ROOT to ensure scrollbars and native inputs are affected */
+        html.dark-mode,
+        body.dark-mode {
+            color-scheme: dark;
         }
 
         /* ============================================
@@ -1967,9 +1974,290 @@
 
         .btn-favorite.active {
             color: var(--premium);
-            /* Rouge/Or pour l'état actif */
-            /* Optionnel: fond légèrement teinté */
-            /* background: #fff5f5; */
+        }
+
+        /* --- Outil Taxi-Brousse Premium --- */
+        .taxi-calculator {
+            margin-bottom: 24px;
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 16px;
+            /* Ne pas doubler le background si tool-card l'a déjà, mais ajuster le padding interne */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .taxi-form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        .form-group-icon {
+            font-size: 1.2rem;
+            color: var(--laterite);
+            background: rgba(176, 48, 48, 0.1);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-top: 24px;
+            /* Align with inputs */
+        }
+
+        .taxi-select {
+            width: 100%;
+            padding: 12px 34px 12px 12px;
+            /* Less vertical, more right padding for icon */
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background-color: var(--background);
+            /* Explicit color for inheritance */
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            /* Slightly smaller to fit Antananarivo */
+            font-weight: 500;
+            appearance: none;
+            -webkit-appearance: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23b03030' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Force dark option background in Dark Mode */
+        body.dark-mode .taxi-select {
+            color-scheme: dark;
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #555;
+        }
+
+        body.dark-mode .taxi-select option {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            text-shadow: none;
+        }
+
+        .taxi-select:focus {
+            border-color: var(--laterite);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(176, 48, 48, 0.15);
+        }
+
+        .btn-action-primary {
+            background: linear-gradient(135deg, var(--laterite) 0%, #d64d4d 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(176, 48, 48, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(176, 48, 48, 0.4);
+        }
+
+        .taxi-result {
+            background: linear-gradient(135deg, rgba(176, 48, 48, 0.08), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(176, 48, 48, 0.15);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .taxi-result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--laterite);
+            opacity: 0.8;
+        }
+
+        .price-tiers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tier-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .tier-row {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tier-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .tier-price {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--laterite);
+            font-size: 1.1rem;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-family: 'Outfit', sans-serif;
+            /* Plus stylisé pour les chiffres */
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--laterite);
+            line-height: 1.2;
+        }
+
+        .result-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .companies-section {
+            margin-top: 24px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .companies-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .company-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+            border-color: var(--laterite);
+        }
+
+        .company-info strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .company-badge.premium {
+            background: linear-gradient(90deg, var(--laterite), #d64d4d);
+            color: white;
+            border: none;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(176, 48, 48, 0.25);
+        }
+
+        .company-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-icon-small {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .btn-icon-small:hover {
+            background: var(--laterite);
+            color: white;
+            border-color: var(--laterite);
+            transform: scale(1.1);
+        }
+
+        /* --- Styles pour Cartes Raccourcis --- */
+        /* Optionnel: fond légèrement teinté */
+        /* background: #fff5f5; */
         }
 
         .btn-favorite.active i {
@@ -2401,7 +2689,70 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Outil Taxi-Brousse -->
+                <div class="tool-card" id="tool-taxi">
+                    <h3 class="tool-title"
+                        style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">
+                        <i class="fa-solid fa-van-shuttle" style="color: var(--laterite); margin-right: 10px;"></i>
+                        Taxi-Brousse & Transports
+                    </h3>
+
+                    <div class="taxi-calculator">
+                        <div class="taxi-form">
+                            <div class="form-group">
+                                <label>De</label>
+                                <select id="taxiFrom" class="taxi-select">
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <div class="form-group-icon">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Vers</label>
+                                <select id="taxiTo" class="taxi-select">
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <button id="btnCalcTaxi" class="btn-action-primary"
+                            style="width: 100%; padding: 16px; border-radius: 12px; margin-top: 10px;">
+                            Estimer Trajet
+                        </button>
+
+                        <div id="taxiResult" class="taxi-result hidden">
+                            <div class="result-row">
+                                <div class="result-item">
+                                    <span class="result-label">Durée Estimée</span>
+                                    <span class="result-value" id="resDuration">--</span>
+                                </div>
+                            </div>
+
+                            <div class="result-divider"
+                                style="height: 1px; background: rgba(0,0,0,0.1); margin: 15px 0;"></div>
+
+                            <div id="resPriceContainer" class="price-tiers-container">
+                                <!-- Populated by JS -->
+                            </div>
+
+                            <div class="mt-20">
+                                <span class="result-note">⚠️ Tarifs indicatifs (Lite / Premium / VIP)</span>
+                            </div>
+
+                            <div id="companiesSection" class="companies-section hidden">
+                                <h4
+                                    style="font-family: 'Playfair Display', serif; color: var(--text-primary); margin-bottom: 15px;">
+                                    Compagnies Recommandées</h4>
+                                <div id="companiesList" class="companies-list">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </section>
     </main>
 
@@ -5767,23 +6118,49 @@
         // ============================================
 
         function initTheme() {
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            updateThemeToggle();
+            // Restore saved theme
+            let savedTheme = localStorage.getItem('theme') || 'light';
+            // Apply initial state
+            applyTheme(savedTheme);
 
             const toggleBtn = document.getElementById('themeToggle');
             if (toggleBtn) {
+                // Update icon initially
+                updateThemeIcon(toggleBtn, savedTheme);
+
                 toggleBtn.addEventListener('click', () => {
-                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    document.documentElement.setAttribute('data-theme', currentTheme);
-                    localStorage.setItem('theme', currentTheme);
-                    updateThemeToggle();
+                    // Toggle
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    applyTheme(newTheme);
+                    updateThemeIcon(toggleBtn, newTheme);
                 });
             }
         }
 
-        function updateThemeToggle() {
-            const toggle = document.getElementById('themeToggle');
-            toggle.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+        function applyTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('theme', theme);
+
+            // 1. Data Attribute (for CSS variables)
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // 2. Class on BODY & HTML (for color-scheme native controls)
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.documentElement.classList.remove('dark-mode');
+            }
+        }
+
+        function updateThemeIcon(btn, theme) {
+            // Check for icon inside button or button itself
+            // Existing code used textContent, newer code uses fontawesome?
+            // Let's support both or just fontawesome as per recent tasks
+            // Based on previous view, it was toggle.textContent = ... '☀️' : '🌙';
+            // But premium design likely uses icons. Let's be safe.
+            btn.innerHTML = theme === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         }
 
         // ============================================
@@ -6889,6 +7266,193 @@
                 }
                 localStorage.setItem('checklist', JSON.stringify(checklist));
             });
+
+            // --- OUTIL TAXI BROUSSE (PREMIUM MULTI-TIER) ---
+            const btnCalcTaxi = document.getElementById('btnCalcTaxi');
+            if (btnCalcTaxi) {
+                // DONNÉES REFERENCE (2024/2025)
+                const CITIES = [
+                    { id: "tana", name: "Antananarivo" },
+                    { id: "diego", name: "Diego-Suarez" },
+                    { id: "mahajanga", name: "Mahajanga" },
+                    { id: "tamatave", name: "Toamasina" },
+                    { id: "fianar", name: "Fianarantsoa" },
+                    { id: "toliara", name: "Toliara" },
+                    { id: "antsirabe", name: "Antsirabe" },
+                    { id: "morondava", name: "Morondava" },
+                    { id: "ambatondrazaka", name: "Ambatondrazaka" },
+                    { id: "farafangana", name: "Farafangana" },
+                    { id: "manakara", name: "Manakara" },
+                    { id: "mananjary", name: "Mananjary" },
+                    { id: "ambositra", name: "Ambositra" },
+                    { id: "ambatolampy", name: "Ambatolampy" },
+                    { id: "antanifotsy", name: "Antanifotsy" },
+                    { id: "ambohimandroso", name: "Ambohimandroso" }
+                ];
+
+                // Populate Selects
+                const createOptions = () => CITIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+                document.getElementById('taxiFrom').innerHTML = createOptions();
+                document.getElementById('taxiTo').innerHTML = createOptions();
+                document.getElementById('taxiTo').value = 'diego'; // Default target
+
+                const ROUTES = {
+                    // AXE NORD (Majunga / Diego)
+                    "tana-mahajanga": {
+                        duration: "12h",
+                        companies: ["cotisse", "soatrans", "sonatra"],
+                        tiers: [
+                            { name: "Lite", price: 40000 },
+                            { name: "Premium", price: 60000 },
+                            { name: "VIP", price: 93000 }
+                        ]
+                    },
+                    "tana-diego": {
+                        duration: "24h",
+                        companies: ["cotisse", "besady"],
+                        tiers: [
+                            { name: "Brousse Std", price: 100000 },
+                            { name: "VIP/Premium", price: 120000 }
+                        ]
+                    },
+
+                    // AXE EST (Tamatave)
+                    "tana-tamatave": {
+                        duration: "7h",
+                        companies: ["cotisse", "soatrans"],
+                        tiers: [
+                            { name: "Lite", price: 25000 },
+                            { name: "Premium", price: 45000 },
+                            { name: "VIP", price: 65000 }
+                        ]
+                    },
+                    "tana-morondava": {
+                        duration: "14h",
+                        companies: ["cotisse", "sonatra", "soatrans"],
+                        tiers: [
+                            { name: "Premium", price: 75000 },
+                            { name: "VIP", price: 110000 }
+                        ]
+                    },
+
+                    // AXE SUD (Fianar / Tulear)
+                    "tana-antsirabe": {
+                        duration: "3h30",
+                        companies: ["cotisse", "soatrans"],
+                        tiers: [
+                            { name: "Lite", price: 15000 },
+                            { name: "Premium", price: 25000 }
+                        ]
+                    },
+                    "tana-ambositra": {
+                        duration: "6h",
+                        companies: ["soatrans", "sonatra"],
+                        tiers: [{ name: "Standard", price: 35000 }]
+                    },
+                    "tana-fianar": {
+                        duration: "9h",
+                        companies: ["cotisse", "soatrans", "sonatra"],
+                        tiers: [
+                            { name: "Lite", price: 30000 },
+                            { name: "Premium", price: 45000 },
+                            { name: "VIP", price: 60000 }
+                        ]
+                    },
+                    "tana-toliara": {
+                        duration: "22h",
+                        companies: ["cotisse", "sonatra", "soatrans"],
+                        tiers: [
+                            { name: "Premium", price: 100000 },
+                            { name: "VIP", price: 140000 }
+                        ]
+                    },
+
+                    // EST / SUD-EST
+                    "tana-manakara": { duration: "16h", companies: ["soatrans"], tiers: [{ name: "Standard", price: 60000 }] },
+                    "tana-farafangana": { duration: "20h", companies: ["soatrans"], tiers: [{ name: "Standard", price: 70000 }] },
+
+                    // Default Fallback
+                    "default": { duration: "--", tiers: [] }
+                };
+
+                const COMPANIES = {
+                    "cotisse": { name: "Cotisse Transport", tel: "+261 32 11 027 10", web: "http://www.cotisse-transport.com", premium: true },
+                    "soatrans": { name: "Soa Trans Plus", tel: "+261 32 23 909 00", web: "https://soatransplus.mg/", premium: true },
+                    "sonatra": { name: "Sonatra Plus", tel: "+261 34 20 227 00", premium: true },
+                    "besady": { name: "Besady Plus", tel: "+261 32 05 227 50", premium: false }
+                };
+
+                btnCalcTaxi.addEventListener('click', () => {
+                    const from = document.getElementById('taxiFrom').value;
+                    const to = document.getElementById('taxiTo').value;
+                    const resultDiv = document.getElementById('taxiResult');
+                    const companiesDiv = document.getElementById('companiesSection');
+                    const companiesList = document.getElementById('companiesList');
+
+                    if (from === to) {
+                        alert("Veuillez choisir deux villes différentes.");
+                        return;
+                    }
+
+                    // Try both directions
+                    let routeKey = `${from}-${to}`;
+                    let route = ROUTES[routeKey];
+                    if (!route) {
+                        routeKey = `${to}-${from}`;
+                        route = ROUTES[routeKey];
+                        // If logic for detailed pricing is mostly Tana-centric, we might assume same price return
+                    }
+
+                    // Fallback for non-Tana routes (estimation based on distance/hub)
+                    if (!route && (from === 'tana' || to === 'tana')) {
+                        // Unknown direct Tana route
+                        route = null;
+                    }
+
+                    if (route) {
+                        const priceHtml = route.tiers.map(t =>
+                            `<div class="tier-row">
+                                <span class="tier-name">${t.name}</span>
+                                <span class="tier-price">${t.price.toLocaleString('fr-FR')} Ar</span>
+                             </div>`
+                        ).join('');
+
+                        document.getElementById('resDuration').textContent = route.duration;
+                        document.getElementById('resPriceContainer').innerHTML = priceHtml;
+
+                        resultDiv.classList.remove('hidden');
+
+                        // Show Companies
+                        if (route.companies && route.companies.length > 0) {
+                            companiesList.innerHTML = route.companies.map(cId => {
+                                const comp = COMPANIES[cId];
+                                if (!comp) return '';
+                                return `
+                                <div class="company-card">
+                                    <div class="company-info">
+                                        <strong>${comp.name}</strong>
+                                        <div class="company-badges">
+                                            ${comp.premium ? '<span class="company-badge premium">Recommandé</span>' : ''}
+                                        </div>
+                                    </div>
+                                    <div class="company-actions">
+                                        <a href="tel:${comp.tel.replace(/\s/g, '')}" class="btn-icon-small" title="Appeler">📞</a>
+                                        ${comp.web ? `<a href="${comp.web}" target="_blank" class="btn-icon-small" title="Site Web">🌐</a>` : ''}
+                                    </div>
+                                </div>`;
+                            }).join('');
+                            companiesDiv.classList.remove('hidden');
+                            setTimeout(() => resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+                        } else {
+                            companiesDiv.classList.add('hidden');
+                        }
+                    } else {
+                        resultDiv.classList.add('hidden');
+                        companiesDiv.classList.add('hidden');
+                        alert("Trajet non listé ou avec correspondance (ex: via Tana).");
+                    }
+                });
+            }
         }
 
         // ============================================

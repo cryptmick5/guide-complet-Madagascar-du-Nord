@@ -2014,29 +2014,29 @@
             <div id="map-container">
                 <div id="map"></div>
 
-                <!-- Filters Overlay (Clean Single Row) -->
+                <!-- Filters Overlay (Smart Bar Harmonized) -->
                 <div class="map-filters-overlay">
                     <div class="filter-row">
-                        <!-- Provinces -->
+                        <!-- Villes (Navigation Rapide) -->
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'antananarivo')">
                             <input type="checkbox" id="filter-antananarivo" class="filter-checkbox" checked>
                             <i class="fa-solid fa-landmark"></i> Tana
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'antsiranana')">
                             <input type="checkbox" id="filter-antsiranana" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-anchor"></i> Nord
+                            <i class="fa-solid fa-anchor"></i> Diego
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'mahajanga')">
                             <input type="checkbox" id="filter-mahajanga" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-umbrella-beach"></i> Ouest
+                            <i class="fa-solid fa-umbrella-beach"></i> Majunga
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'toamasina')">
                             <input type="checkbox" id="filter-toamasina" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-ship"></i> Est
+                            <i class="fa-solid fa-ship"></i> Tamatave
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'toliara')">
                             <input type="checkbox" id="filter-toliara" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-sun"></i> Sud
+                            <i class="fa-solid fa-sun"></i> Tuléar
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'fianarantsoa')">
                             <input type="checkbox" id="filter-fianarantsoa" class="filter-checkbox" checked>
@@ -2047,27 +2047,32 @@
                             style="width:1px; background:rgba(0,0,0,0.1); margin:0 4px; height:20px; align-self:center;">
                         </div>
 
-                        <!-- Catégories Essentielles -->
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'incontournable')">
-                            <input type="checkbox" id="filter-incontournable" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-star"></i> Top
+                        <!-- Catégories Standardisées -->
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'explorer')">
+                            <input type="checkbox" id="filter-explorer" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-binoculars"></i> Explorer
                         </div>
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'spotlocal')">
-                            <input type="checkbox" id="filter-spotlocal" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-location-dot"></i> Local
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'manger')">
+                            <input type="checkbox" id="filter-manger" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-utensils"></i> Manger
                         </div>
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'restaurant')">
-                            <input type="checkbox" id="filter-restaurant" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-utensils"></i> Miam
-                        </div>
-                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'hotel')">
-                            <input type="checkbox" id="filter-hotel" class="filter-checkbox" checked>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'dodo')">
+                            <input type="checkbox" id="filter-dodo" class="filter-checkbox" checked>
                             <i class="fa-solid fa-bed"></i> Dormir
                         </div>
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'sortir')">
                             <input type="checkbox" id="filter-sortir" class="filter-checkbox" checked>
-                            <i class="fa-solid fa-martini-glass"></i> Sortir
+                            <i class="fa-solid fa-martini-glass-citrus"></i> Sortir
                         </div>
+                        <div class="filter-chip-map active" onclick="toggleFilter(this, 'spot')">
+                            <input type="checkbox" id="filter-spot" class="filter-checkbox" checked>
+                            <i class="fa-solid fa-map-pin"></i> Spots
+                        </div>
+
+                        <div
+                            style="width:1px; background:rgba(0,0,0,0.1); margin:0 4px; height:20px; align-self:center;">
+                        </div>
+
                         <div class="filter-chip-map active" onclick="toggleFilter(this, 'favorites')">
                             <input type="checkbox" id="filter-favorites" class="filter-checkbox">
                             <i class="fa-solid fa-heart"></i> Favoris
@@ -5468,24 +5473,85 @@
 
 
         // ============================================
-        // MAP FILTER LOGIC (New)
+        // MAP FILTER LOGIC (SMART EXCLUSIVE)
         // ============================================
+
+        const CITY_COORDINATES = {
+            'antananarivo': [-18.8792, 47.5079, 12],
+            'antsiranana': [-12.2797, 49.2917, 12],
+            'mahajanga': [-15.7167, 46.3167, 12],
+            'toamasina': [-18.1492, 49.4023, 12],
+            'toliara': [-23.3500, 43.6667, 12],
+            'fianarantsoa': [-21.4333, 47.0833, 12]
+        };
+
         function toggleFilter(chip, type) {
+            const isCity = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'].includes(type);
+            const isCategory = ['explorer', 'manger', 'dodo', 'sortir', 'spot', 'favorites'].includes(type);
+
             const checkbox = chip.querySelector('input[type="checkbox"]');
-            if (checkbox) {
-                // Toggle checkbox manually since we intercept click
+            if (!checkbox) return;
+
+            // 1. SMART CITY LOGIC (Exclusive + Zoom)
+            if (isCity) {
+                // If clicking a city, uncheck all other cities first
+                const allCities = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'];
+                allCities.forEach(c => {
+                    if (c !== type) {
+                        const otherCb = document.getElementById(`filter-${c}`);
+                        const otherChip = otherCb ? otherCb.parentElement : null;
+                        if (otherCb) {
+                            otherCb.checked = false;
+                            if (otherChip) otherChip.classList.remove('active');
+                        }
+                    }
+                });
+
+                // Toggle the clicked one
                 checkbox.checked = !checkbox.checked;
 
-                // Update UI
+                // Visual
                 if (checkbox.checked) {
                     chip.classList.add('active');
+                    // ZOOM TO CITY
+                    if (CITY_COORDINATES[type] && map) {
+                        map.setView([CITY_COORDINATES[type][0], CITY_COORDINATES[type][1]], CITY_COORDINATES[type][2]);
+                    }
                 } else {
                     chip.classList.remove('active');
+                    if (map) map.setView([-18.766947, 46.869107], 6); // Back to Global
                 }
-
-                // Update Map
-                updateMapMarkers();
             }
+
+            // 2. SMART CATEGORY LOGIC (Exclusive)
+            else if (isCategory) {
+
+                // Uncheck all other categories
+                const allCats = ['explorer', 'manger', 'dodo', 'sortir', 'spot', 'favorites'];
+                allCats.forEach(c => {
+                    if (c !== type) {
+                        const otherCb = document.getElementById(`filter-${c}`);
+                        const otherChip = otherCb ? otherCb.parentElement : null;
+                        if (otherCb) {
+                            otherCb.checked = false;
+                            if (otherChip) otherChip.classList.remove('active');
+                        }
+                    }
+                });
+
+                // Force Check the clicked one (Exclusive Select)
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    chip.classList.add('active');
+                } else {
+                    // If already checked, uncheck it -> Show Everything (Empty Filter = All)
+                    checkbox.checked = false;
+                    chip.classList.remove('active');
+                }
+            }
+
+            // Update Map
+            updateMapMarkers();
         }
 
         // ============================================
@@ -5741,31 +5807,27 @@
                 }
             });
 
-            const types = ['incontournable', 'spotlocal', 'nature', 'restaurant', 'culture', 'hotel', 'sortir'];
-            types.forEach(t => {
+            // NEW CATEGORY LOGIC (HARMONIZED)
+            const typeIds = ['explorer', 'manger', 'dodo', 'sortir', 'spot'];
+            typeIds.forEach(t => {
                 const cb = document.getElementById(`filter-${t}`);
                 if (cb && cb.checked) {
-                    const typeMap = {
-                        'incontournable': 'Incontournable',
-                        'spotlocal': 'Spot Local',
-                        'nature': 'Nature',
-                        'restaurant': 'Restaurant',
-                        'culture': 'Culture'
-                    };
-
-                    if (t === 'hotel') {
-                        filters.types.push('Hotel');
-                        filters.types.push('Hôtel');
+                    if (t === 'explorer') {
+                        filters.types.push('Incontournable', 'Nature', 'Culture');
+                    } else if (t === 'manger') {
+                        filters.types.push('Restaurant');
+                    } else if (t === 'dodo') {
+                        filters.types.push('Hotel', 'Hôtel');
                     } else if (t === 'sortir') {
-                        filters.types.push('Sortir');
-                        filters.types.push('Boîte de nuit');
-                        filters.types.push('Bar');
-                        filters.types.push('Club');
-                    } else {
-                        filters.types.push(typeMap[t]);
+                        filters.types.push('Sortir', 'Bar', 'Boîte de nuit', 'Club');
+                    } else if (t === 'spot') {
+                        filters.types.push('Spot Local');
                     }
                 }
             });
+
+            // OLD LOGIC SUPPORT (Fallback if needed, or simple cleanup)
+            // Added check for old IDs just in case, but standardizing on new ones is better.
 
             const prix = ['gratuit', 'economique', 'moyen'];
             prix.forEach(p => {
@@ -5783,14 +5845,17 @@
             if (filters.provinces.length > 0 && !filters.provinces.includes(lieuProvince)) return false;
 
             if (filters.types.length > 0) {
-                if (!filters.types.includes(lieu.type) && !filters.types.includes('Incontournable')) {
-                    if (filters.types.includes('Spot Local') && lieu.spotLocal) {
-                        // match
-                    } else if (filters.types.includes('Incontournable') && (lieu.note >= 4.7 || lieu.id <= 5)) {
-                        // match
-                    } else if (!filters.types.includes(lieu.type)) {
-                        return false;
-                    }
+                // If filters.types contains 'Spot Local', we must handle the boolean flag
+                const lookingForSpot = filters.types.includes('Spot Local');
+
+                // General Type Match
+                const typeMatch = filters.types.includes(lieu.type);
+
+                // Specific Spot Match (Boolean or String)
+                const spotMatch = lookingForSpot && (lieu.spotLocal === true || lieu.type === 'Spot Local');
+
+                if (!typeMatch && !spotMatch) {
+                    return false;
                 }
             }
 
@@ -5989,6 +6054,80 @@
         // Old filter function removed
         window.filterCityItems = function () { }; // No-op
 
+
+        // ============================================
+        // MODAL DETAILS LOGIC
+        // ============================================
+
+        window.showLieuDetailsByID = function (id) {
+            const lieu = LIEUX_DATA.find(l => l.id == id);
+            if (lieu) {
+                showLieuDetails(lieu);
+            } else {
+                console.error('Lieu introuvable ID:', id);
+            }
+        };
+
+        window.showLieuDetails = function (lieu) {
+            const modal = document.getElementById('lieuModal');
+            if (!modal) return;
+
+            // Populate Modal
+            document.getElementById('modal-image').src = lieu.image || 'images/placeholders/default.jpg';
+            document.getElementById('modal-type').textContent = lieu.type;
+
+            // Spot Local Badge Logic
+            const badgeType = document.getElementById('modal-type');
+            if (lieu.spotLocal) {
+                badgeType.style.background = 'var(--laterite)';
+                badgeType.textContent = 'Spot Local 📍';
+            } else {
+                badgeType.style.background = 'rgba(0,0,0,0.7)';
+                badgeType.textContent = lieu.type;
+            }
+
+            document.getElementById('modal-title').textContent = lieu.nom;
+            document.getElementById('modal-desc').innerHTML = lieu.description; // Allow HTML in desc
+
+            // Meta Info
+            document.getElementById('modal-price').textContent = lieu.prix;
+            document.getElementById('modal-duration').textContent = lieu.duree || 'Durée libre';
+            document.getElementById('modal-access').textContent = lieu.acces || 'Accès standard';
+
+            // Advice Section
+            const adviceSection = document.getElementById('modal-advice-section');
+            if (lieu.conseil) {
+                adviceSection.style.display = 'block';
+                document.getElementById('modal-advice').textContent = lieu.conseil;
+            } else {
+                adviceSection.style.display = 'none';
+            }
+
+            // External Link
+            const linkBtn = document.getElementById('modal-link-btn');
+            if (lieu.siteWeb) {
+                linkBtn.style.display = 'inline-flex';
+                linkBtn.onclick = () => window.open(lieu.siteWeb, '_blank');
+            } else {
+                linkBtn.style.display = 'none';
+            }
+
+            // Open Modal
+            modal.style.display = 'block';
+
+            // Close Handler
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            // Click outside to close
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        };
 
         function getVilleEmoji(ville) {
             const emojis = {

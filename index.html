@@ -7296,11 +7296,13 @@
                 document.getElementById('taxiTo').innerHTML = createOptions();
                 document.getElementById('taxiTo').value = 'diego'; // Default target
 
+
+
                 const ROUTES = {
                     // AXE NORD (Majunga / Diego)
                     "tana-mahajanga": {
                         duration: "12h",
-                        companies: ["cotisse", "soatrans", "sonatra"],
+                        companies: ["cotisse", "soatrans"],
                         tiers: [
                             { name: "Lite", price: 40000 },
                             { name: "Premium", price: 60000 },
@@ -7309,7 +7311,7 @@
                     },
                     "tana-diego": {
                         duration: "24h",
-                        companies: ["cotisse", "besady"],
+                        companies: ["cotisse"],
                         tiers: [
                             { name: "Brousse Std", price: 100000 },
                             { name: "VIP/Premium", price: 120000 }
@@ -7328,7 +7330,7 @@
                     },
                     "tana-morondava": {
                         duration: "14h",
-                        companies: ["cotisse", "sonatra", "soatrans"],
+                        companies: ["cotisse", "soatrans"],
                         tiers: [
                             { name: "Premium", price: 75000 },
                             { name: "VIP", price: 110000 }
@@ -7346,12 +7348,12 @@
                     },
                     "tana-ambositra": {
                         duration: "6h",
-                        companies: ["soatrans", "sonatra"],
+                        companies: ["soatrans"],
                         tiers: [{ name: "Standard", price: 35000 }]
                     },
                     "tana-fianar": {
                         duration: "9h",
-                        companies: ["cotisse", "soatrans", "sonatra"],
+                        companies: ["cotisse", "soatrans"],
                         tiers: [
                             { name: "Lite", price: 30000 },
                             { name: "Premium", price: 45000 },
@@ -7360,7 +7362,7 @@
                     },
                     "tana-toliara": {
                         duration: "22h",
-                        companies: ["cotisse", "sonatra", "soatrans"],
+                        companies: ["cotisse", "soatrans"],
                         tiers: [
                             { name: "Premium", price: 100000 },
                             { name: "VIP", price: 140000 }
@@ -7375,11 +7377,56 @@
                     "default": { duration: "--", tiers: [] }
                 };
 
+                // ONLY COTISSE & SOA TRANS
                 const COMPANIES = {
                     "cotisse": { name: "Cotisse Transport", tel: "+261 32 11 027 10", web: "http://www.cotisse-transport.com", premium: true },
-                    "soatrans": { name: "Soa Trans Plus", tel: "+261 32 23 909 00", web: "https://soatransplus.mg/", premium: true },
-                    "sonatra": { name: "Sonatra Plus", tel: "+261 34 20 227 00", premium: true },
-                    "besady": { name: "Besady Plus", tel: "+261 32 05 227 50", premium: false }
+                    "soatrans": { name: "Soa Trans Plus", tel: "+261 32 23 909 00", web: "https://soatransplus.mg/", premium: true }
+                };
+
+                const getHumorMessage = (durationStr) => {
+                    const h = parseInt(durationStr);
+                    if (isNaN(h)) return "";
+
+                    const crazyMessages = [
+                        // Survival & Existential
+                        "Prépare-toi psychologiquement... et physiquement 🍑💥",
+                        "Tu auras le temps d'écrire tes mémoires (Tome 1, 2 et le préquel) ✍️",
+                        "C'est plus un trajet, c'est une vie parallèle 🌌",
+                        "Courage, la légende raconte que certains sont arrivés vivants 😂",
+                        "Ton siège est désormais ton domicile fiscal 🛋️",
+                        "Astuce : Deviens ami avec ton voisin, vous allez vieillir ensemble 👴",
+                        "N'oublie pas de dire au revoir à ta famille, on ne sait jamais 👋",
+                        "Tu vas connaître chaque nid de poule par son prénom 🕳️",
+                        "Le chauffeur a prévu des pauses... en 2026 📅",
+                        "Si tu dors tout le long, c'est comme si ça durait 5 minutes (non) 😴"
+                    ];
+
+                    const mediumMessages = [
+                        // Practical & Fun
+                        "Le moment idéal pour repenser toute ton existence 🤔",
+                        "Tu as pris ta playlist 'Survie' ? Parce que c'est le moment 🎧",
+                        "C'est l'aventure avec un grand A (et beaucoup de virages) 🚐",
+                        "Prévois des snacks. Beaucoup. Vraiment beaucoup 🥪",
+                        "Une bonne sieste, deux pauses pipi et t'es arrivé (presque) 🚽",
+                        "Profites-en pour finir cette série que tu as commencée il y a 3 ans 📱",
+                        "Regarde par la fenêtre, c'est mieux que Netflix 🌳",
+                        "Le Wi-Fi du bus est aussi réel que les licornes 🦄",
+                        "L'important ce n'est pas la destination, c'est l'état de ton dos à l'arrivée 🦴"
+                    ];
+
+                    const shortMessages = [
+                        // Speed & Easy
+                        "Même pas le temps de finir ton podcast ! ⚡",
+                        "Vitesse lumière activée (ou presque) 🚀",
+                        "Hop, à peine parti, déjà arrivé ! (Si le chauffeur est motivé) 🏁",
+                        "C'est juste à côté... à l'échelle de Madagascar 🇲🇬",
+                        "Le temps de cligner des yeux et tu y es 👀",
+                        "Pas la peine de sortir l'oreiller, on arrive bientôt 🚫🛌"
+                    ];
+
+                    if (h > 15) return crazyMessages[Math.floor(Math.random() * crazyMessages.length)];
+                    if (h >= 5) return mediumMessages[Math.floor(Math.random() * mediumMessages.length)];
+                    return shortMessages[Math.floor(Math.random() * shortMessages.length)];
                 };
 
                 btnCalcTaxi.addEventListener('click', () => {
@@ -7400,12 +7447,8 @@
                     if (!route) {
                         routeKey = `${to}-${from}`;
                         route = ROUTES[routeKey];
-                        // If logic for detailed pricing is mostly Tana-centric, we might assume same price return
                     }
-
-                    // Fallback for non-Tana routes (estimation based on distance/hub)
                     if (!route && (from === 'tana' || to === 'tana')) {
-                        // Unknown direct Tana route
                         route = null;
                     }
 
@@ -7420,9 +7463,75 @@
                         document.getElementById('resDuration').textContent = route.duration;
                         document.getElementById('resPriceContainer').innerHTML = priceHtml;
 
+                        // HUMOR INJECTION (FRAMED & PREMIUM)
+                        const humorMsg = getHumorMessage(route.duration);
+                        document.querySelector('.result-note').innerHTML = `
+                            <div class="humor-frame">
+                                <span class="humor-icon" style="font-size:1.4rem;">💡</span>
+                                <div class="humor-text">"${humorMsg}"</div>
+                            </div>
+                            <div class="result-disclaimer">⚠️ Tarifs indicatifs (Lite / Premium / VIP)</div>
+                            
+                            <style>
+                                .humor-frame {
+                                    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+                                    border-left: 6px solid var(--laterite);
+                                    padding: 24px 28px; /* Increased padding for breathing room */
+                                    margin-bottom: 24px;
+                                    border-radius: 0 16px 16px 0;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 20px;
+                                    text-align: left;
+                                    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+                                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                                }
+                                .humor-frame:hover {
+                                    transform: translateX(4px) translateY(-2px);
+                                    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+                                }
+                                .humor-icon {
+                                    font-size: 2.2rem; /* Larger icon */
+                                    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+                                    animation: floatIcon 3s ease-in-out infinite;
+                                }
+                                @keyframes floatIcon {
+                                    0% { transform: translateY(0px); }
+                                    50% { transform: translateY(-4px); }
+                                    100% { transform: translateY(0px); }
+                                }
+                                .humor-text {
+                                    font-family: var(--font-display);
+                                    font-weight: 500; 
+                                    color: #4a4a4a; 
+                                    font-style: italic;
+                                    font-size: 1.1rem; /* Slightly larger text */
+                                    line-height: 1.6;
+                                }
+                                .result-disclaimer {
+                                    font-size: 0.8rem;
+                                    opacity: 0.6;
+                                    text-transform: uppercase;
+                                    letter-spacing: 1px;
+                                    margin-top: 12px;
+                                    font-weight: 500;
+                                }
+                                /* Dark Mode Adjustment */
+                                body.dark-mode .humor-frame {
+                                    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+                                    border-left-color: #ff6b6b;
+                                    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+                                }
+                                body.dark-mode .humor-text {
+                                    color: #ececec;
+                                    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+                                }
+                            </style>
+                        `;
+
                         resultDiv.classList.remove('hidden');
 
-                        // Show Companies
+                        // Show Companies (Filtered)
                         if (route.companies && route.companies.length > 0) {
                             companiesList.innerHTML = route.companies.map(cId => {
                                 const comp = COMPANIES[cId];

@@ -1411,6 +1411,140 @@
             display: none;
         }
 
+        /* ============================================
+           MODALE FICHE LIEU (FIX STYLES)
+           ============================================ */
+        #lieuModal .modal-content {
+            padding: 0;
+            /* Cover image goes to edge */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 85vh;
+        }
+
+        .modal-header-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            background: #eee;
+        }
+
+        .modal-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-badge-type {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .modal-meta-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        .meta-tag::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        .meta-tag.price::before {
+            content: "\f53a";
+            color: var(--laterite);
+        }
+
+        /* Money Bill */
+        .meta-tag.duration::before {
+            content: "\f017";
+            color: var(--laterite);
+        }
+
+        /* Clock */
+        .meta-tag.access::before {
+            content: "\f3c5";
+            color: var(--laterite);
+        }
+
+        /* Map Marker */
+
+        .modal-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .modal-advice-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #FFD700;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+        }
+
+        .advice-title {
+            font-weight: 700;
+            color: #b59802;
+            margin-bottom: 8px;
+        }
+
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            background: var(--laterite);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            background: #c04000;
+        }
+
+
         /* SHORTCUTS RAPIDES (High Visibility) */
         /* SHORTCUTS RAPIDES (High Visibility) */
         .shortcuts-grid {
@@ -2297,6 +2431,39 @@
 
 
 
+
+    <!-- MODALE FICHE LIEU (CARTE - Fix) -->
+    <div id="lieuModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+
+            <div class="modal-header-image">
+                <img id="modal-image" src="" alt="Lieu">
+                <span id="modal-type" class="modal-badge-type"></span>
+            </div>
+
+            <div class="modal-body">
+                <h2 id="modal-title" class="modal-title"></h2>
+
+                <div class="modal-meta-row">
+                    <span id="modal-price" class="meta-tag price"></span>
+                    <span id="modal-duration" class="meta-tag duration"></span>
+                    <span id="modal-access" class="meta-tag access"></span>
+                </div>
+
+                <div class="modal-description" id="modal-desc"></div>
+
+                <div id="modal-advice-section" class="modal-advice-box">
+                    <div class="advice-title">💡 Le conseil du local</div>
+                    <p id="modal-advice"></p>
+                </div>
+
+                <a id="modal-link-btn" href="#" target="_blank" class="btn-action-primary">
+                    <i class="fas fa-globe"></i> Visiter le site web
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // ============================================
@@ -5700,6 +5867,26 @@
                 zoomToBoundsOnClick: true
             });
 
+            // Auto-Center Popup Logic (Smart Pan)
+            map.on('popupopen', function (e) {
+                const popup = e.popup;
+                if (!popup) return;
+
+                // Small delay to ensure layout is computed
+                setTimeout(() => {
+                    if (popup._container && popup._latlng) {
+                        const px = map.project(popup._latlng); // Marker position in pixels
+                        const popupHeight = popup._container.clientHeight;
+
+                        // We want the center of the popup to be the center of the screen
+                        // Popup is ABOVE the marker. So its center is: MarkerY - (PopupHeight / 2) - (IconHeight aprox 20)
+                        px.y -= (popupHeight / 2) + 30;
+
+                        map.panTo(map.unproject(px), { animate: true, duration: 0.5 });
+                    }
+                }, 10);
+            });
+
             updateMapMarkers();
             map.addLayer(markersLayer);
 
@@ -6113,18 +6300,19 @@
             }
 
             // Open Modal
-            modal.style.display = 'block';
+            // modal.style.display = 'block'; // Faux: Casse le flexbox centering
+            modal.classList.add('active'); // Correct: Utilise la classe CSS avec display: flex
 
             // Close Handler
             const closeBtn = modal.querySelector('.close-modal');
             closeBtn.onclick = () => {
-                modal.style.display = 'none';
+                modal.classList.remove('active');
             };
 
             // Click outside to close
             window.onclick = (event) => {
                 if (event.target == modal) {
-                    modal.style.display = 'none';
+                    modal.classList.remove('active');
                 }
             };
         };

@@ -64,17 +64,7 @@ window.initData = function () {
 /* ============================================
    2. THEME & UTILS
    ============================================ */
-window.initTheme = function () {
-    const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            window.currentTheme = window.currentTheme === 'light' ? 'dark' : 'light';
-            localStorage.setItem('theme', window.currentTheme);
-            window.applyTheme();
-        });
-    }
-    window.applyTheme();
-};
+// Theme initialization moved to end of file to prevent conflicts
 
 window.applyTheme = function () {
     document.body.setAttribute('data-theme', window.currentTheme);
@@ -767,7 +757,8 @@ window.renderCityData = function () {
         if (gridId) {
             const grid = document.getElementById(`grid-${gridId}`);
             if (grid) {
-                const card = createLieuCard(lieu);
+                const category = (lieu.tags && lieu.tags.length > 0) ? lieu.tags[0] : lieu.type;
+                const card = createLieuCard(lieu, category);
                 grid.insertAdjacentHTML('beforeend', card);
                 count++;
             } else {
@@ -889,7 +880,7 @@ window.createLieuCard = function (lieu, category = '') {
                 ${icon}
             </button>
             <div class="lieu-image" onclick="showLieuDetailsByID(${lieu.id})">
-                <img src="${lieu.image}" alt="${lieu.nom}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
+                <img src="${lieu.image}" alt="${lieu.nom.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
                 <div class="lieu-badge">${lieu.type}</div>
             </div>
             <div class="lieu-content" onclick="showLieuDetailsByID(${lieu.id})">
@@ -1072,7 +1063,7 @@ window.updatePremiumInfo = function (city, provinceKey) {
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initData().then(() => {
-        initTheme();
+        // initTheme removed here, called below safely
         if (typeof initMap === 'function') initMap();
         initLanguePage();
         initOutilsPage();

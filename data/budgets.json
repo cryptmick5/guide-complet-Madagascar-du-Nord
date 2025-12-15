@@ -1,0 +1,17 @@
+{
+    "Roots": {
+        "profil": "Sac à dos",
+        "daily_eur": 25,
+        "desc": "Taxi-brousse, street food, auberges."
+    },
+    "Confort": {
+        "profil": "Valise à roulettes",
+        "daily_eur": 60,
+        "desc": "Hôtels sympas, restos, guide privé occasionnel."
+    },
+    "Premium": {
+        "profil": "Lune de miel",
+        "daily_eur": 150,
+        "desc": "Lodges de charme, 4x4 privé, tout inclus."
+    }
+}

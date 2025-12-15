@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="css/styles-premium.css">
+    <link rel="stylesheet" href="css/styles-premium.css?v=1765726000">
 
     <style>
         /* ============================================
@@ -1885,6 +1885,33 @@
         }
 
         /* BOUTON LOCALISATION */
+        /* FORCE VISIBILITY FOR PROVINCE HEADERS */
+        #page-antsiranana .city-header,
+        #page-mahajanga .city-header,
+        #page-toamasina .city-header,
+        #page-toliara .city-header,
+        #page-fianarantsoa .city-header,
+        #page-antananarivo .city-header,
+        .city-header {
+            position: relative;
+            height: 300px;
+            min-height: 300px !important;
+            /* Force visible */
+            background-color: #2c3e50 !important;
+            /* Force fallback */
+            display: flex !important;
+            /* Force layout */
+            visibility: visible !important;
+            /* Force render */
+            align-items: flex-end;
+            padding: 30px;
+            color: white;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: -40px;
+            z-index: 10;
+        }
+
         .btn-locate {
             position: absolute;
             bottom: 24px;
@@ -1999,6 +2026,21 @@
         }
 
         /* Map Marker */
+        .custom-marker {
+            font-size: 3rem;
+            /* 48px - Plus grand comme demandé */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            /* Pop effect */
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.2) translateY(-4px);
+            z-index: 1000 !important;
+        }
 
         .modal-description {
             font-size: 1rem;
@@ -2484,6 +2526,42 @@
             margin-bottom: 20px;
         }
 
+        /* Specific Fix for Map Container Pattern */
+        #map {
+            height: calc(100vh - 120px) !important;
+            width: 100%;
+            min-height: 400px;
+            z-index: 1;
+        }
+
+        /* Absolute Positioning for Filters to ensure Overlap */
+        .province-filter-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            transform: translateY(50%);
+            /* Half overlap downwards */
+            margin-top: 0 !important;
+            display: flex;
+            justify-content: center;
+            /* Center the scrollable area if possible, or left */
+            padding-bottom: 20px;
+            /* Touch target area */
+            background: transparent;
+            pointer-events: none;
+            /* Let clicks pass through container but catch on buttons */
+        }
+
+        .province-filter-container button,
+        .province-filter-container .nav-pill {
+            pointer-events: auto;
+            /* Re-enable clicks */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* Stronger shadow for floating effect */
+        }
+
         .form-group {
             flex: 1;
             display: flex;
@@ -2748,7 +2826,7 @@
         /* --- Styles pour Cartes Raccourcis --- */
         /* Optionnel: fond légèrement teinté */
         /* background: #fff5f5; */
-        }
+
 
         .btn-favorite.active i {
             /* Anime l'icône si besoin */
@@ -2946,10 +3024,35 @@
             letter-spacing: 0.3px;
         }
     </style>
-    <link rel="stylesheet" href="css/styles-premium.css">
+    <link rel="stylesheet" href="css/styles-premium.css?v=1765726000">
 </head>
 
 <body>
+    <!-- CRITICAL DIAGNOSTIC LAYER -->
+    <div id="diagnostic-overlay"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; color:white; padding:20px; font-family:monospace; white-space:pre-wrap; overflow:auto;">
+        <h2 style="color:red; border-bottom:1px solid red;">CRITICAL STARTUP ERROR</h2>
+        <div id="error-log"></div>
+        <button onclick="window.location.reload()"
+            style="padding:10px; margin-top:20px; background:white; color:black; border:none;">RELOAD</button>
+        <button
+            onclick="navigator.serviceWorker.getRegistrations().then(gam => gam.forEach(r => r.unregister())); localStorage.clear(); setTimeout(() => window.location.reload(true), 100);"
+            style="padding:10px; margin-top:20px; background:red; color:white; border:none; border-radius: 8px; font-weight: bold; cursor: pointer; display: block; width: 100%;">
+            🚨 RESET RESET (CLIQUEZ ICI) 🚨
+        </button>
+    </div>
+    <script>
+        window.onerror = function (msg, url, line, col, error) {
+            document.getElementById('diagnostic-overlay').style.display = 'block';
+            document.getElementById('error-log').innerText += `\n[CRASH] ${msg}\nAt: ${url}:${line}:${col}\nStack: ${error ? error.stack : 'N/A'}\n`;
+            console.error("Critical Error Trap:", msg, error);
+            return false; // Let default handler run too
+        };
+        window.addEventListener('unhandledrejection', function (event) {
+            document.getElementById('diagnostic-overlay').style.display = 'block';
+            document.getElementById('error-log').innerText += `\n[PROMISE] Reason: ${event.reason}\n`;
+        });
+    </script>
     <header class="header-premium">
         <div class="header-content">
             <div class="header-top">
@@ -2968,18 +3071,29 @@
     </header>
     <nav class="nav-container">
         <div class="main-nav">
-            <button class="nav-btn active" data-page="accueil"><i class="fa-solid fa-compass"></i> Tout</button>
-            <button class="nav-btn" data-page="explorer"><i class="fa-solid fa-binoculars"></i> Explorer</button>
+            <button class="nav-btn active" data-page="accueil"><i class="fa-solid fa-house"></i> Accueil</button>
             <button class="nav-btn" data-page="itineraires"><i class="fa-solid fa-route"></i> Circuits</button>
             <button class="nav-btn" data-page="carte"><i class="fa-solid fa-map"></i> Carte</button>
-            <button class="nav-btn" data-page="antananarivo"><i class="fa-solid fa-landmark"></i> Tana</button>
-            <button class="nav-btn" data-page="antsiranana"><i class="fa-solid fa-anchor"></i> Diego</button>
-            <button class="nav-btn" data-page="mahajanga"><i class="fa-solid fa-umbrella-beach"></i> Majunga</button>
-            <button class="nav-btn" data-page="toamasina"><i class="fa-solid fa-ship"></i> Tamatave</button>
-            <button class="nav-btn" data-page="toliara"><i class="fa-solid fa-sun"></i> Tuléar</button>
-            <button class="nav-btn" data-page="fianarantsoa"><i class="fa-solid fa-train"></i> Fianar</button>
-            <button class="nav-btn" data-page="outils"><i class="fa-solid fa-toolbox"></i> Outils</button>
-            <button class="nav-btn" data-page="langue"><i class="fa-solid fa-comments"></i> Langue</button>
+
+            <button class="nav-btn" onclick="navigateToPage('antsiranana')" data-page="antsiranana"><i
+                    class="fa-solid fa-anchor"></i> Diego</button>
+            <button class="nav-btn" onclick="navigateToPage('nosybe')" data-page="nosybe"><i
+                    class="fa-solid fa-umbrella-beach"></i> Nosy Be</button>
+            <button class="nav-btn" onclick="navigateToPage('mahajanga')" data-page="mahajanga"><i
+                    class="fa-solid fa-sun"></i> Majunga</button>
+            <button class="nav-btn" onclick="navigateToPage('toamasina')" data-page="toamasina"><i
+                    class="fa-solid fa-ship"></i> Tamatave</button>
+            <button class="nav-btn" onclick="navigateToPage('toliara')" data-page="toliara"><i
+                    class="fa-solid fa-road"></i> Tuléar</button>
+            <button class="nav-btn" onclick="navigateToPage('fianarantsoa')" data-page="fianarantsoa"><i
+                    class="fa-solid fa-train"></i> Fianar</button>
+            <button class="nav-btn" onclick="navigateToPage('antananarivo')" data-page="antananarivo"><i
+                    class="fa-solid fa-landmark"></i> Tana</button>
+            <div style="width: 1px; background: rgba(0,0,0,0.1); margin: 0 4px;"></div>
+            <button class="nav-btn" onclick="navigateToPage('outils')" data-page="outils"><i
+                    class="fa-solid fa-toolbox"></i> Outils</button>
+            <button class="nav-btn" onclick="navigateToPage('langue')" data-page="langue"><i
+                    class="fa-solid fa-comments"></i> Langue</button>
         </div>
     </nav>
 
@@ -2988,70 +3102,249 @@
     <main class="main-content">
         <!-- ACCUEIL (Tout) -->
         <section id="page-accueil" class="page-section active">
-            <div class="city-header premium-banner-tout">
-                <div class="banner-content">
-                    <h2 class="city-title">Tout le Nord</h2>
-                    <p class="city-desc">Tous les lieux, toutes les envies. Explorez sans limite.</p>
+
+            <!-- Banner -->
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%); border-left: 4px solid var(--laterite);">
+                <div class="banner-content" style="width: 100%;">
+                    <h2 class="city-title">Bienvenue au Nord</h2>
+                    <p class="city-desc">Votre guide expert pour explorer les terres rouges.</p>
+
+                    <!-- Global Search Bar -->
+                    <div style="margin-top:20px; position:relative; max-width: 500px;">
+                        <input type="text" id="globalSearchInput"
+                            placeholder="Rechercher un lieu, un hôtel, une plage..."
+                            style="width: 100%; padding: 12px 48px 12px 20px; border-radius: 50px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: var(--font-body); font-size: 1rem; color: var(--text-primary);">
+                        <button
+                            style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: var(--laterite); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <i class="fas fa-search" style="font-size: 0.9rem;"></i>
+                        </button>
+
+                        <!-- Search Results Dropdown -->
+                        <div id="searchResults"
+                            style="display:none; position: absolute; top: 110%; left: 0; right: 0; background: var(--bg-primary); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-height: 60vh; overflow-y: auto; z-index: 1000; padding: 10px 0;">
+                            <!-- Results injected here -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="all-lieux-container" class="lieux-grid"></div>
+
+            <!-- Dashboard Grid -->
+            <div style="display: grid; gap: 20px; padding-bottom: 80px;">
+
+                <!-- 0. Seasonal Widget (Expert Feature) -->
+                <div id="seasonal-widget"
+                    style="background: linear-gradient(135deg, #2c3e50, #4ca1af); border-radius: 16px; padding: 20px; color: white; border-left: 4px solid #f1c40f; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span
+                            style="font-size:0.75rem; text-transform:uppercase; font-weight:700; background:rgba(255,255,255,0.2); padding:4px 8px; border-radius:4px; letter-spacing:0.5px;">📅
+                            L'Instant Voyage</span>
+                        <i class="fas fa-star" style="color: #f1c40f;"></i>
+                    </div>
+                    <h3 id="seasonal-title"
+                        style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px;">En ce moment...
+                    </h3>
+                    <p id="seasonal-desc" style="opacity: 0.95; font-size: 0.95rem; margin-bottom: 0; line-height:1.4;">
+                        Un conseil d'expert pour votre voyage.</p>
+                </div>
+
+                <!-- 0.5 Map Discovery Card (Re-added per user request) -->
+                <div onclick="navigateToPage('carte')"
+                    style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/spots/parc-isalo.jpg'); background-size: cover; background-position: center; border-radius: 16px; padding: 24px; color: white; cursor: pointer; display:flex; align-items:center; justify-content:space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);">
+                    <div>
+                        <div
+                            style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:#f1c40f; margin-bottom:4px;">
+                            Exploration</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin:0;">Carte Interactive 🗺️
+                        </h3>
+                    </div>
+                    <div
+                        style="background:white; color:var(--text-primary); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- 1. Hero Grid: Les 6 Provinces -->
+                <div>
+                    <h3
+                        style="font-size: 1.2rem; margin-bottom: 16px; color: var(--text-primary); font-weight: 800; margin-left:8px; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-map-location-dot" style="color:var(--laterite);"></i> Nos Destinations
+                    </h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+
+                        <!-- Diego (Antsiranana) -->
+                        <div onclick="navigateToPage('antsiranana')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/iles/mer-emeraude.jpg"
+                                style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--laterite);">
+                                    Nord</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Diego Suarez</div>
+                            </div>
+                        </div>
+
+                        <!-- Nosy Be (Part of Antsiranana technically, but user often treats distinct. Wait, user said '6 Provinces'. Nosy Be is in Antsiranana. But Tana, Tamatave etc. Let's stick to 6 PROVINCES for the grid as requested, or maybe 6 DESTINATIONS?) 
+                             The user said "un onglet qui regroupe donc les 6 différentes cartes des différentes provinces".
+                             If I do the 6 OFFICIAL provinces: Antsiranana, Antananarivo, Mahajanga, Toamasina, Fianarantsoa, Toliara.
+                             Nosy Be is inside Antsiranana.
+                             However, purely for tourism, Nosy Be is huge. 
+                             But the prompt says "grid of the 6 Malagasy provinces". 
+                             I will do the 6 PROVINCES. Diego covers Nosy Be in my logic usually? 
+                             Actually, looking at `LIEUX_DATA`, Nosy Be is a separate section but my filters use `provinceIds` like `antsiranana`.
+                             I will stick to the 6 OFFICIAL PROVINCES to be safe and accurate to "6 provinces".
+                             1. Antsiranana (Diego + Nosy Be)
+                             2. Antananarivo
+                             3. Mahajanga
+                             4. Toamasina
+                             5. Fianarantsoa
+                             6. Toliara
+                        -->
+
+                        <!-- Antananarivo -->
+                        <div onclick="navigateToPage('antananarivo')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/villes/palais-reine.jpg" style="width:100%; height:100%; object-fit:cover;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#bdc3c7;">
+                                    Hautes Terres</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Antananarivo</div>
+                            </div>
+                        </div>
+
+                        <!-- Mahajanga -->
+                        <div onclick="navigateToPage('mahajanga')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/spots/cirque-rouge.jpg" style="width:100%; height:100%; object-fit:cover;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#e67e22;">
+                                    Ouest</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Mahajanga</div>
+                            </div>
+                        </div>
+
+                        <!-- Toamasina -->
+                        <div onclick="navigateToPage('toamasina')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/spots/andasibe-mantadia.jpg"
+                                style="width:100%; height:100%; object-fit:cover;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#2ecc71;">
+                                    Est</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Toamasina</div>
+                            </div>
+                        </div>
+
+                        <!-- Fianarantsoa -->
+                        <div onclick="navigateToPage('fianarantsoa')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/fianarantsoa/fianar_gare_fce.png"
+                                style="width:100%; height:100%; object-fit:cover;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#9b59b6;">
+                                    Hautes Terres</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Fianarantsoa</div>
+                            </div>
+                        </div>
+
+                        <!-- Toliara -->
+                        <div onclick="navigateToPage('toliara')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/spots/parc-isalo.jpg" style="width:100%; height:100%; object-fit:cover;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#f1c40f;">
+                                    Sud</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Toliara</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 3. Tools Teaser -->
+                <div onclick="navigateToPage('outils')"
+                    style="background: var(--bg-secondary); padding: 16px; border-radius: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                    <div
+                        style="background: rgba(176, 48, 48, 0.1); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: var(--laterite); font-size: 1.2rem;">
+                        <i class="fas fa-toolbox"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 1.05rem;">Boîte à Outils</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">Convertisseur, Taxi,
+                            Vocabulaire...</div>
+                    </div>
+                    <i class="fas fa-chevron-right"
+                        style="margin-left: auto; color: var(--text-secondary); opacity: 0.5;"></i>
+                </div>
+            </div>
+
+            <script>
+                // Expert Seasonal Logic
+                (function () {
+                    const month = new Date().getMonth();
+                    const tips = [
+                        { m: "Janvier", t: "Saison des Pluies", d: "Les orchidées fleurissent. Privilégiez les hauts plateaux." },
+                        { m: "Février", t: "Cyclones & Chaleur", d: "Météo capricieuse. Nosy Be reste une valeur sûre entre deux averses." },
+                        { m: "Mars", t: "Fin des Pluies", d: "La nature est luxuriante et verte. Le Nord redevient accessible." },
+                        { m: "Avril", t: "Le Renouveau", d: "Saison idéale pour le trekking. Ni trop chaud, ni trop sec." },
+                        { m: "Mai", t: "Début de la Fraîcheur", d: "Parfait pour Nosy Be et les Tsingy qui ouvrent leurs pistes." },
+                        { m: "Juin", t: "L'Hiver Austral", d: "Les nuits sont fraîches à Tana. Cap sur les plages du Nord !" },
+                        { m: "Juillet", t: "Les Baleines sont là !", d: "Cap sur Sainte-Marie pour le spectacle des baleines à bosse." },
+                        { m: "Août", t: "Haute Saison", d: "Tout est accessible. Idéal pour la descente de la Nationale 7." },
+                        { m: "Septembre", t: "Douceur Tropicale", d: "Les oiseaux sont actifs. Le Nord est splendide et sec." },
+                        { m: "Octobre", t: "Les Jacarandas", d: "Tana se pare de mauve. Le Sud chauffe fort." },
+                        { m: "Novembre", t: "Avant la Pluie", d: "Il fait chaud ! Plongez dans les eaux de Nosy Be." },
+                        { m: "Décembre", t: "Letchis & Fêtes", d: "C'est la saison des letchis sur la côte Est ! Ambiance festive assurée." }
+                    ];
+                    const t = tips[month];
+                    if (t) {
+                        try {
+                            document.getElementById('seasonal-title').textContent = "En " + t.m + " : " + t.t;
+                            document.getElementById('seasonal-desc').textContent = t.d;
+                        } catch (e) { }
+                    }
+                })();
+            </script>
+
+            <!-- Hidden Containers for JS compat -->
+            <div id="all-lieux-container" style="display:none;"></div>
+            <div id="explorer-container" style="display:none;"></div>
+
         </section>
 
-        <!-- EXPLORER (Filtres) -->
-        <section id="page-explorer" class="page-section">
-            <div class="city-header premium-banner-explorer">
-                <div class="banner-content">
-                    <h2 class="city-title">Exploration</h2>
-                    <p class="city-desc">Filtrer par catégorie, envie ou proximité.</p>
-                </div>
-            </div>
+        <!-- EXPLORER REMOVED (Merged into Dashboard) -->
 
-            <!-- UI FILTRES PROVINCE & BUDGET (Sticky) -->
-            <div class="province-filter-container">
-                <button class="filter-pill active" onclick="filterExplorerByZone('all', this)">Tout</button>
-                <button class="filter-pill" onclick="filterExplorerByZone('Diego-Suarez', this)">Diego-Suarez</button>
-                <button class="filter-pill" onclick="filterExplorerByZone('Nosy Be', this)">Nosy Be</button>
-                <button class="filter-pill" onclick="filterExplorerByZone('Mahajanga', this)">Majunga</button>
-                <button class="filter-pill" onclick="filterExplorerByZone('SAVA', this)">SAVA</button>
-                <button class="filter-pill" onclick="filterExplorerByZone('Ankarana', this)">Ankarana</button>
-
-                <div style="width:1px; height:24px; background:var(--border-color); margin:0 8px;"></div>
-
-                <button class="filter-pill" onclick="toggleBudgetFilter('low', this)">€</button>
-                <button class="filter-pill" onclick="toggleBudgetFilter('mid', this)">€€</button>
-                <button class="filter-pill" onclick="toggleBudgetFilter('high', this)">€€€</button>
-            </div>
-
-            <!-- UI FILTRES CATEGORIES (Injecté pour Harmony) -->
-            <div class="explorer-filters-container">
-                <div class="nav-pills">
-                    <label class="nav-pill filter-chip-map" data-filter="favorites"
-                        onclick="toggleFilter(this, 'favorites')">
-                        <input type="checkbox" id="filter-favorites-expl" style="display:none;">
-                        <i class="fa-solid fa-heart"></i> Pépites
-                    </label>
-                    <label class="nav-pill filter-chip-map" data-filter="manger" onclick="toggleFilter(this, 'manger')">
-                        <input type="checkbox" id="filter-manger-expl" style="display:none;">
-                        <i class="fa-solid fa-utensils"></i> Manger
-                    </label>
-                    <label class="nav-pill filter-chip-map" data-filter="dodo" onclick="toggleFilter(this, 'dodo')">
-                        <input type="checkbox" id="filter-dodo-expl" style="display:none;">
-                        <i class="fa-solid fa-bed"></i> Dormir
-                    </label>
-                    <label class="nav-pill filter-chip-map" data-filter="activite"
-                        onclick="toggleFilter(this, 'explorer')">
-                        <input type="checkbox" id="filter-explorer-expl" style="display:none;">
-                        <i class="fa-solid fa-binoculars"></i> Activités
-                    </label>
-                    <label class="nav-pill filter-chip-map" data-filter="sortir" onclick="toggleFilter(this, 'sortir')">
-                        <input type="checkbox" id="filter-sortir-expl" style="display:none;">
-                        <i class="fa-solid fa-music"></i> Sortir
-                    </label>
-                </div>
-            </div>
-
-            <div id="explorer-container" class="lieux-grid"></div>
-        </section>
 
         <!-- ITINERAIRES -->
         <section id="page-itineraires" class="page-section">
@@ -3196,13 +3489,337 @@
             </div>
         </section>
 
-        <!-- Pages Provinces (template dynamique) -->
-        <section id="page-antananarivo" class="page-section"></section>
-        <section id="page-antsiranana" class="page-section"></section>
-        <section id="page-fianarantsoa" class="page-section"></section>
-        <section id="page-mahajanga" class="page-section"></section>
-        <section id="page-toamasina" class="page-section"></section>
-        <section id="page-toliara" class="page-section"></section>
+        <!-- PAGE DESTINATIONS (DEMO) -->
+        <section id="page-destinations-demo" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);">
+                <div class="banner-content">
+                    <h2 class="city-title">🏝️ Nos Destinations</h2>
+                    <p class="city-desc">Explorez les 6 provinces emblématiques de Madagascar.</p>
+                </div>
+            </div>
+
+            <!-- GRILLE HERO (PROVINCES) -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 20px;">
+
+                <!-- 1. DIEGO-SUAREZ (Nord) -->
+                <div onclick="navigateToPage('antsiranana')" class="province-card">
+                    <div class="card-bg" style="background-image: url('images/villes/diego-suarez.jpg');"></div>
+                    <div class="card-overlay">
+                        <div class="card-title">Diego-Suarez</div>
+                        <div class="card-subtitle">Mers & Tsingy</div>
+                    </div>
+                </div>
+
+                <!-- 2. NOSY BE (L'Ile aux Parfums) -->
+                <div onclick="navigateToPage('nosybe')" class="province-card">
+                    <div class="card-bg" style="background-image: url('images/iles/nosy-komba.jpg');"></div>
+                    <div class="card-overlay">
+                        <div class="card-title">Nosy Be</div>
+                        <div class="card-subtitle">Plages & Luxe</div>
+                    </div>
+                </div>
+
+                <!-- 3. ANTANANARIVO (Capitale) -->
+                <div onclick="navigateToPage('antananarivo')" class="province-card">
+                    <div class="card-bg"
+                        style="background-image: url('images/tana/tana_ambohimanga_royal_hill_1765475311821.png');">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-title">Antananarivo</div>
+                        <div class="card-subtitle">Histoire & Palais</div>
+                    </div>
+                </div>
+
+                <!-- 4. MAHAJANGA (Ouest) -->
+                <div onclick="navigateToPage('mahajanga')" class="province-card">
+                    <div class="card-bg"
+                        style="background-image: url('images/mahajanga/mahajanga_baobab_tree_1765470123908.png');">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-title">Mahajanga</div>
+                        <div class="card-subtitle">Baobabs & Soleil</div>
+                    </div>
+                </div>
+
+                <!-- 5. TOAMASINA (Est) -->
+                <div onclick="navigateToPage('toamasina')" class="province-card">
+                    <div class="card-bg" style="background-image: url('images/iles/ile-aux-nattes.jpg');"></div>
+                    <div class="card-overlay">
+                        <div class="card-title">Tamatave</div>
+                        <div class="card-subtitle">Canal & Forêts</div>
+                    </div>
+                </div>
+
+                <!-- 6. FIANARANTSOA (Sud-Est) -->
+                <div onclick="navigateToPage('fianarantsoa')" class="province-card">
+                    <div class="card-bg" style="background-image: url('images/fianarantsoa/fianar_haute_ville.png');">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-title">Fianarantsoa</div>
+                        <div class="card-subtitle">Vignobles & Train</div>
+                    </div>
+                </div>
+
+                <!-- 7. TULÉAR (Sud) -->
+                <div onclick="navigateToPage('toliara')" class="province-card">
+                    <div class="card-bg" style="background-image: url('images/toliara/toliara_placeholder.png');"></div>
+                    <div class="card-overlay">
+                        <div class="card-title">Tuléar</div>
+                        <div class="card-subtitle">Lagon & Vezo</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Pages Provinces (Contenu Riche) -->
+
+        <!-- Antananarivo -->
+        <section id="page-antananarivo" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/tana/tana_ambohimanga_royal_hill_1765475311821.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
+                            class="fas fa-arrow-left"></i> Retour</button>
+                    <h2 class="city-title">Antananarivo</h2>
+                    <p class="city-desc">Capitale historique et culturelle.</p>
+                </div>
+            </div>
+            <!-- Filter Menu -->
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antananarivo', this)">Tout</button>
+                <button class="nav-pill"
+                    onclick="filterProvinceItems('explorer', 'Antananarivo', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antananarivo', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antananarivo', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antananarivo', this)">Sortir</button>
+                <div class="sep-vertical"></div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Antananarivo', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Antananarivo', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Antananarivo', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Antananarivo" style="padding: 0 20px; margin-bottom: 20px;"></div>
+            <div id="grid-Antananarivo" class="lieux-grid" style="padding:20px;">
+                <!-- Hydrated -->
+            </div>
+        </section>
+
+        <!-- Antsiranana (Diego) -->
+        <section id="page-antsiranana" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/villes/diego-suarez.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
+                            class="fas fa-arrow-left"></i> Retour</button>
+                    <h2 class="city-title">Diego-Suarez</h2>
+                    <p class="city-desc">Merveilles du Nord et Tsingy.</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antsiranana', this)">Tout</button>
+                <button class="nav-pill"
+                    onclick="filterProvinceItems('explorer', 'Antsiranana', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antsiranana', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antsiranana', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antsiranana', this)">Sortir</button>
+                <div class="sep-vertical"></div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Antsiranana', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Antsiranana', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Antsiranana', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Antsiranana" style="padding: 0 20px; margin-bottom: 20px;"></div>
+
+            <div id="grid-Antsiranana" class="lieux-grid" style="padding:20px;">
+                <!-- Hydrated -->
+            </div>
+        </section>
+
+        <!-- Nosy Be (NEW INDEPENDENT PAGE) -->
+        <section id="page-nosybe" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/nosy-komba.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
+                            class="fas fa-arrow-left"></i> Retour</button>
+                    <h2 class="city-title">Nosy Be</h2>
+                    <p class="city-desc">L'île aux Parfums & Archipel.</p>
+                </div>
+            </div>
+
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Nosy Be', this)">Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Nosy Be', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Nosy Be', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Nosy Be', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Nosy Be', this)">Sortir</button>
+                <div class="sep-vertical"></div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Nosy Be', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Nosy Be', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Nosy Be', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-NosyBe" style="padding: 0 20px; margin-bottom: 20px;"></div>
+
+            <div id="grid-NosyBe" class="lieux-grid" style="padding:20px;">
+                <!-- Hydrated -->
+            </div>
+        </section>
+
+        <!-- Fianarantsoa -->
+        <section id="page-fianarantsoa" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/fianarantsoa/fianar_haute_ville.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <h2 class="city-title">Fianarantsoa</h2>
+                    <p class="city-desc">La route des vins et du thé.</p>
+                </div>
+            </div>
+            <!-- Filter Menu -->
+            <div class="province-filter-container"
+                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Fianarantsoa', this)">Tout</button>
+                <button class="nav-pill"
+                    onclick="filterProvinceItems('explorer', 'Fianarantsoa', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Fianarantsoa', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Fianarantsoa', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Fianarantsoa', this)">Sortir</button>
+                <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
+                </div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Fianarantsoa', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Fianarantsoa', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Fianarantsoa', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Fianarantsoa" style="padding: 0 20px; margin-bottom: 20px;"></div>
+            <div id="grid-Fianarantsoa" class="lieux-grid" style="padding:20px;">
+                <div class="shortcut-card" style="padding:20px; text-align:center;">
+                    <h3>🚂 Train FCE</h3>
+                    <p>Une aventure ferroviaire mythique.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mahajanga -->
+        <section id="page-mahajanga" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/mahajanga/mahajanga_baobab_tree_1765470123908.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <h2 class="city-title">Mahajanga</h2>
+                    <p class="city-desc">La cité des fleurs et des baobabs.</p>
+                </div>
+            </div>
+            <!-- Filter Menu -->
+            <div class="province-filter-container"
+                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Mahajanga', this)">Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Mahajanga', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Mahajanga', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Mahajanga', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Mahajanga', this)">Sortir</button>
+                <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
+                </div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Mahajanga', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Mahajanga', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Mahajanga', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Mahajanga" style="padding: 0 20px; margin-bottom: 20px;"></div>
+            <div id="grid-Mahajanga" class="lieux-grid" style="padding:20px;">
+                <div class="shortcut-card" style="padding:20px; text-align:center;">
+                    <h3>🌳 Baobab Centenaire</h3>
+                    <p>Symbole de la ville.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toamasina -->
+        <section id="page-toamasina" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/ile-aux-nattes.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <h2 class="city-title">Toamasina</h2>
+                    <p class="city-desc">Port principal et Canal des Pangalanes.</p>
+                </div>
+            </div>
+            <!-- Filter Menu -->
+            <div class="province-filter-container"
+                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toamasina', this)">Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toamasina', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toamasina', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toamasina', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toamasina', this)">Sortir</button>
+                <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
+                </div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Toamasina', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Toamasina', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Toamasina', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Toamasina" style="padding: 0 20px; margin-bottom: 20px;"></div>
+            <div id="grid-Toamasina" class="lieux-grid" style="padding:20px;">
+                <div class="shortcut-card" style="padding:20px; text-align:center;">
+                    <h3>⛵ Canal des Pangalanes</h3>
+                    <p>Navigation fluviale unique.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toliara -->
+        <section id="page-toliara" class="page-section">
+            <div class="city-header premium-banner-tout"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/toliara_placeholder.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
+                <div class="banner-content">
+                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <h2 class="city-title">Toliara</h2>
+                    <p class="city-desc">Le grand Sud et ses lagons.</p>
+                </div>
+            </div>
+            <!-- Filter Menu -->
+            <div class="province-filter-container"
+                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toliara', this)">Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toliara', this)">Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toliara', this)">Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toliara', this)">Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toliara', this)">Sortir</button>
+                <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
+                </div>
+                <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Toliara', this)">€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Toliara', this)">€€</button>
+                <button class="nav-pill" onclick="toggleProvinceBudget('high', 'Toliara', this)">€€€</button>
+            </div>
+            <!-- Premium Info Container (Logistics) -->
+            <div id="premium-container-Toliara" style="padding: 0 20px; margin-bottom: 20px;"></div>
+            <div id="grid-Toliara" class="lieux-grid" style="padding:20px;">
+                <div class="shortcut-card" style="padding:20px; text-align:center;">
+                    <h3>🏖️ Ifaty & Anakao</h3>
+                    <p>Plages paradisiaques.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Page Spots Locaux -->
         <section id="page-spots" class="page-section">
@@ -3210,7 +3827,8 @@
                 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--laterite);">
                 🔥 Spots Locaux Authentiques</h2>
             <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
-                Ces lieux sont <strong>inaccessibles sans contact humain local</strong>. Non référencés sur Google Maps,
+                Ces lieux sont <strong>inaccessibles sans contact humain local</strong>. Non référencés sur Google
+                Maps,
                 absents des guides touristiques traditionnels.
             </p>
             <div id="spotsContainer" class="lieux-grid"></div>
@@ -3308,6 +3926,21 @@
                                 <li>Forte humidité</li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Paramètres -->
+                <div class="tool-card">
+                    <h3 class="tool-title">⚙️ Maintenance</h3>
+                    <p style="color:var(--text-secondary); margin-bottom:15px; font-size:0.9rem;">Si l'application
+                        semble lente ou buggée, vous pouvez réinitialiser les données.</p>
+                    <button onclick="resetApp()" class="btn-action-secondary"
+                        style="width:100%; border:1px solid #e74c3c; color:#e74c3c; background:rgba(231, 76, 60, 0.1);">
+                        <i class="fas fa-trash-alt"></i> Réinitialiser l'application
+                    </button>
+                    <div
+                        style="text-align:center; margin-top:10px; font-size:0.75rem; color:var(--text-secondary); opacity:0.6;">
+                        Version 2.4.0 (Premium)
                     </div>
                 </div>
 
@@ -3423,19 +4056,7 @@
         </section>
     </main>
 
-    <!-- Modal Détails -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">×</button>
-            <img id="modalImage" class="modal-image" src="" alt="" loading="lazy">
-            <div class="modal-body">
-                <h2 id="modalTitle" class="modal-title"></h2>
-                <div id="modalBadges" style="margin-bottom: 16px;"></div>
-                <div id="modalInfoGrid" class="modal-info-grid"></div>
-                <div id="modalSections"></div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Install Prompt -->
     <div id="installPrompt" class="install-prompt">
@@ -3443,6 +4064,11 @@
         <button class="install-btn" id="installBtn">Installer</button>
         <button class="install-close" id="installClose">×</button>
     </div>
+
+    <!-- External Data -->
+    <script src="data/lieux.js"></script>
+    <script src="data/itineraires.js"></script>
+    <script src="data/phrases.js"></script>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
@@ -3483,2220 +4109,8 @@
         </div>
     </div>
 
-    <script>
-        // ============================================
-        // DONNÉES
-        // ============================================
-
-
-        const PHRASES_DATA = {
-            "Salutations & Politesse": [
-                { fr: "Bonjour", mg: "Manao ahoana", phonetic: "man-ao a-ho-ana" },
-                { fr: "Merci", mg: "Misaotra", phonetic: "mi-sao-tra" },
-                { fr: "S'il vous plaît", mg: "Azafady", phonetic: "a-za-fa-dy" },
-                { fr: "Excusez-moi", mg: "Miala tsiny", phonetic: "mi-a-la tsi-ny" },
-                { fr: "Au revoir", mg: "Veloma", phonetic: "ve-lo-ma" },
-                { fr: "Oui", mg: "Eny", phonetic: "e-ny" },
-                { fr: "Non", mg: "Tsia", phonetic: "tsi-a" }
-            ],
-            "Se présenter": [
-                { fr: "Je m'appelle...", mg: "[Nom] no anarako", phonetic: "[nom] no a-na-ra-ko" },
-                { fr: "Je suis français(e)", mg: "Frantsay aho", phonetic: "fran-tsaï a-ho" },
-                { fr: "Je ne parle pas malgache", mg: "Tsy mahay miteny malagasy aho", phonetic: "tsi ma-haï mi-te-ny ma-la-ga-sy a-ho" },
-                { fr: "Je suis en vacances", mg: "Miala sasatra aho", phonetic: "mi-a-la sa-sa-tra a-ho" },
-                { fr: "Enchanté(e)", mg: "Faly mahafantatra anao", phonetic: "fa-ly ma-ha-fan-ta-tra a-nao" }
-            ],
-            "Se déplacer": [
-                { fr: "Où est la plage ?", mg: "Aiza ny moron-dranomasina ?", phonetic: "aï-za ni mo-ron-dra-no-ma-si-na" },
-                { fr: "Combien pour Diego ?", mg: "Hoatrinona ny ho any Antsiranana ?", phonetic: "ho-a-tri-no-na ni ho a-ny an-tsi-ra-na-na" },
-                { fr: "Je suis perdu(e)", mg: "Very làlana aho", phonetic: "ve-ry la-la-na a-ho" },
-                { fr: "C'est loin ?", mg: "Lavitra ve ?", phonetic: "la-vi-tra ve" },
-                { fr: "À droite", mg: "Havanana", phonetic: "ha-va-na-na" },
-                { fr: "À gauche", mg: "Havia", phonetic: "hi-vi-a" },
-                { fr: "Tout droit", mg: "Mahitsy", phonetic: "ma-hit-sy" },
-                { fr: "Arrêtez ici", mg: "Mijanona eto", phonetic: "mi-ja-no-na e-to" }
-            ],
-            "Négocier & Acheter": [
-                { fr: "Combien ça coûte ?", mg: "Ohatrinona ny vidiny ?", phonetic: "o-ha-tri-no-na ni vi-di-ny" },
-                { fr: "C'est trop cher", mg: "Lafo be loatra izany", phonetic: "la-fo be lo-a-tra i-za-ny" },
-                { fr: "Moins cher possible ?", mg: "Mora kokoa ve ?", phonetic: "mo-ra ko-ko-a ve" },
-                { fr: "Je prends ça", mg: "Alako io", phonetic: "a-la-ko i-o" },
-                { fr: "Vous acceptez les euros ?", mg: "Mandray euros ve ianao ?", phonetic: "man-draï e-u-ros ve i-a-nao" },
-                { fr: "Pas de monnaie", mg: "Tsy misy vola madinika", phonetic: "tsi mi-sy vo-la ma-di-ni-ka" }
-            ],
-            "Restaurant": [
-                { fr: "Une table pour deux", mg: "Latabatra roa azafady", phonetic: "la-ta-ba-tra ro-a a-za-fa-dy" },
-                { fr: "Le menu s'il vous plaît", mg: "Ny menu azafady", phonetic: "ni me-nu a-za-fa-dy" },
-                { fr: "L'addition", mg: "Ny faktiora", phonetic: "ni fak-ti-o-ra" },
-                { fr: "C'était délicieux", mg: "Matsiro be", phonetic: "ma-tsi-ro be" },
-                { fr: "Eau minérale", mg: "Rano mineraly", phonetic: "ra-no mi-ne-ra-ly" },
-                { fr: "Sans piment", mg: "Tsy misy sakay", phonetic: "tsi mi-sy sa-kaï" },
-                { fr: "Je suis végétarien(ne)", mg: "Tsy mihinana hena aho", phonetic: "tsi mi-hi-na-na he-na a-ho" }
-            ],
-            "Nombres": [
-                { fr: "1", mg: "Iray", phonetic: "i-raï" },
-                { fr: "2", mg: "Roa", phonetic: "ro-a" },
-                { fr: "3", mg: "Telo", phonetic: "te-lo" },
-                { fr: "4", mg: "Efatra", phonetic: "e-fa-tra" },
-                { fr: "5", mg: "Dimy", phonetic: "di-my" },
-                { fr: "10", mg: "Folo", phonetic: "fo-lo" },
-                { fr: "100", mg: "Zato", phonetic: "za-to" },
-                { fr: "1 000", mg: "Arivo", phonetic: "a-ri-vo" }
-            ],
-            "Urgence & Santé": [
-                { fr: "Aidez-moi !", mg: "Vonjeo aho !", phonetic: "von-je-o a-ho" },
-                { fr: "Mal à la tête", mg: "Marary ny lohako", phonetic: "ma-ra-ry ni lo-ha-ko" },
-                { fr: "Où est la pharmacie ?", mg: "Aiza ny fivarotam-panafody ?", phonetic: "aï-za ni fi-va-ro-tam-fa-na-fo-dy" },
-                { fr: "Hôpital", mg: "Hopitaly", phonetic: "ho-pi-ta-ly" },
-                { fr: "J'ai besoin d'un docteur", mg: "Mila dokotera aho", phonetic: "mi-la do-ko-te-ra a-ho" },
-                { fr: "Allergie", mg: "Alerizy", phonetic: "a-le-ri-zy" }
-            ],
-            "Hébergement & Météo": [
-                { fr: "Hôtel", mg: "Hotely", phonetic: "ho-te-ly" },
-                { fr: "Chambre", mg: "Efitrano", phonetic: "e-fi-tra-no" },
-                { fr: "Il fait chaud", mg: "Mafana", phonetic: "ma-fa-na" },
-                { fr: "Il pleut", mg: "Avy ny orana", phonetic: "a-vy ni o-ra-na" }
-            ]
-        };
-
-        const CHECKLIST_ITEMS = [
-            "SIM locale Telma",
-            "Argent liquide (CB rare)",
-            "Adaptateur prise C/E",
-            "Crème solaire SPF50+",
-            "Lampe frontale",
-            "Carnet + stylo",
-            "Powerbank 20 000 mAh",
-            "Sac étanche",
-            "Répulsif anti-moustiques",
-            "Trousse premiers secours"
-        ];
-
-        // ============================================
-        // VARIABLES GLOBALES
-        // ============================================
-
-        let map;
-        let markersLayer;
-        let currentTheme = localStorage.getItem('theme') || 'light';
-        let exchangeRate = parseFloat(localStorage.getItem('exchangeRate')) || 4250;
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let checklist = JSON.parse(localStorage.getItem('checklist')) || [];
-        let deferredPrompt;
-
-        // ============================================
-        // INITIALISATION
-        // ============================================
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initData().then(() => {
-                initTheme();
-                initNavigation();
-                initMap();
-                initLanguePage();
-                initOutilsPage();
-                initCityPages();
-                initItinerariesPage();
-                initSpotsPage();
-                initModal();
-                initInstallPrompt();
-                registerServiceWorker();
-
-                initGeolocation();
-            });
-        });
-
-
-
-        // ============================================
-        // GEOLOCALISATION
-        // ============================================
-        function initGeolocation() {
-            const btnLocate = document.getElementById('btnLocateMe');
-            if (!btnLocate) return;
-
-            btnLocate.addEventListener('click', () => {
-                if ("geolocation" in navigator) {
-                    btnLocate.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Localisation...';
-
-                    navigator.geolocation.getCurrentPosition(position => {
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-
-                        // Centrer la carte
-                        map.setView([lat, lng], 13);
-
-                        // Marqueur utilisateur
-                        const userIcon = L.divIcon({
-                            className: 'user-marker',
-                            html: '<div style="background:#4285F4; width:16px; height:16px; border:3px solid white; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,0.3);"></div>',
-                            iconSize: [20, 20],
-                            iconAnchor: [10, 10]
-                        });
-
-                        L.marker([lat, lng], { icon: userIcon })
-                            .addTo(map)
-                            .bindPopup("Vous êtes ici !")
-                            .openPopup();
-
-                        btnLocate.innerHTML = '<i class="fas fa-check"></i> Trouvé !';
-                        setTimeout(() => {
-                            btnLocate.innerHTML = '<i class="fas fa-location-crosshairs"></i> Autour de moi';
-                        }, 2000);
-
-                    }, error => {
-                        alert("Erreur de localisation : " + error.message);
-                        btnLocate.innerHTML = '<i class="fas fa-location-crosshairs"></i> Autour de moi';
-                    });
-                } else {
-                    alert("Votre navigateur ne supporte pas la géolocalisation.");
-                }
-            });
-        }
-
-
-        // ============================================
-        // MAP FILTER LOGIC (SMART EXCLUSIVE)
-        // ============================================
-
-        const CITY_COORDINATES = {
-            'antananarivo': [-18.8792, 47.5079, 12],
-            'antsiranana': [-12.2797, 49.2917, 12],
-            'mahajanga': [-15.7167, 46.3167, 12],
-            'toamasina': [-18.1492, 49.4023, 12],
-            'toliara': [-23.3500, 43.6667, 12],
-            'fianarantsoa': [-21.4333, 47.0833, 12]
-        };
-
-        function toggleFilter(chip, type) {
-            const isCity = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'].includes(type);
-            // Added budget support
-            const isCategory = ['explorer', 'manger', 'dodo', 'sortir', 'spot', 'favorites', 'budget1', 'budget2', 'budget3'].includes(type);
-
-            const checkbox = chip.querySelector('input[type="checkbox"]');
-            if (!checkbox) return;
-
-            // 1. SMART CITY LOGIC (Exclusive + Zoom)
-            if (isCity) {
-                // If clicking a city, uncheck all other cities first
-                const allCities = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'];
-                allCities.forEach(c => {
-                    if (c !== type) {
-                        const otherCb = document.getElementById(`filter-${c}`);
-                        const otherChip = otherCb ? otherCb.parentElement : null;
-                        if (otherCb) {
-                            otherCb.checked = false;
-                            if (otherChip) otherChip.classList.remove('active');
-                        }
-                    }
-                });
-
-                // Toggle the clicked one
-                checkbox.checked = !checkbox.checked;
-
-                // Visual
-                if (checkbox.checked) {
-                    chip.classList.add('active');
-                    // ZOOM TO CITY
-                    if (CITY_COORDINATES[type] && map) {
-                        map.setView([CITY_COORDINATES[type][0], CITY_COORDINATES[type][1]], CITY_COORDINATES[type][2]);
-                    }
-                } else {
-                    chip.classList.remove('active');
-                    if (map) map.setView([-18.766947, 46.869107], 6); // Back to Global
-                }
-            }
-
-            // 2. SMART CATEGORY LOGIC (Exclusive)
-            else if (isCategory) {
-
-                // Uncheck all other categories
-                const allCats = ['explorer', 'manger', 'dodo', 'sortir', 'spot', 'favorites'];
-                allCats.forEach(c => {
-                    if (c !== type) {
-                        const otherCb = document.getElementById(`filter-${c}`);
-                        const otherChip = otherCb ? otherCb.parentElement : null;
-                        if (otherCb) {
-                            otherCb.checked = false;
-                            if (otherChip) otherChip.classList.remove('active');
-                        }
-                    }
-                });
-
-                // Force Check the clicked one (Exclusive Select)
-                if (!checkbox.checked) {
-                    checkbox.checked = true;
-                    chip.classList.add('active');
-                } else {
-                    // If already checked, uncheck it -> Show Everything (Empty Filter = All)
-                    checkbox.checked = false;
-                    chip.classList.remove('active');
-                }
-            }
-
-            // Update Map
-            updateMapMarkers();
-        }
-
-        // ============================================
-        // GESTION DES FAVORIS
-        // ============================================
-        function toggleLieuFavorite(id, btnElement, event) {
-            if (event) event.stopPropagation(); // Avoid triggering card click
-            const index = favorites.indexOf(id);
-
-            if (index === -1) {
-                favorites.push(id);
-                btnElement.classList.add('active');
-                btnElement.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
-                showToast("Ajouté aux favoris");
-            } else {
-                favorites.splice(index, 1);
-                btnElement.classList.remove('active');
-                btnElement.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
-                showToast("Retiré des favoris");
-            }
-
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            updateMapMarkers(); // Refresh map to show/hide hearts if needed
-        }
-
-        function isFavorite(id) {
-            return favorites.includes(id);
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'install-prompt active'; // Reuse existing style
-            toast.style.background = 'rgba(0,0,0,0.8)';
-            toast.innerHTML = `<span>${message}</span>`;
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.remove();
-            }, 2000);
-        }
-
-        // ============================================
-        // THÈME
-        // ============================================
-
-        function initTheme() {
-            // Restore saved theme
-            let savedTheme = localStorage.getItem('theme') || 'light';
-            // Apply initial state
-            applyTheme(savedTheme);
-
-            const toggleBtn = document.getElementById('themeToggle');
-            if (toggleBtn) {
-                // Update icon initially
-                updateThemeIcon(toggleBtn, savedTheme);
-
-                toggleBtn.addEventListener('click', () => {
-                    // Toggle
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                    updateThemeIcon(toggleBtn, newTheme);
-                });
-            }
-        }
-
-        function applyTheme(theme) {
-            currentTheme = theme;
-            localStorage.setItem('theme', theme);
-
-            // 1. Data Attribute (for CSS variables)
-            document.documentElement.setAttribute('data-theme', theme);
-
-            // 2. Class on BODY & HTML (for color-scheme native controls)
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-                document.documentElement.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-                document.documentElement.classList.remove('dark-mode');
-            }
-        }
-
-        function updateThemeIcon(btn, theme) {
-            // Check for icon inside button or button itself
-            // Existing code used textContent, newer code uses fontawesome?
-            // Let's support both or just fontawesome as per recent tasks
-            // Based on previous view, it was toggle.textContent = ... '☀️' : '🌙';
-            // But premium design likely uses icons. Let's be safe.
-            btn.innerHTML = theme === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-        }
-
-        // ============================================
-        // NAVIGATION
-        // ============================================
-
-        function initNavigation() {
-            const navBtns = document.querySelectorAll('.nav-btn');
-            const shortcuts = document.querySelectorAll('.shortcut-card');
-
-            navBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const page = btn.dataset.page;
-                    navigateToPage(page);
-                });
-            });
-
-            shortcuts.forEach(card => {
-                card.addEventListener('click', () => {
-                    const page = card.dataset.goto;
-                    navigateToPage(page);
-                });
-            });
-        }
-
-        function navigateToPage(pageName) {
-            console.log('Navigating to:', pageName);
-
-            // MAPPING DES PAGES VIRTUELLES (REMOVED)
-            // 'accueil' and 'explorer' must be treated as independent pages now
-            let targetId = pageName;
-
-            // 1. Cacher toutes les sections
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-                section.style.display = 'none'; // Force hide
-            });
-
-            // 2. Retirer active de tous les boutons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // 3. Afficher la section demandée
-            const targetSection = document.getElementById(`page-${targetId}`);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                targetSection.style.display = 'block'; // Force show
-
-                // Hack: Si c'est la carte, forcer le resize pour éviter le gris
-                if (targetId === 'carte' && window.map) {
-                    setTimeout(() => {
-                        window.map.invalidateSize();
-                    }, 100);
-                }
-            } else {
-                console.error('Section introuvable:', `page-${targetId}`);
-            }
-
-            // 4. Activer le bouton correspondant (sur la page demandée initialement)
-            const activeBtn = document.querySelector(`.nav-btn[data-page="${pageName}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-
-            // 5. Logiciel Spécifique (Filtres auto)
-            // 5. Logiciel Spécifique (Nettoyage)
-            // (Ancienne logique de simulation de clic supprimée)
-            if (pageName === 'accueil') {
-                // Reset filters if needed or do nothing
-            }
-            if (pageName === 'accueil') {
-                // Reset filters or ensure "Tout" ? 
-                // For now just show map default state (filters are sticky usually)
-            }
-
-            // 6. Scroll en haut
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ============================================
-        // CARTE
-        // ============================================
-
-        function initMap() {
-            map = L.map('map').setView([-18.8792, 47.5079], 6);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 18
-            }).addTo(map);
-
-            markersLayer = L.markerClusterGroup({
-                chunkedLoading: true,
-                spiderfyOnMaxZoom: true,
-                showCoverageOnHover: false,
-                zoomToBoundsOnClick: true
-            });
-
-            // Auto-Center Popup Logic (Smart Pan)
-            map.on('popupopen', function (e) {
-                const popup = e.popup;
-                if (!popup) return;
-
-                // Small delay to ensure layout is computed
-                setTimeout(() => {
-                    if (popup._container && popup._latlng) {
-                        const px = map.project(popup._latlng); // Marker position in pixels
-                        const popupHeight = popup._container.clientHeight;
-
-                        // We want the center of the popup to be the center of the screen
-                        // Popup is ABOVE the marker. So its center is: MarkerY - (PopupHeight / 2) - (IconHeight aprox 20)
-                        px.y -= (popupHeight / 2) + 30;
-
-                        map.panTo(map.unproject(px), { animate: true, duration: 0.5 });
-                    }
-                }, 10);
-            });
-
-            updateMapMarkers();
-            map.addLayer(markersLayer);
-
-            // Filtres
-            document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', updateMapMarkers);
-            });
-        }
-
-        function updateMapMarkers() {
-            markersLayer.clearLayers();
-
-            const filters = getActiveFilters();
-            const filteredLieux = LIEUX_DATA.filter(lieu => lieu.nom && matchesFilters(lieu, filters));
-
-            filteredLieux.forEach(lieu => {
-                const icon = L.divIcon({
-                    className: 'custom-marker',
-                    html: lieu.spotLocal ? '📍' : '📌',
-                    iconSize: [32, 32]
-                });
-
-                const marker = L.marker([lieu.lat, lieu.lng], { icon });
-
-                const popupContent = `
-                    <div class="popup-wrapper">
-                        <div class="popup-image-container" style="background-image: url('${lieu.image}');">
-                             <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-popup-overlay ${isFavorite(lieu.id) ? 'active' : ''}">
-                                ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
-                            </button>
-                            ${lieu.spotLocal ? '<div class="popup-type-badge" style="background:var(--laterite);">📍 Spot Local</div>' : `<div class="popup-type-badge">${lieu.type}</div>`}
-                        </div>
-                        <div class="popup-body">
-                            <h3 class="popup-title">${lieu.nom}</h3>
-                            <div class="popup-subtitle">
-                                ${getVilleEmoji(lieu.ville)} ${lieu.ville}
-                            </div>
-                            
-                            <div class="popup-meta">
-                                <div class="popup-price">${lieu.prixEur}</div>
-                                <div class="popup-rating"><i class="fas fa-star"></i> ${lieu.note}</div>
-                            </div>
-                            
-                            <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-popup-details">
-                                Voir détails <i class="fas fa-arrow-right" style="margin-left:6px; font-size:0.8em;"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                marker.bindPopup(popupContent);
-                // marker.on('click', () => showLieuDetails(lieu)); // Disabled to prioritize popup
-
-                markersLayer.addLayer(marker);
-            });
-        }
-
-        /* ============================================
-           MAPPING / FILTERS LOGIC
-           ============================================ */
-
-        function toggleFilter(element, filterId) {
-            const checkbox = document.getElementById('filter-' + filterId);
-            if (checkbox) {
-                // Si on a cliqué sur le chip (et pas directement la checkbox)
-                if (event.target !== checkbox) {
-                    checkbox.checked = !checkbox.checked;
-                }
-
-                // Update UI visually
-                if (checkbox.checked) {
-                    element.classList.add('active');
-                } else {
-                    element.classList.remove('active');
-                }
-
-                updateMapMarkers();
-            }
-        }
-
-        function getActiveFilters() {
-            const filters = {
-                provinces: [],
-                types: [],
-                prix: [],
-                favorites: false
-            };
-
-            const fav = document.getElementById('filter-favorites');
-            if (fav && fav.checked) filters.favorites = true;
-
-            const provinceIds = ['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'];
-            provinceIds.forEach(pid => {
-                const cb = document.getElementById(`filter-${pid}`);
-                if (cb && cb.checked) {
-                    const pNameMap = {
-                        'antananarivo': 'Antananarivo',
-                        'antsiranana': 'Antsiranana',
-                        'mahajanga': 'Mahajanga',
-                        'toamasina': 'Toamasina',
-                        'toliara': 'Toliara',
-                        'fianarantsoa': 'Fianarantsoa'
-                    };
-                    filters.provinces.push(pNameMap[pid]);
-                }
-            });
-
-            // NEW CATEGORY LOGIC (HARMONIZED)
-            const typeIds = ['explorer', 'manger', 'dodo', 'sortir', 'spot'];
-            typeIds.forEach(t => {
-                const cb = document.getElementById(`filter-${t}`);
-                if (cb && cb.checked) {
-                    if (t === 'explorer') {
-                        filters.types.push('Incontournable', 'Nature', 'Culture');
-                    } else if (t === 'manger') {
-                        filters.types.push('Restaurant');
-                    } else if (t === 'dodo') {
-                        filters.types.push('Hotel', 'Hôtel');
-                    } else if (t === 'sortir') {
-                        filters.types.push('Sortir', 'Bar', 'Boîte de nuit', 'Club');
-                    } else if (t === 'spot') {
-                        filters.types.push('Spot Local');
-                    }
-                }
-            });
-
-            // OLD LOGIC SUPPORT (Fallback if needed, or simple cleanup)
-            // Added check for old IDs just in case, but standardizing on new ones is better.
-
-            // BUDGET Logic (Extended)
-            const budgets = ['budget1', 'budget2', 'budget3'];
-            budgets.forEach(b => {
-                const cb = document.getElementById(`filter-${b}`);
-                if (cb && cb.checked) filters.prix.push(b);
-            });
-
-            // Legacy Logic
-            const prix = ['gratuit', 'economique', 'moyen'];
-            prix.forEach(p => {
-                const cb = document.getElementById(`filter-${p}`);
-                if (cb && cb.checked) filters.prix.push(p);
-            });
-
-            return filters;
-        }
-
-        function matchesFilters(lieu, filters) {
-            if (filters.favorites && !isFavorite(lieu.id)) return false;
-
-            const lieuProvince = getProvinceForVille(lieu.ville);
-            if (filters.provinces.length > 0 && !filters.provinces.includes(lieuProvince)) return false;
-
-            if (filters.types.length > 0) {
-                // If filters.types contains 'Spot Local', we must handle the boolean flag
-                const lookingForSpot = filters.types.includes('Spot Local');
-
-                // General Type Match
-                const typeMatch = filters.types.includes(lieu.type);
-
-                // Specific Spot Match (Boolean or String)
-                const spotMatch = lookingForSpot && (lieu.spotLocal === true || lieu.type === 'Spot Local');
-
-                if (!typeMatch && !spotMatch) {
-                    return false;
-                }
-            }
-
-            if (filters.prix.length > 0) {
-                const p = lieu.prixNum || 0;
-                let match = false;
-
-                // 1. New Budget Logic
-                let budget = 'budget2';
-                if (p < 20000) budget = 'budget1';
-                else if (p < 50000) budget = 'budget2';
-                else budget = 'budget3';
-
-                if (filters.prix.includes(budget)) match = true;
-
-                // 2. Legacy Logic
-                let prixCat = 'moyen';
-                if (p === 0) prixCat = 'gratuit';
-                else if (p < 50000) prixCat = 'economique';
-
-                if (filters.prix.includes(prixCat)) match = true;
-
-                if (!match) return false;
-            }
-
-            return true;
-        }
-
-        // ============================================
-        // PAGES VILLES
-        // ============================================
-
-        /* ============================================
-           PAGES PROVINCES (GÉNÉRATION DYNAMIQUE)
-           ============================================ */
-
-        // Mapping Villes -> Provinces
-        const COMMUNE_MAPPING = {
-            'Antananarivo': 'Antananarivo',
-            'Ampefy': 'Antananarivo',
-            'Antsirabe': 'Antananarivo',
-            'Diego-Suarez': 'Antsiranana',
-            'Nosy Be': 'Antsiranana',
-            'Ankarana': 'Antsiranana',
-            'Ambanja': 'Antsiranana',
-            'Montagne d\'Ambre': 'Antsiranana',
-            'Anivorano': 'Antsiranana',
-            'Mahajanga': 'Mahajanga',
-            'Andasibe': 'Toamasina',
-            'Mananara': 'Toamasina',
-            'Sainte-Marie': 'Toamasina',
-            'Isalo': 'Toliara',
-            'Ifaty': 'Toliara',
-            'Anakao': 'Toliara',
-            'Tuléar': 'Toliara',
-            'Toliara': 'Toliara',
-            'Fianarantsoa': 'Fianarantsoa'
-        };
-
-        const PROVINCE_CONFIG = {
-            'Antananarivo': { emoji: '<i class="fa-solid fa-landmark"></i>', name: 'Antananarivo', desc: 'La capitale et les hautes terres' },
-            'Antsiranana': { emoji: '<i class="fa-solid fa-anchor"></i>', name: 'Antsiranana (Nord)', desc: 'Diego, Nosy Be et merveilles du Nord' },
-            'Fianarantsoa': { emoji: '<i class="fa-solid fa-train"></i>', name: 'Fianarantsoa', desc: 'Le sud des hautes terres et le train' },
-            'Mahajanga': { emoji: '<i class="fa-solid fa-umbrella-beach"></i>', name: 'Mahajanga (Ouest)', desc: 'Boeny, baobabs et grottes' },
-            'Toamasina': { emoji: '<i class="fa-solid fa-ship"></i>', name: 'Toamasina (Est)', desc: 'L\'Est sauvage, l\'Indri et les lagons' },
-            'Toliara': { emoji: '<i class="fa-solid fa-sun"></i>', name: 'Toliara (Sud)', desc: 'Le grand Sud, le désert et le lagon' }
-        };
-
-        function getProvinceForVille(villeName) {
-            return COMMUNE_MAPPING[villeName] || 'Autre';
-        }
-
-        function updatePremiumInfo(city, provinceKey) {
-            const container = document.getElementById(`premium-container-${provinceKey}`);
-            if (!container) return;
-
-            // Only update if we have data for this city
-            const zoneData = window.ZONES_DATA && window.ZONES_DATA[city];
-            if (!zoneData) {
-                container.innerHTML = '';
-                return;
-            }
-
-            let html = '';
-
-            // 1. LOGISTIQUE (Accordion)
-            if (zoneData.logistique) {
-                const { route_etat, transport_conseil } = zoneData.logistique;
-                const { description_fun } = zoneData.infos || {};
-
-                html += `
-                    <div class="logistique-container">
-                        <div class="logistique-header" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.fa-chevron-down').classList.toggle('fa-chevron-up');">
-                            <h3><i class="fas fa-truck-monster" style="color:#D4AF37; margin-right:10px;"></i> Logistique "Brousse" (${city})</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="logistique-content">
-                            <div class="logistique-item">
-                                <div class="logistique-label">L'avis Grok</div>
-                                <div class="logistique-text">"${description_fun || 'Pas de commentaire.'}"</div>
-                            </div>
-                            <div class="logistique-item">
-                                <div class="logistique-label">État de la Route</div>
-                                <div class="logistique-text">${route_etat}</div>
-                            </div>
-                            <div class="logistique-item">
-                                <div class="logistique-label">Conseil Transport</div>
-                                <div class="logistique-text">${transport_conseil}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // 2. GASTRONOMIE (Highlights)
-            if (window.LIEUX_DATA) {
-                const restos = window.LIEUX_DATA
-                    .filter(l => l.ville === city && l.type === 'Restaurant' && l.note >= 4.7)
-                    .sort((a, b) => b.note - a.note)
-                    .slice(0, 3);
-
-                if (restos.length > 0) {
-                    html += `<div class="gastro-section">
-                        <h3 style="margin-bottom:15px; font-family:'Playfair Display', serif; color:var(--text-primary);"><i class="fas fa-star" style="color:#D4AF37;"></i> Nos Pépites Gourmandes</h3>
-                        <div class="gastro-grid">`;
-                    restos.forEach(resto => {
-                        html += `
-                            <div class="gastro-card">
-                                <div class="gastro-image" style="background-image: url('${resto.image}')">
-                                    <span class="gastro-badge">${resto.note}</span>
-                                </div>
-                                <div class="gastro-details">
-                                    <h4 class="gastro-title">${resto.nom}</h4>
-                                    <p class="gastro-desc" style="font-size:0.85rem; margin-bottom:0.5rem;">${resto.description.substring(0, 80)}...</p>
-                                    <div class="gastro-footer">
-                                         <span class="gastro-price">${resto.prix}</span>
-                                         <button class="btn-text" onclick="showLieuDetailsByID(${resto.id})" style="color:var(--laterite); background:none; border:none; font-weight:600; cursor:pointer;">Voir</button>
-                                    </div>
-                                </div>
-                            </div>
-                         `;
-                    });
-                    html += `</div></div>`;
-                }
-            }
-
-            container.innerHTML = html;
-        }
-
-        function initCityPages() {
-            // Group data by Province
-            const locationsByProvince = {};
-
-            Object.keys(PROVINCE_CONFIG).forEach(p => locationsByProvince[p] = []);
-
-            LIEUX_DATA.forEach(lieu => {
-                const prov = getProvinceForVille(lieu.ville);
-                if (locationsByProvince[prov]) {
-                    locationsByProvince[prov].push(lieu);
-                }
-            });
-
-            // Generate Content for each Province
-            Object.keys(locationsByProvince).forEach(provinceKey => {
-                const container = document.getElementById(`page-${provinceKey.toLowerCase()}`);
-                if (!container) return;
-
-                const config = PROVINCE_CONFIG[provinceKey];
-                const lieux = locationsByProvince[provinceKey];
-
-                let cityFiltersHTML = '';
-                let defaultCityState = 'all';
-
-                // PREMIUM SWITCHER FOR ANTSIRANANA
-                if (provinceKey === 'Antsiranana') {
-                    defaultCityState = 'Diego-Suarez'; // Force default to Diego
-                    cityFiltersHTML = `
-                        <div class="segmented-control-container">
-                            <div class="segmented-control">
-                                <button class="segment-btn active" onclick="filterCity('Diego-Suarez', this)">Diego-Suarez</button>
-                                <button class="segment-btn" onclick="filterCity('Nosy Be', this)">Nosy Be</button>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // Determine default city for Premium Info
-                let premiumDefaultCity = defaultCityState === 'all' ? config.name.split(' ')[0] : defaultCityState;
-                if (provinceKey === 'Antananarivo') premiumDefaultCity = 'Antananarivo';
-                if (provinceKey === 'Toamasina') premiumDefaultCity = 'Toamasina';
-                if (provinceKey === 'Mahajanga') premiumDefaultCity = 'Mahajanga';
-                if (provinceKey === 'Toliara') premiumDefaultCity = 'Toliara';
-
-
-                let html = `
-                    <div class="city-header">
-                        <div class="banner-content">
-                            <h2 class="city-title">${config.emoji} ${config.name}</h2>
-                            <p class="city-desc">${config.desc}</p>
-                        </div>
-                    </div>
-                    
-                    ${cityFiltersHTML}
-
-                    <!-- PREMIUM SECTION CONTAINER (Split for Accordions) -->
-                    <div id="logistique-container-${provinceKey}" class="premium-zone-info"></div>
-                    <div id="gastronomie-container-${provinceKey}" class="premium-zone-info"></div>
-
-                    <div class="nav-pills" style="margin-bottom: 20px; padding-bottom: 5px; display: flex; align-items: center; justify-content: space-between; overflow-x: auto;">
-                        <!-- Group 1: Categories -->
-                        <div style="display: flex; gap: 8px;">
-                            <button class="nav-pill active" onclick="filterProvinceItems('all', '${provinceKey}', this)"><i class="fa-solid fa-layer-group"></i> Tout</button>
-                            <button class="nav-pill" onclick="filterProvinceItems('explorer', '${provinceKey}', this)"><i class="fa-solid fa-binoculars"></i> Explorer</button>
-                            <button class="nav-pill" onclick="filterProvinceItems('manger', '${provinceKey}', this)"><i class="fa-solid fa-utensils"></i> Manger</button>
-                            <button class="nav-pill" onclick="filterProvinceItems('dodo', '${provinceKey}', this)"><i class="fa-solid fa-bed"></i> Dormir</button>
-                            <button class="nav-pill" onclick="filterProvinceItems('sortir', '${provinceKey}', this)"><i class="fa-solid fa-martini-glass-citrus"></i> Sortir</button>
-                            <button class="nav-pill" onclick="filterProvinceItems('spot', '${provinceKey}', this)"><i class="fa-solid fa-map-pin"></i> Spots</button>
-                        </div>
-                        
-                        <!-- Group 2: Budget (Pushed to Right via justify-content: space-between) -->
-                        <div style="display: flex; gap: 8px; margin-left: 20px;">
-                            <button class="nav-pill" onclick="toggleProvinceBudget('low', '${provinceKey}', this)">€</button>
-                            <button class="nav-pill" onclick="toggleProvinceBudget('mid', '${provinceKey}', this)">€€</button>
-                            <button class="nav-pill" onclick="toggleProvinceBudget('high', '${provinceKey}', this)">€€€</button>
-                        </div>
-                    </div>
-
-                    <div class="lieux-grid" id="grid-${provinceKey}" data-current-city="${defaultCityState}">
-                `;
-
-                if (lieux.length === 0) {
-                    html += `<p style="text-align:center; color:var(--text-secondary); grid-column:1/-1;">Aucun lieu pour le moment.</p>`;
-                } else {
-                    lieux.forEach(lieu => {
-                        html += createLieuCard(lieu);
-                    });
-                }
-
-                html += `</div>`;
-                container.innerHTML = html;
-
-                // Init Premium Info via renderPremiumUI (from app-data.js)
-                setTimeout(() => {
-                    if (window.renderPremiumUI) {
-                        window.renderPremiumUI(premiumDefaultCity, provinceKey); // Pass provinceKey for ID scoping
-                    }
-                }, 100); // 100ms delay to ensure DOM is painted
-            });
-        }
-
-        // Global State for Province Filters
-        window.PROVINCE_STATES = window.PROVINCE_STATES || {};
-
-        function getProvinceState(key) {
-            if (!window.PROVINCE_STATES[key]) {
-                window.PROVINCE_STATES[key] = { category: 'all', budget: null };
-            }
-            return window.PROVINCE_STATES[key];
-        }
-
-        // Budget Helper (Matches createLieuCard logic)
-        function calculateBudgetLevel(priceString, type) {
-            if (!priceString) return 'low';
-            const num = parseInt(priceString.replace(/\D/g, '')) || 0;
-            const isResto = ['Restaurant', 'Bar', 'Snack'].includes(type);
-            if (isResto) {
-                if (num > 50000) return 'high';
-                if (num > 20000) return 'mid';
-                return 'low';
-            } else {
-                if (num > 180000) return 'high';
-                if (num > 60000) return 'mid';
-                return 'low';
-            }
-        }
-
-        window.toggleProvinceBudget = function (level, provinceKey, btn) {
-            const state = getProvinceState(provinceKey);
-            // Toggle Logic
-            if (state.budget === level) {
-                state.budget = null; // Deselect
-            } else {
-                state.budget = level;
-            }
-            applyProvinceFilters(provinceKey);
-        };
-
-        window.filterProvinceItems = function (category, provinceKey, btn) {
-            const state = getProvinceState(provinceKey);
-            state.category = category;
-            applyProvinceFilters(provinceKey);
-        };
-
-        window.applyProvinceFilters = function (provinceKey) {
-            const state = getProvinceState(provinceKey);
-            const container = document.getElementById(`page-${provinceKey.toLowerCase()}`);
-            if (!container) return;
-
-            // Update UI - Categories (Separate from Budget Buttons)
-            const catButtons = container.querySelectorAll('.nav-pill:not([onclick*="toggleProvinceBudget"])');
-            catButtons.forEach(b => {
-                // heuristic: active if onclick contains state.category
-                // or simpler: just check category arg in onclick? 
-                // We'll trust the button reference isn't kept, so we check attribute
-                const fnCall = b.getAttribute('onclick');
-                if (fnCall && fnCall.includes(`'${state.category}'`)) b.classList.add('active');
-                else b.classList.remove('active');
-            });
-
-            // Update UI - Budget
-            const budgetButtons = container.querySelectorAll('.nav-pill[onclick*="toggleProvinceBudget"]');
-            budgetButtons.forEach(b => {
-                const fnCall = b.getAttribute('onclick');
-                if (state.budget && fnCall && fnCall.includes(`'${state.budget}'`)) b.classList.add('active');
-                else b.classList.remove('active');
-            });
-
-
-            const grid = document.getElementById(`grid-${provinceKey}`);
-            let currentCity = 'all';
-            if (grid.dataset.currentCity) currentCity = grid.dataset.currentCity;
-
-            // Filter Logic
-            let provinceLieux = LIEUX_DATA.filter(l => getProvinceForVille(l.ville) === provinceKey);
-
-            // City
-            if (currentCity !== 'all') {
-                provinceLieux = provinceLieux.filter(l => l.ville === currentCity);
-            }
-
-            // Category
-            let filtered = [];
-            if (state.category === 'all') {
-                filtered = provinceLieux;
-            } else if (state.category === 'explorer') {
-                filtered = provinceLieux.filter(l => ['Incontournable', 'Nature', 'Culture'].includes(l.type));
-            } else if (state.category === 'manger') {
-                filtered = provinceLieux.filter(l => l.type === 'Restaurant');
-            } else if (state.category === 'dodo') {
-                filtered = provinceLieux.filter(l => ['Hotel', 'Hôtel'].includes(l.type));
-            } else if (state.category === 'sortir') {
-                filtered = provinceLieux.filter(l => ['Bar', 'Boîte de nuit', 'Sortir', 'Club'].includes(l.type));
-            } else if (state.category === 'spot') {
-                filtered = provinceLieux.filter(l => l.spotLocal === true || l.type === 'Spot Local');
-            }
-
-            // Budget
-            if (state.budget) {
-                filtered = filtered.filter(l => calculateBudgetLevel(l.prix, l.type) === state.budget);
-            }
-
-            // Render
-            if (filtered.length === 0) {
-                grid.innerHTML = `<p style="text-align:center; color:var(--text-secondary); grid-column:1/-1;">Aucun lieu pour ce filtre.</p>`;
-            } else {
-                grid.innerHTML = filtered.map(l => createLieuCard(l)).join('');
-            }
-        };
-
-        window.filterCity = function (city, btn) {
-            // Update buttons style (Premium Segmented Control Logic)
-            const container = btn.parentElement;
-            container.querySelectorAll('.segment-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-            btn.classList.add('active');
-
-            // Update Grid Data Attribute
-            const grid = document.getElementById('grid-Antsiranana');
-            if (grid) {
-                grid.dataset.currentCity = city;
-                // Re-trigger current category filter to apply city context
-                const activeCategoryBtn = grid.parentElement.querySelector('.nav-pill.active');
-                if (activeCategoryBtn) activeCategoryBtn.click();
-            }
-
-            // UPDATE PREMIUM INFO
-            updatePremiumInfo(city, 'Antsiranana');
-        };
-
-        // Old filter function removed
-        window.filterCityItems = function () { }; // No-op
-
-
-        // ============================================
-        // MODAL DETAILS LOGIC
-        // ============================================
-
-        window.showLieuDetailsByID = function (id) {
-            const lieu = LIEUX_DATA.find(l => l.id == id);
-            if (lieu) {
-                showLieuDetails(lieu);
-            } else {
-                console.error('Lieu introuvable ID:', id);
-            }
-        };
-
-        window.showLieuDetails = function (lieu) {
-            const modal = document.getElementById('lieuModal');
-            if (!modal) return;
-
-            // Populate Modal
-            document.getElementById('modal-image').src = lieu.image || 'images/placeholders/default.jpg';
-            document.getElementById('modal-type').textContent = lieu.type;
-
-            // Spot Local Badge Logic
-            const badgeType = document.getElementById('modal-type');
-            if (lieu.spotLocal) {
-                badgeType.style.background = 'var(--laterite)';
-                badgeType.textContent = 'Spot Local 📍';
-            } else {
-                badgeType.style.background = 'rgba(0,0,0,0.7)';
-                badgeType.textContent = lieu.type;
-            }
-
-            document.getElementById('modal-title').textContent = lieu.nom;
-            document.getElementById('modal-desc').innerHTML = lieu.description; // Allow HTML in desc
-
-            // Meta Info
-            document.getElementById('modal-price').textContent = lieu.prix;
-            document.getElementById('modal-duration').textContent = lieu.duree || 'Durée libre';
-            document.getElementById('modal-access').textContent = lieu.acces || 'Accès standard';
-
-            // Advice Section
-            const adviceSection = document.getElementById('modal-advice-section');
-            if (lieu.conseil) {
-                adviceSection.style.display = 'block';
-                document.getElementById('modal-advice').textContent = lieu.conseil;
-            } else {
-                adviceSection.style.display = 'none';
-            }
-
-            // External Link
-            const linkBtn = document.getElementById('modal-link-btn');
-            if (lieu.siteWeb) {
-                linkBtn.style.display = 'inline-flex';
-                linkBtn.onclick = () => window.open(lieu.siteWeb, '_blank');
-            } else {
-                linkBtn.style.display = 'none';
-            }
-
-            // Open Modal
-            // modal.style.display = 'block'; // Faux: Casse le flexbox centering
-            modal.classList.add('active'); // Correct: Utilise la classe CSS avec display: flex
-
-            // Close Handler
-            const closeBtn = modal.querySelector('.close-modal');
-            closeBtn.onclick = () => {
-                modal.classList.remove('active');
-            };
-
-            // Click outside to close
-            window.onclick = (event) => {
-                if (event.target == modal) {
-                    modal.classList.remove('active');
-                }
-            };
-        };
-
-        function getVilleEmoji(ville) {
-            const emojis = {
-                'Antananarivo': '🏛️',
-                'Diego-Suarez': '🏝️',
-                'Nosy Be': '🌴',
-                'Mahajanga': '🌊',
-                'Andasibe': '🌿',
-                'Isalo': '🏜️',
-                'Ifaty': '🏖️',
-                'Ankarana': '🕳️',
-                'Mananara': '🐊'
-            };
-            return emojis[ville] || '📍';
-        }
-
-        function createLieuCard(lieu, category = '') {
-            const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
-
-            return `
-                <article class="lieu-card" data-id="${lieu.id}" data-category="${category}" style="position: relative; cursor: pointer;">
-                    <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${isFavorite(lieu.id) ? 'active' : ''}">
-                        ${isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>'}
-                    </button>
-                    <img src="${lieu.image}" alt="${lieu.nom}" class="lieu-image" loading="lazy">
-                    <div class="lieu-content">
-                        <div class="lieu-header">
-                            <h3 class="lieu-title">${lieu.nom}</h3>
-                            ${lieu.spotLocal ? '<span class="badge-spot">📍 Spot Local</span>' : `<span class="badge-type">${lieu.type}</span>`}
-                        </div>
-                        <div class="lieu-meta">
-                            <span class="lieu-prix ${prixClass}">${lieu.prix}</span>
-                            <span class="lieu-note">⭐ ${lieu.note}</span>
-                        </div>
-                        <p class="lieu-desc">${lieu.description}</p>
-                        <button class="btn-details" data-lieu-id="${lieu.id}">Voir détails</button>
-                    </div>
-                </article>
-            `;
-        }
-
-        // ============================================
-        // PAGE SPOTS LOCAUX
-        // ============================================
-
-        function initSpotsPage() {
-            const spotsContainer = document.getElementById('spotsContainer');
-            const spots = LIEUX_DATA.filter(l => l.spotLocal && l.nom);
-
-            spotsContainer.innerHTML = spots.map(lieu => createLieuCard(lieu)).join('');
-
-            spotsContainer.querySelectorAll('.btn-details').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const lieuId = parseInt(e.target.dataset.lieuId);
-                    const lieu = LIEUX_DATA.find(l => l.id === lieuId);
-                    if (lieu) showLieuDetails(lieu);
-                });
-            });
-        }
-
-        // ============================================
-        // MODAL
-        // ============================================
-
-        function initModal() {
-            const modal = document.getElementById('modal');
-            const closeBtn = document.getElementById('modalClose');
-
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-            // Event Delegation pour ouvrir la modale au clic sur une carte
-            document.addEventListener('click', (e) => {
-                // Ignorer si on clique sur le bouton favori
-                if (e.target.closest('.btn-favorite')) return;
-
-                const card = e.target.closest('.lieu-card');
-                // Gestion aussi du clic sur le bouton "Voir détails" spécifique
-                const btnDetails = e.target.closest('.btn-details');
-
-                if (card || btnDetails) {
-                    const target = card || btnDetails.closest('.lieu-card');
-                    if (target) {
-                        const id = parseInt(target.dataset.id);
-                        if (!isNaN(id)) openModal(id);
-                    }
-                }
-            });
-        }
-
-        function openModal(id) {
-            const lieu = LIEUX_DATA.find(l => l.id === id);
-            if (!lieu) return;
-
-            const modal = document.getElementById('modal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBadges = document.getElementById('modalBadges');
-            const modalInfoGrid = document.getElementById('modalInfoGrid');
-            const modalSections = document.getElementById('modalSections');
-
-            // Reset Scroll
-            if (modal.querySelector('.popup-content')) modal.querySelector('.popup-content').scrollTop = 0;
-
-            modalImage.src = lieu.image;
-            modalImage.alt = lieu.nom;
-            modalTitle.textContent = lieu.nom;
-
-            // Badges
-            let badgesHTML = '';
-            if (lieu.spotLocal) {
-                badgesHTML += '<span class="badge-spot">📍 Spot Local</span> ';
-            }
-            badgesHTML += `<span class="badge-type">${lieu.type}</span>`;
-            modalBadges.innerHTML = badgesHTML;
-
-            // Infos grille
-            modalInfoGrid.innerHTML = `
-                <div class="modal-info-item">
-                    <div class="modal-info-label">Ville</div>
-                    <div class="modal-info-value">${lieu.ville}</div>
-                </div>
-                <div class="modal-info-item">
-                    <div class="modal-info-label">Prix</div>
-                    <div class="modal-info-value">${lieu.prix}</div>
-                </div>
-                <div class="modal-info-item">
-                    <div class="modal-info-label">Note</div>
-                    <div class="modal-info-value">⭐ ${lieu.note}</div>
-                </div>
-                ${lieu.duree ? `
-                <div class="modal-info-item">
-                    <div class="modal-info-label">Durée</div>
-                    <div class="modal-info-value">⏱️ ${lieu.duree}</div>
-                </div>` : ''}
-            `;
-
-            // Sections
-            let sectionsHTML = `
-                <div class="modal-section">
-                    <div class="modal-section-title">Description</div>
-                    <div class="modal-section-content" style="line-height: 1.6;">${lieu.description}</div>
-                </div>
-                ${lieu.conseil ? `
-                <div class="modal-section" style="background: rgba(255, 215, 0, 0.1); border-left: 3px solid #FFD700; padding: 10px;">
-                    <div class="modal-section-title" style="color: #FFD700;">💡 Conseil du Local</div>
-                    <div class="modal-section-content">${lieu.conseil}</div>
-                </div>` : ''}
-                <div class="modal-section">
-                    <div class="modal-section-title">Accès</div>
-                    <div class="modal-section-content">${lieu.acces}</div>
-                </div>
-                ${lieu.siteWeb ? `<a href="${lieu.siteWeb}" target="_blank" class="btn-website">🌍 Visiter le site web</a>` : ''}
-            `;
-
-            if (lieu.horaires) {
-                sectionsHTML += `
-                    <div class="modal-section">
-                        <div class="modal-section-title">Horaires</div>
-                        <div class="modal-section-content">${lieu.horaires}</div>
-                    </div>
-                `;
-            }
-
-            if (lieu.contactLocal) {
-                sectionsHTML += `
-                    <div class="modal-section">
-                        <div class="modal-section-title">Contact Local</div>
-                        <div class="modal-section-content">${lieu.contactLocal}</div>
-                    </div>
-                `;
-            }
-
-            if (lieu.respect) {
-                sectionsHTML += `
-                    <div class="modal-section">
-                        <div class="modal-section-title">⚠️ Respect Requis</div>
-                        <div class="modal-section-content">${lieu.respect}</div>
-                    </div>
-                `;
-            }
-
-            modalSections.innerHTML = sectionsHTML;
-
-            // Gestion du bouton favori dans la modale
-            const favBtn = document.querySelector('.btn-favorite-popup-overlay');
-            if (favBtn) {
-                favBtn.classList.remove('active');
-                favBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
-
-                if (isFavorite(lieu.id)) {
-                    favBtn.classList.add('active');
-                    favBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
-                }
-
-                // Recreation du bouton pour clean les listeners
-                const newFavBtn = favBtn.cloneNode(true);
-                favBtn.parentNode.replaceChild(newFavBtn, favBtn);
-                newFavBtn.onclick = (e) => toggleLieuFavorite(lieu.id, newFavBtn, e);
-            }
-
-            modal.classList.add('active');
-        }
-
-        // ============================================
-        // PAGE LANGUE
-        // ============================================
-
-        function initLanguePage() {
-            const container = document.getElementById('accordionContainer');
-            const searchInput = document.getElementById('langueSearch');
-
-            Object.keys(PHRASES_DATA).forEach((category, index) => {
-                const accordionHTML = createAccordion(category, PHRASES_DATA[category], index);
-                container.insertAdjacentHTML('beforeend', accordionHTML);
-            });
-
-            // Event listeners accordéons
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    const item = header.parentElement;
-                    const wasOpen = item.classList.contains('open');
-
-                    // Fermer tous
-                    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-
-                    // Ouvrir celui-ci si fermé
-                    if (!wasOpen) {
-                        item.classList.add('open');
-                    }
-                });
-            });
-
-            // Recherche
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                document.querySelectorAll('.phrase-item').forEach(item => {
-                    const fr = item.querySelector('.phrase-fr').textContent.toLowerCase();
-                    const mg = item.querySelector('.phrase-mg').textContent.toLowerCase();
-                    if (fr.includes(query) || mg.includes(query)) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-
-            // Boutons actions phrases
-            container.addEventListener('click', (e) => {
-                if (e.target.classList.contains('btn-audio')) {
-                    playAudio(e.target.dataset.mg, e.target.dataset.fr);
-                } else if (e.target.classList.contains('btn-copy')) {
-                    copyToClipboard(e.target.dataset.text);
-                } else if (e.target.classList.contains('btn-favorite')) {
-                    toggleExpressionFavorite(e.target);
-                }
-            });
-        }
-
-        function createAccordion(category, phrases, index) {
-            const phrasesHTML = phrases.map((phrase, i) => `
-                <div class="phrase-item">
-                    <div class="phrase-content">
-                        <div class="phrase-fr">${phrase.fr}</div>
-                        <div class="phrase-mg">${phrase.mg}</div>
-                        <div class="phrase-phonetic">(${phrase.phonetic})</div>
-                    </div>
-                    <div class="phrase-actions">
-                        <button class="btn-icon btn-audio" data-mg="${phrase.mg}" data-fr="${phrase.fr}" title="Écouter">🔊</button>
-                        <button class="btn-icon btn-copy" data-text="${phrase.mg}" title="Copier">📋</button>
-                        <button class="btn-icon btn-favorite ${favorites.includes(`${category}-${i}`) ? 'active' : ''}" data-category="${category}" data-index="${i}" title="Favori">⭐</button>
-                    </div>
-                </div>
-            `).join('');
-
-            return `
-                <div class="accordion-item ${index === 0 ? 'open' : ''}">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">
-                            ${getCategoryEmoji(category)} ${category}
-                        </h3>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-content">
-                            ${phrasesHTML}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function getCategoryEmoji(category) {
-            const emojis = {
-                "Salutations & Politesse": "👋",
-                "Se présenter": "🙋",
-                "Se déplacer": "🚶",
-                "Négocier & Acheter": "💰",
-                "Restaurant": "🍽️",
-                "Nombres": "🔢",
-                "Urgence & Santé": "🚨",
-                "Hébergement & Météo": "hotel"
-            };
-            return emojis[category] || "💬";
-        }
-
-        function playAudio(textMg, textFr) {
-            // Tentative de lecture du fichier audio généré
-            if (textFr) {
-                const filename = slugify(textFr) + '.wav';
-                const audio = new Audio('audio/' + filename);
-
-                audio.play().catch(err => {
-                    console.warn('Fichier audio introuvable, fallback sur TTS', err);
-                    speakFallback(textMg);
-                });
-            } else {
-                speakFallback(textMg);
-            }
-        }
-
-        function speakFallback(text) {
-            // Simulation audio (Speech Synthesis API)
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'mg-MG'; // Peu de support navigateur mais mieux que rien
-            utterance.rate = 0.8;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function slugify(text) {
-            return text
-                .toString()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase()
-                .trim()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, '');
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                // Feedback visuel
-                alert('Copié dans le presse-papiers !');
-            });
-        }
-
-        function toggleExpressionFavorite(btn) {
-            const key = `${btn.dataset.category}-${btn.dataset.index}`;
-            const index = favorites.indexOf(key);
-
-            if (index > -1) {
-                favorites.splice(index, 1);
-                btn.classList.remove('active');
-            } else {
-                favorites.push(key);
-                btn.classList.add('active');
-            }
-
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-        }
-
-        // ============================================
-        // PAGE OUTILS
-        // ============================================
-
-        function initOutilsPage() {
-            // --- CONVERTISSEUR AVANCÉ ---
-            const state = {
-                rates: JSON.parse(localStorage.getItem('currencyRates')) || { EUR: 4800, USD: 4500, GBP: 5700, CHF: 5000, ZAR: 250 },
-                currency: localStorage.getItem('selectedCurrency') || 'EUR',
-                mode: localStorage.getItem('converterMode') || 'AUTO', // 'AUTO' or 'MANUAL'
-                lastUpdate: localStorage.getItem('ratesLastUpdate') || null,
-                isInverted: false
-            };
-
-            const currencySymbols = { EUR: '€', USD: '$', GBP: '£', CHF: 'Fr', ZAR: 'R' };
-
-            // Elements
-            const selector = document.getElementById('currencySelector');
-            const btnRefresh = document.getElementById('btnRefreshRate');
-            const statusBadge = document.getElementById('converterStatus');
-            const inputForeign = document.getElementById('inputForeign');
-            const inputLocal = document.getElementById('inputLocal'); // Ar input
-            const foreignLabel = document.getElementById('foreignLabel');
-            const rateText = document.getElementById('rateText');
-            const btnEdit = document.getElementById('btnEditRate');
-            const btnInvert = document.getElementById('btnInvert');
-            const container = document.getElementById('converterInputsContainer');
-            const rowForeign = document.getElementById('rowForeign');
-            const rowLocal = document.getElementById('rowLocal');
-
-            // Init UI
-            selector.value = state.currency;
-            updateUI();
-
-            // Auto-fetch if old data (> 24h) and online
-            if (navigator.onLine && state.mode === 'AUTO') {
-                const now = Date.now();
-                if (!state.lastUpdate || (now - state.lastUpdate > 86400000)) {
-                    fetchRates();
-                }
-            }
-
-            // --- LISTENERS ---
-
-            selector.addEventListener('change', (e) => {
-                state.currency = e.target.value;
-                localStorage.setItem('selectedCurrency', state.currency);
-                updateUI();
-                recalcFromForeign();
-            });
-
-            btnRefresh.addEventListener('click', () => {
-                state.mode = 'AUTO';
-                localStorage.setItem('converterMode', 'AUTO');
-                fetchRates();
-            });
-
-            btnEdit.addEventListener('click', () => {
-                const currentRate = state.rates[state.currency];
-                const newRate = prompt(`Entrez votre taux manuel pour 1 ${state.currency} :`, currentRate);
-                if (newRate && !isNaN(newRate)) {
-                    state.rates[state.currency] = parseFloat(newRate);
-                    state.mode = 'MANUAL';
-                    saveState();
-                    updateUI();
-                    recalcFromForeign();
-                }
-            });
-
-            btnInvert.addEventListener('click', () => {
-                state.isInverted = !state.isInverted;
-                // Swap DOM elements
-                if (state.isInverted) {
-                    container.insertBefore(rowLocal, rowForeign); // Ar on top
-                    btnInvert.style.transform = "rotate(270deg)";
-                } else {
-                    container.insertBefore(rowForeign, rowLocal); // Foreign on top
-                    btnInvert.style.transform = "rotate(90deg)";
-                }
-            });
-
-            inputForeign.addEventListener('input', recalcFromForeign);
-            inputLocal.addEventListener('input', recalcFromLocal);
-
-            // --- FUNCTIONS ---
-
-            function fetchRates() {
-                btnRefresh.classList.add('fa-spin'); // Animation
-
-                // API Gratuite (Open Exchange Rates fallback or similar free json)
-                // Ici on utilise open.er-api.com qui est gratuit et stable
-                fetch('https://open.er-api.com/v6/latest/EUR')
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data && data.rates && data.rates.MGA) {
-                            const eurToMga = data.rates.MGA;
-
-                            // Déduire les autres par cross-calculation si l'API est base EUR
-                            // (ou fetcher chaque, mais cross-calc suffit pour estimation)
-                            const rates = {
-                                EUR: eurToMga,
-                                USD: eurToMga / data.rates.USD,
-                                GBP: eurToMga / data.rates.GBP,
-                                CHF: eurToMga / data.rates.CHF,
-                                ZAR: eurToMga / data.rates.ZAR
-                            };
-
-                            // Arrondir
-                            Object.keys(rates).forEach(k => rates[k] = Math.round(rates[k]));
-
-                            state.rates = rates;
-                            state.lastUpdate = Date.now();
-                            state.mode = 'AUTO';
-                            saveState();
-                            updateUI();
-                            recalcFromForeign();
-
-                            showToast('Taux mis à jour avec succès !');
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        showToast('Erreur connexion. Vérifiez internet.');
-                    })
-                    .finally(() => {
-                        btnRefresh.classList.remove('fa-spin');
-                    });
-            }
-
-            function updateUI() {
-                const rate = Math.round(state.rates[state.currency]);
-                const symbol = currencySymbols[state.currency];
-
-                foreignLabel.textContent = symbol;
-                rateText.textContent = `1 ${symbol} = ${rate} Ar`;
-
-                // Afficher date maj
-                if (state.lastUpdate) {
-                    const date = new Date(parseInt(state.lastUpdate));
-                    const dateStr = `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}h${date.getMinutes().toString().padStart(2, '0')}`;
-                    rateText.textContent += ` (Maj: ${dateStr})`;
-                }
-
-                if (state.mode === 'AUTO') {
-                    statusBadge.textContent = "🟢 Taux Réel";
-                    statusBadge.className = "status-badge live";
-                    statusBadge.title = "Taux officiel via internet";
-                } else {
-                    statusBadge.textContent = "🔴 Mode Manuel";
-                    statusBadge.className = "status-badge manual";
-                    statusBadge.title = "Taux défini par l'utilisateur";
-                }
-            }
-
-            function recalcFromForeign() {
-                const val = parseFloat(inputForeign.value) || 0;
-                const rate = state.rates[state.currency];
-                inputLocal.value = Math.round(val * rate);
-            }
-
-            function recalcFromLocal() {
-                const val = parseFloat(inputLocal.value) || 0;
-                const rate = state.rates[state.currency];
-                inputForeign.value = (val / rate).toFixed(2);
-            }
-
-            function saveState() {
-                localStorage.setItem('currencyRates', JSON.stringify(state.rates));
-                localStorage.setItem('converterMode', state.mode);
-                if (state.lastUpdate) localStorage.setItem('ratesLastUpdate', state.lastUpdate);
-            }
-
-            // --- CHECKLIST EXISTANTE (Code inchangé) ---
-            const checklistContainer = document.getElementById('checklistContainer');
-
-            CHECKLIST_ITEMS.forEach((item, index) => {
-                const checked = checklist.includes(index);
-                const html = `
-                    <div class="checklist-item ${checked ? 'checked' : ''}" data-index="${index}">
-                        <div class="checklist-checkbox"></div>
-                        <span class="checklist-label">${item}</span>
-                    </div>
-                `;
-                checklistContainer.insertAdjacentHTML('beforeend', html);
-            });
-
-            checklistContainer.addEventListener('click', (e) => {
-                const item = e.target.closest('.checklist-item');
-                if (!item) return;
-
-                const index = parseInt(item.dataset.index);
-                const checklistIndex = checklist.indexOf(index);
-
-                if (checklistIndex > -1) {
-                    checklist.splice(checklistIndex, 1);
-                    item.classList.remove('checked');
-                } else {
-                    checklist.push(index);
-                    item.classList.add('checked');
-                }
-                localStorage.setItem('checklist', JSON.stringify(checklist));
-            });
-
-            // --- OUTIL TAXI BROUSSE (PREMIUM MULTI-TIER) ---
-            const btnCalcTaxi = document.getElementById('btnCalcTaxi');
-            if (btnCalcTaxi) {
-                // DONNÉES REFERENCE (2024/2025)
-                const CITIES = [
-                    { id: "tana", name: "Antananarivo" },
-                    { id: "diego", name: "Diego-Suarez" },
-                    { id: "mahajanga", name: "Mahajanga" },
-                    { id: "tamatave", name: "Toamasina" },
-                    { id: "fianar", name: "Fianarantsoa" },
-                    { id: "toliara", name: "Toliara" },
-                    { id: "antsirabe", name: "Antsirabe" },
-                    { id: "morondava", name: "Morondava" },
-                    { id: "ambatondrazaka", name: "Ambatondrazaka" },
-                    { id: "farafangana", name: "Farafangana" },
-                    { id: "manakara", name: "Manakara" },
-                    { id: "mananjary", name: "Mananjary" },
-                    { id: "ambositra", name: "Ambositra" },
-                    { id: "ambatolampy", name: "Ambatolampy" },
-                    { id: "antanifotsy", name: "Antanifotsy" },
-                    { id: "ambohimandroso", name: "Ambohimandroso" }
-                ];
-
-                // Populate Selects
-                const createOptions = () => CITIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-                document.getElementById('taxiFrom').innerHTML = createOptions();
-                document.getElementById('taxiTo').innerHTML = createOptions();
-                document.getElementById('taxiTo').value = 'diego'; // Default target
-
-
-
-                const ROUTES = {
-                    // AXE NORD (Majunga / Diego)
-                    "tana-mahajanga": {
-                        duration: "12h",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Lite", price: 40000 },
-                            { name: "Premium", price: 60000 },
-                            { name: "VIP", price: 93000 }
-                        ]
-                    },
-                    "tana-diego": {
-                        duration: "24h",
-                        companies: ["cotisse"],
-                        tiers: [
-                            { name: "Brousse Std", price: 100000 },
-                            { name: "VIP/Premium", price: 120000 }
-                        ]
-                    },
-
-                    // AXE EST (Tamatave)
-                    "tana-tamatave": {
-                        duration: "7h",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Lite", price: 25000 },
-                            { name: "Premium", price: 45000 },
-                            { name: "VIP", price: 65000 }
-                        ]
-                    },
-                    "tana-morondava": {
-                        duration: "14h",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Premium", price: 75000 },
-                            { name: "VIP", price: 110000 }
-                        ]
-                    },
-
-                    // AXE SUD (Fianar / Tulear)
-                    "tana-antsirabe": {
-                        duration: "3h30",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Lite", price: 15000 },
-                            { name: "Premium", price: 25000 }
-                        ]
-                    },
-                    "tana-ambositra": {
-                        duration: "6h",
-                        companies: ["soatrans"],
-                        tiers: [{ name: "Standard", price: 35000 }]
-                    },
-                    "tana-fianar": {
-                        duration: "9h",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Lite", price: 30000 },
-                            { name: "Premium", price: 45000 },
-                            { name: "VIP", price: 60000 }
-                        ]
-                    },
-                    "tana-toliara": {
-                        duration: "22h",
-                        companies: ["cotisse", "soatrans"],
-                        tiers: [
-                            { name: "Premium", price: 100000 },
-                            { name: "VIP", price: 140000 }
-                        ]
-                    },
-
-                    // EST / SUD-EST
-                    "tana-manakara": { duration: "16h", companies: ["soatrans"], tiers: [{ name: "Standard", price: 60000 }] },
-                    "tana-farafangana": { duration: "20h", companies: ["soatrans"], tiers: [{ name: "Standard", price: 70000 }] },
-
-                    // Default Fallback
-                    "default": { duration: "--", tiers: [] }
-                };
-
-                // ONLY COTISSE & SOA TRANS
-                const COMPANIES = {
-                    "cotisse": { name: "Cotisse Transport", tel: "+261 32 11 027 10", web: "http://www.cotisse-transport.com", premium: true },
-                    "soatrans": { name: "Soa Trans Plus", tel: "+261 32 23 909 00", web: "https://soatransplus.mg/", premium: true }
-                };
-
-                const getHumorMessage = (durationStr) => {
-                    const h = parseInt(durationStr);
-                    if (isNaN(h)) return "";
-
-                    const crazyMessages = [
-                        // Survival & Existential
-                        "Prépare-toi psychologiquement... et physiquement 🍑💥",
-                        "Tu auras le temps d'écrire tes mémoires (Tome 1, 2 et le préquel) ✍️",
-                        "C'est plus un trajet, c'est une vie parallèle 🌌",
-                        "Courage, la légende raconte que certains sont arrivés vivants 😂",
-                        "Ton siège est désormais ton domicile fiscal 🛋️",
-                        "Astuce : Deviens ami avec ton voisin, vous allez vieillir ensemble 👴",
-                        "N'oublie pas de dire au revoir à ta famille, on ne sait jamais 👋",
-                        "Tu vas connaître chaque nid de poule par son prénom 🕳️",
-                        "Le chauffeur a prévu des pauses... en 2026 📅",
-                        "Si tu dors tout le long, c'est comme si ça durait 5 minutes (non) 😴"
-                    ];
-
-                    const mediumMessages = [
-                        // Practical & Fun
-                        "Le moment idéal pour repenser toute ton existence 🤔",
-                        "Tu as pris ta playlist 'Survie' ? Parce que c'est le moment 🎧",
-                        "C'est l'aventure avec un grand A (et beaucoup de virages) 🚐",
-                        "Prévois des snacks. Beaucoup. Vraiment beaucoup 🥪",
-                        "Une bonne sieste, deux pauses pipi et t'es arrivé (presque) 🚽",
-                        "Profites-en pour finir cette série que tu as commencée il y a 3 ans 📱",
-                        "Regarde par la fenêtre, c'est mieux que Netflix 🌳",
-                        "Le Wi-Fi du bus est aussi réel que les licornes 🦄",
-                        "L'important ce n'est pas la destination, c'est l'état de ton dos à l'arrivée 🦴"
-                    ];
-
-                    const shortMessages = [
-                        // Speed & Easy
-                        "Même pas le temps de finir ton podcast ! ⚡",
-                        "Vitesse lumière activée (ou presque) 🚀",
-                        "Hop, à peine parti, déjà arrivé ! (Si le chauffeur est motivé) 🏁",
-                        "C'est juste à côté... à l'échelle de Madagascar 🇲🇬",
-                        "Le temps de cligner des yeux et tu y es 👀",
-                        "Pas la peine de sortir l'oreiller, on arrive bientôt 🚫🛌"
-                    ];
-
-                    if (h > 15) return crazyMessages[Math.floor(Math.random() * crazyMessages.length)];
-                    if (h >= 5) return mediumMessages[Math.floor(Math.random() * mediumMessages.length)];
-                    return shortMessages[Math.floor(Math.random() * shortMessages.length)];
-                };
-
-                btnCalcTaxi.addEventListener('click', () => {
-                    const from = document.getElementById('taxiFrom').value;
-                    const to = document.getElementById('taxiTo').value;
-                    const resultDiv = document.getElementById('taxiResult');
-                    const companiesDiv = document.getElementById('companiesSection');
-                    const companiesList = document.getElementById('companiesList');
-
-                    if (from === to) {
-                        alert("Veuillez choisir deux villes différentes.");
-                        return;
-                    }
-
-                    // Try both directions
-                    let routeKey = `${from}-${to}`;
-                    let route = ROUTES[routeKey];
-                    if (!route) {
-                        routeKey = `${to}-${from}`;
-                        route = ROUTES[routeKey];
-                    }
-                    if (!route && (from === 'tana' || to === 'tana')) {
-                        route = null;
-                    }
-
-                    if (route) {
-                        const priceHtml = route.tiers.map(t =>
-                            `<div class="tier-row">
-                                <span class="tier-name">${t.name}</span>
-                                <span class="tier-price">${t.price.toLocaleString('fr-FR')} Ar</span>
-                             </div>`
-                        ).join('');
-
-                        document.getElementById('resDuration').textContent = route.duration;
-                        document.getElementById('resPriceContainer').innerHTML = priceHtml;
-
-                        // HUMOR INJECTION (FRAMED & PREMIUM)
-                        const humorMsg = getHumorMessage(route.duration);
-                        document.querySelector('.result-note').innerHTML = `
-                            <div class="humor-frame">
-                                <span class="humor-icon" style="font-size:1.4rem;">💡</span>
-                                <div class="humor-text">"${humorMsg}"</div>
-                            </div>
-                            <div class="result-disclaimer">⚠️ Tarifs indicatifs (Lite / Premium / VIP)</div>
-                            
-                            <style>
-                                .humor-frame {
-                                    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
-                                    border-left: 6px solid var(--laterite);
-                                    padding: 24px 28px; /* Increased padding for breathing room */
-                                    margin-bottom: 24px;
-                                    border-radius: 0 16px 16px 0;
-                                    display: flex;
-                                    align-items: center;
-                                    gap: 20px;
-                                    text-align: left;
-                                    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-                                    transition: transform 0.2s ease, box-shadow 0.2s ease;
-                                }
-                                .humor-frame:hover {
-                                    transform: translateX(4px) translateY(-2px);
-                                    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-                                }
-                                .humor-icon {
-                                    font-size: 2.2rem; /* Larger icon */
-                                    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
-                                    animation: floatIcon 3s ease-in-out infinite;
-                                }
-                                @keyframes floatIcon {
-                                    0% { transform: translateY(0px); }
-                                    50% { transform: translateY(-4px); }
-                                    100% { transform: translateY(0px); }
-                                }
-                                .humor-text {
-                                    font-family: var(--font-display);
-                                    font-weight: 500; 
-                                    color: #4a4a4a; 
-                                    font-style: italic;
-                                    font-size: 1.1rem; /* Slightly larger text */
-                                    line-height: 1.6;
-                                }
-                                .result-disclaimer {
-                                    font-size: 0.8rem;
-                                    opacity: 0.6;
-                                    text-transform: uppercase;
-                                    letter-spacing: 1px;
-                                    margin-top: 12px;
-                                    font-weight: 500;
-                                }
-                                /* Dark Mode Adjustment */
-                                body.dark-mode .humor-frame {
-                                    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
-                                    border-left-color: #ff6b6b;
-                                    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-                                }
-                                body.dark-mode .humor-text {
-                                    color: #ececec;
-                                    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-                                }
-                            </style>
-                        `;
-
-                        resultDiv.classList.remove('hidden');
-
-                        // Show Companies (Filtered)
-                        if (route.companies && route.companies.length > 0) {
-                            companiesList.innerHTML = route.companies.map(cId => {
-                                const comp = COMPANIES[cId];
-                                if (!comp) return '';
-                                return `
-                                <div class="company-card">
-                                    <div class="company-info">
-                                        <strong>${comp.name}</strong>
-                                        <div class="company-badges">
-                                            ${comp.premium ? '<span class="company-badge premium">Recommandé</span>' : ''}
-                                        </div>
-                                    </div>
-                                    <div class="company-actions">
-                                        <a href="tel:${comp.tel.replace(/\s/g, '')}" class="btn-icon-small" title="Appeler">📞</a>
-                                        ${comp.web ? `<a href="${comp.web}" target="_blank" class="btn-icon-small" title="Site Web">🌐</a>` : ''}
-                                    </div>
-                                </div>`;
-                            }).join('');
-                            companiesDiv.classList.remove('hidden');
-                            setTimeout(() => resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-                        } else {
-                            companiesDiv.classList.add('hidden');
-                        }
-                    } else {
-                        resultDiv.classList.add('hidden');
-                        companiesDiv.classList.add('hidden');
-                        alert("Trajet non listé ou avec correspondance (ex: via Tana).");
-                    }
-                });
-            }
-        }
-
-        // ============================================
-        // PWA
-        // ============================================
-
-        function initInstallPrompt() {
-            const installPrompt = document.getElementById('installPrompt');
-            const installBtn = document.getElementById('installBtn');
-            const installClose = document.getElementById('installClose');
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                installPrompt.classList.add('active');
-            });
-
-            installBtn.addEventListener('click', async () => {
-                if (!deferredPrompt) return;
-
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-
-                if (outcome === 'accepted') {
-                    installPrompt.classList.remove('active');
-                }
-
-                deferredPrompt = null;
-            });
-
-            installClose.addEventListener('click', () => {
-                installPrompt.classList.remove('active');
-            });
-        }
-
-        function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.error('Service Worker error:', err));
-            }
-        }
-
-
-        /* ============================================
-           ITINERAIRES LOGIC
-           ============================================ */
-
-        function initItinerariesPage() {
-            const container = document.getElementById('itineraires-list');
-            if (!container) return;
-
-            // Wait for data if not ready (though initData promise should handle it, window.ITINERAIRES_DATA might be set)
-            const circuits = window.ITINERAIRES_DATA ? Object.values(window.ITINERAIRES_DATA) : [];
-
-            if (circuits.length === 0) {
-                container.innerHTML = '<p class="text-center" style="grid-column:1/-1;">Chargement des circuits...</p>';
-                return;
-            }
-
-            let html = '';
-            circuits.forEach((circuit, index) => {
-                html += `
-                    <div class="lieu-card fade-in-up hover-lift" onclick="showItineraryDetail('${circuit.id}')" style="cursor:pointer; animation-delay: ${index * 0.1}s;">
-                         <div class="lieu-image" style="${circuit.image ? `background-image: url('${circuit.image}'); background-size: cover; background-position: center;` : `background: linear-gradient(to bottom right, var(--laterite), var(--foret)); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;`}">
-                            ${!circuit.image ? '<i class="fas fa-route"></i>' : ''}
-                         </div>
-                         <div class="lieu-content">
-                            <h3 class="lieu-title">${circuit.nom}</h3>
-                            <div class="lieu-meta">
-                                <span class="badge-type">${circuit.duree}</span>
-                                <span class="lieu-prix">${circuit.budget}</span>
-                            </div>
-                            <p class="lieu-desc">${circuit.description}</p>
-                            <button class="btn-details">Voir le programme</button>
-                         </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        window.showItineraryDetail = function (id) {
-            const list = document.getElementById('itineraires-list');
-            const detail = document.getElementById('itineraire-detail');
-            const content = document.getElementById('itineraire-content');
-
-            const circuits = window.ITINERAIRES_DATA || {};
-            let circuit = null;
-
-            Object.values(circuits).forEach(c => {
-                if (c.id === id) circuit = c;
-            });
-
-            if (!circuit) return;
-
-            list.style.display = 'none';
-            detail.style.display = 'block';
-
-            // Helper to switch budgets
-            window.switchCircuitBudget = function (level) {
-                document.querySelectorAll('.budget-option').forEach(el => el.classList.remove('active'));
-                const btn = document.getElementById(`budget-btn-${level}`);
-                if (btn) btn.classList.add('active');
-
-                const data = circuit.budgets[level];
-                const priceDisplay = document.getElementById('budget-price-display');
-                const descDisplay = document.getElementById('budget-desc-display');
-                const incDisplay = document.getElementById('budget-inclusions');
-
-                if (priceDisplay && data) priceDisplay.textContent = data.price;
-                if (descDisplay && data) descDisplay.textContent = data.desc;
-
-                if (incDisplay && data) {
-                    const inclusionsHtml = data.inclus.map(item => `<li><i class="fas fa-check" style="color:var(--success);"></i> ${item}</li>`).join('');
-                    incDisplay.innerHTML = inclusionsHtml;
-                }
-            };
-
-            // --- RENDER CONTENT ---
-            let html = `
-                <div class="premium-banner-tout city-header" style="background: linear-gradient(135deg, var(--lagon), #047857);">
-                    <div class="banner-content">
-                        <h2 class="city-title">${circuit.nom}</h2>
-                        <p class="city-desc">${circuit.description}</p>
-                    </div>
-                </div>
-
-                <div style="padding: 20px;">
-                    <!-- INFO RAPIDE -->
-                    <div style="display:flex; gap:15px; margin-bottom:20px; flex-wrap:wrap;">
-                        <span class="meta-tag"><i class="far fa-clock"></i> ${circuit.duree}</span>
-                        <span class="meta-tag"><i class="fas fa-shield-alt"></i> Sécurité: ${circuit.infos.securite_level}</span>
-                        <span class="meta-tag"><i class="fas fa-sun"></i> ${circuit.logistique.saison_ideale}</span>
-                    </div>
-                    
-                    <!-- GROK AVIS -->
-                    <div class="logistique-container" style="margin-top:0;">
-                        <div class="logistique-header" onclick="this.nextElementSibling.classList.toggle('active'); this.querySelector('.fa-chevron-down').classList.toggle('fa-chevron-up');">
-                            <h3><i class="fas fa-robot"></i> L'avis de l'Expert</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="logistique-content active">
-                             <p class="logistique-text">"${circuit.infos.description_fun}"</p>
-                             <div style="margin-top:15px; border-top:1px dashed rgba(0,0,0,0.1); padding-top:10px;">
-                                 <div style="margin-bottom:6px;"><strong><i class="fas fa-road"></i> Route:</strong> ${circuit.logistique.route_etat}</div>
-                                 <div><strong><i class="fas fa-car-side"></i> Véhicule:</strong> ${circuit.logistique.vehicule_conseil}</div>
-                             </div>
-                        </div>
-                    </div>
-
-                    <!-- BUDGET SELECTOR -->
-                    <h3 style="margin-top:30px; margin-bottom:15px; font-family:var(--font-display);">Options de Voyage</h3>
-                    <div class="budget-selector">
-                        <div id="budget-btn-eco" class="budget-option" onclick="switchCircuitBudget('eco')">
-                            <span class="budget-label">Eco / Backpacker</span>
-                        </div>
-                        <div id="budget-btn-standard" class="budget-option active" onclick="switchCircuitBudget('standard')">
-                            <span class="budget-label">Confort Standard</span>
-                        </div>
-                        <div id="budget-btn-premium" class="budget-option" onclick="switchCircuitBudget('premium')">
-                            <span class="budget-label">Luxe Premium</span>
-                        </div>
-                    </div>
-
-                    <div style="background:var(--bg-secondary); padding:20px; border-radius:12px; border:1px solid var(--border-color); box-shadow:0 4px 6px rgba(0,0,0,0.02);">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                            <span id="budget-price-display" class="budget-price" style="font-size:2rem; color:var(--laterite); font-weight:800;">${circuit.budgets.standard.price}</span>
-                            <span style="font-size:0.9rem; color:var(--text-secondary);">/ personne (base 2)</span>
-                        </div>
-                        <p id="budget-desc-display" style="margin-bottom:15px; color:var(--text-primary); font-size:1.05rem;">${circuit.budgets.standard.desc}</p>
-                        <ul id="budget-inclusions" style="list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.9rem;">
-                            ${circuit.budgets.standard.inclus.map(item => `<li><i class="fas fa-check" style="color:var(--success);"></i> ${item}</li>`).join('')}
-                        </ul>
-                    </div>
-
-                    <!-- TIMELINE -->
-                    <h3 style="margin-top:40px; margin-bottom:20px; font-family:var(--font-display);">Programme Détaillé</h3>
-                    <div class="timeline-container">
-            `;
-
-            // --- TIMELINE STEPS ---
-            if (circuit.etapes) {
-                circuit.etapes.forEach(step => {
-                    // INFO TRANSPORT
-                    let transportIcon = 'fa-car';
-                    if (step.transport && step.transport.mode) {
-                        const mode = step.transport.mode.toLowerCase();
-                        if (mode.includes('bateau') || mode.includes('coque')) transportIcon = 'fa-ship';
-                        if (mode.includes('marche') || mode.includes('pied')) transportIcon = 'fa-hiking';
-                        if (mode.includes('avion')) transportIcon = 'fa-plane';
-                    }
-
-                    html += `
-                        <div class="timeline-step">
-                            <div class="timeline-marker"></div>
-                            
-                            <!-- Header Day Title -->
-                            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                                <div>
-                                    <span class="timeline-day">Jour ${step.jour}</span>
-                                    <h4 class="timeline-title">${step.titre}</h4>
-                                </div>
-                                ${step.transport ? `
-                                    <div class="transport-badge" title="${step.transport.info}">
-                                        <i class="fas ${transportIcon}"></i> <span>${step.transport.duree}</span>
-                                    </div>
-                                ` : ''}
-                            </div>
-
-                            <div class="timeline-content">${step.description}</div>
-                            
-                            <!-- BLOC ASTUCE (New) -->
-                             ${step.astuce ? `
-                                <div class="astuce-box pulse-soft" style="margin-bottom:15px;">
-                                    <div class="astuce-icon"><i class="fas fa-lightbulb"></i></div>
-                                    <div class="astuce-content">
-                                        <strong>Le Tips de l'Expert :</strong> ${step.astuce}
-                                    </div>
-                                </div>
-                            ` : ''}
-
-                            ${step.conseil ? `<p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:10px;"><i class="fas fa-info-circle"></i> ${step.conseil}</p>` : ''}
-                    `;
-
-                    // Linked Locations
-                    if (step.lieux_ids && step.lieux_ids.length > 0) {
-                        html += `<div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">`;
-                        step.lieux_ids.forEach(lid => {
-                            const lieu = window.LIEUX_DATA.find(l => l.id === lid);
-                            if (lieu) {
-                                html += `
-                                    <button onclick="openModal(${lieu.id})" class="timeline-link">
-                                        <i class="fas fa-map-marker-alt"></i> ${lieu.nom}
-                                    </button>
-                                `;
-                            }
-                        });
-                        html += `</div>`;
-                    }
-
-                    html += `</div>`;
-                });
-            }
-
-            html += `</div></div>`; // End timeline container & wrapper
-
-            content.innerHTML = html;
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        window.backToItineraries = function () {
-            document.getElementById('itineraires-list').style.display = 'grid';
-            document.getElementById('itineraire-detail').style.display = 'none';
-            // Scroll back to list position if possible, or top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-    </script>
-    <script src="js/app-data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/map-logic.js"></script>
 </body>
 
 </html>
-```

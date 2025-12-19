@@ -236,6 +236,23 @@ h4 {
     display: block !important;
 }
 
+/* Global Filter Container (Desktop & Mobile Base) */
+.province-filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Wrap on desktop if needed, or nowrap with scroll */
+    gap: 10px;
+    padding: 15px 20px;
+    background: var(--bg-body);
+    /* Prevent transparency overlap */
+    position: sticky;
+    top: 70px;
+    /* Below navbar/header */
+    z-index: 90;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
 /* =========================================
    MOBILE FIRST ENGINE (The Anarchy Fix)
    ========================================= */
@@ -348,4 +365,138 @@ h4 {
         border-radius: 0 !important;
         max-height: none !important;
     }
+}
+
+/* FIX: Modal Overlay & Visibility Configuration */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10001 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.modal-overlay.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        height: 85vh;
+        max-height: 85vh;
+        border-radius: 20px 20px 0 0;
+        margin-bottom: 0;
+    }
+}
+
+
+/* FIX: Visual Refinements */
+/* 1. Remove White Veil from Images */
+.lieu-image::after,
+.lieu-image::before {
+    display: none !important;
+    background: none !important;
+}
+
+.lieu-image img {
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* 2. Fix Modal Internal Layout (Crushed Content) */
+.modal-header-content {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    padding: 20px !important;
+    color: var(--text-primary) !important;
+    background: var(--bg-card) !important;
+}
+
+.modal-content {
+    display: flex !important;
+    flex-direction: column !important;
+    /* padding: 20px; Removed to let image touch edges */
+}
+
+/* Ensure image stays at top */
+.modal-image-container {
+    flex-shrink: 0;
+    position: relative;
+    /* Remove text from image container since we moved it */
+}
+
+.modal-image-container .modal-header-content {
+    display: none !important;
+    /* Hide the duplicate inside image if any */
+}
+
+/* New clean layout for Modal Body */
+.modal-body {
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-badges {
+    margin-top: 10px;
+}
+
+.modal-desc {
+    margin-bottom: 20px !important;
+}
+
+/* Force text visibility */
+h2,
+h3,
+p {
+    text-shadow: none !important;
+}
+
+/* Nav Pill Icons */
+.nav-pill i {
+    margin-right: 8px;
+    font-size: 0.95em;
+    vertical-align: middle;
+    margin-bottom: 2px;
 }

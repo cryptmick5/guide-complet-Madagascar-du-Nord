@@ -17,11 +17,7 @@ const LIEUX_DATA = [
         "respect": "Tenue correcte exigée, pas de short",
         "conseil": "Prenez un guide officiel à l'entrée pour comprendre l'histoire complexe des incendies et de la reconstruction.",
         "duree": "1h30",
-        "siteWeb": "https://tourisme-antananarivo.com/activities/rova-antananarivo/",
-        "tags": [
-            "Culture",
-            "Histoire"
-        ]
+        "siteWeb": "https://tourisme-antananarivo.com/activities/rova-antananarivo/"
     },
     {
         "id": 2,
@@ -40,11 +36,7 @@ const LIEUX_DATA = [
         "horaires": "8h-18h du lundi au samedi",
         "conseil": "Le marchandage est de rigueur ici ! Divisez le premier prix annoncé par deux ou trois, toujours avec le sourire.",
         "duree": "2h",
-        "siteWeb": "https://tourisme-antananarivo.com/",
-        "tags": [
-            "Shopping",
-            "Souvenirs"
-        ]
+        "siteWeb": "https://tourisme-antananarivo.com/"
     },
     {
         "id": 3,
@@ -102,11 +94,7 @@ const LIEUX_DATA = [
         "horaires": "12h-14h30 et 19h-22h",
         "conseil": "Réservez une table en terrasse ou près de la cheminée en hiver. Essayez leur foie gras maison.",
         "duree": "2h",
-        "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com",
-        "tags": [
-            "Manger",
-            "Gastronomie"
-        ]
+        "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com"
     },
     {
         "id": 515,
@@ -125,11 +113,7 @@ const LIEUX_DATA = [
         "horaires": "9h-16h30 tous les jours",
         "conseil": "Prenez impérativement un guide sur place pour saisir la symbolique de chaque porte et bâtiment.",
         "duree": "Demi-journée",
-        "siteWeb": "https://whc.unesco.org/fr/list/950/",
-        "tags": [
-            "Culture",
-            "UNESCO"
-        ]
+        "siteWeb": "https://whc.unesco.org/fr/list/950/"
     },
     {
         "id": 516,
@@ -148,11 +132,7 @@ const LIEUX_DATA = [
         "horaires": "8h-16h (Dernière entrée)",
         "conseil": "Arrivez le matin à 9h quand les lémuriens sont les plus actifs avant la chaleur de midi.",
         "duree": "2h",
-        "siteWeb": "https://www.lemurspark.com",
-        "tags": [
-            "Nature",
-            "Faune"
-        ]
+        "siteWeb": "https://www.lemurspark.com"
     },
     {
         "id": 517,
@@ -494,11 +474,7 @@ const LIEUX_DATA = [
         "horaires": "8h-17h",
         "conseil": "Faites le tour du cratère à pied (30 min) pour apprécier la couleur changeante de l'eau. Baignade interdite (sacré).",
         "duree": "Demi-journée",
-        "siteWeb": "https://madagascar-tourisme.com",
-        "tags": [
-            "Nature",
-            "Légende"
-        ]
+        "siteWeb": "https://madagascar-tourisme.com"
     },
     {
         "id": 535,
@@ -536,11 +512,7 @@ const LIEUX_DATA = [
         "horaires": "Accessible 24h/24",
         "conseil": "Commandez des brochettes de poisson dans une gargote le midi. Le soir, attention aux moustiques !",
         "duree": "Demi-journée",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "tags": [
-            "Plage",
-            "Manger"
-        ]
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com"
     },
     {
         "id": 7,
@@ -559,11 +531,7 @@ const LIEUX_DATA = [
         "horaires": "Départ 8h-9h, retour 16h-17h",
         "conseil": "Le vent souffle fort (Varatraza) l'après-midi, idéal pour le kite mais protégez-vous du sable.",
         "duree": "Journée",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "tags": [
-            "Nature",
-            "Plage"
-        ]
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com"
     },
     {
         "id": 8,
@@ -601,11 +569,7 @@ const LIEUX_DATA = [
         "horaires": "8h-16h avec guide obligatoire",
         "conseil": "Prévoyez un vêtement de pluie et de bonnes chaussures, le climat est humide et plus frais qu'en ville.",
         "duree": "4h à 6h",
-        "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php",
-        "tags": [
-            "Nature",
-            "Rando"
-        ]
+        "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php"
     },
     {
         "id": 10,
@@ -624,11 +588,7 @@ const LIEUX_DATA = [
         "horaires": "Lever/coucher de soleil recommandé",
         "conseil": "La lumière de fin d'après-midi (Golden Hour) rend le rouge de la roche particulièrement intense.",
         "duree": "2h",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "tags": [
-            "Nature",
-            "Photo"
-        ]
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com"
     },
     {
         "id": 11,
@@ -647,11 +607,7 @@ const LIEUX_DATA = [
         "horaires": "Matinée recommandée (chaleur)",
         "conseil": "Partez très tôt le matin pour éviter la grosse chaleur pendant la montée des marches.",
         "duree": "3h",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "tags": [
-            "Nature",
-            "Histoire"
-        ]
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com"
     },
     {
         "id": 12,
@@ -732,24 +688,23 @@ const LIEUX_DATA = [
     {
         "id": 16,
         "ville": "Diego-Suarez",
-        "nom": "Le Melville",
-        "type": "Restaurant",
-        "lat": -12.282,
-        "lng": 49.294,
-        "prix": "40 000 Ar",
-        "prixEur": "9 €",
-        "prixNum": 40000,
-        "note": 4.6,
-        "description": "Une institution historique face à la baie. Cuisine raffinée (crabes, camarons) servie sur une magnifique terrasse coloniale. Le coucher de soleil y est spectaculaire. Un lieu chargé d'histoire.",
-        "image": "images/restaurants/diego_le_melville.png",
-        "acces": "Rue Richelieu, Centre-ville",
-        "horaires": "11h-22h",
-        "conseil": "Réservez la table au coin de la terrasse pour la meilleure vue.",
-        "duree": "2h",
-        "siteWeb": "https://www.facebook.com/LeMelvilleDiego",
+        "nom": "Grotte des Pêcheurs",
+        "type": "Spot Local",
         "spotLocal": true,
+        "lat": -12.2389,
+        "lng": 49.3012,
+        "prix": "Gratuit",
+        "prixEur": "Gratuit",
+        "prixNum": 0,
+        "note": 4.8,
+        "description": "Un lieu fascinant, à la fois merveille naturelle et temple à ciel ouvert. Cette grotte s'ouvre sur la mer et sert de lieu de culte aux ancêtres. L'atmosphère y est solennelle et mystérieuse, bercée par le bruit des vagues.",
+        "image": "images/spots/grotte-pecheurs.jpg",
+        "acces": "Plage nord de Ramena à marée basse uniquement - Demander Paul au marché aux poissons qui guide gratuitement",
         "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
-        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence"
+        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
+        "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
+        "duree": "45 min",
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com"
     },
     {
         "id": 16,
@@ -787,11 +742,7 @@ const LIEUX_DATA = [
         "horaires": "Réception 24h/24",
         "conseil": "La pâtisserie de l'hôtel est réputée comme la meilleure de la ville, parfaite pour le goûter.",
         "duree": "Séjour",
-        "siteWeb": "http://www.grand-hotel-diego.com",
-        "tags": [
-            "Dormir",
-            "Luxe"
-        ]
+        "siteWeb": "http://www.grand-hotel-diego.com"
     },
     {
         "id": 101,
@@ -829,11 +780,7 @@ const LIEUX_DATA = [
         "horaires": "Réception 24h/24",
         "conseil": "Leur restaurant 'Le Melville' est sur place, pratique pour les dîners gastronomiques sans bouger.",
         "duree": "Séjour",
-        "siteWeb": "http://www.allamanda-hotel.com",
-        "tags": [
-            "Dormir",
-            "Vue Mer"
-        ]
+        "siteWeb": "http://www.allamanda-hotel.com"
     },
     {
         "id": 103,
@@ -1011,11 +958,7 @@ const LIEUX_DATA = [
         "description": "Le meilleur rapport qualité/prix en bord de mer. Piscine agréable, chambres confortables avec balcon vue mer. C'est calme tout en étant à 5mn à pied de la rue Colbert.",
         "image": "images/hotels/allamanda.jpg",
         "conseil": "Demandez une chambre à l'étage pour une meilleure vue sur la baie.",
-        "duree": "Nuit",
-        "tags": [
-            "Dormir",
-            "Vue Mer"
-        ]
+        "duree": "Nuit"
     },
     {
         "id": 612,
@@ -1065,11 +1008,7 @@ const LIEUX_DATA = [
         "horaires": "Accessible 24h/24",
         "conseil": "Allez-y en semaine pour éviter la foule du dimanche, où les familles locales viennent pique-niquer.",
         "duree": "Demi-journée",
-        "siteWeb": "https://andilanaresort.com",
-        "tags": [
-            "Plage",
-            "Détente"
-        ]
+        "siteWeb": "https://andilanaresort.com"
     },
     {
         "id": 18,
@@ -1088,11 +1027,7 @@ const LIEUX_DATA = [
         "horaires": "Excursion journée ou demi-journée",
         "conseil": "Prévoyez des bananes (souvent fournies par les guides) pour attirer les lémuriens sur vos épaules pour la photo !",
         "duree": "3h",
-        "siteWeb": "https://nosykomba.com",
-        "tags": [
-            "Nature",
-            "Faune"
-        ]
+        "siteWeb": "https://nosykomba.com"
     },
     {
         "id": 19,
@@ -1130,11 +1065,7 @@ const LIEUX_DATA = [
         "horaires": "Journée complète, départ 7h",
         "conseil": "Attention au soleil ! Le sable blanc réfléchit énormément, crème solaire haute protection obligatoire.",
         "duree": "Journée",
-        "siteWeb": "https://nosyiranja.com",
-        "tags": [
-            "Incontournable",
-            "Plage"
-        ]
+        "siteWeb": "https://nosyiranja.com"
     },
     {
         "id": 21,
@@ -1172,11 +1103,7 @@ const LIEUX_DATA = [
         "horaires": "Lever/coucher de soleil recommandés",
         "conseil": "Arrivez au moins 30 minutes avant le coucher du soleil pour avoir une bonne place sur la terrasse panoramique.",
         "duree": "1h30",
-        "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/",
-        "tags": [
-            "Nature",
-            "Sunset"
-        ]
+        "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/"
     },
     {
         "id": 23,
@@ -1327,11 +1254,7 @@ const LIEUX_DATA = [
         "description": "Un sanctuaire de bien-être niché dans un jardin luxuriant face à la mer. Bungalows spacieux de grand standing, spa de classe mondiale et gastronomie raffinée.",
         "image": "images/hotels/ravintsara.jpg",
         "acces": "Côte Ouest, Dzamandzar",
-        "siteWeb": "https://ravintsara.mg",
-        "tags": [
-            "Dormir",
-            "Luxe"
-        ]
+        "siteWeb": "https://ravintsara.mg"
     },
     {
         "id": 202,
@@ -1363,11 +1286,7 @@ const LIEUX_DATA = [
         "description": "L'élégance à l'état pur. Ecolodge de luxe isolé sur la côte Est, offrant intimité totale et plage privée.",
         "image": "images/hotels/manga-soa.jpg",
         "acces": "Befefika, Côte Est",
-        "siteWeb": "https://mangasoalodge.com",
-        "tags": [
-            "Dormir",
-            "Luxe"
-        ]
+        "siteWeb": "https://mangasoalodge.com"
     },
     {
         "id": 204,
@@ -1579,11 +1498,7 @@ const LIEUX_DATA = [
         "horaires": "Tôt le matin ou fin d'après-midi (chaleur)",
         "conseil": "Ramassez un petit échantillon de sable coloré dans une bouteille (souvenir classique), mais restez raisonnable pour préserver le site.",
         "duree": "2h",
-        "siteWeb": "https://tourisme-majunga.com",
-        "tags": [
-            "Nature",
-            "Photo"
-        ]
+        "siteWeb": "https://tourisme-majunga.com"
     },
     {
         "id": 32,
@@ -1910,11 +1825,7 @@ const LIEUX_DATA = [
         "horaires": "Réception 24h/24",
         "conseil": "Participez à la remontée de la rivière Morira en pirogue organisée par le lodge.",
         "duree": "Nuitée",
-        "siteWeb": "https://antsanitia.com",
-        "tags": [
-            "Dormir",
-            "Détente"
-        ]
+        "siteWeb": "https://antsanitia.com"
     },
     {
         "id": 507,
@@ -2085,11 +1996,7 @@ const LIEUX_DATA = [
         "horaires": "8h-17h tous les jours",
         "conseil": "Attention à vos lunettes de soleil et chapeaux, les lémuriens sont des petits voleurs espiègles !",
         "duree": "2h",
-        "siteWeb": "https://vakonaforestlodge.com",
-        "tags": [
-            "Nature",
-            "Famille"
-        ]
+        "siteWeb": "https://vakonaforestlodge.com"
     },
     {
         "id": 43,
@@ -2129,11 +2036,7 @@ const LIEUX_DATA = [
         "horaires": "Circuits à la journée avec guide obligatoire",
         "conseil": "Ne manquez pas le coucher de soleil à la 'Fenêtre de l'Isalo', un classique mais toujours spectaculaire.",
         "duree": "Journée",
-        "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
-        "tags": [
-            "Nature",
-            "Rando"
-        ]
+        "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php"
     },
     {
         "id": 45,
@@ -2810,11 +2713,7 @@ const LIEUX_DATA = [
         "horaires": "7h30 - 17h30",
         "conseil": "Visitez tôt le matin pour les oiseaux et la fraîcheur.",
         "duree": "2h",
-        "siteWeb": "http://www.antsokayarboretum.org",
-        "tags": [
-            "Nature",
-            "Culture"
-        ]
+        "siteWeb": "http://www.antsokayarboretum.org"
     },
     {
         "id": 401,

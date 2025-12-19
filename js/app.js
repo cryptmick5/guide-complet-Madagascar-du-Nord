@@ -64,7 +64,17 @@ window.initData = function () {
 /* ============================================
    2. THEME & UTILS
    ============================================ */
-// Theme initialization moved to end of file to prevent conflicts
+window.initTheme = function () {
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            window.currentTheme = window.currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', window.currentTheme);
+            window.applyTheme();
+        });
+    }
+    window.applyTheme();
+};
 
 window.applyTheme = function () {
     document.body.setAttribute('data-theme', window.currentTheme);
@@ -143,6 +153,11 @@ window.navigateToPage = function (pageName) {
 
         if (pageName === 'carte' && window.leafletMap) {
             setTimeout(() => { if (window.leafletMap) window.leafletMap.invalidateSize(); }, 300);
+        }
+
+        // SPECIAL NORD LOGIC RE-TRIGGER
+        if (targetId.toLowerCase().includes('antsiranana')) {
+            setTimeout(window.initNorthSwitch, 100);
         }
     }
 
@@ -719,19 +734,53 @@ window.initCityPages = function () {
    NEW: HYDRATION LOGIC (Fixing Empty Pages)
    ============================================ */
 window.renderCityData = function () {
+    // --- SECURITY FALLBACK START (AXIS A) ---
+    // Si la fonction reçoit des données vides, on force l'usage de la réserve globale.
+    let data = window.LIEUX_DATA;
+    if (!data || data.length === 0) {
+        console.warn("⚠️ Data vide détectée. Bascule sur la réserve globale...");
+        // Tente de récupérer les données injectées précédemment
+        data = window.LIEUX_DATA || window.initData || [];
+    }
+    console.log("🔥 AFFICHAGE EN COURS : " + (data ? data.length : 0) + " fiches.");
+    // --- SECURITY FALLBACK END ---
+
+    console.log("1. Fonction Render appelée.");
+    // Log container check
+    const checkId = 'grid-Mahajanga';
+    const containerCheck = document.getElementById(checkId);
+    console.log(`2. Test Target ID '${checkId}' found?`, containerCheck);
+
     if (!window.LIEUX_DATA) return;
+
+    // DEBUG: INVENTAIRE STRICT (173 Items Required)
+    console.log("🔥 INVENTAIRE TOTAL :", window.LIEUX_DATA.length);
+    if (window.LIEUX_DATA.length !== 173) {
+        console.error(`🚨 ALERT: DATA MISMATCH. FOUND ${window.LIEUX_DATA.length} (Expected 173)`);
+    } else {
+        console.log("✅ DATA INTEGRITY VERIFIED: 173 ITEMS.");
+    }
+
 
     // Clear all grids first
     // Note: Keys match the 'ville' property in data/lieux.js OR mapped via logic
     const citiesStub = {
         'Diego-Suarez': 'Antsiranana',
         'Antsiranana': 'Antsiranana',
-        'Nosy Be': 'NosyBe',
-        'Mahajanga': 'Mahajanga',
-        'Antananarivo': 'Antananarivo',
-        'Toamasina': 'Toamasina',
-        'Fianarantsoa': 'Fianarantsoa',
-        'Toliara': 'Toliara'
+        'Nosy Be': 'NosyBe', 'Nosy-Be': 'NosyBe',
+        'Mahajanga': 'Mahajanga', 'Majunga': 'Mahajanga',
+        'Antananarivo': 'Antananarivo', 'Tana': 'Antananarivo',
+        'Toamasina': 'Toamasina', 'Tamatave': 'Toamasina',
+        'Fianarantsoa': 'Fianarantsoa', 'Fianar': 'Fianarantsoa',
+        'Toliara': 'Toliara', 'Tuléar': 'Toliara', 'Tulear': 'Toliara',
+        // MISSING CITIES MAPPED TO HUBS
+        'Isalo': 'Toliara', 'Ifaty': 'Toliara', 'Anakao': 'Toliara',
+        'Andasibe': 'Toamasina', 'Sainte-Marie': 'Toamasina', 'Mananara': 'Toamasina',
+        'Ankarana': 'Antsiranana', 'Sambava': 'Antsiranana', 'Antalaha': 'Antsiranana', 'Vohémar': 'Antsiranana', 'Ambilobe': 'Antsiranana',
+        // NEW ORPHANS
+        'Ampefy': 'Antananarivo', 'Antsirabe': 'Antananarivo',
+        'Anivorano': 'Antsiranana', 'Ambanja': 'Antsiranana',
+        'Ramena': 'Antsiranana', 'Joffreville': 'Antsiranana'
     };
 
     // Clean containers
@@ -741,24 +790,24 @@ window.renderCityData = function () {
     });
 
     // Populate
+    // Populate
     let count = 0;
     window.LIEUX_DATA.forEach(lieu => {
-        // Normalize Ville Name
         let v = lieu.ville ? lieu.ville.trim() : 'Inconnu';
 
-        // Map ville name to Grid ID
+        // NORD LOGIC: Both Diego and Nosy Be go to Antsiranana (The Hub)
+        // But we keep original 'v' in data attributes for filtering
         let gridId = citiesStub[v] || citiesStub[Object.keys(citiesStub).find(k => k.toLowerCase() === v.toLowerCase())];
 
-        // Specific overrides
+        // Specific overrides for the "Nord" Page Hub
         if (v === 'Diego-Suarez') gridId = 'Antsiranana';
-        if (v === 'Nosy Be' || v === 'Nosy-Be') gridId = 'NosyBe';
+        // if (v === 'Nosy Be' || v === 'Nosy-Be') gridId = 'Antsiranana'; // REMOVED: Nosy Be is now independent
 
         // Target Grid
         if (gridId) {
             const grid = document.getElementById(`grid-${gridId}`);
             if (grid) {
-                const category = (lieu.tags && lieu.tags.length > 0) ? lieu.tags[0] : lieu.type;
-                const card = createLieuCard(lieu, category);
+                const card = createLieuCard(lieu);
                 grid.insertAdjacentHTML('beforeend', card);
                 count++;
             } else {
@@ -768,33 +817,77 @@ window.renderCityData = function () {
             console.warn(`No Grid ID mapped for city: ${v}`);
         }
     });
-    console.log(`Rendered ${count} locations across city grids.`);
+    console.log(`Rendered ${count} locations across city grids. Limits removed.`);
+
+    // Auto-Init Switch if on North Page
+    // initNorthSwitch(); // REMOVED: Nosy Be is independent
 }
+
+/* ============================================
+   8. THEME MANAGER (Dark/Light)
+   ============================================ */
+
 
 
 
 window.filterProvinceItems = function (cityKey, filterType, btn) {
+    console.log(`🔍 Filter Triggered: City=${cityKey}, Type=${filterType}`);
+
     // 1. UI Update
     const container = document.getElementById(`page-${cityKey}`);
-    if (!container) return;
+    if (!container) {
+        console.error(`❌ Container not found: page-${cityKey}`);
+        return;
+    }
 
-    container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    // Fix: Toggle active on nav-pills (was filter-btn)
+    container.querySelectorAll('.nav-pill').forEach(b => {
+        // Don't remove active from budget buttons if this is a category click
+        // But here we are just swapping categories. Budget is separate.
+        // Identify if this is a budget button? Budget buttons call toggleProvinceBudget.
+        // These category buttons call filterProvinceItems. 
+        // We generally want to clear active from other category buttons.
+        // Let's assume nav-pills that call this function are the target.
+        if (b.onclick && b.onclick.toString().includes('filterProvinceItems')) {
+            b.classList.remove('active');
+        }
+    });
+
     if (btn) btn.classList.add('active');
 
     // 2. Filter Logic
     const items = container.querySelectorAll('.lieu-card');
+    console.log(`found ${items.length} items to filter in ${cityKey}`);
     let count = 0;
 
     items.forEach(item => {
-        const cat = item.dataset.category || '';
+        const cat = (item.dataset.category || '').toLowerCase(); // Normalize
+        const type = (item.dataset.type || '').toLowerCase();
         let isMatch = false;
 
+        // Normalization for filters
         if (filterType === 'all') isMatch = true;
-        // Mapping simple text to categories
-        else if (filterType === 'voir' && (cat === 'Nature' || cat === 'Plage' || cat === 'Culture' || cat === 'Incontournable' || cat === 'Spot Local')) isMatch = true;
-        else if (filterType === 'manger' && (cat === 'Restaurant' || cat === 'Bar')) isMatch = true;
-        else if (filterType === 'dormir' && (cat === 'Hotel' || cat === 'Lodge' || cat === 'Guesthouse')) isMatch = true;
-        else if (filterType === 'sortir' && (cat === 'Bar' || cat === 'Club' || cat === 'Karaoke')) isMatch = true;
+
+        // Explorer / Voir ("Tout sauf Manger/Dormir/Sortir" quasiement)
+        else if ((filterType === 'voir' || filterType === 'explorer') &&
+            (cat.includes('nature') || cat.includes('plage') || cat.includes('culture') ||
+                cat.includes('parc') || cat.includes('reserve') || cat.includes('réserve') ||
+                cat.includes('cascade') || cat.includes('baie') || cat.includes('tsingy') ||
+                cat.includes('visite') || cat.includes('general') || cat.includes('incontournable'))) isMatch = true;
+
+        // Manger
+        else if (filterType === 'manger' && (cat.includes('manger') || cat.includes('resto') || cat.includes('bar'))) isMatch = true;
+
+        // Dormir
+        else if (filterType === 'dodo' && (cat.includes('dormir') || cat.includes('hotel') || cat.includes('lodge'))) isMatch = true;
+
+        // Sortir
+        else if (filterType === 'sortir' && (cat.includes('sortir') || cat.includes('bar') || cat.includes('club'))) isMatch = true;
+
+        // Spot
+        else if (filterType === 'spot' && (cat.includes('spot') || type.includes('spot'))) isMatch = true;
+
+        console.log(`Item: ${item.dataset.id} | Cat: ${cat} | Type: ${type} | Match: ${isMatch}`);
 
         // Budget Filter Check (Global or local var?)
         // For simplicity in restoration, we respect the category filter primarily. 
@@ -811,16 +904,15 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
         }
 
         if (isMatch) {
-            item.style.display = 'flex'; // or grid? default is flex for cards in some layouts, but list uses grid.
-            // Check parent container style. Usually cards are in a grid. 
-            // Better: reset style to empty to pick up CSS grid/flex
-            item.style.display = '';
-            item.parentElement.style.display = 'grid'; // Ensure parent is visible
+            item.parentElement.style.display = 'grid'; // Grid Item wrapper
+            item.style.display = 'flex'; // Card itself
             count++;
         } else {
+            item.parentElement.style.display = 'none';
             item.style.display = 'none';
         }
     });
+    console.log(`✅ Filter Result: ${count} visible items.`);
 
     // 3. Empty State
     const emptyMsg = container.querySelector('.empty-state-msg');
@@ -870,34 +962,82 @@ function getCityNameFromKey(key) {
    ============================================ */
 
 window.createLieuCard = function (lieu, category = '') {
+    // 1. Logic & Safety
+    // Auto-derive category if missing (Critical for Filtering)
+    if (!category) {
+        const t = (lieu.type || '').toLowerCase();
+        const c = (lieu.categorie || '').toLowerCase();
+        if (t.includes('hotel') || t.includes('lodge') || t.includes('dodo')) category = 'Dormir';
+        else if (t.includes('resto') || t.includes('manger') || t.includes('bar')) category = 'Manger'; // Basic mapping
+        else if (c === 'spot local' || t === 'spot local') category = 'Spot Local';
+        else category = lieu.categorie || lieu.type || 'General';
+    }
+
     const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
     const activeClass = window.isFavorite(lieu.id) ? 'active' : '';
     const icon = window.isFavorite(lieu.id) ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
 
+    // 2. Data Preparation
+    const tagsString = (lieu.tags || []).join(',');
+    const displayTags = (lieu.tags || []).slice(0, 3).map(t => `<span class="card-tag" style="background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:12px; font-size:0.7rem; color:var(--text-secondary); border:1px solid var(--border-color);">${t}</span>`).join('');
+
+    const isMustSee = lieu.type === 'Incontournable' || (lieu.tags && lieu.tags.includes('Incontournable'));
+    const badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
+    const badgeText = isMustSee ? 'Incontournable' : lieu.type;
+
+    // 3. Template (Rich & Premium)
     return `
-        <article class="lieu-card" data-id="${lieu.id}" data-category="${category}" style="position: relative; cursor: pointer; display: flex;">
-            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${activeClass}">
+        <article class="lieu-card" 
+                 data-id="${lieu.id}" 
+                 data-category="${category}" 
+                 data-tags="${tagsString}" 
+                 data-type="${lieu.type}" 
+                 data-ville="${lieu.ville}"
+                 style="position: relative; cursor: pointer; display: flex; flex-direction: column; background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s; border: 1px solid var(--border-color);">
+            
+            <!-- Badge Location (Top Left - REQUESTED) -->
+            <div class="badge-location" style="position: absolute; top: 10px; left: 10px; z-index: 5; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; backdrop-filter: none;">
+                <i class="fas fa-map-marker-alt" style="margin-right:4px;"></i> ${lieu.ville}
+            </div>
+
+            <!-- Favorite Button (Top Right) -->
+            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${activeClass}" 
+                    style="position: absolute; top: 10px; right: 10px; z-index: 5; background: white; border-radius: 50%; width: 32px; height: 32px; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer;">
                 ${icon}
             </button>
-            <div class="lieu-image" onclick="showLieuDetailsByID(${lieu.id})">
-                <img src="${lieu.image}" alt="${lieu.nom.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
-                <div class="lieu-badge">${lieu.type}</div>
+            
+            <!-- Image -->
+            <div class="lieu-image" onclick="showLieuDetailsByID(${lieu.id})" style="position: relative; height: 180px; overflow: hidden;">
+                <img src="${lieu.image}" alt="${lieu.nom.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.src='images/placeholder.jpg'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <!-- Type Badge (Bottom Left) -->
+                <div class="lieu-badge" style="position: absolute; bottom: 10px; left: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; ${badgeStyle}">${badgeText}</div>
             </div>
-            <div class="lieu-content" onclick="showLieuDetailsByID(${lieu.id})">
-                <div class="lieu-header">
-                    <h3 class="lieu-title">${lieu.nom}</h3>
-                    <div class="lieu-rating"><i class="fas fa-star"></i> ${lieu.note}</div>
+            
+            <!-- Content -->
+            <div class="lieu-content" onclick="showLieuDetailsByID(${lieu.id})" style="padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                
+                <div class="lieu-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin: 0;">
+                    <h3 class="lieu-title" style="margin: 0; font-size: 1.1rem; color: var(--text-primary); line-height: 1.3; font-weight: 700;">${lieu.nom}</h3>
+                    <div class="lieu-rating" style="display: flex; align-items: center; gap: 4px; font-size: 0.85rem; color: var(--text-primary); background: var(--bg-body); padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border-color);">
+                        <i class="fas fa-star" style="color: #f1c40f; font-size: 0.8rem;"></i> ${lieu.note}
+                    </div>
                 </div>
-                <p class="lieu-desc">${lieu.description}</p>
-                <div class="lieu-footer">
-                   <span class="lieu-ville"><i class="fas fa-map-marker-alt"></i> ${lieu.ville}</span>
-                   <span class="lieu-prix ${prixClass}">${lieu.prix}</span>
+
+                <!-- Tags -->
+                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTags}</div>
+
+                <!-- Desc -->
+                <p class="lieu-desc" style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">${lieu.description}</p>
+
+                <!-- Footer -->
+                <div class="lieu-footer" style="margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; border-top: 1px solid var(--border-color);">
+                   <span class="lieu-ville" style="color: var(--text-secondary); display: none;">${lieu.ville}</span> <!-- Hidden as badge is on image -->
+                   <span class="lieu-prix ${prixClass}" style="font-weight: 600;">${lieu.prix}</span>
                 </div>
             </div>
         </article>
     `;
 }
-
 /* ============================================
    8. MODAL SYSTEM (CRASH FIX)
    ============================================ */
@@ -944,7 +1084,7 @@ window.openLieuModal = function (lieu) {
                     </div>
                     <div class="info-item">
                         <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Catégorie</span>
-                        <span style="font-weight:600;">${(lieu.tags && lieu.tags.length) ? lieu.tags[0] : 'Général'}</span>
+                        <span style="font-weight:600;">${(lieu.tags && lieu.tags.length) ? lieu.tags.join(' • ') : 'Général'}</span>
                     </div>
                      <div class="info-item">
                         <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Sécurité</span>
@@ -1043,7 +1183,7 @@ window.updatePremiumInfo = function (city, provinceKey) {
     if (zoneData.logistique) {
         const { route_etat, transport_conseil } = zoneData.logistique;
         html += `
-    <div class="logistique-container">
+    < div class="logistique-container" >
                  <div class="logistique-header" onclick="this.nextElementSibling.classList.toggle('active')">
                     <h3><i class="fas fa-truck-monster"></i> Infos Route (${city})</h3>
                     <i class="fas fa-chevron-down"></i>
@@ -1057,13 +1197,15 @@ window.updatePremiumInfo = function (city, provinceKey) {
     container.innerHTML = html;
 }
 
+
+
 /* ============================================
    MAIN ENTRY
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initData().then(() => {
-        // initTheme removed here, called below safely
+        initTheme();
         if (typeof initMap === 'function') initMap();
         initLanguePage();
         initOutilsPage();
@@ -1086,7 +1228,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (query.length < 2) { results.style.display = 'none'; return; }
                 const matching = window.LIEUX_DATA.filter(l => normalize(l.nom).includes(query));
                 if (matching.length === 0) { results.innerHTML = '<div style="padding:10px;">Rien trouvé.</div>'; results.style.display = 'block'; return; }
-                results.innerHTML = matching.slice(0, 5).map(l => `<div onclick="window.showLieuDetailsByID(${l.id}); document.getElementById('searchResults').style.display='none';" style="padding:10px; cursor:pointer;">${l.nom}</div>`).join('');
+                if (matching.length === 0) { results.innerHTML = '<div style="padding:10px;">Rien trouvé.</div>'; results.style.display = 'block'; return; }
+                // SLICE REMOVED to show all results
+                results.innerHTML = matching.map(l => `<div onclick="window.showLieuDetailsByID(${l.id}); document.getElementById('searchResults').style.display='none';" style="padding:10px; cursor:pointer;">${l.nom}</div>`).join('');
+                results.style.display = 'block';
                 results.style.display = 'block';
             });
             document.addEventListener('click', (e) => {
@@ -1095,6 +1240,105 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+/* ============================================
+   9. FILTERS & UTILS (RESTORED MAP LOGIC)
+   ============================================ */
+
+window.initFilters = function () {
+    // Only needed if we want to attach listeners dynamically, 
+    // but map-logic.js handles map listeners on checkboxes.
+    // This is for the City Page Chips.
+};
+
+window.getActiveFilters = function () {
+    const filters = {
+        provinces: [],
+        types: [],
+        prix: [],
+        favorites: false
+    };
+
+    // 1. Province/City Filters (Map Page)
+    document.querySelectorAll('.filter-checkbox[id^="filter-"]:checked').forEach(cb => {
+        const type = cb.id.replace('filter-', '');
+        // Cities
+        if (['antananarivo', 'antsiranana', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa'].includes(type)) {
+            filters.provinces.push(type);
+        }
+        // Types
+        else if (['explorer', 'manger', 'dodo', 'sortir', 'spot'].includes(type)) {
+            filters.types.push(type);
+        }
+    });
+
+    // 2. Favorites
+    const favCb = document.getElementById('filter-favorites');
+    if (favCb && favCb.checked) filters.favorites = true;
+
+    return filters;
+};
+
+window.matchesFilters = function (lieu, filters) {
+    if (!lieu) return false;
+
+    // 1. Favorites
+    if (filters.favorites) {
+        if (!window.isFavorite(lieu.id)) return false;
+    }
+
+    // 2. City Filter (Map Page)
+    // If specific cities selected, must match one of them
+    if (filters.provinces && filters.provinces.length > 0) {
+        const lieuCity = (lieu.ville || '').toLowerCase();
+        // Handle variations (Diego vs Antsiranana)
+        let normalizedCity = lieuCity;
+        if (lieuCity === 'diego-suarez') normalizedCity = 'antsiranana';
+        if (lieuCity === 'nosy be' || lieuCity === 'nosy-be') normalizedCity = 'antsiranana'; // Map Logic usually groups them or not? 
+        // Actually map-logic groups Nosy Be geographically in the north. 
+        // But if user filters specifically?
+        // Let's stick to strict matching unless mapped.
+
+        // Simple Check: is the lowercase city in the list?
+        // But the list uses 'antsiranana' for Diego.
+        const mapCityToFilter = {
+            'diego-suarez': 'antsiranana',
+            'antsiranana': 'antsiranana',
+            'nosy be': 'antsiranana', // For Map filter 'Nord' usually implies this
+            'nosy-be': 'antsiranana',
+            'antananarivo': 'antananarivo', 'tana': 'antananarivo',
+            'mahajanga': 'mahajanga', 'majunga': 'mahajanga',
+            'toamasina': 'toamasina', 'tamatave': 'toamasina',
+            'toliara': 'toliara', 'tuléar': 'toliara',
+            'fianarantsoa': 'fianarantsoa'
+        };
+
+        const mappedLieu = mapCityToFilter[lieuCity] || lieuCity;
+        // Check exact match in filters or checks
+        // Actually, if I select 'Antsiranana', do I want Nosy Be?
+        // In the map filter UI, usually yes.
+        if (!filters.provinces.includes(mappedLieu)) return false;
+    }
+
+    // 3. Type Filter
+    if (filters.types && filters.types.length > 0) {
+        const lType = (lieu.type || '').toLowerCase();
+        const lCat = (lieu.categorie || '').toLowerCase();
+
+        // Check if ANY selected type matches
+        const match = filters.types.some(t => {
+            if (t === 'spot' && (lieu.spotLocal || lType === 'spot local' || lCat === 'spot local')) return true;
+            if (t === 'manger' && (lType.includes('resto') || lType.includes('manger'))) return true;
+            if (t === 'dodo' && (lType.includes('hôtel') || lType.includes('hotel') || lType.includes('dodo'))) return true;
+            if (t === 'sortir' && (lType.includes('bar') || lType.includes('sortir') || lType.includes('club'))) return true;
+            if (t === 'explorer' && (lType.includes('activit') || lType.includes('parc') || lType.includes('plage'))) return true;
+            return false;
+        });
+        if (!match) return false;
+    }
+
+    return true;
+};
+
 /* ============================================
    8. THEME MANAGER (Dark/Light)
    ============================================ */

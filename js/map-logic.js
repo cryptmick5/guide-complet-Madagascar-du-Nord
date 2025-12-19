@@ -80,15 +80,21 @@ window.updateMapMarkers = function () {
         console.warn("Map filtering functions missing. Loading all.");
     }
 
+    console.log(`[Map Debug] Input Data: ${window.LIEUX_DATA ? window.LIEUX_DATA.length : 'NULL'}`);
+
     const filters = (typeof getActiveFilters === 'function') ? getActiveFilters() : { provinces: [], types: [], prix: [], favorites: false };
 
-    const filteredLieux = window.LIEUX_DATA.filter(lieu => {
+    const filteredLieux = (window.LIEUX_DATA || []).filter(lieu => {
         if (!lieu.nom) return false;
-        if (typeof matchesFilters === 'function') return matchesFilters(lieu, filters);
-        return true;
+        // Force bypass if missing utils
+        if (typeof matchesFilters !== 'function') return true;
+        return matchesFilters(lieu, filters);
     });
 
-    filteredLieux.forEach(lieu => {
+    console.log(`[Map Debug] Filtered Data: ${filteredLieux.length}`);
+    let markersAdded = 0;
+
+    filteredLieux.forEach((lieu, idx) => {
         const icon = L.divIcon({
             className: 'custom-marker',
             html: lieu.spotLocal ? '📍' : '📌',
@@ -97,43 +103,60 @@ window.updateMapMarkers = function () {
             popupAnchor: [0, -24]
         });
 
-        const marker = L.marker([lieu.lat, lieu.lng], { icon });
+        if (lieu.lat && lieu.lng) {
+            // console.log(`GPS Check: ${lieu.nom} -> [${lieu.lat}, ${lieu.lng}]`);
+        } else {
+            if (markersAdded < 5) console.warn(`GPS Missing: ${lieu.nom}`, lieu);
+        }
 
-        // Helper for Emoji
-        const cityEmoji = (typeof getVilleEmoji === 'function') ? getVilleEmoji(lieu.ville) : '📍';
-        const isFav = (typeof isFavorite === 'function') ? isFavorite(lieu.id) : false;
-        const bookmarkIcon = isFav ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
-        const activeClass = isFav ? 'active' : '';
+        // GPS SAFETY CHECK (CRITICAL FIX)
+        if (typeof lieu.lat === 'number' && typeof lieu.lng === 'number') {
+            const marker = L.marker([lieu.lat, lieu.lng], { icon });
 
-        const popupContent = `
-            <div class="popup-wrapper">
-                <div class="popup-image-container" style="background-image: url('${lieu.image}');">
-                     <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-popup-overlay ${activeClass}">
-                        ${bookmarkIcon}
-                    </button>
-                    ${lieu.spotLocal ? '<div class="popup-type-badge" style="background:var(--laterite);">📍 Spot Local</div>' : `<div class="popup-type-badge">${lieu.type}</div>`}
-                </div>
-                <div class="popup-body">
-                    <h3 class="popup-title">${lieu.nom}</h3>
-                    <div class="popup-subtitle">
-                        ${cityEmoji} ${lieu.ville}
+            // Create Popup Content
+            const cityEmoji = (typeof getVilleEmoji === 'function') ? getVilleEmoji(lieu.ville) : '📍';
+            const isFav = (typeof isFavorite === 'function') ? isFavorite(lieu.id) : false;
+            const bookmarkIcon = isFav ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
+            const activeClass = isFav ? 'active' : '';
+
+            const popupContent = `
+                <div class="popup-wrapper">
+                    <div class="popup-image-container" style="background-image: url('${lieu.image}');">
+                        <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-popup-overlay ${activeClass}">
+                            ${bookmarkIcon}
+                        </button>
+                        ${lieu.spotLocal ?
+                    `<div class="popup-type-badge" style="background:var(--laterite);">📍 Spot Local</div>` :
+                    `<div class="popup-type-badge">${lieu.type}</div>`
+                }
                     </div>
                     
-                    <div class="popup-meta">
-                        <div class="popup-price">${lieu.prix || ''}</div>
-                        <div class="popup-rating"><i class="fas fa-star"></i> ${lieu.note}</div>
-                    </div>
-                    
-                    <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-popup-details">
-                        Voir détails <i class="fas fa-arrow-right" style="margin-left:6px; font-size:0.8em;"></i>
-                    </button>
-                </div>
-            </div>
-        `;
+                    <div class="popup-body">
+                        <h3 class="popup-title">${lieu.nom}</h3>
+                        <div class="popup-subtitle">
+                           ${cityEmoji} ${lieu.ville}
+                        </div>
+                        
+                        <div class="popup-meta">
+                            <div class="popup-price">${lieu.prix || ''}</div>
+                            <div class="popup-rating"><i class="fas fa-star"></i> ${lieu.note}</div>
+                        </div>
 
-        marker.bindPopup(popupContent);
-        markersLayer.addLayer(marker);
+                        <button onclick="showLieuDetailsByID(${lieu.id})" class="btn-popup-details">
+                            Voir détails <i class="fas fa-arrow-right" style="margin-left:6px; font-size:0.8em;"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            marker.bindPopup(popupContent);
+            markersLayer.addLayer(marker);
+            markersAdded++;
+        } else {
+            // console.warn(`[GPS SKIP] Invalid coordinates for: ${lieu.nom}`, lieu);
+        }
     });
+    console.log(`[Map Debug] Total Markers Added to Layer: ${markersAdded}`);
 };
 
 // ============================================

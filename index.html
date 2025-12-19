@@ -622,7 +622,7 @@
             bottom: 10px;
             left: 10px;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
+            /* no-blur */
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
@@ -1408,8 +1408,8 @@
         .logistique-header,
         .premium-accordion-header {
             background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            /* no-blur */
+
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 16px;
             padding: 16px 20px;
@@ -1427,7 +1427,7 @@
         [data-theme="dark"] .premium-accordion-header {
             background: rgba(45, 45, 45, 0.95);
             /* Plus opaque pour contraste */
-            backdrop-filter: blur(16px);
+            /* no-blur */
             border: 1px solid rgba(255, 255, 255, 0.15);
             /* Bordure plus visible */
             color: var(--text-primary);
@@ -1599,7 +1599,7 @@
             /* Below Header */
             z-index: 900;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            /* no-blur */
             padding: 12px 20px;
             margin: 0 -20px 20px -20px;
             /* Full width mobile */
@@ -1852,7 +1852,7 @@
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
             background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
+            /* no-blur */
             border-radius: 30px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             max-width: 100%;
@@ -1969,7 +1969,7 @@
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
-            backdrop-filter: blur(4px);
+            /* no-blur */
         }
 
         .modal-body {
@@ -2340,7 +2340,7 @@
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 600;
-            backdrop-filter: blur(4px);
+            /* no-blur */
         }
 
         .popup-meta {
@@ -2655,7 +2655,7 @@
 
         .taxi-result {
             background: linear-gradient(135deg, rgba(176, 48, 48, 0.08), rgba(255, 255, 255, 0.02));
-            backdrop-filter: blur(10px);
+            /* no-blur */
             border-radius: 16px;
             padding: 20px;
             text-align: center;
@@ -3012,7 +3012,7 @@
             font-size: 0.75rem;
             /* ~12px */
             font-weight: 600;
-            backdrop-filter: blur(4px);
+            /* no-blur */
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -3074,21 +3074,8 @@
             <button class="nav-btn active" data-page="accueil"><i class="fa-solid fa-house"></i> Accueil</button>
             <button class="nav-btn" data-page="itineraires"><i class="fa-solid fa-route"></i> Circuits</button>
             <button class="nav-btn" data-page="carte"><i class="fa-solid fa-map"></i> Carte</button>
-
-            <button class="nav-btn" onclick="navigateToPage('antsiranana')" data-page="antsiranana"><i
-                    class="fa-solid fa-anchor"></i> Diego</button>
-            <button class="nav-btn" onclick="navigateToPage('nosybe')" data-page="nosybe"><i
-                    class="fa-solid fa-umbrella-beach"></i> Nosy Be</button>
-            <button class="nav-btn" onclick="navigateToPage('mahajanga')" data-page="mahajanga"><i
-                    class="fa-solid fa-sun"></i> Majunga</button>
-            <button class="nav-btn" onclick="navigateToPage('toamasina')" data-page="toamasina"><i
-                    class="fa-solid fa-ship"></i> Tamatave</button>
-            <button class="nav-btn" onclick="navigateToPage('toliara')" data-page="toliara"><i
-                    class="fa-solid fa-road"></i> Tuléar</button>
-            <button class="nav-btn" onclick="navigateToPage('fianarantsoa')" data-page="fianarantsoa"><i
-                    class="fa-solid fa-train"></i> Fianar</button>
-            <button class="nav-btn" onclick="navigateToPage('antananarivo')" data-page="antananarivo"><i
-                    class="fa-solid fa-landmark"></i> Tana</button>
+            <button class="nav-btn" onclick="navigateToPage('spots')" data-page="spots"><i class="fa-solid fa-fire"></i>
+                Spots</button>
             <div style="width: 1px; background: rgba(0,0,0,0.1); margin: 0 4px;"></div>
             <button class="nav-btn" onclick="navigateToPage('outils')" data-page="outils"><i
                     class="fa-solid fa-toolbox"></i> Outils</button>
@@ -3190,22 +3177,22 @@
                             </div>
                         </div>
 
-                        <!-- Nosy Be (Part of Antsiranana technically, but user often treats distinct. Wait, user said '6 Provinces'. Nosy Be is in Antsiranana. But Tana, Tamatave etc. Let's stick to 6 PROVINCES for the grid as requested, or maybe 6 DESTINATIONS?) 
-                             The user said "un onglet qui regroupe donc les 6 différentes cartes des différentes provinces".
-                             If I do the 6 OFFICIAL provinces: Antsiranana, Antananarivo, Mahajanga, Toamasina, Fianarantsoa, Toliara.
-                             Nosy Be is inside Antsiranana.
-                             However, purely for tourism, Nosy Be is huge. 
-                             But the prompt says "grid of the 6 Malagasy provinces". 
-                             I will do the 6 PROVINCES. Diego covers Nosy Be in my logic usually? 
-                             Actually, looking at `LIEUX_DATA`, Nosy Be is a separate section but my filters use `provinceIds` like `antsiranana`.
-                             I will stick to the 6 OFFICIAL PROVINCES to be safe and accurate to "6 provinces".
-                             1. Antsiranana (Diego + Nosy Be)
-                             2. Antananarivo
-                             3. Mahajanga
-                             4. Toamasina
-                             5. Fianarantsoa
-                             6. Toliara
-                        -->
+                        <!-- Nosy Be (Ajouté) -->
+                        <div onclick="navigateToPage('nosybe')" class="province-card"
+                            style="position:relative; aspect-ratio: 4/3; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15); cursor:pointer;">
+                            <img src="images/iles/nosy-komba.jpg"
+                                style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;"
+                                onerror="this.src='images/placeholders/default.jpg'">
+                            <div
+                                style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            </div>
+                            <div style="position:absolute; bottom:12px; left:12px; color:white;">
+                                <div
+                                    style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--laterite);">
+                                    Archipel</div>
+                                <div style="font-weight:700; font-size:1.1rem; line-height:1.2;">Nosy Be</div>
+                            </div>
+                        </div>
 
                         <!-- Antananarivo -->
                         <div onclick="navigateToPage('antananarivo')" class="province-card"
@@ -3590,12 +3577,18 @@
             </div>
             <!-- Filter Menu -->
             <div class="province-filter-container">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antananarivo', this)">Tout</button>
-                <button class="nav-pill"
-                    onclick="filterProvinceItems('explorer', 'Antananarivo', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antananarivo', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antananarivo', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antananarivo', this)">Sortir</button>
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antananarivo', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Antananarivo', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antananarivo', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antananarivo', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antananarivo', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Antananarivo', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div class="sep-vertical"></div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Antananarivo', this)">€</button>
                 <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Antananarivo', this)">€€</button>
@@ -3622,12 +3615,18 @@
 
             <!-- Filters -->
             <div class="province-filter-container">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antsiranana', this)">Tout</button>
-                <button class="nav-pill"
-                    onclick="filterProvinceItems('explorer', 'Antsiranana', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antsiranana', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antsiranana', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antsiranana', this)">Sortir</button>
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Antsiranana', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Antsiranana', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Antsiranana', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Antsiranana', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Antsiranana', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Antsiranana', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div class="sep-vertical"></div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Antsiranana', this)">€</button>
                 <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Antsiranana', this)">€€</button>
@@ -3654,11 +3653,18 @@
             </div>
 
             <div class="province-filter-container">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Nosy Be', this)">Tout</button>
-                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Nosy Be', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Nosy Be', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Nosy Be', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Nosy Be', this)">Sortir</button>
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Nosy Be', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Nosy Be', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Nosy Be', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Nosy Be', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Nosy Be', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Nosy Be', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div class="sep-vertical"></div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Nosy Be', this)">€</button>
                 <button class="nav-pill" onclick="toggleProvinceBudget('mid', 'Nosy Be', this)">€€</button>
@@ -3678,7 +3684,7 @@
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/fianarantsoa/fianar_haute_ville.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
                     <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Fianarantsoa</h2>
@@ -3686,14 +3692,19 @@
                 </div>
             </div>
             <!-- Filter Menu -->
-            <div class="province-filter-container"
-                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Fianarantsoa', this)">Tout</button>
-                <button class="nav-pill"
-                    onclick="filterProvinceItems('explorer', 'Fianarantsoa', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Fianarantsoa', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Fianarantsoa', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Fianarantsoa', this)">Sortir</button>
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Fianarantsoa', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Fianarantsoa', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Fianarantsoa', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Fianarantsoa', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Fianarantsoa', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Fianarantsoa', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
                 </div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Fianarantsoa', this)">€</button>
@@ -3716,7 +3727,7 @@
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/mahajanga/mahajanga_baobab_tree_1765470123908.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
                     <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Mahajanga</h2>
@@ -3724,13 +3735,19 @@
                 </div>
             </div>
             <!-- Filter Menu -->
-            <div class="province-filter-container"
-                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Mahajanga', this)">Tout</button>
-                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Mahajanga', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Mahajanga', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Mahajanga', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Mahajanga', this)">Sortir</button>
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Mahajanga', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Mahajanga', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Mahajanga', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Mahajanga', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Mahajanga', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Mahajanga', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
                 </div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Mahajanga', this)">€</button>
@@ -3753,7 +3770,7 @@
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/ile-aux-nattes.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
                     <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Toamasina</h2>
@@ -3761,13 +3778,19 @@
                 </div>
             </div>
             <!-- Filter Menu -->
-            <div class="province-filter-container"
-                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toamasina', this)">Tout</button>
-                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toamasina', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toamasina', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toamasina', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toamasina', this)">Sortir</button>
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toamasina', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toamasina', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toamasina', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toamasina', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toamasina', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Toamasina', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
                 </div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Toamasina', this)">€</button>
@@ -3790,7 +3813,7 @@
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/toliara_placeholder.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
                     <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); backdrop-filter:blur(5px); border:none;">
+                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Toliara</h2>
@@ -3798,13 +3821,19 @@
                 </div>
             </div>
             <!-- Filter Menu -->
-            <div class="province-filter-container"
-                style="display:flex; overflow-x:auto; white-space:nowrap; gap:10px; padding:10px 20px 10px 20px; -webkit-overflow-scrolling:touch; margin-top:-45px; position:relative; z-index:10;">
-                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toliara', this)">Tout</button>
-                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toliara', this)">Explorer</button>
-                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toliara', this)">Manger</button>
-                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toliara', this)">Dormir</button>
-                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toliara', this)">Sortir</button>
+            <div class="province-filter-container">
+                <button class="nav-pill active" onclick="filterProvinceItems('all', 'Toliara', this)"><i
+                        class="fas fa-layer-group"></i> Tout</button>
+                <button class="nav-pill" onclick="filterProvinceItems('explorer', 'Toliara', this)"><i
+                        class="fas fa-binoculars"></i> Explorer</button>
+                <button class="nav-pill" onclick="filterProvinceItems('manger', 'Toliara', this)"><i
+                        class="fas fa-utensils"></i> Manger</button>
+                <button class="nav-pill" onclick="filterProvinceItems('dodo', 'Toliara', this)"><i
+                        class="fas fa-bed"></i> Dormir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('sortir', 'Toliara', this)"><i
+                        class="fas fa-glass-martini-alt"></i> Sortir</button>
+                <button class="nav-pill" onclick="filterProvinceItems('spot', 'Toliara', this)"><i
+                        class="fas fa-map-pin"></i> Spots</button>
                 <div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px; height:20px; align-self:center;">
                 </div>
                 <button class="nav-pill" onclick="toggleProvinceBudget('low', 'Toliara', this)">€</button>
@@ -4056,7 +4085,19 @@
         </section>
     </main>
 
-
+    <!-- Modal Détails -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <img id="modalImage" class="modal-image" src="" alt="" loading="lazy">
+            <div class="modal-body">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <div id="modalBadges" style="margin-bottom: 16px;"></div>
+                <div id="modalInfoGrid" class="modal-info-grid"></div>
+                <div id="modalSections"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Install Prompt -->
     <div id="installPrompt" class="install-prompt">
@@ -4065,15 +4106,20 @@
         <button class="install-close" id="installClose">×</button>
     </div>
 
-    <!-- External Data -->
-    <script src="data/lieux.js"></script>
-    <script src="data/itineraires.js"></script>
-    <script src="data/phrases.js"></script>
-
+    <!-- SCRIPTS -->
+    <!-- Libraries -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
+    <!-- Data (Legacy/Fallback) -->
+    <script src="data/lieux.js?v=9999"></script>
+    <script src="data/itineraires.js?v=9999"></script>
+    <script src="data/phrases.js"></script>
 
+    <!-- App Logic -->
+    <script src="js/app.js?v=FORCE_DEBUG"></script>
+    <script src="js/map-logic.js?v=FORCE_DEBUG"></script>
 
 
     <!-- MODALE FICHE LIEU (CARTE - Fix) -->
@@ -4109,8 +4155,6 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
-    <script src="js/map-logic.js"></script>
 </body>
 
 </html>

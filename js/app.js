@@ -840,15 +840,14 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
         return;
     }
 
-    // Fix: Toggle active on nav-pills (was filter-btn)
-    container.querySelectorAll('.nav-pill').forEach(b => {
-        // Don't remove active from budget buttons if this is a category click
-        // But here we are just swapping categories. Budget is separate.
-        // Identify if this is a budget button? Budget buttons call toggleProvinceBudget.
-        // These category buttons call filterProvinceItems. 
-        // We generally want to clear active from other category buttons.
-        // Let's assume nav-pills that call this function are the target.
-        if (b.onclick && b.onclick.toString().includes('filterProvinceItems')) {
+    // Fix: Toggle active on nav-pills
+    // We want to deactivate all "category" buttons, but keep "budget" buttons.
+    // Budget buttons call 'toggleProvinceBudget'. Category buttons call 'filterProvinceItems'.
+
+    const allPills = container.querySelectorAll('.nav-pill');
+    allPills.forEach(b => {
+        const onClickFn = b.getAttribute('onclick') || '';
+        if (onClickFn.includes('filterProvinceItems')) {
             b.classList.remove('active');
         }
     });
@@ -861,41 +860,42 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
     let count = 0;
 
     items.forEach(item => {
-        const cat = (item.dataset.category || '').toLowerCase(); // Normalize
-        const type = (item.dataset.type || '').toLowerCase();
+        const rawTags = (item.dataset.tags || '').toLowerCase(); // e.g., "explorer,tana,€"
+        const tags = rawTags.split(',');
         let isMatch = false;
 
         // Normalization for filters
         if (filterType === 'all') isMatch = true;
 
-        // Explorer / Voir
-        else if ((filterType === 'voir' || filterType === 'explorer') && cat === 'explorer') isMatch = true;
+        // Categories (Check if tag exists)
+        else if (filterType === 'voir' || filterType === 'explorer') isMatch = tags.includes('explorer');
+        else if (filterType === 'manger') isMatch = tags.includes('manger');
+        else if (filterType === 'dodo' || filterType === 'dormir') isMatch = tags.includes('dormir');
+        else if (filterType === 'sortir') isMatch = tags.includes('sortir');
+        else if (filterType === 'spot') isMatch = tags.includes('spots');
 
-        // Manger
-        else if (filterType === 'manger' && cat === 'manger') isMatch = true;
+        // Debug
+        // console.log(`Item: ${item.dataset.id} | Tags: ${rawTags} | Match: ${isMatch}`);
 
-        // Dormir (handle both terms)
-        else if (filterType === 'dodo' && (cat === 'dormir' || cat === 'dodo')) isMatch = true;
-
-        // Sortir
-        else if (filterType === 'sortir' && cat === 'sortir') isMatch = true;
-
-        // Spot
-        else if (filterType === 'spot' && (cat === 'spot' || cat === 'spot local')) isMatch = true;
-
-        console.log(`Item: ${item.dataset.id} | Cat: ${cat} | Type: ${type} | Match: ${isMatch}`);
-
-        // Budget Filter Check (Global or local var?)
-        // For simplicity in restoration, we respect the category filter primarily. 
-        // If needed, check selected budget buttons too.
+        // Budget Filter Check 
         if (isMatch) {
-            // Check budget if active
+            // Check if a budget button is active locally
             const activeBudgetBtn = container.querySelector('.budget-btn.active');
             if (activeBudgetBtn) {
-                const budgetLevel = activeBudgetBtn.dataset.level; // 1, 2, 3
-                const itemPrice = parseInt(item.querySelector('.lieu-prix').className.includes('gratuit') ? 0 : (item.querySelector('.lieu-prix').className.includes('abordable') ? 1 : 2));
-                // (Simplification: exact match not enforced strictly to avoid empty results, but "premium" filters high prices)
-                // Let's implement strict if budget is selected
+                const budgetLevel = activeBudgetBtn.dataset.level; // 1='€', 2='€€', 3='€€€'
+                const targetTag = budgetLevel === '1' ? '€' : (budgetLevel === '2' ? '€€' : '€€€');
+
+                // If it doesn't match the specific budget, hide it (Strict filtering)
+                /* 
+                   Wait, budget logic in `toggleProvinceBudget` typically works by *showing* items.
+                   Here we must intersect. 
+                   If budget 1 is active, item MUST have '€'.
+                   But wait, `item.dataset.tags` stores symbols e.g. "€".
+                   `toLowerCase` turns it to "€".
+                */
+                if (!tags.includes(targetTag.toLowerCase())) {
+                    isMatch = false;
+                }
             }
         }
 
@@ -943,8 +943,19 @@ window.toggleProvinceBudget = function (cityKey, level, btn) {
     }
 
     // Re-run filter based on current active category
-    const activeCatBtn = container.querySelector('.filter-btn.active');
-    const filterType = activeCatBtn ? activeCatBtn.dataset.filter : 'all';
+    const activeCatBtn = container.querySelector('.nav-pill.active'); // Was .filter-btn
+    // Extract filter type from button logic or text
+    let filterType = 'all';
+    if (activeCatBtn) {
+        const txt = activeCatBtn.innerText.toLowerCase().trim();
+        if (txt.includes('explorer')) filterType = 'explorer';
+        else if (txt.includes('manger')) filterType = 'manger';
+        else if (txt.includes('dormir')) filterType = 'dormir';
+        else if (txt.includes('sortir')) filterType = 'sortir';
+        else if (txt.includes('spots')) filterType = 'spot';
+        else if (txt.includes('tout')) filterType = 'all';
+    }
+
     filterProvinceItems(cityKey, filterType, activeCatBtn);
 };
 
@@ -1045,7 +1056,15 @@ window.openLieuModal = function (lieu) {
     const activeClass = isFav ? 'active' : '';
 
     // Data Prep
-    const badgeType = (lieu.tags && lieu.tags.length) ? lieu.tags[0] : (lieu.type || 'Général');
+    // PRIORITÉ BADGE : On cherche d'abord une Catégorie, sinon le Type, sinon le 1er tag
+    const categoriesPrioritaires = ['Explorer', 'Manger', 'Dormir', 'Sortir', 'Spots'];
+    let badgeType = (lieu.type || 'Général');
+
+    if (lieu.tags && lieu.tags.length) {
+        const catTag = lieu.tags.find(t => categoriesPrioritaires.includes(t));
+        if (catTag) badgeType = catTag;
+        else badgeType = lieu.tags[0];
+    }
 
     // LOGIC BUTTONS (Strict Anti-Doublon)
     // 1. Is there a "Y aller" link? (Google Maps URL or similar)

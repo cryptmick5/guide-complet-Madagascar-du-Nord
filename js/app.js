@@ -1047,11 +1047,30 @@ window.openLieuModal = function (lieu) {
     // Data Prep
     const badgeType = (lieu.tags && lieu.tags.length) ? lieu.tags[0] : (lieu.type || 'Général');
 
-    // Logic for "Y aller" button (RED) - Needs 'y_aller' key
-    // Also logic for Website (GREEN)
-    const hasYAller = lieu.y_aller && lieu.y_aller.length > 0;
-    const hasWebsite = lieu.website || lieu.siteWeb;
-    const targetUrl = lieu.y_aller || '#';
+    // LOGIC BUTTONS (Strict Anti-Doublon)
+    // 1. Is there a "Y aller" link? (Google Maps URL or similar)
+    // Note: The data sometimes has 'y_aller' or 'google_maps' or we build it from lat/lng.
+    // The requirement is: If Y aller exists (meaning EXTERNAL link intent), use RED button.
+    // Else use "Voir sur la carte" (internal).
+    // BUT: The user request says "Si y_aller existe". 
+    // Let's assume 'y_aller' is a property we preserved or need to generate?
+    // In our harvest script, we didn't explicitly ensure 'y_aller' key. 
+    // However, existing data might not have it explicitly as a string URL for all.
+    // Let's construct a Google Maps URL as the "Y aller" default since it's an app.
+    // wait, "Voir sur carte" means INTERNAL map. "Y aller" means EXTERNAL (Google Maps).
+    // Logic: ALWAYS offer Google Maps as "Y Aller" (Red)? 
+    // User said: "SI y_aller existe". 
+    // Let's check a data sample. "y_aller": undefined.
+    // Maybe I should force the creation of the Red Button "Y Aller" that opens Google Maps 
+    // AND hide the "Voir sur carte" if that's what the user wants?
+    // "SI y_aller existe : Affiche UNIQUEMENT le bouton ROUGE... SI y_aller n'existe pas : Affiche le bouton standard."
+    // This implies 'y_aller' is a specific field in the data. 
+    // I will check if 'y_aller' is in the consolidated data. 
+    // If not, I will rely on lat/lng to generate it? 
+    // No, strictly follow "SI y_aller existe". If it's undefined, I show Standard.
+
+    const hasYAller = lieu.y_aller && lieu.y_aller.trim() !== "";
+    const hasWebsite = lieu.siteWeb && lieu.siteWeb.trim() !== "";
 
     // Grid Data
     const priceDisplay = lieu.prix || 'Gratuit';
@@ -1063,13 +1082,16 @@ window.openLieuModal = function (lieu) {
     <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;">
         <div class="modal-content fade-in-up">
             
-            <!-- 1. HERO HEADER -->
-            <div class="modal-hero-header">
-                <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <!-- 1. HERO HEADER (Fixed with fallback & 100% min-height) -->
+            <div class="modal-hero-header" style="min-height: 200px; background: var(--bg-secondary); position: relative;">
+                <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
+                     style="width: 100%; height: 250px; object-fit: cover;"
+                     onerror="this.onerror=null; this.src=''; this.parentElement.style.background='linear-gradient(135deg, var(--laterite), var(--noir))'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:3rem;\'><i class=\'fas fa-image\'></i></div>' + this.parentElement.innerHTML;">
                 
-                <!-- Close Button: Explicit z-index and onclick -->
-                <button class="btn-close-modal-overlay" onclick="window.closeLieuModal();" style="z-index: 99999 !important; cursor: pointer;">
-                    <i class="fas fa-times"></i>
+                <!-- Close Button: FORCED POSITION & Z-INDEX -->
+                <button class="btn-close-modal-overlay" onclick="window.closeLieuModal();" 
+                        style="position: absolute; top: 15px; right: 15px; z-index: 99999; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary);">
+                    <i class="fas fa-times" style="font-size: 1.2rem;"></i>
                 </button>
                 
                 <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
@@ -1080,35 +1102,26 @@ window.openLieuModal = function (lieu) {
                 <h2 class="modal-main-title">${lieu.nom}</h2>
                 <span class="modal-category-badge">${badgeType}</span>
                 
-                <!-- Favorite Absolute Right of Title if needed, or keep it in Hero -->
-                <!-- Let's keep a floating fav button in Hero for style, or next to title. 
-                     Design A shows clean title. Let's put fav button floating in Hero Top-Left maybe? 
-                     Or just after title. Let's stick to Hero Top-Right? No, close is there.
-                     Let's put Fav in Hero Top-Left. -->
                  <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" 
                         style="position:absolute; top:15px; left:15px; background:white; color:var(--laterite); width:36px; height:36px; border-radius:50%; border:none; box-shadow:0 4px 6px rgba(0,0,0,0.2); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10;">
                     ${favIcon}
                 </button>
             </div>
 
-            <!-- 3. INFO GRID (4 COLUMNS) -->
+            <!-- 3. INFO GRID -->
             <div class="modal-info-grid">
-                <!-- VILLE -->
                 <div class="modal-info-box">
                     <span class="modal-info-label">Ville</span>
                     <span class="modal-info-value"><i class="fas fa-map-marker-alt icon-ville"></i> ${villeDisplay}</span>
                 </div>
-                <!-- PRIX -->
                 <div class="modal-info-box">
                     <span class="modal-info-label">Prix</span>
                     <span class="modal-info-value"><i class="fas fa-wallet icon-prix"></i> ${priceDisplay}</span>
                 </div>
-                <!-- NOTE -->
                 <div class="modal-info-box">
                     <span class="modal-info-label">Note</span>
                     <span class="modal-info-value"><i class="fas fa-star icon-note"></i> ${noteDisplay}</span>
                 </div>
-                <!-- DUREE -->
                 <div class="modal-info-box">
                     <span class="modal-info-label">Durée</span>
                     <span class="modal-info-value"><i class="fas fa-clock icon-duree"></i> ${dureeDisplay}</span>
@@ -1120,7 +1133,7 @@ window.openLieuModal = function (lieu) {
                 ${lieu.description}
             </div>
 
-            <!-- 5. CONSEIL DU LOCAL (Conditional) -->
+            <!-- 5. CONSEIL -->
             ${lieu.conseil ? `
             <div class="modal-conseil-block">
                 <div class="modal-conseil-title"><i class="fas fa-lightbulb"></i> Conseil du Local</div>
@@ -1130,44 +1143,48 @@ window.openLieuModal = function (lieu) {
 
             <!-- 6. FOOTER ACTIONS -->
             <div class="modal-footer-actions">
-                ${(hasYAller || hasWebsite) ? `<div class="modal-section-title">Accès</div>` : ''}
+                <div class="modal-section-title">ACCÈS</div>
                 
                 ${lieu.acces ? `<p style="color:var(--text-secondary); margin-bottom:12px; font-size:0.9rem;">${lieu.acces}</p>` : ''}
 
-                <div class="modal-action-row">
-                    <!-- Red Button: Y ALLER (Triggers Google Maps) -->
-                    <button class="btn-action-red" onclick="window.open('https://www.google.com/maps/search/?api=1&query=' + ${lieu.lat} + ',' + ${lieu.lng}, '_blank')">
+                <div class="modal-action-row" style="display:flex; flex-direction:column; gap:10px;">
+                    <!-- ACTION LOGIC -->
+                    ${hasYAller ? `
+                    <!-- Button RED: Y Aller (External) -->
+                    <button class="btn-action-red" onclick="window.open('${lieu.y_aller}', '_blank')" 
+                            style="width:100%; padding:14px; background:var(--laterite); color:white; border:none; border-radius:12px; font-weight:700; cursor:pointer; font-family:var(--font-body);">
                         <i class="fas fa-location-arrow"></i> Y aller
                     </button>
+                    ` : `
+                    <!-- Button STANDARD: Voir sur carte (Internal) -->
+                     <button class="btn-action secondary" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})"
+                             style="width:100%; padding:14px; background:var(--bg-secondary); border:2px solid var(--border-color); color:var(--text-primary); border-radius:12px; font-weight:600; cursor:pointer;">
+                          <i class="fas fa-map"></i> Voir sur la carte de l'app
+                     </button>
+                    `}
 
-                    <!-- Green Button: WEBSITE (Conditional) -->
+                    <!-- Button GREEN: Visiter Site Web (Always if exists) -->
                     ${hasWebsite ? `
-                    <a href="${lieu.website || lieu.siteWeb}" target="_blank" class="btn-action-green">
+                    <a href="${lieu.siteWeb}" target="_blank" class="btn-action-green" 
+                       style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px; background:#2E7D32; color:white; border-radius:12px; font-weight:600; text-decoration:none;">
                         <i class="fas fa-globe"></i> Visiter le site web
                     </a>
                     ` : ''}
-                    
-                    <!-- Fallback: Locate on Map (Standard - Only if no Website/Yaller logic needed, but keeping generally useful) -->
-                     <button class="btn-action secondary" style="background:var(--bg-secondary); border:1px solid var(--border-color); padding:14px; border-radius:12px; font-weight:600; width:100%; cursor:pointer; color:var(--text-primary); margin-top: 8px;" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
-                          <i class="fas fa-map"></i> Voir sur la carte de l'app
-                     </button>
                 </div>
                 
-                <!-- Horaires if present -->
                 ${lieu.horaires ? `
                 <div style="margin-top:20px;">
-                    <div class="modal-section-title">Horaires</div>
+                    <div class="modal-section-title">HORAIRES</div>
                     <p style="color:var(--text-secondary); font-size:0.9rem;">${lieu.horaires}</p>
                 </div>` : ''}
 
             </div>
+            <div style="height:30px;"></div>
         </div>
     </div>
     `;
 
     document.body.insertAdjacentHTML('beforeend', html);
-
-    // Prevent background scrolling
     document.body.style.overflow = 'hidden';
 };
 

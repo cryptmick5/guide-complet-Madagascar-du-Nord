@@ -21,10 +21,7 @@ const LIEUX_DATA = [
         "tags": [
             "Culture",
             "Plage"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.5,
-        "duration": "1h30"
+        ]
     },
     {
         "id": 2,
@@ -46,10 +43,7 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-antananarivo.com/",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.3,
-        "duration": "2h"
+        ]
     },
     {
         "id": 3,
@@ -72,10 +66,7 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Culture"
-        ],
-        "price": "5 000 Ar",
-        "rating": 4.6,
-        "duration": "1h"
+        ]
     },
     {
         "id": 4,
@@ -98,10 +89,7 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-antananarivo.com/",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4,
-        "duration": "30 min"
+        ]
     },
     {
         "id": 5,
@@ -122,15 +110,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com",
         "tags": [
-            "Culture",
             "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 515,
+        "id": 6,
         "ville": "Antananarivo",
         "nom": "Colline Royale d'Ambohimanga",
         "type": "Culture",
@@ -150,13 +134,10 @@ const LIEUX_DATA = [
         "tags": [
             "Culture",
             "Plage"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.8,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 516,
+        "id": 7,
         "ville": "Antananarivo",
         "nom": "Lemurs' Park",
         "type": "Nature",
@@ -175,13 +156,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.lemurspark.com",
         "tags": [
             "Nature"
-        ],
-        "price": "75 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 517,
+        "id": 8,
         "ville": "Antananarivo",
         "nom": "Le Carré",
         "type": "Restaurant",
@@ -200,13 +178,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/lecarretana",
         "tags": [
             "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.5,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 518,
+        "id": 9,
         "ville": "Antananarivo",
         "nom": "Kudeta Urban Club",
         "type": "Restaurant",
@@ -225,13 +200,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.kudeta.com",
         "tags": [
             "Manger"
-        ],
-        "price": "50 000 Ar",
-        "rating": 4.7,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 519,
+        "id": 10,
         "ville": "Antananarivo",
         "nom": "Lokanga Boutique Hotel",
         "type": "Restaurant",
@@ -249,16 +221,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://lokanga-hotel.mg",
         "tags": [
-            "Dormir",
-            "Culture",
             "Manger"
-        ],
-        "price": "60 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 520,
+        "id": 11,
         "ville": "Antananarivo",
         "nom": "Nerone",
         "type": "Restaurant",
@@ -277,13 +244,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com",
         "tags": [
             "Manger"
-        ],
-        "price": "30 000 Ar",
-        "rating": 4.6,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 521,
+        "id": 12,
         "ville": "Antananarivo",
         "nom": "Grand Hôtel Urban",
         "type": "Hôtel",
@@ -301,16 +265,13 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://www.grandhotelurban.com",
         "tags": [
+            "Manger",
             "Dormir",
-            "Culture",
-            "Manger"
-        ],
-        "price": "350 000 Ar",
-        "rating": 4.7,
-        "duration": "Séjour"
+            "Culture"
+        ]
     },
     {
-        "id": 522,
+        "id": 13,
         "ville": "Antananarivo",
         "nom": "Le Centell Hotel & Spa",
         "type": "Hôtel",
@@ -328,15 +289,11 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://www.centellhotel.com",
         "tags": [
-            "Dormir",
-            "Plage"
-        ],
-        "price": "300 000 Ar",
-        "rating": 4.6,
-        "duration": "Séjour"
+            "Dormir"
+        ]
     },
     {
-        "id": 523,
+        "id": 14,
         "ville": "Antananarivo",
         "nom": "Le Sakamanga",
         "type": "Hôtel",
@@ -354,15 +311,11 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://www.sakamanga.com",
         "tags": [
-            "Dormir",
-            "Culture"
-        ],
-        "price": "150 000 Ar",
-        "rating": 4.5,
-        "duration": "Séjour"
+            "Dormir"
+        ]
     },
     {
-        "id": 524,
+        "id": 15,
         "ville": "Antananarivo",
         "nom": "Le Citizen Guest House",
         "type": "Hôtel",
@@ -380,15 +333,11 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://www.le-citizen.com",
         "tags": [
-            "Nature",
             "Dormir"
-        ],
-        "price": "380 000 Ar",
-        "rating": 4.9,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 525,
+        "id": 16,
         "ville": "Antananarivo",
         "nom": "Maison Gallieni",
         "type": "Hôtel",
@@ -408,13 +357,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Culture"
-        ],
-        "price": "750 000 Ar",
-        "rating": 4.9,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 526,
+        "id": 17,
         "ville": "Antananarivo",
         "nom": "No Comment Bar",
         "type": "Sortir",
@@ -433,13 +379,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.nocomment.mg",
         "tags": [
             "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.6,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 527,
+        "id": 18,
         "ville": "Antananarivo",
         "nom": "Taxi Be Antanimena",
         "type": "Sortir",
@@ -457,14 +400,11 @@ const LIEUX_DATA = [
         "duree": "Nuit blanche",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Manger"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.4,
-        "duration": "Nuit blanche"
+            "Culture"
+        ]
     },
     {
-        "id": 528,
+        "id": 19,
         "ville": "Antananarivo",
         "nom": "La Teinturerie",
         "type": "Sortir",
@@ -482,14 +422,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/LaTeinturerieAssociation",
         "tags": [
-            "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+            "Manger",
+            "Culture"
+        ]
     },
     {
-        "id": 529,
+        "id": 20,
         "ville": "Antananarivo",
         "nom": "Le Glacier",
         "type": "Sortir",
@@ -507,15 +445,11 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://www.hotel-glacier.com",
         "tags": [
-            "Nature",
             "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.2,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 530,
+        "id": 21,
         "ville": "Antananarivo",
         "nom": "Le Piment Café",
         "type": "Sortir",
@@ -534,13 +468,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/pimentcafe",
         "tags": [
             "Manger"
-        ],
-        "price": "25 000 Ar",
-        "rating": 4.6,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 531,
+        "id": 22,
         "ville": "Ampefy",
         "nom": "Chute de la Lily",
         "type": "Nature",
@@ -559,13 +490,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
             "Nature"
-        ],
-        "price": "2 000 Ar",
-        "rating": 4.8,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 532,
+        "id": 23,
         "ville": "Ampefy",
         "nom": "Geysers d'Analavory",
         "type": "Nature",
@@ -584,13 +512,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
             "Nature"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 533,
+        "id": 24,
         "ville": "Ampefy",
         "nom": "Ilot de la Vierge",
         "type": "Culture",
@@ -608,16 +533,11 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.9,
-        "duration": "1h"
+            "Culture"
+        ]
     },
     {
-        "id": 534,
+        "id": 25,
         "ville": "Antsirabe",
         "nom": "Lac Tritriva",
         "type": "Nature",
@@ -637,13 +557,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.8,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 535,
+        "id": 26,
         "ville": "Antsirabe",
         "nom": "Cathédrale Notre-Dame de la Salette",
         "type": "Culture",
@@ -662,13 +579,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://diocese-antsirabe.mg",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "45 min"
+        ]
     },
     {
-        "id": 6,
+        "id": 27,
         "ville": "Diego-Suarez",
         "nom": "Plage de Ramena",
         "type": "Plage",
@@ -686,16 +600,11 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "Demi-journée"
+            "Plage"
+        ]
     },
     {
-        "id": 7,
+        "id": 28,
         "ville": "Diego-Suarez",
         "nom": "Mer d'Émeraude",
         "type": "Plage",
@@ -713,15 +622,11 @@ const LIEUX_DATA = [
         "duree": "Journée",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "80 000 Ar",
-        "rating": 4.8,
-        "duration": "Journée"
+            "Plage"
+        ]
     },
     {
-        "id": 8,
+        "id": 29,
         "ville": "Diego-Suarez",
         "nom": "Les Trois Baies",
         "type": "Plage",
@@ -740,13 +645,10 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 9,
+        "id": 30,
         "ville": "Diego-Suarez",
         "nom": "Montagne d'Ambre",
         "type": "Nature",
@@ -765,13 +667,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php",
         "tags": [
             "Nature"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.7,
-        "duration": "4h à 6h"
+        ]
     },
     {
-        "id": 10,
+        "id": 31,
         "ville": "Diego-Suarez",
         "nom": "Tsingy Rouge",
         "type": "Spot Local",
@@ -789,15 +688,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Nature",
             "Plage"
-        ],
-        "price": "50 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 11,
+        "id": 32,
         "ville": "Diego-Suarez",
         "nom": "Windsor Castle",
         "type": "Spot Local",
@@ -815,15 +710,11 @@ const LIEUX_DATA = [
         "duree": "3h",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "3h"
+            "Culture"
+        ]
     },
     {
-        "id": 12,
+        "id": 33,
         "ville": "Diego-Suarez",
         "nom": "Montagne des Français",
         "type": "Nature",
@@ -841,16 +732,11 @@ const LIEUX_DATA = [
         "duree": "3h",
         "siteWeb": "http://montagnedesfrancais-anosiravo.com",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.6,
-        "duration": "3h"
+            "Nature"
+        ]
     },
     {
-        "id": 13,
+        "id": 34,
         "ville": "Diego-Suarez",
         "nom": "Restaurant Le Melville",
         "type": "Restaurant",
@@ -868,16 +754,13 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.hotels-diego.com/en/restaurant-bar",
         "tags": [
+            "Manger",
             "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+            "Plage"
+        ]
     },
     {
-        "id": 14,
+        "id": 35,
         "ville": "Diego-Suarez",
         "nom": "Restaurant La Cambusa",
         "type": "Restaurant",
@@ -896,13 +779,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.tripadvisor.fr/Restaurant_Review-g303985-d2217997-Reviews-La_Cambusa-Antsiranana_Diego_Suarez_Diana_Region.html",
         "tags": [
             "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.8,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 15,
+        "id": 36,
         "ville": "Diego-Suarez",
         "nom": "Nosy Lonjo (Pain de Sucre)",
         "type": "Nature",
@@ -921,15 +801,37 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
             "Nature",
-            "Plage",
-            "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.6,
-        "duration": "1h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 16,
+        "id": 37,
+        "ville": "Diego-Suarez",
+        "nom": "Grotte des Pêcheurs",
+        "type": "Spot Local",
+        "spotLocal": true,
+        "lat": -12.2389,
+        "lng": 49.3012,
+        "prix": "Gratuit",
+        "prixEur": "Gratuit",
+        "prixNum": 0,
+        "note": 4.8,
+        "description": "Un lieu fascinant, à la fois merveille naturelle et temple à ciel ouvert. Cette grotte s'ouvre sur la mer et sert de lieu de culte aux ancêtres. L'atmosphère y est solennelle et mystérieuse, bercée par le bruit des vagues.",
+        "image": "images/spots/grotte-pecheurs.jpg",
+        "acces": "Plage nord de Ramena à marée basse uniquement - Demander Paul au marché aux poissons qui guide gratuitement",
+        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
+        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
+        "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
+        "duree": "45 min",
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+        "tags": [
+            "Nature",
+            "Plage"
+        ]
+    },
+    {
+        "id": 38,
         "ville": "Diego-Suarez",
         "nom": "Le Melville",
         "type": "Restaurant",
@@ -946,20 +848,13 @@ const LIEUX_DATA = [
         "conseil": "Réservez la table au coin de la terrasse pour la meilleure vue.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/LeMelvilleDiego",
-        "spotLocal": true,
-        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
-        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
         "tags": [
-            "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Manger",
+            "Culture"
+        ]
     },
     {
-        "id": 100,
+        "id": 39,
         "ville": "Diego-Suarez",
         "nom": "Le Grand Hôtel",
         "type": "Hotel",
@@ -979,13 +874,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Culture"
-        ],
-        "price": "250 000 Ar",
-        "rating": 4.5,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 101,
+        "id": 40,
         "ville": "Diego-Suarez",
         "nom": "Suarez Hotel",
         "type": "Hotel",
@@ -1003,15 +895,11 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "http://www.suarez-hotel.com",
         "tags": [
-            "Dormir",
             "Culture"
-        ],
-        "price": "180 000 Ar",
-        "rating": 4.6,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 102,
+        "id": 41,
         "ville": "Diego-Suarez",
         "nom": "Allamanda Hôtel",
         "type": "Hotel",
@@ -1030,15 +918,11 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.allamanda-hotel.com",
         "tags": [
             "Dormir",
-            "Culture",
             "Plage"
-        ],
-        "price": "200 000 Ar",
-        "rating": 4.4,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 103,
+        "id": 42,
         "ville": "Diego-Suarez",
         "nom": "Le Tsara Be Vaovao",
         "type": "Restaurant",
@@ -1057,13 +941,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.tripadvisor.com",
         "tags": [
             "Manger"
-        ],
-        "price": "50 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 104,
+        "id": 43,
         "ville": "Diego-Suarez",
         "nom": "Taxi Be",
         "type": "Boîte de nuit",
@@ -1073,7 +954,7 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.3,
-        "description": "Le temple de la nuit majungaise. Une ambiance survoltée, de la musique live tous les soirs (Salegy, Slow, Variété) et une foule cosmopolite. C'est l'endroit où tout Majunga se retrouve pour danser et faire la fête jusqu'au bout de la nuit.",
+        "description": "L'institution de la nuit à Diego ! Plus qu'une boîte de nuit, c'est un monument. Tout le monde s'y retrouve : locaux, touristes, expats. L'ambiance est survoltée chaque soir avec concerts live de Salegy et DJ sets jusqu'au petit matin.",
         "image": "images/nightlife/taxi-be.jpg",
         "acces": "Rue Colbert (impossible de le rater !)",
         "horaires": "21h - Aube",
@@ -1083,13 +964,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/taxibediego",
         "tags": [
             "Culture"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.3,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 105,
+        "id": 44,
         "ville": "Diego-Suarez",
         "nom": "La Bodega",
         "type": "Bar",
@@ -1108,13 +986,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/labodegadiego",
         "tags": [
             "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.5,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 106,
+        "id": 45,
         "ville": "Diego-Suarez",
         "nom": "Nouvel Hôtel (New Bar)",
         "type": "Boîte de nuit",
@@ -1132,15 +1007,12 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.2,
-        "duration": "Nuit"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 56,
+        "id": 46,
         "ville": "Diego-Suarez",
         "nom": "Les Salines de Diego",
         "type": "Spot Local",
@@ -1161,13 +1033,10 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
             "Culture"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.6,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 600,
+        "id": 47,
         "ville": "Diego-Suarez",
         "nom": "Rue Colbert",
         "type": "Culture",
@@ -1182,13 +1051,10 @@ const LIEUX_DATA = [
         "tags": [
             "Culture",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 601,
+        "id": 48,
         "ville": "Diego-Suarez",
         "nom": "Ancien Hôtel de la Marine",
         "type": "Culture",
@@ -1204,13 +1070,10 @@ const LIEUX_DATA = [
             "Dormir",
             "Culture",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.7,
-        "duration": "30 min"
+        ]
     },
     {
-        "id": 602,
+        "id": 49,
         "ville": "Diego-Suarez",
         "nom": "Marché Bazarikely",
         "type": "Culture",
@@ -1224,13 +1087,10 @@ const LIEUX_DATA = [
         "duree": "1h",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.4,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 603,
+        "id": 50,
         "ville": "Diego-Suarez",
         "nom": "Place Joffre",
         "type": "Point de Vue",
@@ -1243,16 +1103,11 @@ const LIEUX_DATA = [
         "conseil": "Le meilleur endroit pour observer les mouvements des bateaux dans la baie.",
         "duree": "45 min",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "45 min"
+            "Culture"
+        ]
     },
     {
-        "id": 610,
+        "id": 51,
         "ville": "Diego-Suarez",
         "nom": "Gîte du Voyageur",
         "type": "Hébergement",
@@ -1263,17 +1118,13 @@ const LIEUX_DATA = [
         "conseil": "Réservez à l'avance, c'est souvent complet.",
         "duree": "Nuit",
         "tags": [
-            "Dormir"
+            "Culture"
         ],
-        "price": "Convivial",
-        "rating": 4.3,
-        "duration": "Nuit",
-        "lat": -12.27300778403283,
-        "lng": 49.309440490434945,
-        "generated_gps": true
+        "lat": -12.27241912821169,
+        "lng": 49.3030710835879
     },
     {
-        "id": 611,
+        "id": 52,
         "ville": "Diego-Suarez",
         "nom": "Allamanda Hotel",
         "type": "Hébergement",
@@ -1284,18 +1135,13 @@ const LIEUX_DATA = [
         "conseil": "Demandez une chambre à l'étage pour une meilleure vue sur la baie.",
         "duree": "Nuit",
         "tags": [
-            "Dormir",
             "Plage"
         ],
-        "price": "Confort",
-        "rating": 4.5,
-        "duration": "Nuit",
-        "lat": -12.282662977289531,
-        "lng": 49.286306596611105,
-        "generated_gps": true
+        "lat": -12.283655045283588,
+        "lng": 49.28922763116871
     },
     {
-        "id": 612,
+        "id": 53,
         "ville": "Diego-Suarez",
         "nom": "Grand Hôtel",
         "type": "Hébergement",
@@ -1309,15 +1155,11 @@ const LIEUX_DATA = [
             "Dormir",
             "Culture"
         ],
-        "price": "Luxe",
-        "rating": 4.6,
-        "duration": "Nuit",
-        "lat": -12.291848485528677,
-        "lng": 49.29843897985259,
-        "generated_gps": true
+        "lat": -12.26541063916036,
+        "lng": 49.30140297652849
     },
     {
-        "id": 60,
+        "id": 54,
         "ville": "Anivorano",
         "nom": "Lac Sacré Antagnavo",
         "type": "Culture",
@@ -1335,16 +1177,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://primemadaguide.com/guide-des-destinations-de-madagascar-lac-sacr%C3%A9-anivorano.html",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Culture"
+        ]
     },
     {
-        "id": 17,
+        "id": 55,
         "ville": "Nosy Be",
         "nom": "Plage d'Andilana",
         "type": "Incontournable",
@@ -1362,15 +1199,11 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://andilanaresort.com",
         "tags": [
-            "Culture",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.8,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 18,
+        "id": 56,
         "ville": "Nosy Be",
         "nom": "Nosy Komba",
         "type": "Incontournable",
@@ -1389,16 +1222,12 @@ const LIEUX_DATA = [
         "siteWeb": "https://nosykomba.com",
         "tags": [
             "Nature",
-            "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.7,
-        "duration": "3h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 19,
+        "id": 57,
         "ville": "Nosy Be",
         "nom": "Parc Marin Nosy Tanikely",
         "type": "Nature",
@@ -1417,13 +1246,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/nosy-tanikely.php",
         "tags": [
             "Nature"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.9,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 20,
+        "id": 58,
         "ville": "Nosy Be",
         "nom": "Nosy Iranja",
         "type": "Incontournable",
@@ -1441,15 +1267,11 @@ const LIEUX_DATA = [
         "duree": "Journée",
         "siteWeb": "https://nosyiranja.com",
         "tags": [
-            "Culture",
             "Plage"
-        ],
-        "price": "150 000 Ar",
-        "rating": 4.9,
-        "duration": "Journée"
+        ]
     },
     {
-        "id": 21,
+        "id": 59,
         "ville": "Nosy Be",
         "nom": "Réserve Naturelle de Lokobe",
         "type": "Nature",
@@ -1467,15 +1289,11 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/lokobe.php",
         "tags": [
-            "Nature",
-            "Plage"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.6,
-        "duration": "Demi-journée"
+            "Nature"
+        ]
     },
     {
-        "id": 22,
+        "id": 60,
         "ville": "Nosy Be",
         "nom": "Mont Passot",
         "type": "Incontournable",
@@ -1493,15 +1311,11 @@ const LIEUX_DATA = [
         "duree": "1h30",
         "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/",
         "tags": [
-            "Nature",
             "Culture"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.7,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 23,
+        "id": 61,
         "ville": "Nosy Be",
         "nom": "Lemuria Land",
         "type": "Culture",
@@ -1520,15 +1334,11 @@ const LIEUX_DATA = [
         "siteWeb": "https://lemurialand.com",
         "tags": [
             "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "30 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Culture"
+        ]
     },
     {
-        "id": 24,
+        "id": 62,
         "ville": "Nosy Be",
         "nom": "Plage d'Ambatoloaka",
         "type": "Incontournable",
@@ -1546,16 +1356,12 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
-            "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "Gratuit",
-        "rating": 4.2,
-        "duration": "Soirée"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 25,
+        "id": 63,
         "ville": "Nosy Be",
         "nom": "Nosy Sakatia",
         "type": "Nature",
@@ -1575,13 +1381,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.7,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 27,
+        "id": 64,
         "ville": "Nosy Be",
         "nom": "Restaurant L'Heure Bleue",
         "type": "Restaurant",
@@ -1599,15 +1402,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://heurebleue.com",
         "tags": [
-            "Plage",
             "Manger"
-        ],
-        "price": "50 000 Ar",
-        "rating": 4.9,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 28,
+        "id": 65,
         "ville": "Nosy Be",
         "nom": "Plongée Nosy Be",
         "type": "Culture",
@@ -1626,13 +1425,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
             "Culture"
-        ],
-        "price": "75 000 Ar",
-        "rating": 4.9,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 29,
+        "id": 66,
         "ville": "Nosy Be",
         "nom": "Distillerie Ylang Ylang",
         "type": "Culture",
@@ -1651,13 +1447,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://ylang-ylang-nosybe.com",
         "tags": [
             "Culture"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.5,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 30,
+        "id": 67,
         "ville": "Nosy Be",
         "nom": "Grotte de la Vierge",
         "type": "Spot Local",
@@ -1678,13 +1471,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
             "Plage"
-        ],
-        "price": "5 000 Ar",
-        "rating": 4.9,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 201,
+        "id": 68,
         "ville": "Nosy Be",
         "nom": "Ravintsara Wellness Hotel",
         "type": "Hotel",
@@ -1699,16 +1489,11 @@ const LIEUX_DATA = [
         "acces": "Côte Ouest, Dzamandzar",
         "siteWeb": "https://ravintsara.mg",
         "tags": [
-            "Dormir",
-            "Plage",
-            "Manger"
-        ],
-        "price": "Dès 180 €",
-        "rating": 4.9,
-        "duration": "Libre"
+            "Plage"
+        ]
     },
     {
-        "id": 202,
+        "id": 69,
         "ville": "Nosy Be",
         "nom": "Vanila Hotel & Spa",
         "type": "Hotel",
@@ -1723,14 +1508,11 @@ const LIEUX_DATA = [
         "acces": "Ambaro, route de l'Ouest",
         "siteWeb": "https://vanila-hotel.com",
         "tags": [
-            "Dormir"
-        ],
-        "price": "Dès 120 €",
-        "rating": 4.7,
-        "duration": "Libre"
+            "Culture"
+        ]
     },
     {
-        "id": 203,
+        "id": 70,
         "ville": "Nosy Be",
         "nom": "Manga Soa Lodge",
         "type": "Hotel",
@@ -1747,13 +1529,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Plage"
-        ],
-        "price": "Dès 200 €",
-        "rating": 4.8,
-        "duration": "Libre"
+        ]
     },
     {
-        "id": 204,
+        "id": 71,
         "ville": "Nosy Be",
         "nom": "Le Grand Bleu",
         "type": "Hotel",
@@ -1768,15 +1547,11 @@ const LIEUX_DATA = [
         "acces": "Presqu'île d'Andilana, Nord",
         "siteWeb": "https://legrandbleunosybe.com",
         "tags": [
-            "Dormir",
-            "Plage"
-        ],
-        "price": "Dès 60 €",
-        "rating": 4.6,
-        "duration": "Libre"
+            "Culture"
+        ]
     },
     {
-        "id": 205,
+        "id": 72,
         "ville": "Nosy Be",
         "nom": "Hôtel Clair de Lune",
         "type": "Hotel",
@@ -1792,13 +1567,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://clair-de-lune-nosybe.com",
         "tags": [
             "Dormir"
-        ],
-        "price": "Dès 45 €",
-        "rating": 4.5,
-        "duration": "Libre"
+        ]
     },
     {
-        "id": 206,
+        "id": 73,
         "ville": "Nosy Be",
         "nom": "La Table d'Alexandre",
         "type": "Restaurant",
@@ -1808,18 +1580,15 @@ const LIEUX_DATA = [
         "prixEur": "15 €",
         "prixNum": 60000,
         "note": 4.8,
-        "description": "Table élégante, cuisine fusion franco-malgache raffinée. Le chef sublime les produits locaux. Cadre soigné.",
+        "description": "La référence gastronomique de l'île. Cuisine créative mêlant saveurs locales et techniques françaises.",
         "image": "images/restaurants/alexandre.jpg",
         "acces": "Ambatoloaka",
         "tags": [
             "Manger"
-        ],
-        "price": "60 000 Ar",
-        "rating": 4.8,
-        "duration": "Libre"
+        ]
     },
     {
-        "id": 207,
+        "id": 74,
         "ville": "Nosy Be",
         "nom": "Le Papillon",
         "type": "Restaurant",
@@ -1834,16 +1603,13 @@ const LIEUX_DATA = [
         "acces": "Hell-Ville, centre",
         "horaires": "11h-22h",
         "tags": [
+            "Manger",
             "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.6,
-        "duration": "Libre"
+            "Plage"
+        ]
     },
     {
-        "id": 208,
+        "id": 75,
         "ville": "Nosy Be",
         "nom": "Karibo",
         "type": "Restaurant",
@@ -1859,13 +1625,10 @@ const LIEUX_DATA = [
         "horaires": "12h-14h, 18h-22h",
         "tags": [
             "Manger"
-        ],
-        "price": "30 000 Ar",
-        "rating": 4.5,
-        "duration": "Libre"
+        ]
     },
     {
-        "id": 209,
+        "id": 76,
         "ville": "Nosy Be",
         "nom": "Le Pily Pily",
         "type": "Restaurant",
@@ -1880,15 +1643,12 @@ const LIEUX_DATA = [
         "acces": "Hôtel Andilana Beach",
         "conseil": "Allez-y au coucher du soleil pour la vue.",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "70 000 Ar",
-        "rating": 4.7,
-        "duration": "Libre"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 214,
+        "id": 77,
         "ville": "Nosy Be",
         "nom": "Restaurant Cacao Beach",
         "type": "Restaurant",
@@ -1906,15 +1666,12 @@ const LIEUX_DATA = [
         "duree": "3h (repas + plage)",
         "siteWeb": "https://www.facebook.com/cacaobeachnosybe",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.8,
-        "duration": "3h (repas + plage)"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 215,
+        "id": 78,
         "ville": "Nosy Be",
         "nom": "Safari Ambaro",
         "type": "Restaurant",
@@ -1932,15 +1689,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/safariambaro",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 210,
+        "id": 79,
         "ville": "Nosy Be",
         "nom": "Le Bar de la Plage",
         "type": "Bar",
@@ -1954,15 +1708,12 @@ const LIEUX_DATA = [
         "image": "images/nightlife/bar-de-la-plage.jpg",
         "acces": "Plage d'Ambatoloaka",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.6,
-        "duration": "Libre"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 211,
+        "id": 80,
         "ville": "Nosy Be",
         "nom": "Le Djembe",
         "type": "Boîte de nuit",
@@ -1976,14 +1727,11 @@ const LIEUX_DATA = [
         "image": "images/nightlife/djembe-club.jpg",
         "acces": "Hell-Ville",
         "tags": [
-            "Manger"
-        ],
-        "price": "Entrée 20 000 Ar",
-        "rating": 4.4,
-        "duration": "Libre"
+            "Culture"
+        ]
     },
     {
-        "id": 212,
+        "id": 81,
         "ville": "Nosy Be",
         "nom": "L'Apero",
         "type": "Bar",
@@ -1998,13 +1746,10 @@ const LIEUX_DATA = [
         "acces": "Ambatoloaka",
         "tags": [
             "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.5,
-        "duration": "Libre"
+        ]
     },
     {
-        "id": 213,
+        "id": 82,
         "ville": "Nosy Be",
         "nom": "Beach Klub",
         "type": "Bar",
@@ -2018,15 +1763,12 @@ const LIEUX_DATA = [
         "image": "images/nightlife/beach-klub.jpg",
         "acces": "Andilana",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.7,
-        "duration": "Libre"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 31,
+        "id": 83,
         "ville": "Mahajanga",
         "nom": "Cirque Rouge",
         "type": "Incontournable",
@@ -2044,14 +1786,11 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+            "Nature"
+        ]
     },
     {
-        "id": 32,
+        "id": 84,
         "ville": "Mahajanga",
         "nom": "Baobabs Sacrés de Mahabibo",
         "type": "Nature",
@@ -2070,13 +1809,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Nature"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "30 min"
+        ]
     },
     {
-        "id": 33,
+        "id": 85,
         "ville": "Mahajanga",
         "nom": "Source Sacrée de Marovoay",
         "type": "Spot Local",
@@ -2097,13 +1833,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.7,
-        "duration": "45 min"
+        ]
     },
     {
-        "id": 34,
+        "id": 86,
         "ville": "Mahajanga",
         "nom": "Plage de Mahajanga",
         "type": "Incontournable",
@@ -2121,16 +1854,13 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
+            "Manger",
             "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "Soirée"
+            "Plage"
+        ]
     },
     {
-        "id": 35,
+        "id": 87,
         "ville": "Mahajanga",
         "nom": "Parc National d'Ankarafantsika",
         "type": "Nature",
@@ -2149,13 +1879,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarafantsika.php",
         "tags": [
             "Nature"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.8,
-        "duration": "Journée"
+        ]
     },
     {
-        "id": 36,
+        "id": 88,
         "ville": "Mahajanga",
         "nom": "Katsepy et le Phare",
         "type": "Nature",
@@ -2175,13 +1902,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Culture"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.5,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 37,
+        "id": 89,
         "ville": "Mahajanga",
         "nom": "Grotte d'Anjohibe",
         "type": "Nature",
@@ -2201,13 +1925,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.7,
-        "duration": "Journée complète"
+        ]
     },
     {
-        "id": 38,
+        "id": 90,
         "ville": "Mahajanga",
         "nom": "Restaurant Chez Karon",
         "type": "Restaurant",
@@ -2225,16 +1946,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/ChezKaronMajunga",
         "tags": [
-            "Culture",
-            "Plage",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 39,
+        "id": 91,
         "ville": "Mahajanga",
         "nom": "Marché Couvert de Mahajanga",
         "type": "Culture",
@@ -2253,13 +1970,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.4,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 40,
+        "id": 92,
         "ville": "Mahajanga",
         "nom": "Complexe Sportif Ankorondrano",
         "type": "Culture",
@@ -2278,13 +1992,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Culture"
-        ],
-        "price": "5 000 Ar",
-        "rating": 4.3,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 500,
+        "id": 93,
         "ville": "Mahajanga",
         "nom": "Lac Sacré de Mangatsa",
         "type": "Nature",
@@ -2305,13 +2016,10 @@ const LIEUX_DATA = [
             "Nature",
             "Culture",
             "Plage"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 501,
+        "id": 94,
         "ville": "Mahajanga",
         "nom": "Plage d'Amborovy",
         "type": "Spot Local",
@@ -2332,13 +2040,10 @@ const LIEUX_DATA = [
         "tags": [
             "Culture",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 502,
+        "id": 95,
         "ville": "Mahajanga",
         "nom": "Le Guest",
         "type": "Restaurant",
@@ -2356,15 +2061,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://restaurantleguest.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 503,
+        "id": 96,
         "ville": "Mahajanga",
         "nom": "Coco Lodge Majunga",
         "type": "Restaurant",
@@ -2382,15 +2084,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://cocolodgemajunga-madagascar.com",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 504,
+        "id": 97,
         "ville": "Mahajanga",
         "nom": "Chez Papy Râleur",
         "type": "Restaurant",
@@ -2408,15 +2107,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "25 000 Ar",
-        "rating": 4.4,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 510,
+        "id": 98,
         "ville": "Mahajanga",
         "nom": "Petite Plage (Amborovy)",
         "type": "Spot Local",
@@ -2436,13 +2132,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 505,
+        "id": 99,
         "ville": "Mahajanga",
         "nom": "Baobab Tree Hôtel & Spa",
         "type": "Hôtel",
@@ -2461,13 +2154,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://baobab-tree-hotel.mg",
         "tags": [
             "Dormir"
-        ],
-        "price": "350 000 Ar",
-        "rating": 4.8,
-        "duration": "Nuitée"
+        ]
     },
     {
-        "id": 506,
+        "id": 100,
         "ville": "Mahajanga",
         "nom": "Antsanitia Resort",
         "type": "Hôtel",
@@ -2486,15 +2176,11 @@ const LIEUX_DATA = [
         "siteWeb": "https://antsanitia.com",
         "tags": [
             "Dormir",
-            "Plage",
-            "Manger"
-        ],
-        "price": "280 000 Ar",
-        "rating": 4.7,
-        "duration": "Nuitée"
+            "Plage"
+        ]
     },
     {
-        "id": 507,
+        "id": 101,
         "ville": "Mahajanga",
         "nom": "Hôtel Edena Kely",
         "type": "Hôtel",
@@ -2513,13 +2199,10 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.edenakely.com",
         "tags": [
             "Dormir"
-        ],
-        "price": "120 000 Ar",
-        "rating": 4.5,
-        "duration": "Nuitée"
+        ]
     },
     {
-        "id": 508,
+        "id": 102,
         "ville": "Mahajanga",
         "nom": "Hôtel des Roches Rouges",
         "type": "Hôtel",
@@ -2538,15 +2221,33 @@ const LIEUX_DATA = [
         "siteWeb": "https://rochesrouges.mg",
         "tags": [
             "Dormir",
-            "Culture",
-            "Plage"
-        ],
-        "price": "150 000 Ar",
-        "rating": 4.3,
-        "duration": "Nuitée"
+            "Culture"
+        ]
     },
     {
-        "id": 511,
+        "id": 103,
+        "ville": "Mahajanga",
+        "nom": "Taxi Be",
+        "type": "Sortir",
+        "lat": -15.722,
+        "lng": 46.318,
+        "prix": "Gratuit",
+        "prixEur": "Gratuit",
+        "prixNum": 0,
+        "note": 4.4,
+        "description": "Le temple de la nuit majungaise. Une ambiance survoltée, de la musique live tous les soirs (Salegy, Slow, Variété) et une foule cosmopolite. C'est l'endroit où tout Majunga se retrouve pour danser et faire la fête jusqu'au bout de la nuit.",
+        "image": "images/mahajanga/mahajanga_taxi_be_1765470294627.png",
+        "acces": "Boulevard de la Corniche, près du bord",
+        "horaires": "21h à l'aube",
+        "conseil": "L'ambiance décolle vraiment vers 23h. Tenue correcte et bonne humeur exigées.",
+        "duree": "Soirée",
+        "siteWeb": "https://www.facebook.com",
+        "tags": [
+            "Culture"
+        ]
+    },
+    {
+        "id": 104,
         "ville": "Mahajanga",
         "nom": "Club 73 (ex-Shakira)",
         "type": "Boîte de nuit",
@@ -2564,15 +2265,11 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Culture",
-            "Manger"
-        ],
-        "price": "Entrée ~10 000 Ar",
-        "rating": 4.3,
-        "duration": "Soirée"
+            "Culture"
+        ]
     },
     {
-        "id": 512,
+        "id": 105,
         "ville": "Mahajanga",
         "nom": "Le Zebulon",
         "type": "Bar",
@@ -2590,15 +2287,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "Cocktails 15 000 Ar",
-        "rating": 4.6,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 513,
+        "id": 106,
         "ville": "Mahajanga",
         "nom": "Bar de la Marine",
         "type": "Bar",
@@ -2616,15 +2310,12 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "",
         "tags": [
-            "Culture",
-            "Manger"
-        ],
-        "price": "Bière 4 000 Ar",
-        "rating": 4.2,
-        "duration": "1h"
+            "Manger",
+            "Culture"
+        ]
     },
     {
-        "id": 514,
+        "id": 107,
         "ville": "Mahajanga",
         "nom": "Cotton Club",
         "type": "Sortir",
@@ -2642,14 +2333,11 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "",
         "tags": [
-            "Manger"
-        ],
-        "price": "Verre 20 000 Ar",
-        "rating": 4.5,
-        "duration": "Soirée"
+            "Culture"
+        ]
     },
     {
-        "id": 41,
+        "id": 108,
         "ville": "Andasibe",
         "nom": "Parc National Andasibe-Mantadia",
         "type": "Nature",
@@ -2668,13 +2356,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/andasibe-mantadia.php",
         "tags": [
             "Nature"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.8,
-        "duration": "4h"
+        ]
     },
     {
-        "id": 42,
+        "id": 109,
         "ville": "Andasibe",
         "nom": "Réserve de Vakona",
         "type": "Nature",
@@ -2694,13 +2379,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 43,
+        "id": 110,
         "ville": "Andasibe",
         "nom": "Cascade Cachée",
         "type": "Spot Local",
@@ -2721,13 +2403,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://vakonaforestlodge.com",
         "tags": [
             "Nature"
-        ],
-        "price": "Gratuit",
-        "rating": 4.8,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 44,
+        "id": 111,
         "ville": "Isalo",
         "nom": "Parc National de l'Isalo",
         "type": "Incontournable",
@@ -2746,15 +2425,11 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
         "tags": [
             "Nature",
-            "Culture",
             "Manger"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.9,
-        "duration": "Journée"
+        ]
     },
     {
-        "id": 45,
+        "id": 112,
         "ville": "Isalo",
         "nom": "Piscine Naturelle",
         "type": "Nature",
@@ -2773,13 +2448,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
         "tags": [
             "Nature"
-        ],
-        "price": "Inclus parc",
-        "rating": 4.8,
-        "duration": "1h (pause)"
+        ]
     },
     {
-        "id": 46,
+        "id": 113,
         "ville": "Isalo",
         "nom": "Point de Vue Secret du Canyon",
         "type": "Spot Local",
@@ -2799,15 +2471,11 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "https://www.parcs-madagascar.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.9,
-        "duration": "1h"
+            "Culture"
+        ]
     },
     {
-        "id": 47,
+        "id": 114,
         "ville": "Ifaty",
         "nom": "Plage d'Ifaty / Mangily",
         "type": "Plage",
@@ -2826,13 +2494,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 48,
+        "id": 115,
         "ville": "Ifaty",
         "nom": "Forêt de Baobabs de Mangily",
         "type": "Nature",
@@ -2851,13 +2516,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.reniala.com",
         "tags": [
             "Nature"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.6,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 49,
+        "id": 116,
         "ville": "Ifaty",
         "nom": "Arbre Millénaire Sacré",
         "type": "Spot Local",
@@ -2877,14 +2539,11 @@ const LIEUX_DATA = [
         "duree": "45 min",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.9,
-        "duration": "45 min"
+            "Nature"
+        ]
     },
     {
-        "id": 50,
+        "id": 117,
         "ville": "Ankarana",
         "nom": "Réserve Spéciale de l'Ankarana",
         "type": "Incontournable",
@@ -2902,15 +2561,11 @@ const LIEUX_DATA = [
         "duree": "Journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
         "tags": [
-            "Nature",
-            "Culture"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.8,
-        "duration": "Journée"
+            "Nature"
+        ]
     },
     {
-        "id": 51,
+        "id": 118,
         "ville": "Ankarana",
         "nom": "Grottes des Chauves-Souris",
         "type": "Nature",
@@ -2929,13 +2584,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
         "tags": [
             "Nature"
-        ],
-        "price": "Inclus parc",
-        "rating": 4.7,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 52,
+        "id": 119,
         "ville": "Ankarana",
         "nom": "Grotte Interdite (Anjohibe)",
         "type": "Spot Local",
@@ -2956,13 +2608,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Culture"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.8,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 53,
+        "id": 120,
         "ville": "Mananara",
         "nom": "Parc National Mananara-Nord",
         "type": "Incontournable",
@@ -2980,15 +2629,11 @@ const LIEUX_DATA = [
         "duree": "2 jours",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
         "tags": [
-            "Nature",
-            "Culture"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.6,
-        "duration": "2 jours"
+            "Nature"
+        ]
     },
     {
-        "id": 54,
+        "id": 121,
         "ville": "Mananara",
         "nom": "Parc National Nosy Atafana",
         "type": "Nature",
@@ -3008,13 +2653,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.7,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 55,
+        "id": 122,
         "ville": "Mananara",
         "nom": "Lac aux Crocodiles Sacrés",
         "type": "Spot Local",
@@ -3032,16 +2674,11 @@ const LIEUX_DATA = [
         "respect": "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.8,
-        "duration": "Libre"
+            "Culture"
+        ]
     },
     {
-        "id": 300,
+        "id": 123,
         "ville": "Fianarantsoa",
         "nom": "La Haute Villle (Vieille Ville)",
         "type": "Incontournable",
@@ -3058,15 +2695,11 @@ const LIEUX_DATA = [
         "conseil": "Montez jusqu'à l'école pour le meilleur panorama au coucher du soleil.",
         "duree": "2h",
         "tags": [
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.8,
-        "duration": "2h"
+            "Culture"
+        ]
     },
     {
-        "id": 301,
+        "id": 124,
         "ville": "Fianarantsoa",
         "nom": "Gare FCE",
         "type": "Incontournable",
@@ -3084,13 +2717,10 @@ const LIEUX_DATA = [
         "duree": "1h",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit (visite)",
-        "rating": 4.6,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 302,
+        "id": 125,
         "ville": "Fianarantsoa",
         "nom": "Plantations de Thé Sahambavy",
         "type": "Nature",
@@ -3108,13 +2738,10 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "tags": [
             "Nature"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.7,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 303,
+        "id": 126,
         "ville": "Fianarantsoa",
         "nom": "Cathédrale d'Ambozontany",
         "type": "Culture",
@@ -3132,13 +2759,10 @@ const LIEUX_DATA = [
         "duree": "30 min",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "30 min"
+        ]
     },
     {
-        "id": 304,
+        "id": 127,
         "ville": "Fianarantsoa",
         "nom": "Labo Men (Pierrot Men)",
         "type": "Culture",
@@ -3155,15 +2779,11 @@ const LIEUX_DATA = [
         "conseil": "On peut acheter des tirages ou des cartes postales signées, un souvenir précieux.",
         "duree": "1h",
         "tags": [
-            "Culture",
-            "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.9,
-        "duration": "1h"
+            "Culture"
+        ]
     },
     {
-        "id": 305,
+        "id": 128,
         "ville": "Fianarantsoa",
         "nom": "L'Ancre d'Or",
         "type": "Restaurant",
@@ -3181,13 +2801,10 @@ const LIEUX_DATA = [
         "duree": "2h",
         "tags": [
             "Manger"
-        ],
-        "price": "40 000 Ar",
-        "rating": 4.5,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 306,
+        "id": 129,
         "ville": "Fianarantsoa",
         "nom": "Tsara Guest House",
         "type": "Restaurant",
@@ -3197,22 +2814,19 @@ const LIEUX_DATA = [
         "prixEur": "14 €",
         "prixNum": 60000,
         "note": 4.8,
-        "description": "L'adresse de charme incontournable. Une architecture traditionnelle soignée, des briques rouges, et une vue imprenable sur la ville depuis la terrasse. Ambiance cosy et chaleureuse.",
+        "description": "Le raffinement à Fianar. Une terrasse avec vue panoramique sur la ville et une cuisine gastronomique locale. Le cadre est élégant, parfait pour un dîner romantique.",
         "image": "images/fianarantsoa/fianar_tsara_guest_resto.png",
         "acces": "Près de la Haute Ville",
         "horaires": "12h-14h, 19h-21h30",
         "conseil": "Réservez la table au bord de la terrasse pour le coucher de soleil.",
         "duree": "2h",
         "tags": [
-            "Culture",
-            "Manger"
-        ],
-        "price": "60 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+            "Manger",
+            "Culture"
+        ]
     },
     {
-        "id": 307,
+        "id": 130,
         "ville": "Fianarantsoa",
         "nom": "La Rizière",
         "type": "Restaurant",
@@ -3229,15 +2843,12 @@ const LIEUX_DATA = [
         "conseil": "Le menu change selon les saisons et l'apprentissage des élèves.",
         "duree": "2h",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 308,
+        "id": 131,
         "ville": "Fianarantsoa",
         "nom": "Le Panda",
         "type": "Restaurant",
@@ -3255,13 +2866,10 @@ const LIEUX_DATA = [
         "duree": "1h",
         "tags": [
             "Manger"
-        ],
-        "price": "25 000 Ar",
-        "rating": 4.3,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 309,
+        "id": 132,
         "ville": "Fianarantsoa",
         "nom": "Le Zomatel",
         "type": "Restaurant",
@@ -3278,15 +2886,12 @@ const LIEUX_DATA = [
         "conseil": "Gardez de la place pour une religieuse ou un éclair en dessert !",
         "duree": "1h30",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.4,
-        "duration": "1h30"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 310,
+        "id": 133,
         "ville": "Fianarantsoa",
         "nom": "La Chaud'hier",
         "type": "Bar",
@@ -3303,15 +2908,12 @@ const LIEUX_DATA = [
         "conseil": "L'ambiance monte vers 22h lors des concerts.",
         "duree": "Soirée",
         "tags": [
-            "Culture",
-            "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.5,
-        "duration": "Soirée"
+            "Manger",
+            "Culture"
+        ]
     },
     {
-        "id": 311,
+        "id": 134,
         "ville": "Fianarantsoa",
         "nom": "Chez Marie Zooze",
         "type": "Bar",
@@ -3328,13 +2930,10 @@ const LIEUX_DATA = [
         "duree": "2h",
         "tags": [
             "Manger"
-        ],
-        "price": "8 000 Ar",
-        "rating": 4.3,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 312,
+        "id": 135,
         "ville": "Fianarantsoa",
         "nom": "Discothèque du Soafia",
         "type": "Boîte de nuit",
@@ -3351,15 +2950,11 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "tags": [
             "Dormir",
-            "Culture",
-            "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4,
-        "duration": "Nuit"
+            "Culture"
+        ]
     },
     {
-        "id": 313,
+        "id": 136,
         "ville": "Fianarantsoa",
         "nom": "Pavillon Bar (La Rizière)",
         "type": "Bar",
@@ -3375,15 +2970,12 @@ const LIEUX_DATA = [
         "horaires": "Fin d'après-midi",
         "duree": "1h",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "12 000 Ar",
-        "rating": 4.6,
-        "duration": "1h"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 314,
+        "id": 137,
         "ville": "Fianarantsoa",
         "nom": "Bar du Sorotel",
         "type": "Bar",
@@ -3399,15 +2991,12 @@ const LIEUX_DATA = [
         "horaires": "Soirée",
         "duree": "1h",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "12 000 Ar",
-        "rating": 4.2,
-        "duration": "1h"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 315,
+        "id": 138,
         "ville": "Fianarantsoa",
         "nom": "Escaliers de la Haute Ville",
         "type": "Spot Local",
@@ -3424,13 +3013,10 @@ const LIEUX_DATA = [
         "duree": "30 min (montée !)",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.7,
-        "duration": "30 min (montée !)"
+        ]
     },
     {
-        "id": 316,
+        "id": 139,
         "ville": "Fianarantsoa",
         "nom": "Marché d'Anjoma",
         "type": "Spot Local",
@@ -3449,13 +3035,10 @@ const LIEUX_DATA = [
         "duree": "1h",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.4,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 317,
+        "id": 140,
         "ville": "Fianarantsoa",
         "nom": "Point de Vue Kianjasoa",
         "type": "Spot Local",
@@ -3472,13 +3055,10 @@ const LIEUX_DATA = [
         "duree": "1h",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.6,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 318,
+        "id": 141,
         "ville": "Fianarantsoa",
         "nom": "Lac Anosy",
         "type": "Spot Local",
@@ -3494,15 +3074,11 @@ const LIEUX_DATA = [
         "acces": "Ville basse, pied de la colline",
         "duree": "45 min",
         "tags": [
-            "Nature",
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.2,
-        "duration": "45 min"
+        ]
     },
     {
-        "id": 319,
+        "id": 142,
         "ville": "Fianarantsoa",
         "nom": "Statue de la Vierge",
         "type": "Spot Local",
@@ -3519,13 +3095,31 @@ const LIEUX_DATA = [
         "duree": "30 min",
         "tags": [
             "Culture"
-        ],
-        "price": "Gratuit",
-        "rating": 4.5,
-        "duration": "30 min"
+        ]
     },
     {
-        "id": 321,
+        "id": 143,
+        "ville": "Fianarantsoa",
+        "nom": "Tsara Guest House",
+        "type": "Hotel",
+        "lat": -21.452,
+        "lng": 47.088,
+        "prix": "180 000 Ar",
+        "prixEur": "40 €",
+        "prixNum": 180000,
+        "note": 4.8,
+        "description": "L'adresse de charme incontournable. Une architecture traditionnelle soignée, des briques rouges, et une vue imprenable sur la ville depuis la terrasse. Ambiance cosy et chaleureuse.",
+        "image": "images/fianarantsoa/fianar_tsara_guest.png",
+        "acces": "Près de la Haute Ville",
+        "horaires": "Réception 24h/24",
+        "conseil": "Demandez une chambre avec balcon pour le coucher de soleil.",
+        "duree": "Nuit",
+        "tags": [
+            "Culture"
+        ]
+    },
+    {
+        "id": 144,
         "ville": "Fianarantsoa",
         "nom": "Zomatel Hôtel",
         "type": "Hotel",
@@ -3543,13 +3137,10 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "tags": [
             "Dormir"
-        ],
-        "price": "200 000 Ar",
-        "rating": 4.5,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 322,
+        "id": 145,
         "ville": "Fianarantsoa",
         "nom": "Hôtel Cotsoyannis",
         "type": "Hotel",
@@ -3568,13 +3159,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Culture"
-        ],
-        "price": "140 000 Ar",
-        "rating": 4.4,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 323,
+        "id": 146,
         "ville": "Fianarantsoa",
         "nom": "Villa Sylvestre",
         "type": "Hotel",
@@ -3591,15 +3179,32 @@ const LIEUX_DATA = [
         "conseil": "Réservez à l'avance, il y a peu de chambres.",
         "duree": "Nuit",
         "tags": [
-            "Dormir",
             "Culture"
-        ],
-        "price": "160 000 Ar",
-        "rating": 4.7,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 400,
+        "id": 147,
+        "ville": "Fianarantsoa",
+        "nom": "La Rizière",
+        "type": "Hotel",
+        "lat": -21.46,
+        "lng": 47.09,
+        "prix": "130 000 Ar",
+        "prixEur": "30 €",
+        "prixNum": 130000,
+        "note": 4.6,
+        "description": "Plus qu'un hôtel, une école hôtelière de renom. Cadre magnifique en briques rouges entouré de jardins et rizières. Service aux petits soins par les étudiants.",
+        "image": "images/fianarantsoa/fianar_la_riziere_hotel.png",
+        "acces": "Sortie Sud",
+        "horaires": "Réception 24h/24",
+        "conseil": "Soutenez la formation des jeunes malgaches en y séjournant.",
+        "duree": "Nuit",
+        "tags": [
+            "Dormir"
+        ]
+    },
+    {
+        "id": 148,
         "ville": "Tuléar",
         "nom": "Arboretum d'Antsokay",
         "type": "Nature",
@@ -3618,13 +3223,10 @@ const LIEUX_DATA = [
         "siteWeb": "http://www.antsokayarboretum.org",
         "tags": [
             "Nature"
-        ],
-        "price": "30 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+        ]
     },
     {
-        "id": 401,
+        "id": 149,
         "ville": "Tuléar",
         "nom": "Baie de Saint-Augustin",
         "type": "Nature",
@@ -3643,13 +3245,10 @@ const LIEUX_DATA = [
         "tags": [
             "Nature",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.7,
-        "duration": "Demi-journée"
+        ]
     },
     {
-        "id": 402,
+        "id": 150,
         "ville": "Tuléar",
         "nom": "Plage d'Anakao",
         "type": "Nature",
@@ -3668,15 +3267,11 @@ const LIEUX_DATA = [
         "siteWeb": "https://madagascar-tourisme.com/fr/destinations/toliara-et-le-sud-ouest/anakao/",
         "tags": [
             "Nature",
-            "Culture",
             "Plage"
-        ],
-        "price": "Gratuit",
-        "rating": 4.9,
-        "duration": "Séjour"
+        ]
     },
     {
-        "id": 403,
+        "id": 151,
         "ville": "Tuléar",
         "nom": "Forêt de Baobabs Mangily",
         "type": "Nature",
@@ -3694,15 +3289,11 @@ const LIEUX_DATA = [
         "duree": "1h30",
         "siteWeb": "https://reniala-ecotourisme.jimdo.com",
         "tags": [
-            "Nature",
-            "Plage"
-        ],
-        "price": "20 000 Ar",
-        "rating": 4.6,
-        "duration": "1h30"
+            "Nature"
+        ]
     },
     {
-        "id": 404,
+        "id": 152,
         "ville": "Tuléar",
         "nom": "Musée de la Mer",
         "type": "Spot Local",
@@ -3720,16 +3311,11 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "https://www.ihsm.mg",
         "tags": [
-            "Nature",
-            "Culture",
             "Plage"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.3,
-        "duration": "1h"
+        ]
     },
     {
-        "id": 405,
+        "id": 153,
         "ville": "Tuléar",
         "nom": "Le Jardin de Giancarlo",
         "type": "Restaurant",
@@ -3747,15 +3333,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/giancarlo.faussone",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "45 000 Ar",
-        "rating": 4.7,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 406,
+        "id": 154,
         "ville": "Tuléar",
         "nom": "Chez Freddy",
         "type": "Restaurant",
@@ -3774,13 +3357,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/chezfreddyifaty",
         "tags": [
             "Manger"
-        ],
-        "price": "25 000 Ar",
-        "rating": 4.4,
-        "duration": "1h30"
+        ]
     },
     {
-        "id": 407,
+        "id": 155,
         "ville": "Tuléar",
         "nom": "L'Étoile de Mer",
         "type": "Restaurant",
@@ -3797,15 +3377,34 @@ const LIEUX_DATA = [
         "conseil": "Plateau de fruits de mer royal.",
         "duree": "2h",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "35 000 Ar",
-        "rating": 4.5,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 409,
+        "id": 156,
+        "ville": "Tuléar",
+        "nom": "La Table d'Alexandre",
+        "type": "Restaurant",
+        "lat": -23.35,
+        "lng": 43.672,
+        "prix": "50 000 Ar",
+        "prixEur": "11 €",
+        "prixNum": 50000,
+        "note": 4.6,
+        "description": "Table élégante, cuisine fusion franco-malgache raffinée. Le chef sublime les produits locaux. Cadre soigné.",
+        "image": "images/toliara/toliara_table_alexandre.png",
+        "acces": "Quartier résidentiel",
+        "horaires": "Soir uniquement",
+        "conseil": "Réservation conseillée.",
+        "duree": "2h30",
+        "siteWeb": "http://www.aubergedelatable.com",
+        "tags": [
+            "Manger"
+        ]
+    },
+    {
+        "id": 157,
         "ville": "Tuléar",
         "nom": "Le Vezo (Anakao)",
         "type": "Restaurant",
@@ -3823,15 +3422,12 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "http://www.longovezo.com",
         "tags": [
-            "Plage",
-            "Manger"
-        ],
-        "price": "30 000 Ar",
-        "rating": 4.8,
-        "duration": "2h"
+            "Manger",
+            "Plage"
+        ]
     },
     {
-        "id": 410,
+        "id": 158,
         "ville": "Tuléar",
         "nom": "Bakouba Concept Hotel",
         "type": "Hotel",
@@ -3849,15 +3445,11 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "http://www.bakuba-lodge.com",
         "tags": [
-            "Dormir",
-            "Plage"
-        ],
-        "price": "350 000 Ar",
-        "rating": 4.9,
-        "duration": "Nuit"
+            "Culture"
+        ]
     },
     {
-        "id": 411,
+        "id": 159,
         "ville": "Tuléar",
         "nom": "Moringa Hotel",
         "type": "Hotel",
@@ -3875,15 +3467,11 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "http://www.moringa-tulear.mg",
         "tags": [
-            "Dormir",
             "Culture"
-        ],
-        "price": "200 000 Ar",
-        "rating": 4.7,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 412,
+        "id": 160,
         "ville": "Tuléar",
         "nom": "Peter Pan",
         "type": "Hotel",
@@ -3901,15 +3489,11 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "http://www.peter-pan-anakao.com",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "150 000 Ar",
-        "rating": 4.6,
-        "duration": "Nuit"
+            "Culture"
+        ]
     },
     {
-        "id": 413,
+        "id": 161,
         "ville": "Tuléar",
         "nom": "Le Paradisier",
         "type": "Hotel",
@@ -3929,13 +3513,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Plage"
-        ],
-        "price": "300 000 Ar",
-        "rating": 4.8,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 414,
+        "id": 162,
         "ville": "Tuléar",
         "nom": "Les Dunes d'Ifaty",
         "type": "Hotel",
@@ -3954,13 +3535,10 @@ const LIEUX_DATA = [
         "tags": [
             "Dormir",
             "Plage"
-        ],
-        "price": "250 000 Ar",
-        "rating": 4.6,
-        "duration": "Nuit"
+        ]
     },
     {
-        "id": 415,
+        "id": 163,
         "ville": "Tuléar",
         "nom": "Le T'Hôtre Chose",
         "type": "Bar",
@@ -3978,13 +3556,10 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "tags": [
             "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.4,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 416,
+        "id": 164,
         "ville": "Tuléar",
         "nom": "Bar de l'Hôtel Plazza",
         "type": "Bar",
@@ -4001,15 +3576,12 @@ const LIEUX_DATA = [
         "conseil": "Arriver à 17h30 pour la meilleure vue.",
         "duree": "Soirée",
         "tags": [
-            "Dormir",
-            "Manger"
-        ],
-        "price": "15 000 Ar",
-        "rating": 4.5,
-        "duration": "Soirée"
+            "Manger",
+            "Dormir"
+        ]
     },
     {
-        "id": 418,
+        "id": 165,
         "ville": "Tuléar",
         "nom": "Chez Alain",
         "type": "Bar",
@@ -4028,13 +3600,10 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/chezalaintoliara/",
         "tags": [
             "Manger"
-        ],
-        "price": "12 000 Ar",
-        "rating": 4.6,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 419,
+        "id": 166,
         "ville": "Tuléar",
         "nom": "Mangily Beach Bar",
         "type": "Bar",
@@ -4051,15 +3620,11 @@ const LIEUX_DATA = [
         "conseil": "Punch coco maison recommandé.",
         "duree": "Soirée",
         "tags": [
-            "Plage",
             "Manger"
-        ],
-        "price": "10 000 Ar",
-        "rating": 4.5,
-        "duration": "Soirée"
+        ]
     },
     {
-        "id": 613,
+        "id": 167,
         "nom": "Ankarana",
         "ville": "Diego-Suarez",
         "type": "nature",
@@ -4070,15 +3635,12 @@ const LIEUX_DATA = [
         "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
         "image": "images/spots/ankarana.jpg",
         "is_recovered_spot": true,
-        "price": ">= 10 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre",
         "tags": [
             "Nature"
         ]
     },
     {
-        "id": 614,
+        "id": 168,
         "nom": "Diego-Suarez",
         "ville": "Diego-Suarez",
         "type": "ville",
@@ -4089,16 +3651,12 @@ const LIEUX_DATA = [
         "description": "Une ville portuaire animée avec une architecture coloniale et une baie spectaculaire.",
         "image": "images/villes/diego-suarez.jpg",
         "is_recovered_spot": true,
-        "price": "gratuit",
-        "rating": "4.5",
-        "duration": "Libre",
         "tags": [
-            "Culture",
-            "Plage"
+            "Culture"
         ]
     },
     {
-        "id": 615,
+        "id": 169,
         "nom": "Baie Sakalava",
         "ville": "Diego-Suarez",
         "type": "plage",
@@ -4109,15 +3667,12 @@ const LIEUX_DATA = [
         "description": "Une baie magnifique avec des plages de sable blanc et des eaux turquoise, idéale pour le kitesurf.",
         "image": "images/iles/baie-sakalava.jpg",
         "is_recovered_spot": true,
-        "price": "gratuit",
-        "rating": "4.5",
-        "duration": "Libre",
         "tags": [
             "Plage"
         ]
     },
     {
-        "id": 616,
+        "id": 170,
         "nom": "Pain de Sucre",
         "ville": "Diego-Suarez",
         "type": "spot-local",
@@ -4128,15 +3683,12 @@ const LIEUX_DATA = [
         "description": "Un îlot emblématique au milieu de la baie de Diego-Suarez, offrant une vue panoramique.",
         "image": "images/spots/pain-de-sucre.jpg",
         "is_recovered_spot": true,
-        "price": "gratuit",
-        "rating": "4.5",
-        "duration": "Libre",
         "tags": [
-            "Plage"
+            "Culture"
         ]
     },
     {
-        "id": 617,
+        "id": 171,
         "nom": "Réserve Ankarana",
         "ville": "Diego-Suarez",
         "type": "nature",
@@ -4147,15 +3699,12 @@ const LIEUX_DATA = [
         "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
         "image": "images/spots/ankarana.jpg",
         "is_recovered_spot": true,
-        "price": ">= 10 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre",
         "tags": [
             "Nature"
         ]
     },
     {
-        "id": 618,
+        "id": 172,
         "nom": "Jungle Park",
         "ville": "Diego-Suarez",
         "type": "Lodge",
@@ -4165,18 +3714,13 @@ const LIEUX_DATA = [
         "image": "images/spots/piscine-naturelle.jpg",
         "description": "Camping éco-responsable et escalade à l'entrée de la Montagne des Français.",
         "tags": [
-            "Nature",
-            "Dormir",
-            "Plage"
+            "Dormir"
         ],
         "lat": -12.3,
-        "lng": 49.3,
-        "price": "150 000 Ar",
-        "rating": "4.8",
-        "duration": "Libre"
+        "lng": 49.3
     },
     {
-        "id": 619,
+        "id": 173,
         "nom": "Nosy Tanikely",
         "ville": "Nosy Be",
         "type": "Nature",
@@ -4186,17 +3730,13 @@ const LIEUX_DATA = [
         "image": "images/iles/nosy-tanikely.jpg",
         "description": "Réserve marine protégée. Aquarium naturel parfait pour le snorkeling.",
         "tags": [
-            "Nature",
-            "Plage"
+            "Nature"
         ],
         "lat": -13.4833,
-        "lng": 48.2389,
-        "price": "45 000 Ar",
-        "rating": "4.9",
-        "duration": "Libre"
+        "lng": 48.2389
     },
     {
-        "id": 620,
+        "id": 174,
         "nom": "L'Heure Bleue",
         "ville": "Nosy Be",
         "type": "Hotel",
@@ -4206,17 +3746,13 @@ const LIEUX_DATA = [
         "image": "images/restaurants/heure-bleue.jpg",
         "description": "Ecolodge chic à Madirokely avec vue imprenable sur la baie.",
         "tags": [
-            "Dormir",
-            "Plage"
+            "Dormir"
         ],
         "lat": -13.4,
-        "lng": 48.2,
-        "price": "450 000 Ar",
-        "rating": "4.7",
-        "duration": "Libre"
+        "lng": 48.2
     },
     {
-        "id": 621,
+        "id": 175,
         "nom": "Arbre Sacré",
         "ville": "Nosy Be",
         "type": "Culture",
@@ -4229,13 +3765,10 @@ const LIEUX_DATA = [
             "Culture"
         ],
         "lat": -13.3,
-        "lng": 48.3,
-        "price": "10 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre"
+        "lng": 48.3
     },
     {
-        "id": 622,
+        "id": 176,
         "nom": "Lokobe Special Reserve",
         "ville": "Nosy Be",
         "type": "Nature",
@@ -4248,13 +3781,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -13.4,
-        "lng": 48.3,
-        "price": "50 000 Ar",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 48.3
     },
     {
-        "id": 623,
+        "id": 177,
         "nom": "Le Louvre Hotel & Spa",
         "ville": "Antananarivo",
         "type": "Hotel",
@@ -4267,13 +3797,10 @@ const LIEUX_DATA = [
             "Dormir"
         ],
         "lat": -18.9,
-        "lng": 47.5,
-        "price": "350 000 Ar",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 47.5
     },
     {
-        "id": 624,
+        "id": 178,
         "nom": "Sakamanga",
         "ville": "Antananarivo",
         "type": "Hotel",
@@ -4287,13 +3814,10 @@ const LIEUX_DATA = [
             "Culture"
         ],
         "lat": -18.9,
-        "lng": 47.5,
-        "price": "150 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre"
+        "lng": 47.5
     },
     {
-        "id": 625,
+        "id": 179,
         "nom": "Croc Farm",
         "ville": "Antananarivo",
         "type": "Nature",
@@ -4303,17 +3827,13 @@ const LIEUX_DATA = [
         "image": "images/spots/croc-farm.jpg",
         "description": "Elevage de crocodiles, parc botanique et dégustation de viande de croco.",
         "tags": [
-            "Nature",
-            "Plage"
+            "Nature"
         ],
         "lat": -18.8,
-        "lng": 47.4,
-        "price": "30 000 Ar",
-        "rating": "4.3",
-        "duration": "Libre"
+        "lng": 47.4
     },
     {
-        "id": 626,
+        "id": 180,
         "nom": "Bord de Mer",
         "ville": "Mahajanga",
         "type": "Spot Local",
@@ -4324,18 +3844,14 @@ const LIEUX_DATA = [
         "description": "Le cœur vibrant de la ville le soir. Brochettes, baobab et ambiance festive.",
         "tags": [
             "Culture",
-            "Plage",
-            "Manger"
+            "Plage"
         ],
         "spotLocal": true,
         "lat": -15.7167,
-        "lng": 46.3167,
-        "price": "Gratuit",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 46.3167
     },
     {
-        "id": 627,
+        "id": 181,
         "nom": "Parc Ankarafantsika",
         "ville": "Mahajanga",
         "type": "Nature",
@@ -4348,13 +3864,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -16.3167,
-        "lng": 46.8167,
-        "price": "45 000 Ar",
-        "rating": "4.8",
-        "duration": "Libre"
+        "lng": 46.8167
     },
     {
-        "id": 628,
+        "id": 182,
         "nom": "Katsepy",
         "ville": "Mahajanga",
         "type": "Nature",
@@ -4364,17 +3877,13 @@ const LIEUX_DATA = [
         "image": "images/spots/katsepy-phare.jpg",
         "description": "Village de pêcheurs accessible en bac. Lémuriens et phare historique.",
         "tags": [
-            "Nature",
-            "Culture"
+            "Nature"
         ],
         "lat": -15.7456,
-        "lng": 46.2234,
-        "price": "15 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre"
+        "lng": 46.2234
     },
     {
-        "id": 629,
+        "id": 183,
         "nom": "Grand Pavois",
         "ville": "Mahajanga",
         "type": "Plage",
@@ -4384,17 +3893,14 @@ const LIEUX_DATA = [
         "image": "images/iles/plage-mahajanga.jpg",
         "description": "La plage préférée des Majungais. Restaurants de fruits de mer les pieds dans le sable.",
         "tags": [
-            "Plage",
-            "Manger"
+            "Manger",
+            "Plage"
         ],
         "lat": -15.6,
-        "lng": 46.3,
-        "price": "Gratuit",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 46.3
     },
     {
-        "id": 630,
+        "id": 184,
         "nom": "Parc Andasibe-Mantadia",
         "ville": "Toamasina",
         "type": "Nature",
@@ -4407,13 +3913,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -18.9333,
-        "lng": 48.4167,
-        "price": "45 000 Ar",
-        "rating": "4.8",
-        "duration": "Libre"
+        "lng": 48.4167
     },
     {
-        "id": 631,
+        "id": 185,
         "nom": "Canal des Pangalanes",
         "ville": "Toamasina",
         "type": "Nature",
@@ -4426,13 +3929,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -18.1499,
-        "lng": 49.4023,
-        "price": "40 000 Ar",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 49.4023
     },
     {
-        "id": 632,
+        "id": 186,
         "nom": "Palmarium Reserve",
         "ville": "Toamasina",
         "type": "Lodge",
@@ -4446,13 +3946,10 @@ const LIEUX_DATA = [
             "Dormir"
         ],
         "lat": -18.6,
-        "lng": 49.2,
-        "price": "200 000 Ar",
-        "rating": "4.8",
-        "duration": "Libre"
+        "lng": 49.2
     },
     {
-        "id": 633,
+        "id": 187,
         "nom": "Île aux Nattes",
         "ville": "Toamasina",
         "type": "Plage",
@@ -4465,13 +3962,10 @@ const LIEUX_DATA = [
             "Plage"
         ],
         "lat": -17.0,
-        "lng": 49.8,
-        "price": "Gratuit",
-        "rating": "4.9",
-        "duration": "Libre"
+        "lng": 49.8
     },
     {
-        "id": 634,
+        "id": 188,
         "nom": "Plage d'Ifaty",
         "ville": "Toliara",
         "type": "Plage",
@@ -4481,17 +3975,13 @@ const LIEUX_DATA = [
         "image": "images/iles/plage-ifaty.jpg",
         "description": "Station balnéaire et village de pêcheurs Vezo. Baignade et détente.",
         "tags": [
-            "Culture",
             "Plage"
         ],
         "lat": -23.15,
-        "lng": 43.6167,
-        "price": "Gratuit",
-        "rating": "4.5",
-        "duration": "Libre"
+        "lng": 43.6167
     },
     {
-        "id": 635,
+        "id": 189,
         "nom": "Forêt des Baobabs (Reniala)",
         "ville": "Toliara",
         "type": "Nature",
@@ -4504,13 +3994,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -23.1667,
-        "lng": 43.6,
-        "price": "15 000 Ar",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 43.6
     },
     {
-        "id": 636,
+        "id": 190,
         "nom": "Anakao Ocean Lodge",
         "ville": "Toliara",
         "type": "Hotel",
@@ -4524,13 +4011,10 @@ const LIEUX_DATA = [
             "Plage"
         ],
         "lat": -23.6,
-        "lng": 43.6,
-        "price": "400 000 Ar",
-        "rating": "4.8",
-        "duration": "Libre"
+        "lng": 43.6
     },
     {
-        "id": 637,
+        "id": 191,
         "nom": "Bakuba Lodge",
         "ville": "Toliara",
         "type": "Lodge",
@@ -4543,13 +4027,10 @@ const LIEUX_DATA = [
             "Dormir"
         ],
         "lat": -23.3,
-        "lng": 43.7,
-        "price": "500 000 Ar",
-        "rating": "4.9",
-        "duration": "Libre"
+        "lng": 43.7
     },
     {
-        "id": 638,
+        "id": 192,
         "nom": "Cathédrale d'Antsirabe",
         "ville": "Antsirabe",
         "type": "Culture",
@@ -4562,13 +4043,10 @@ const LIEUX_DATA = [
             "Culture"
         ],
         "lat": -19.8667,
-        "lng": 47.0333,
-        "price": "Gratuit",
-        "rating": "4.6",
-        "duration": "Libre"
+        "lng": 47.0333
     },
     {
-        "id": 639,
+        "id": 193,
         "nom": "Ranomafana National Park",
         "ville": "Fianarantsoa",
         "type": "Nature",
@@ -4581,13 +4059,10 @@ const LIEUX_DATA = [
             "Nature"
         ],
         "lat": -21.2,
-        "lng": 47.4,
-        "price": "55 000 Ar",
-        "rating": "4.7",
-        "duration": "Libre"
+        "lng": 47.4
     },
     {
-        "id": 640,
+        "id": 194,
         "nom": "Train Fianar-Manakara",
         "ville": "Fianarantsoa",
         "type": "Aventure",
@@ -4600,36 +4075,6 @@ const LIEUX_DATA = [
             "Culture"
         ],
         "lat": -21.4,
-        "lng": 47.1,
-        "price": "70 000 Ar",
-        "rating": "4.5",
-        "duration": "Libre"
-    },
-    {
-        "id": 16,
-        "ville": "Diego-Suarez",
-        "nom": "Grotte des Pêcheurs",
-        "type": "Spot Local",
-        "spotLocal": true,
-        "lat": -12.2389,
-        "lng": 49.3012,
-        "prix": "Gratuit",
-        "prixEur": "Gratuit",
-        "prixNum": 0,
-        "note": 4.8,
-        "description": "Un lieu fascinant, à la fois merveille naturelle et temple à ciel ouvert. Cette grotte s'ouvre sur la mer et sert de lieu de culte aux ancêtres. L'atmosphère y est solennelle et mystérieuse, bercée par le bruit des vagues.",
-        "image": "images/spots/grotte-pecheurs.jpg",
-        "acces": "Plage nord de Ramena à marée basse uniquement - Demander Paul au marché aux poissons qui guide gratuitement",
-        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
-        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
-        "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
-        "duree": "45 min",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "price": "Gratuit",
-        "rating": 4.8,
-        "duration": "45 min",
-        "tags": [
-            "Plage"
-        ]
+        "lng": 47.1
     }
 ];

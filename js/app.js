@@ -868,24 +868,20 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
         // Normalization for filters
         if (filterType === 'all') isMatch = true;
 
-        // Explorer / Voir ("Tout sauf Manger/Dormir/Sortir" quasiement)
-        else if ((filterType === 'voir' || filterType === 'explorer') &&
-            (cat.includes('nature') || cat.includes('plage') || cat.includes('culture') ||
-                cat.includes('parc') || cat.includes('reserve') || cat.includes('réserve') ||
-                cat.includes('cascade') || cat.includes('baie') || cat.includes('tsingy') ||
-                cat.includes('visite') || cat.includes('general') || cat.includes('incontournable'))) isMatch = true;
+        // Explorer / Voir
+        else if ((filterType === 'voir' || filterType === 'explorer') && cat === 'explorer') isMatch = true;
 
         // Manger
-        else if (filterType === 'manger' && (cat.includes('manger') || cat.includes('resto') || cat.includes('bar'))) isMatch = true;
+        else if (filterType === 'manger' && cat === 'manger') isMatch = true;
 
-        // Dormir
-        else if (filterType === 'dodo' && (cat.includes('dormir') || cat.includes('hotel') || cat.includes('lodge'))) isMatch = true;
+        // Dormir (handle both terms)
+        else if (filterType === 'dodo' && (cat === 'dormir' || cat === 'dodo')) isMatch = true;
 
         // Sortir
-        else if (filterType === 'sortir' && (cat.includes('sortir') || cat.includes('bar') || cat.includes('club'))) isMatch = true;
+        else if (filterType === 'sortir' && cat === 'sortir') isMatch = true;
 
         // Spot
-        else if (filterType === 'spot' && (cat.includes('spot') || type.includes('spot'))) isMatch = true;
+        else if (filterType === 'spot' && (cat === 'spot' || cat === 'spot local')) isMatch = true;
 
         console.log(`Item: ${item.dataset.id} | Cat: ${cat} | Type: ${type} | Match: ${isMatch}`);
 
@@ -963,14 +959,9 @@ function getCityNameFromKey(key) {
 
 window.createLieuCard = function (lieu, category = '') {
     // 1. Logic & Safety
-    // Auto-derive category if missing (Critical for Filtering)
+    // Use the normalized category from data first
     if (!category) {
-        const t = (lieu.type || '').toLowerCase();
-        const c = (lieu.categorie || '').toLowerCase();
-        if (t.includes('hotel') || t.includes('lodge') || t.includes('dodo')) category = 'Dormir';
-        else if (t.includes('resto') || t.includes('manger') || t.includes('bar')) category = 'Manger'; // Basic mapping
-        else if (c === 'spot local' || t === 'spot local') category = 'Spot Local';
-        else category = lieu.categorie || lieu.type || 'General';
+        category = lieu.categorie || 'Explorer'; // Default fallback
     }
 
     const prixClass = lieu.prixNum === 0 ? 'gratuit' : lieu.prixNum < 10000 ? 'abordable' : 'premium';
@@ -1144,12 +1135,10 @@ window.openLieuModal = function (lieu) {
                 ${lieu.acces ? `<p style="color:var(--text-secondary); margin-bottom:12px; font-size:0.9rem;">${lieu.acces}</p>` : ''}
 
                 <div class="modal-action-row">
-                    <!-- Red Button: Y ALLER (Conditional - Triggers Internal Map) -->
-                    ${hasYAller ? `
-                    <button class="btn-action-red" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
+                    <!-- Red Button: Y ALLER (Triggers Google Maps) -->
+                    <button class="btn-action-red" onclick="window.open('https://www.google.com/maps/search/?api=1&query=' + ${lieu.lat} + ',' + ${lieu.lng}, '_blank')">
                         <i class="fas fa-location-arrow"></i> Y aller
                     </button>
-                    ` : ''}
 
                     <!-- Green Button: WEBSITE (Conditional) -->
                     ${hasWebsite ? `
@@ -1158,12 +1147,10 @@ window.openLieuModal = function (lieu) {
                     </a>
                     ` : ''}
                     
-                    <!-- Fallback: Locate on Map (Standard - Only if no Red Button) -->
-                    ${(!hasYAller) ? `
-                    <button class="btn-action secondary" style="background:var(--bg-secondary); border:1px solid var(--border-color); padding:14px; border-radius:12px; font-weight:600; width:100%; cursor:pointer; color:var(--text-primary);" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
-                         <i class="fas fa-map"></i> Voir sur la carte
-                    </button>
-                    ` : ''}
+                    <!-- Fallback: Locate on Map (Standard - Only if no Website/Yaller logic needed, but keeping generally useful) -->
+                     <button class="btn-action secondary" style="background:var(--bg-secondary); border:1px solid var(--border-color); padding:14px; border-radius:12px; font-weight:600; width:100%; cursor:pointer; color:var(--text-primary); margin-top: 8px;" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
+                          <i class="fas fa-map"></i> Voir sur la carte de l'app
+                     </button>
                 </div>
                 
                 <!-- Horaires if present -->
@@ -1330,23 +1317,14 @@ window.matchesFilters = function (lieu, filters) {
     }
 
     // 2. City Filter (Map Page)
-    // If specific cities selected, must match one of them
     if (filters.provinces && filters.provinces.length > 0) {
         const lieuCity = (lieu.ville || '').toLowerCase();
-        // Handle variations (Diego vs Antsiranana)
-        let normalizedCity = lieuCity;
-        if (lieuCity === 'diego-suarez') normalizedCity = 'antsiranana';
-        if (lieuCity === 'nosy be' || lieuCity === 'nosy-be') normalizedCity = 'antsiranana'; // Map Logic usually groups them or not? 
-        // Actually map-logic groups Nosy Be geographically in the north. 
-        // But if user filters specifically?
-        // Let's stick to strict matching unless mapped.
 
-        // Simple Check: is the lowercase city in the list?
-        // But the list uses 'antsiranana' for Diego.
+        // Strict mapping for major hubs
         const mapCityToFilter = {
             'diego-suarez': 'antsiranana',
             'antsiranana': 'antsiranana',
-            'nosy be': 'antsiranana', // For Map filter 'Nord' usually implies this
+            'nosy be': 'antsiranana',
             'nosy-be': 'antsiranana',
             'antananarivo': 'antananarivo', 'tana': 'antananarivo',
             'mahajanga': 'mahajanga', 'majunga': 'mahajanga',
@@ -1356,26 +1334,28 @@ window.matchesFilters = function (lieu, filters) {
         };
 
         const mappedLieu = mapCityToFilter[lieuCity] || lieuCity;
-        // Check exact match in filters or checks
-        // Actually, if I select 'Antsiranana', do I want Nosy Be?
-        // In the map filter UI, usually yes.
         if (!filters.provinces.includes(mappedLieu)) return false;
     }
 
-    // 3. Type Filter
+    // 3. Type Filter (Using Normalized 'categorie')
     if (filters.types && filters.types.length > 0) {
-        const lType = (lieu.type || '').toLowerCase();
-        const lCat = (lieu.categorie || '').toLowerCase();
+        // Normalize the filter types (e.g. 'dodo' -> 'Dormir') if they differ
+        // But usually filter buttons send 'manger', 'dormir', 'explorer', 'sortir', 'spot'
+        // And our data now has 'Manger', 'Dormir', 'Explorer', 'Sortir', 'Spot'
+        const normalizedLieuCat = (lieu.categorie || '').toLowerCase();
 
-        // Check if ANY selected type matches
+        // Map filter keys to data keys (just in case)
+        const filterKeyMap = {
+            'dodo': 'dormir'
+        };
+
         const match = filters.types.some(t => {
-            if (t === 'spot' && (lieu.spotLocal || lType === 'spot local' || lCat === 'spot local')) return true;
-            if (t === 'manger' && (lType.includes('resto') || lType.includes('manger'))) return true;
-            if (t === 'dodo' && (lType.includes('hôtel') || lType.includes('hotel') || lType.includes('dodo'))) return true;
-            if (t === 'sortir' && (lType.includes('bar') || lType.includes('sortir') || lType.includes('club'))) return true;
-            if (t === 'explorer' && (lType.includes('activit') || lType.includes('parc') || lType.includes('plage'))) return true;
-            return false;
+            let ft = t.toLowerCase();
+            if (filterKeyMap[ft]) ft = filterKeyMap[ft];
+
+            return normalizedLieuCat === ft;
         });
+
         if (!match) return false;
     }
 

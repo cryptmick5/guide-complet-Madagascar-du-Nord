@@ -1,187 +1,109 @@
 import json
 import os
-import re
+import random
 
-# --- CONFIGURATION ---
-INPUT_ZONES = 'data/zones_data.json'
-INPUT_LIEUX = 'data/lieux.js'
-OUTPUT_FILE = 'data/lieux_consolidated.js'
+# --- CONFIGURATION (BACKUP RESTORE) ---
+INPUT_ZONES = 'data/zones_data.json' # Ignored
+INPUT_LIEUX_OLD = 'data/lieux_FINAL_RESTORED.js' 
 
-# --- NORMALIZATION RULES ---
-CATEGORY_MAPPING = {
-    'Plage': ['mer', 'lagon', 'plage', 'beach', 'sable', 'baie', 'ilot', 'ile', 'nautique', 'snorkeling', 'kitesurf'],
-    'Nature': ['foret', 'parc', 'randonnée', 'animal', 'faune', 'flore', 'cascade', 'lémurien', 'montagne', 'volcan', 'geyser', 'lac', 'reserve', 'tsingy'],
-    'Culture': ['ville', 'histoire', 'monument', 'ruine', 'musée', 'artisanat', 'cathédrale', 'palais', 'royal', 'village', 'colonial'],
-    'Manger': ['resto', 'bar', 'cuisine', 'gastronomie', 'diner', 'déjeuner', 'manger', 'restaurant', 'club', 'sortir'],
-    'Dormir': ['hôtel', 'lodge', 'hébergement', 'bivouac', 'camping', 'dodo', 'hotel']
+# LISTE DES CIBLES
+TARGET_FILES = [
+    'data/lieux.js',
+    'lieux.js',
+    'js/lieux.js'
+]
+
+CITY_COORDINATES = {
+    'Antananarivo': (-18.8792, 47.5079), 'Tana': (-18.8792, 47.5079),
+    'Antsiranana': (-12.2797, 49.2917), 'Diego-Suarez': (-12.2797, 49.2917), 'Diego': (-12.2797, 49.2917),
+    'Mahajanga': (-15.7167, 46.3167), 'Majunga': (-15.7167, 46.3167),
+    'Toamasina': (-18.1492, 49.4023), 'Tamatave': (-18.1492, 49.4023),
+    'Toliara': (-23.3500, 43.6667), 'Tulear': (-23.3500, 43.6667),
+    'Fianarantsoa': (-21.4333, 47.0833), 'Fianar': (-21.4333, 47.0833),
+    'Nosy Be': (-13.3000, 48.2500), 'Nosy-Be': (-13.3000, 48.2500),
+    'Sainte-Marie': (-16.999, 49.883), 'Nosy Boraha': (-16.999, 49.883),
+    'SAVA': (-14.2667, 50.1667), 
+    'Ampefy': (-19.0333, 46.7333),
+    'Antsirabe': (-19.8667, 47.0333),
+    'Isalo': (-22.5833, 45.3667), 'Ranohira': (-22.5833, 45.3667),
+    'Andasibe': (-18.9333, 48.4167),
+    'Morondava': (-20.2833, 44.2833),
+    'Fort-Dauphin': (-25.0333, 46.9833), 'Tolagnaro': (-25.0333, 46.9833)
 }
 
 def normalize_tags(item):
-    """
-    Generate normalized tags based on item 'type', 'nom', 'description', and existing 'tags'.
-    Returns a list of capitalized strings (e.g. ['Nature', 'Plage']).
-    """
-    raw_text = (item.get('type', '') + ' ' + item.get('nom', '') + ' ' + item.get('description', '') + ' ' + ' '.join(item.get('tags', []))).lower()
-    
+    raw_text = (item.get('type', '') + ' ' + item.get('nom', '') + ' ' + item.get('description', '')).lower()
+    existing_tags = [t.lower() for t in item.get('tags', [])]
+    raw_text += ' '.join(existing_tags)
     new_tags = set()
-    
-    # Priority from existing distinct type
-    cur_type = item.get('type', '').lower()
-    if 'plage' in cur_type: new_tags.add('Plage')
-    if 'nature' in cur_type: new_tags.add('Nature')
-    if 'culture' in cur_type or 'incontournable' in cur_type: new_tags.add('Culture')
-    if 'resto' in cur_type or 'bar' in cur_type or 'manger' in cur_type or 'sortir' in cur_type: new_tags.add('Manger')
-    if 'hotel' in cur_type or 'hébergement' in cur_type: new_tags.add('Dormir')
-    
-    # NLP-ish keyword matching
-    for cat, keywords in CATEGORY_MAPPING.items():
-        if any(k in raw_text for k in keywords):
-            new_tags.add(cat)
-            
-    # Default fallback
-    if not new_tags:
-        new_tags.add('Culture') # Default generic
-        
+    if 'plage' in raw_text or 'mer' in raw_text or 'lagon' in raw_text: new_tags.add('Plage')
+    if 'nature' in raw_text or 'parc' in raw_text or 'lémurien' in raw_text or 'randonnée' in raw_text: new_tags.add('Nature')
+    if 'culture' in raw_text or 'ville' in raw_text or 'histoire' in raw_text: new_tags.add('Culture')
+    if 'manger' in raw_text or 'restaurant' in raw_text or 'bar' in raw_text: new_tags.add('Manger')
+    if 'dormir' in raw_text or 'hôtel' in raw_text or 'lodge' in raw_text: new_tags.add('Dormir')
+    if not new_tags: new_tags.add('Culture')
     return list(new_tags)
 
-def load_lieux_js(filepath):
-    """
-    Manually parse the JS file to extract the JSON-like array.
-    """
-    if not os.path.exists(filepath):
-        return []
-        
+def load_js_array(filepath):
+    if not os.path.exists(filepath): return []
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
-        
-    # Extract Array content between [ and ]; (assuming variable declaration)
-    # Simple strategy: find first [ and last ]
-    try:
-        start = content.index('[')
-        end = content.rindex(']') + 1
-        json_str = content[start:end]
-        return json.loads(json_str)
-    except Exception as e:
-        print(f"Error parsing {filepath}: {e}")
-        return []
-
-def load_zones_json(filepath):
-    """
-    Load data/zones_data.json and flatten it.
-    """
-    if not os.path.exists(filepath):
-        return []
-        
-    with open(filepath, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        
-    flattened = []
-    if 'zones' in data:
-        for zone_name, zone_content in data['zones'].items():
-            if 'lieux' in zone_content:
-                items = zone_content['lieux']
-                # Ensure each item has 'ville' or zone name
-                for item in items:
-                    if 'ville' not in item:
-                        item['ville'] = zone_name
-                    flattened.append(item)
-    return flattened
-
-def merge_datasets(list1, list2):
-    """
-    Merge list2 into list1.
-    Key: Normalized 'nom' (lowercase, trimmed).
-    Strategy: 
-    - Use Dictionary {norm_nom: item}
-    - If collision: Prefer item with 'y_aller' > Longest description > list1 (priority)
-    """
-    merged_dict = {}
-    
-    all_items = list1 + list2
-    
-    for item in all_items:
-        if 'nom' not in item: continue
-        
-        key = item['nom'].strip().lower()
-        
-        if key not in merged_dict:
-            merged_dict[key] = item
-        else:
-            existing = merged_dict[key]
-            
-            # --- CONFLICT RESOLUTION ---
-            
-            # 1. Critical: y_aller preservation
-            if 'y_aller' in item and 'y_aller' not in existing:
-                existing['y_aller'] = item['y_aller'] # Inject
-                
-            # 2. Description richness
-            len_new = len(item.get('description', ''))
-            len_old = len(existing.get('description', ''))
-            if len_new > len_old:
-                existing['description'] = item['description']
-                
-            # 3. Image validity (basic check)
-            if 'placeholder' in existing.get('image', '') and 'placeholder' not in item.get('image', ''):
-                 existing['image'] = item['image']
-                 
-            # 4. Merge tags
-            tags_old = set(existing.get('tags', []))
-            tags_new = set(item.get('tags', []))
-            existing['tags'] = list(tags_old.union(tags_new))
-
-    return list(merged_dict.values())
+        try:
+            start = content.index('[')
+            end = content.rindex(']') + 1
+            return json.loads(content[start:end])
+        except: return []
 
 def process():
-    print("--- STARTING DATA CONSOLIDATION ---")
+    print("🚀 Démarrage REPARATION BACKUP (FINAL_RESTORED)...")
     
-    # 1. Load Sources
-    lieux_legacy = load_lieux_js(INPUT_LIEUX)
-    print(f"Loaded {len(lieux_legacy)} items from {INPUT_LIEUX}")
+    # 1. Chargement SEUL du backup
+    legacy = load_js_array(INPUT_LIEUX_OLD)
+    print(f"📊 Source Backup: {len(legacy)} items")
+
+    # 2. Pas de fusion, on garde le backup pur
+    final_list = legacy
     
-    zones_items = load_zones_json(INPUT_ZONES)
-    print(f"Loaded {len(zones_items)} items from {INPUT_ZONES}")
+    # 3. Nettoyage et GPS
+    gps_fixed_count = 0
     
-    # 2. Merge
-    consolidated = merge_datasets(lieux_legacy, zones_items)
-    print(f"Merged Total: {len(consolidated)} unique items")
-    
-    # 3. Normalize & Sanitize
-    final_list = []
-    category_counts = {}
-    
-    for i, item in enumerate(consolidated):
-        # ID Fix: Ensure unique ID if missing or collision (though merge used Name)
-        # We re-assign IDs to be clean? No, keep existing IDs if possible to not break favorites.
-        if 'id' not in item:
-            item['id'] = 2000 + i # Safe range
-            
-        # Defaults
-        if 'price' not in item and 'prix' in item: item['price'] = item['prix']
-        if 'price' not in item: item['price'] = "Gratuit"
-        if 'rating' not in item and 'note' in item: item['rating'] = item['note']
-        if 'rating' not in item: item['rating'] = 4.5
-        if 'duration' not in item and 'duree' in item: item['duration'] = item['duree']
-        if 'duration' not in item: item['duration'] = "Libre"
-        
-        # Tags
+    for i, item in enumerate(final_list):
+        # ID unique simple (RENUMBERING FORCED to fix duplicates)
+        item['id'] = i + 1 
+        # if 'id' not in item: item['id'] = 2000 + i # DISABLED
         item['tags'] = normalize_tags(item)
         
-        # Stats
-        for t in item['tags']:
-            category_counts[t] = category_counts.get(t, 0) + 1
-            
-        final_list.append(item)
-        
-    print("Category Stats:", category_counts)
-    
-    # 4. Output
+        # GPS FIX
+        if 'lat' not in item or 'lng' not in item:
+            ville = item.get('ville', '').strip()
+            coords = None
+            for city_key, val in CITY_COORDINATES.items():
+                if city_key.lower() in ville.lower():
+                    coords = val
+                    break
+            base_lat, base_lng = coords if coords else (-18.7669, 46.8691)
+            item['lat'] = base_lat + random.uniform(-0.015, 0.015)
+            item['lng'] = base_lng + random.uniform(-0.015, 0.015)
+            gps_fixed_count += 1
+
     js_content = f"const LIEUX_DATA = {json.dumps(final_list, indent=4, ensure_ascii=False)};"
     
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write(js_content)
-        
-    print(f"SUCCESS: Written {len(final_list)} items to {OUTPUT_FILE}")
+    print(f"📊 Données prêtes : {len(final_list)} lieux.")
+
+    # ECRITURE MULTIPLE
+    success_count = 0
+    for path in TARGET_FILES:
+        try:
+            folder = os.path.dirname(path)
+            if folder and not os.path.exists(folder): continue
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(js_content)
+            print(f"✅ ÉCRIT : {path}")
+            success_count += 1
+        except Exception as e:
+            print(f"⚠️ Échec sur {path}")
+
+    print(f"🏁 TERMINÉ. Backup restauré et réparé à {success_count} endroits.")
 
 if __name__ == "__main__":
     process()

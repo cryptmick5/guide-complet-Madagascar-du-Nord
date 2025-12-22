@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mg-guide-cache-v14'; // Incremented version
+const CACHE_NAME = 'mg-guide-cache-v16'; // Incremented to FINAL USER version
 const urlsToCache = [
   './',
   './index.html',
@@ -17,7 +17,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache v13');
+        console.log('Opened cache v16');
         return cache.addAll(urlsToCache);
       })
   );

@@ -84,6 +84,8 @@ window.updateMapMarkers = function () {
 
     const filters = (typeof getActiveFilters === 'function') ? getActiveFilters() : { provinces: [], types: [], prix: [], favorites: false };
 
+    console.log("DEBUG: LIEUX_DATA contains " + (window.LIEUX_DATA ? window.LIEUX_DATA.length : 0) + " items.");
+
     const filteredLieux = (window.LIEUX_DATA || []).filter(lieu => {
         if (!lieu.nom) return false;
         // Force bypass if missing utils

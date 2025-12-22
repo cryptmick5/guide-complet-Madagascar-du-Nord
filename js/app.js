@@ -1053,83 +1053,126 @@ window.openLieuModal = function (lieu) {
     const favIcon = isFav ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
     const activeClass = isFav ? 'active' : '';
 
+    // Data Prep
+    const badgeType = (lieu.tags && lieu.tags.length) ? lieu.tags[0] : (lieu.type || 'Général');
+
+    // Logic for "Y aller" button (RED) - Needs 'y_aller' key
+    // Also logic for Website (GREEN)
+    const hasYAller = lieu.y_aller && lieu.y_aller.length > 0;
+    const hasWebsite = lieu.website || lieu.siteWeb;
+    const targetUrl = lieu.y_aller || '#';
+
+    // Grid Data
+    const priceDisplay = lieu.prix || 'Gratuit';
+    const noteDisplay = lieu.note || '-';
+    const dureeDisplay = lieu.duree || 'Variable';
+    const villeDisplay = lieu.ville || 'Madagascar';
+
     const html = `
     <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;">
         <div class="modal-content fade-in-up">
-            <button class="btn-close-modal" onclick="closeLieuModal()"><i class="fas fa-times"></i></button>
             
-            <div class="modal-image-container" style="background-image: url('${lieu.image}'); height: 250px; background-size: cover; background-position: center;">
-                <div class="modal-gradient-overlay"></div>
-                <div class="modal-header-content" style="position: absolute; bottom: 20px; left: 20px; right: 20px; color: white;">
-                    <div class="modal-badges" style="display:flex; gap:10px; margin-bottom:10px;">
-                        <span class="badge-type" style="background:var(--laterite);">${lieu.type}</span>
-                        ${lieu.spotLocal ? '<span class="badge-type" style="background:#f39c12;">Spot Local</span>' : ''}
-                    </div>
-                    <h2 style="font-size: 1.8rem; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">${lieu.nom}</h2>
-                    <div style="display:flex; align-items:center; gap:10px; margin-top:5px; font-size: 0.9rem; opacity: 0.9;">
-                        <span><i class="fas fa-map-marker-alt"></i> ${lieu.ville}</span>
-                        <span><i class="fas fa-star" style="color:#f1c40f;"></i> ${lieu.note}</span>
-                    </div>
-                </div>
-                <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" style="position:absolute; top:20px; right:20px; background:white; color:var(--laterite); width:40px; height:40px; border-radius:50%; border:none; box-shadow:0 4px 6px rgba(0,0,0,0.2); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+            <!-- 1. HERO HEADER -->
+            <div class="modal-hero-header">
+                <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                
+                <!-- Close Button: Explicit z-index and onclick -->
+                <button class="btn-close-modal-overlay" onclick="window.closeLieuModal();" style="z-index: 99999 !important; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
+            </div>
+
+            <!-- 2. TITLE & HEADER -->
+            <div class="modal-title-block">
+                <h2 class="modal-main-title">${lieu.nom}</h2>
+                <span class="modal-category-badge">${badgeType}</span>
+                
+                <!-- Favorite Absolute Right of Title if needed, or keep it in Hero -->
+                <!-- Let's keep a floating fav button in Hero for style, or next to title. 
+                     Design A shows clean title. Let's put fav button floating in Hero Top-Left maybe? 
+                     Or just after title. Let's stick to Hero Top-Right? No, close is there.
+                     Let's put Fav in Hero Top-Left. -->
+                 <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" 
+                        style="position:absolute; top:15px; left:15px; background:white; color:var(--laterite); width:36px; height:36px; border-radius:50%; border:none; box-shadow:0 4px 6px rgba(0,0,0,0.2); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10;">
                     ${favIcon}
                 </button>
             </div>
 
-            <div class="modal-body" style="padding: 25px;">
-                <div class="modal-info-row" style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--border-color);">
-                    <div class="info-item">
-                        <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Budget</span>
-                        <span style="font-weight:600; color:var(--laterite);">${lieu.prix}</span>
-                    </div>
-                    <div class="info-item">
-                        <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Catégorie</span>
-                        <span style="font-weight:600;">${(lieu.tags && lieu.tags.length) ? lieu.tags.join(' • ') : 'Général'}</span>
-                    </div>
-                     <div class="info-item">
-                        <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Sécurité</span>
-                        <span style="font-weight:600; color:var(--success);">Sûr</span>
-                    </div>
+            <!-- 3. INFO GRID (4 COLUMNS) -->
+            <div class="modal-info-grid">
+                <!-- VILLE -->
+                <div class="modal-info-box">
+                    <span class="modal-info-label">Ville</span>
+                    <span class="modal-info-value"><i class="fas fa-map-marker-alt icon-ville"></i> ${villeDisplay}</span>
                 </div>
-
-                <p class="modal-desc" style="font-size: 1.1rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 25px;">
-                    ${lieu.description}
-                </p>
-
-                <!-- CONTACT INFO SECTION (New) -->
-                ${(lieu.telephone || lieu.website || lieu.adresse) ? `
-                <div style="background:var(--bg-secondary); padding:15px; border-radius:12px; margin-bottom:20px; font-size:0.95rem;">
-                    <h4 style="margin:0 0 10px 0; font-size:1rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Infos Pratiques</h4>
-                    
-                    ${lieu.adresse ? `
-                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-                        <i class="fas fa-map-pin" style="color:var(--laterite); width:20px; text-align:center;"></i>
-                        <span>${lieu.adresse}</span>
-                    </div>` : ''}
-
-                    ${lieu.telephone ? `
-                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-                        <i class="fas fa-phone" style="color:var(--secondary-color); width:20px; text-align:center;"></i>
-                        <a href="tel:${lieu.telephone}" style="color:var(--text-primary); text-decoration:none; font-weight:600;">${lieu.telephone}</a>
-                    </div>` : ''}
-
-                    ${lieu.website ? `
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <i class="fas fa-globe" style="color:#3498db; width:20px; text-align:center;"></i>
-                        <a href="${lieu.website.startsWith('http') ? lieu.website : 'https://' + lieu.website}" target="_blank" style="color:var(--text-primary); text-decoration:underline;">Visiter le site web</a>
-                    </div>` : ''}
+                <!-- PRIX -->
+                <div class="modal-info-box">
+                    <span class="modal-info-label">Prix</span>
+                    <span class="modal-info-value"><i class="fas fa-wallet icon-prix"></i> ${priceDisplay}</span>
                 </div>
-                ` : ''}
+                <!-- NOTE -->
+                <div class="modal-info-box">
+                    <span class="modal-info-label">Note</span>
+                    <span class="modal-info-value"><i class="fas fa-star icon-note"></i> ${noteDisplay}</span>
+                </div>
+                <!-- DUREE -->
+                <div class="modal-info-box">
+                    <span class="modal-info-label">Durée</span>
+                    <span class="modal-info-value"><i class="fas fa-clock icon-duree"></i> ${dureeDisplay}</span>
+                </div>
+            </div>
 
-                <div class="modal-actions" style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
-                    <button class="btn-action primary" style="background:var(--laterite); color:white; border:none; padding:12px; border-radius:8px; font-weight:600;" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
+            <!-- 4. DESCRIPTION -->
+            <div class="modal-description-text">
+                ${lieu.description}
+            </div>
+
+            <!-- 5. CONSEIL DU LOCAL (Conditional) -->
+            ${lieu.conseil ? `
+            <div class="modal-conseil-block">
+                <div class="modal-conseil-title"><i class="fas fa-lightbulb"></i> Conseil du Local</div>
+                <p class="modal-conseil-text">${lieu.conseil}</p>
+            </div>
+            ` : ''}
+
+            <!-- 6. FOOTER ACTIONS -->
+            <div class="modal-footer-actions">
+                ${(hasYAller || hasWebsite) ? `<div class="modal-section-title">Accès</div>` : ''}
+                
+                ${lieu.acces ? `<p style="color:var(--text-secondary); margin-bottom:12px; font-size:0.9rem;">${lieu.acces}</p>` : ''}
+
+                <div class="modal-action-row">
+                    <!-- Red Button: Y ALLER (Conditional - Triggers Internal Map) -->
+                    ${hasYAller ? `
+                    <button class="btn-action-red" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
                         <i class="fas fa-location-arrow"></i> Y aller
                     </button>
-                    ${lieu.type !== 'Restaurant' ? `
-                    <button class="btn-action secondary" style="background:var(--bg-secondary); border:1px solid var(--border-color); padding:12px; border-radius:8px; font-weight:600;" onclick="addToItineraryTemp(${lieu.id})">
-                        <i class="fas fa-plus"></i> Ajouter
-                    </button>` : ''}
+                    ` : ''}
+
+                    <!-- Green Button: WEBSITE (Conditional) -->
+                    ${hasWebsite ? `
+                    <a href="${lieu.website || lieu.siteWeb}" target="_blank" class="btn-action-green">
+                        <i class="fas fa-globe"></i> Visiter le site web
+                    </a>
+                    ` : ''}
+                    
+                    <!-- Fallback: Locate on Map (Standard - Only if no Red Button) -->
+                    ${(!hasYAller) ? `
+                    <button class="btn-action secondary" style="background:var(--bg-secondary); border:1px solid var(--border-color); padding:14px; border-radius:12px; font-weight:600; width:100%; cursor:pointer; color:var(--text-primary);" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})">
+                         <i class="fas fa-map"></i> Voir sur la carte
+                    </button>
+                    ` : ''}
                 </div>
+                
+                <!-- Horaires if present -->
+                ${lieu.horaires ? `
+                <div style="margin-top:20px;">
+                    <div class="modal-section-title">Horaires</div>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">${lieu.horaires}</p>
+                </div>` : ''}
+
             </div>
         </div>
     </div>

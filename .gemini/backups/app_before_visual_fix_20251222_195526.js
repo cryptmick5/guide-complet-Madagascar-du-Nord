@@ -776,60 +776,60 @@ window.initCityPages = function () {
         const btnAll = section.querySelector('.filter-btn[data-filter="all"]') || section.querySelector('.nav-pill');
         if (btnAll) {
             // Initialize with 'All'
-            filterProvinceItems(cityKey, 'all', btnAll);
+            filterProvinceItems('all', getCityNameFromKey(cityKey), btnAll);
         }
 
         // Update premium info (weather etc)
         updatePremiumInfo(getCityNameFromKey(cityKey), cityKey);
+    
 
-
-        // ✨ AUTO-INJECT BUDGET BUTTONS (Added by ultimate_budget_fix_v2.py)
-        document.querySelectorAll('.province-section, .page-section').forEach(section => {
-            if (!section.id.startsWith('page-')) return;
-
-            const cityKey = section.id.replace('page-', '');
-            const navPills = section.querySelector('.nav-pills');
-
-            if (!navPills || section.querySelector('.budget-pills-container')) return;
-
-            // Create budget buttons container
-            const budgetContainer = document.createElement('div');
-            budgetContainer.className = 'budget-pills-container';
-            budgetContainer.style.cssText = 'margin-top: 16px; margin-bottom: 20px;';
-
-            // Title
-            const title = document.createElement('div');
-            title.className = 'filter-title';
-            title.style.cssText = 'font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-align: center;';
-            title.innerHTML = '<i class="fas fa-wallet"></i> Budget';
-            budgetContainer.appendChild(title);
-
-            // Pills container
-            const pills = document.createElement('div');
-            pills.className = 'nav-pills';
-            pills.style.justifyContent = 'center';
-
-            // Create 3 buttons
-            const budgets = [
-                { level: '1', label: '€', desc: '(- 25k)', icon: 'fa-coins' },
-                { level: '2', label: '€€', desc: '(25k-80k)', icon: 'fa-money-bill-wave' },
-                { level: '3', label: '€€€', desc: '(+ 80k)', icon: 'fa-gem' }
-            ];
-
-            budgets.forEach(b => {
-                const btn = document.createElement('button');
-                btn.className = 'budget-btn nav-pill';
-                btn.setAttribute('data-level', b.level);
-                btn.onclick = function () { toggleProvinceBudget(cityKey, b.level, this); };
-                btn.innerHTML = `<i class="fas ${b.icon}"></i> ${b.label} <span style="font-size: 0.75rem; opacity: 0.8;">${b.desc}</span>`;
-                pills.appendChild(btn);
-            });
-
-            budgetContainer.appendChild(pills);
-            navPills.parentNode.insertBefore(budgetContainer, navPills.nextSibling);
-
-            console.log(`✅ Budget buttons injected for: ${cityKey}`);
+    // ✨ AUTO-INJECT BUDGET BUTTONS (Added by ultimate_budget_fix_v2.py)
+    document.querySelectorAll('.province-section, .page-section').forEach(section => {
+        if (!section.id.startsWith('page-')) return;
+        
+        const cityKey = section.id.replace('page-', '');
+        const navPills = section.querySelector('.nav-pills');
+        
+        if (!navPills || section.querySelector('.budget-pills-container')) return;
+        
+        // Create budget buttons container
+        const budgetContainer = document.createElement('div');
+        budgetContainer.className = 'budget-pills-container';
+        budgetContainer.style.cssText = 'margin-top: 16px; margin-bottom: 20px;';
+        
+        // Title
+        const title = document.createElement('div');
+        title.className = 'filter-title';
+        title.style.cssText = 'font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-align: center;';
+        title.innerHTML = '<i class="fas fa-wallet"></i> Budget';
+        budgetContainer.appendChild(title);
+        
+        // Pills container
+        const pills = document.createElement('div');
+        pills.className = 'nav-pills';
+        pills.style.justifyContent = 'center';
+        
+        // Create 3 buttons
+        const budgets = [
+            { level: '1', label: '€', desc: '(- 25k)', icon: 'fa-coins' },
+            { level: '2', label: '€€', desc: '(25k-80k)', icon: 'fa-money-bill-wave' },
+            { level: '3', label: '€€€', desc: '(+ 80k)', icon: 'fa-gem' }
+        ];
+        
+        budgets.forEach(b => {
+            const btn = document.createElement('button');
+            btn.className = 'budget-btn nav-pill';
+            btn.setAttribute('data-level', b.level);
+            btn.onclick = function() { toggleProvinceBudget(cityKey, b.level, this); };
+            btn.innerHTML = `<i class="fas ${b.icon}"></i> ${b.label} <span style="font-size: 0.75rem; opacity: 0.8;">${b.desc}</span>`;
+            pills.appendChild(btn);
         });
+        
+        budgetContainer.appendChild(pills);
+        navPills.parentNode.insertBefore(budgetContainer, navPills.nextSibling);
+        
+        console.log(`✅ Budget buttons injected for: ${cityKey}`);
+    });
 
     });
 };
@@ -984,7 +984,7 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
         // Budget Filter Check 
         if (isMatch) {
             // Check if a budget button is active locally
-            const activeBudgetBtn = container.querySelector('[data-level].active');
+            const activeBudgetBtn = container.querySelector('.budget-btn.active');
             if (activeBudgetBtn) {
                 const budgetLevel = activeBudgetBtn.dataset.level; // 1='€', 2='€€', 3='€€€'
                 const targetTag = budgetLevel === '1' ? 'budget_1' : (budgetLevel === '2' ? 'budget_2' : 'budget_3');
@@ -1004,10 +1004,12 @@ window.filterProvinceItems = function (cityKey, filterType, btn) {
         }
 
         if (isMatch) {
-            item.style.display = 'flex'; // Show card
+            item.parentElement.style.display = 'grid'; // Grid Item wrapper
+            item.style.display = 'flex'; // Card itself
             count++;
         } else {
-            item.style.display = 'none'; // Hide card
+            item.parentElement.style.display = 'none';
+            item.style.display = 'none';
         }
     });
     console.log(`✅ Filter Result: ${count} visible items.`);
@@ -1038,10 +1040,11 @@ window.toggleProvinceBudget = function (cityKey, level, btn) {
 
     // Toggle logic
     const isActive = btn.classList.contains('active');
-    container.querySelectorAll('[data-level], .budget-btn').forEach(b => b.classList.remove('active'));
+    container.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('active'));
 
-    // Always activate the clicked button (even if was already active)
-    btn.classList.add('active');
+    if (!isActive) {
+        btn.classList.add('active');
+    }
 
     // Re-run filter based on current active category
     const activeCatBtn = container.querySelector('.nav-pill.active'); // Was .filter-btn
@@ -1057,7 +1060,6 @@ window.toggleProvinceBudget = function (cityKey, level, btn) {
         else if (txt.includes('tout')) filterType = 'all';
     }
 
-    // IMPORTANT: Call filter AFTER button state is updated
     filterProvinceItems(cityKey, filterType, activeCatBtn);
 };
 
@@ -1083,20 +1085,7 @@ window.createLieuCard = function (lieu, category = '') {
 
     // 2. Data Preparation
     const tagsString = (lieu.tags || []).join(',');
-    const displayTags = (lieu.tags || [])
-        .filter(t => !t.startsWith('budget_')) // Exclure budget_X des tags visuels
-        .slice(0, 3)
-        .map(t => `<span class="card-tag" style="background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:12px; font-size:0.7rem; color:var(--text-secondary); border:1px solid var(--border-color);">${t}</span>`)
-        .join('');
-
-    // Ajouter le badge budget VISUEL (€ €€ €€€)
-    let budgetBadge = '';
-    const budgetTag = (lieu.tags || []).find(t => t.startsWith('budget_'));
-    if (budgetTag === 'budget_1') budgetBadge = '<span class="budget-visual" style="background:#27ae60; color:white; padding:3px 8px; border-radius:8px; font-size:0.75rem; font-weight:700;">€</span>';
-    else if (budgetTag === 'budget_2') budgetBadge = '<span class="budget-visual" style="background:#f39c12; color:white; padding:3px 8px; border-radius:8px; font-size:0.75rem; font-weight:700;">€€</span>';
-    else if (budgetTag === 'budget_3') budgetBadge = '<span class="budget-visual" style="background:#e74c3c; color:white; padding:3px 8px; border-radius:8px; font-size:0.75rem; font-weight:700;">€€€</span>';
-
-    const displayTagsWithBudget = budgetBadge ? displayTags + budgetBadge : displayTags;
+    const displayTags = (lieu.tags || []).slice(0, 3).map(t => `<span class="card-tag" style="background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:12px; font-size:0.7rem; color:var(--text-secondary); border:1px solid var(--border-color);">${t}</span>`).join('');
 
     const isMustSee = lieu.type === 'Incontournable' || (lieu.tags && lieu.tags.includes('Incontournable'));
     const badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
@@ -1141,7 +1130,7 @@ window.createLieuCard = function (lieu, category = '') {
                 </div>
 
                 <!-- Tags -->
-                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTagsWithBudget}</div>
+                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTags}</div>
 
                 <!-- Desc -->
                 <p class="lieu-desc" style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">${lieu.description}</p>
@@ -1549,11 +1538,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // --- PATCH FILTRES (TAGS) ---
+window.filterProvinceItems = function (filterType, city, btnElement) {
+    console.log("🔍 Filtre activé :", filterType, "pour", city);
 
+    // 1. Gestion Visuelle des Boutons
+    if (btnElement) {
+        const parent = btnElement.parentElement;
+        parent.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+        btnElement.classList.add('active');
+    }
+
+    // 2. Récupération des données
+    const data = window.LIEUX_DATA || [];
+    // Clean city name for Grid ID
+    const cityKey = city.replace(' ', '').replace('-', '');
+    // Logic to match grid IDs: grid-NosyBe, grid-Mahajanga, grid-Antsiranana
+    // Note: The HTML might use 'grid-Antsiranana' even for 'Diego-Suarez' page logic if mapped.
+    // Let's rely on finding any container that matches
+
+    let container = document.getElementById('grid-' + city);
+    if (!container) container = document.getElementById('grid-' + city.replace(' ', ''));
+    if (!container) container = document.getElementById('grid-' + city.replace('-', ''));
+
+    // Fallback for known mappings
+    if (!container) {
+        if (city.includes('Diego')) container = document.getElementById('grid-Antsiranana');
+        if (city.includes('Tamatave')) container = document.getElementById('grid-Toamasina');
+        if (city.includes('Majunga')) container = document.getElementById('grid-Mahajanga');
+        if (city.includes('Tana')) container = document.getElementById('grid-Antananarivo');
+        if (city.includes('Tuléar')) container = document.getElementById('grid-Toliara');
+        if (city.includes('Fianar')) container = document.getElementById('grid-Fianarantsoa');
+    }
+
+    if (!container) {
+        console.warn("❌ Container introuvable pour : " + city);
+        return;
+    }
+
+    const targetContainer = container;
+
+    // 3. Filtrage Intelligent via TAGS
+    const filtered = data.filter(item => {
+        // Filtre Ville (Doit correspondre à la page)
+        const itemVille = (item.ville || "").toLowerCase();
+        const pageVille = city.toLowerCase();
+
+        let cityMatch = false;
+        // Robust matching
+        if (pageVille.includes('nosy') && itemVille.includes('nosy')) cityMatch = true;
+        else if ((pageVille.includes('diego') || pageVille.includes('antsiranana')) && (itemVille.includes('diego') || itemVille.includes('antsiranana'))) cityMatch = true;
+        else if ((pageVille.includes('majunga') || pageVille.includes('mahajanga')) && (itemVille.includes('majunga') || itemVille.includes('mahajanga'))) cityMatch = true;
+        else if ((pageVille.includes('tana') || pageVille.includes('antananarivo')) && (itemVille.includes('antananarivo') || itemVille.includes('tana'))) cityMatch = true;
+        else if ((pageVille.includes('tamatave') || pageVille.includes('toamasina')) && (itemVille.includes('toamasina') || itemVille.includes('tamatave'))) cityMatch = true;
+        else if ((pageVille.includes('fianar') || pageVille.includes('fianarantsoa')) && (itemVille.includes('fianarantsoa') || itemVille.includes('fianar'))) cityMatch = true;
+        else if ((pageVille.includes('tuléar') || pageVille.includes('toliara')) && (itemVille.includes('toliara') || itemVille.includes('tuléar'))) cityMatch = true;
+
+        // Final fallback
+        if (!cityMatch && itemVille.includes(pageVille)) cityMatch = true;
+
+        if (!cityMatch) return false;
+
+        // Filtre Catégorie/Budget
+        if (filterType === 'all') return true;
+
+        // Mapping Bouton -> Tag
+        let tagRecherche = filterType;
+        if (filterType === 'explorer') tagRecherche = 'Explorer';
+        if (filterType === 'manger') tagRecherche = 'Manger';
+        if (filterType === 'dodo') tagRecherche = 'Dormir';
+        if (filterType === 'sortir') tagRecherche = 'Sortir';
+        if (filterType === 'spot') tagRecherche = 'Spots';
+        if (filterType === 'low') tagRecherche = '€';
+        if (filterType === 'mid') tagRecherche = '€€';
+        if (filterType === 'high') tagRecherche = '€€€';
+
+        // Vérification
+        return (item.tags && item.tags.includes(tagRecherche));
+    });
+
+    console.log("Items trouvés :", filtered.length);
+
+    // 4. Affichage
+    targetContainer.innerHTML = ''; // Clear previous
+
+    if (filtered.length === 0) {
+        targetContainer.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#666;">Aucun lieu trouvé pour ce filtre 🤷‍♂️</div>';
+        return;
+    }
+
+    filtered.forEach(item => {
+        // Use existing createLieuCard if available to keep style consistent, else fallback
+        let cardHTML = '';
+        if (window.createLieuCard) {
+            cardHTML = window.createLieuCard(item);
+            // createLieuCard returns string, we need to append
+            targetContainer.insertAdjacentHTML('beforeend', cardHTML);
+        } else {
+            // Fallback
+            const card = document.createElement('div');
+            card.className = 'lieu-card';
+        card.dataset.tags = (item.tags || []).join(',').toLowerCase();
+        card.dataset.id = item.id;
+            card.innerHTML = `<h3>${item.nom}</h3><p>${item.type}</p>`;
+            targetContainer.appendChild(card);
+        }
+    });
+};
 
 
 // --- FIX: SECURE CARD GENERATION ---
-/* DUPLICATE - COMMENTED OUT
 window.createLieuCard = function (lieu, category = '') {
     // 1. Logic & Safety
     if (!category) category = lieu.categorie || 'Explorer';
@@ -1608,7 +1701,7 @@ window.createLieuCard = function (lieu, category = '') {
                     </div>
                 </div>
 
-                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTagsWithBudget}</div>
+                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTags}</div>
 
                 <p class="lieu-desc" style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">${lieu.description}</p>
 
@@ -1619,19 +1712,333 @@ window.createLieuCard = function (lieu, category = '') {
         </article>
     `;
 };
-*/ // END DUPLICATE 2
 
 
 // --- PATCH FINAL : FILTRES BUDGET & VILLES ---
+window.filterProvinceItems = function (filterType, city, btnElement) {
+    console.log("🔍 Filtre activé:", filterType);
 
+    // 1. Visuel Bouton
+    if (btnElement) {
+        const parent = btnElement.parentElement;
+        parent.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+        btnElement.classList.add('active');
+    }
+
+    // 2. Mapping du Tag
+    let tagVise = filterType; // Par défaut (ex: 'Explorer')
+
+    // Traduction des codes boutons vers les Tags réels
+    if (['low', '€', 'pas cher'].includes(filterType)) tagVise = '€';
+    if (['mid', '€€', 'moyen'].includes(filterType)) tagVise = '€€';
+    if (['high', '€€€', 'luxe'].includes(filterType)) tagVise = '€€€';
+    if (filterType === 'dodo') tagVise = 'Dormir';
+    if (filterType === 'spot') tagVise = 'Spots';
+
+    // 3. Filtrage
+    const data = window.LIEUX_DATA || [];
+    const filtered = data.filter(item => {
+        // Filtre Ville (Approximatif pour gérer Diego/Antsiranana)
+        const vItem = (item.ville || "").toLowerCase();
+        const vPage = city.toLowerCase();
+
+        let villeOk = false;
+        if (vItem.includes(vPage)) villeOk = true;
+        else if (vPage.includes('diego') && vItem.includes('antsiranana')) villeOk = true;
+        else if (vPage.includes('nosy') && vItem.includes('nosy')) villeOk = true;
+        else if (vPage.includes('tana') && vItem.includes('antananarivo')) villeOk = true;
+        else if (vPage.includes('amneville')) villeOk = true; // Fallback pour tests
+        else if (vPage.includes('majunga') && vItem.includes('mahajanga')) villeOk = true;
+
+        if (!villeOk) return false;
+
+        // Filtre Tag
+        if (filterType === 'all') return true;
+        return (item.tags && item.tags.includes(tagVise));
+    });
+
+    // 4. Rendu
+    // On essaie de trouver le conteneur de grille
+    let container = document.getElementById('grid-' + city.replace(/ /g, ''));
+
+    // Fallback ID pour noms composés (ex: grid-Diego)
+    if (!container) {
+        const simpleName = city.split(' ')[0].replace('-', '');
+        container = document.querySelector(`[id^='grid-${simpleName}']`) || document.getElementById('grid-' + simpleName);
+    }
+
+    if (container) {
+        container.innerHTML = '';
+        if (filtered.length === 0) {
+            container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;opacity:0.6">Aucun lieu trouvé pour ce budget/catégorie 🤷‍♂️</div>';
+        }
+        filtered.forEach(item => {
+            // Utilisation de la fonction existante secure si dispo, sinon fallback manuel
+            if (window.createLieuCard) {
+                container.innerHTML += window.createLieuCard(item);
+            } else {
+                const card = document.createElement('div');
+                card.className = 'lieu-card';
+                card.setAttribute('onclick', `window.openLieuModal ? window.openLieuModal(${item.id}) : console.log('Modal missing')`);
+                card.innerHTML = `
+                    <div class="card-image" style="background-image: url('${item.image}');">
+                        <span class="badge-type">${item.type}</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>${item.nom}</h3>
+                        <div class="card-meta"><span>📍 ${item.ville}</span><span>⭐ ${item.note}</span></div>
+                        <div class="card-price" style="margin-top:5px;font-weight:bold;color:#d35400">${item.prix}</div>
+                    </div>`;
+                container.appendChild(card);
+            }
+        });
+
+        // Réattacher les événements si nécessaire (createLieuCard retourne une string HTML)
+        // Pas besoin si onclick est inline.
+    } else {
+        console.warn("❌ Container Grille introuvable pour la ville:", city);
+    }
+};
 
 
 // --- MOTEUR D'AFFICHAGE UNIVERSEL (V4 - FIX DISPARITION) ---
+window.filterProvinceItems = function (filterType, city, btnElement) {
+    console.group("🚀 DEBUG FILTRE : " + filterType);
 
+    // 1. GESTION DES BOUTONS (VISUEL)
+    if (btnElement) {
+        const parent = btnElement.parentElement;
+        if (parent) {
+            parent.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+    }
+
+    // 2. RECHERCHE INTELLIGENTE DU CONTENEUR
+    // On essaie toutes les variantes possibles de l'ID
+    let container = document.getElementById('grid-' + city); // ex: grid-Nosy Be
+    if (!container) container = document.getElementById('grid-' + city.replace(/ /g, '')); // grid-NosyBe
+    if (!container) container = document.getElementById('grid-' + city.replace(/ /g, '-')); // grid-Nosy-Be
+    if (!container) container = document.getElementById('grid-' + city.split(' ')[0]); // grid-Nosy
+
+    // FALLBACK ULTIME : On cherche la grille active dans la section visible
+    if (!container) {
+        console.warn("⚠️ Recherche par ID échouée. Tentative par classe...");
+        const visibleSection = document.querySelector('section.active') || document.querySelector('section:not([style*="display: none"])');
+        if (visibleSection) {
+            container = visibleSection.querySelector('.lieux-grid');
+        }
+    }
+
+    if (!container) {
+        console.error("❌ CRITIQUE : Impossible de trouver où afficher les résultats !");
+        console.groupEnd();
+        return; // On arrête tout pour ne pas casser la page
+    }
+
+    console.log("✅ Conteneur trouvé :", container.id || container.className);
+
+    // 3. FILTRAGE DES DONNÉES
+    const data = window.LIEUX_DATA || [];
+    let targetTag = filterType;
+
+    // Mapping robuste
+    if (['manger', 'resto'].includes(filterType)) targetTag = 'Manger';
+    else if (['dodo', 'dormir'].includes(filterType)) targetTag = 'Dormir';
+    else if (['explorer', 'nature', 'plage'].includes(filterType)) targetTag = 'Explorer';
+    else if (['sortir', 'bar'].includes(filterType)) targetTag = 'Sortir';
+    else if (['spot', 'spots'].includes(filterType)) targetTag = 'Spots';
+    else if (['low', '€'].includes(filterType)) targetTag = '€';
+    else if (['mid', '€€'].includes(filterType)) targetTag = '€€';
+    else if (['high', '€€€'].includes(filterType)) targetTag = '€€€';
+
+    const filtered = data.filter(item => {
+        // Filtre Ville (très permissif)
+        const vItem = (item.ville || "").toLowerCase();
+        const vPage = city.toLowerCase();
+        let cityMatch = false;
+
+        if (vItem.includes(vPage) || vPage.includes(vItem)) cityMatch = true;
+        // Cas spéciaux
+        if (vPage.includes('diego') && vItem.includes('antsiranana')) cityMatch = true;
+        if (vPage.includes('tana') && vItem.includes('antananarivo')) cityMatch = true;
+        if (vPage.includes('nosy') && vItem.includes('nosy')) cityMatch = true;
+
+        if (!cityMatch) return false;
+
+        // Filtre Tag
+        if (filterType === 'all') return true;
+        return (item.tags && item.tags.includes(targetTag));
+    });
+
+    console.log(`📊 ${filtered.length} résultats trouvés pour le tag "${targetTag}"`);
+
+    // 4. GÉNÉRATION HTML
+    container.innerHTML = ''; // On vide proprement
+
+    if (filtered.length === 0) {
+        container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#666;font-size:1.2rem;">Aucun lieu trouvé pour ce filtre 😕</div>';
+    } else {
+        filtered.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'lieu-card';
+            // Sécurisation du clic pour ouvrir la modale
+            card.onclick = function () {
+                console.log("Clic sur", item.nom);
+                if (window.openLieuModal) window.openLieuModal(item.id);
+                else if (window.openModalSafe) window.openModalSafe(item);
+                else console.error("Fonction Modal introuvable");
+            };
+
+            card.innerHTML = `
+                <div class="card-image" style="background-image: url('${item.image || 'images/placeholders/default.jpg'}');">
+                    <span class="badge-type">${item.type}</span>
+                </div>
+                <div class="card-content">
+                    <h3>${item.nom}</h3>
+                    <div class="card-meta">
+                        <span>📍 ${item.ville}</span>
+                        <span>⭐ ${item.note}</span>
+                    </div>
+                    <div class="card-price" style="margin-top:5px;font-weight:bold;color:#d35400">${item.prix || ''}</div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+    console.groupEnd();
+};
 
 
 // --- MOTEUR RENDU V7 (DESIGN PREMIUM + LOGIQUE ROBUSTE) ---
+window.filterProvinceItems = function (filterType, city, btnElement) {
+    console.log("⚙️ ENGINE : Filtre =", filterType, "/ Ville =", city);
 
+    // 1. UI BOUTONS
+    if (btnElement) {
+        const parent = btnElement.parentElement;
+        if (parent) {
+            parent.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+    }
+
+    // 2. CIBLAGE CONTENEUR (Algorithme "Best Match")
+    // On nettoie le nom de la ville pour trouver l'ID (ex: "Nosy Be" -> "grid-NosyBe")
+    let safeCity = city.replace(/ /g, '').replace(/-/g, '');
+    let container = document.getElementById('grid-' + city) ||
+        document.getElementById('grid-' + safeCity) ||
+        document.getElementById('grid-' + city.split(' ')[0]);
+
+    // Fallback : Prendre la première grille visible
+    if (!container) {
+        const section = document.querySelector('section:not([style*="display: none"]) .lieux-grid');
+        if (section) container = section;
+    }
+
+    if (!container) return console.error("❌ CRITIQUE : Aucune grille trouvée pour l'injection.");
+
+    // RESET GRILLE (Force le CSS Grid)
+    container.style.cssText = "display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 20px 0;";
+    container.innerHTML = '';
+
+    // 3. LOGIQUE DE FILTRAGE
+    const data = window.LIEUX_DATA || [];
+    let targetTag = filterType;
+
+    // Traduction UI -> Data
+    const map = {
+        'manger': 'Manger', 'resto': 'Manger',
+        'dodo': 'Dormir', 'dormir': 'Dormir',
+        'explorer': 'Explorer', 'nature': 'Explorer',
+        'sortir': 'Sortir', 'bar': 'Sortir',
+        'spot': 'Spots', 'spots': 'Spots',
+        // Prix (Mapping vers les codes sûrs)
+        'low': 'budget_1', '€': 'budget_1',
+        'mid': 'budget_2', '€€': 'budget_2',
+        'high': 'budget_3', '€€€': 'budget_3'
+    };
+    if (map[filterType]) targetTag = map[filterType];
+
+    const filtered = data.filter(item => {
+        // Match Ville (Approximatif)
+        const vItem = (item.ville || "").toLowerCase();
+        const vPage = city.toLowerCase();
+        let cityMatch = vItem.includes(vPage) || vPage.includes(vItem);
+
+        // Exceptions manuelles
+        if (vPage.includes('diego') && vItem.includes('antsiranana')) cityMatch = true;
+        if (vPage.includes('tana') && vItem.includes('antananarivo')) cityMatch = true;
+        if (vPage.includes('nosy') && vItem.includes('nosy')) cityMatch = true;
+
+        if (!cityMatch) return false;
+        if (filterType === 'all') return true;
+        return (item.tags && item.tags.includes(targetTag));
+    });
+
+    console.log(`📊 ${filtered.length} résultats.`);
+
+    // 4. RENDU VISUEL (CSS INJECTÉ POUR STABILITÉ)
+    if (filtered.length === 0) {
+        container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;color:#666;font-size:1.2rem;">Aucun résultat pour cette sélection 😕</div>';
+        return;
+    }
+
+    filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'lieu-card';
+        // CSS CARTE : Ombre, Arrondi, Transition
+        card.style.cssText = "background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease; cursor: pointer; border: 1px solid rgba(0,0,0,0.05);";
+
+        // Image
+        const img = item.image || 'images/placeholders/default.jpg';
+
+        // Badge Prix Visuel
+        let priceIcon = '€';
+        if (item.tags.includes('budget_2')) priceIcon = '€€';
+        if (item.tags.includes('budget_3')) priceIcon = '€€€';
+
+        card.innerHTML = `
+            <div style="height: 220px; width: 100%; position: relative; overflow: hidden;">
+                <div style="width:100%; height:100%; background-image: url('${img}'); background-size: cover; background-position: center; transition: transform 0.5s;"></div>
+                <span style="position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 30px; font-size: 0.75rem; font-weight: 800; color: #333; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    ${item.type}
+                </span>
+            </div>
+            
+            <div style="padding: 24px;">
+                <h3 style="margin: 0 0 10px 0; font-size: 1.25rem; font-weight: 700; color: #2c3e50; line-height: 1.4;">${item.nom}</h3>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.9rem; color: #7f8c8d;">
+                    <span><i class="fas fa-map-marker-alt" style="color:#e74c3c; margin-right:5px;"></i> ${item.ville}</span>
+                    <span style="background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 6px; font-weight: bold;">⭐ ${item.note}</span>
+                </div>
+                
+                <div style="border-top: 1px solid #eee; padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 700; color: #27ae60; font-size: 1.1rem;">${item.prix || ''}</span>
+                    <span style="font-size: 0.9rem; color: #bdc3c7; font-weight:600; border: 1px solid #eee; padding: 4px 8px; border-radius: 4px;">${priceIcon}</span>
+                </div>
+            </div>
+        `;
+
+        // Interaction Hover
+        card.onmouseenter = function () {
+            this.style.transform = 'translateY(-8px)';
+            this.querySelector('div[style*="background-image"]').style.transform = 'scale(1.05)';
+        };
+        card.onmouseleave = function () {
+            this.style.transform = 'translateY(0)';
+            this.querySelector('div[style*="background-image"]').style.transform = 'scale(1)';
+        };
+
+        // Click Modal
+        card.onclick = () => {
+            if (window.openLieuModal) window.openLieuModal(item.id);
+        };
+
+        container.appendChild(card);
+    });
+};
 
 
 
@@ -1640,7 +2047,6 @@ window.createLieuCard = function (lieu, category = '') {
 // ============================================
 
 // A. Création Carte Premium (Sécurisée)
-/* DUPLICATE 3 - COMMENTED OUT - CAUSES UNDEFINED DATA-TAGS
 window.createLieuCard = function (lieu, category = '') {
     if (!category) category = lieu.categorie || 'Explorer';
 
@@ -1705,43 +2111,125 @@ window.createLieuCard = function (lieu, category = '') {
         </article>
     `;
 };
-*/ // END DUPLICATE 3
 
 
 // B. Moteur de Filtre Centralisé (Diego & Nosy Be & autres)
+window.filterProvinceItems = function (filterType, city, btnElement) {
+    console.log("🚀 ENGINE V7 : Filter=" + filterType + " | City=" + city);
 
-
-
-// INITIALISATION AU CHARGEMENT DE LA PAGE
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(' App initialization starting...');
-
-    // Load page city data and init filters 
-    if (typeof initCityPages === 'function') {
-        initCityPages();
-        console.log(' initCityPages() called');
-    } else {
-        console.error(' initCityPages function not found!');
-    }
-});
-// ============================================================================
-// FORCED CARD REGENERATION - FIX FOR CACHE ISSUE
-// ============================================================================
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('🔄 FORCING CARD REGENERATION TO FIX CACHE...');
-
-    // Wait for data to load
-    setTimeout(() => {
-        if (window.LIEUX_DATA && window.renderCityData) {
-            // Clear all grids first
-            const grids = document.querySelectorAll('[id^="grid-"]');
-            grids.forEach(grid => {
-                grid.innerHTML = '';
-            });
-
-            // Regenerate with fresh data
-            renderCityData();
-            console.log('✅ Cards regenerated with fresh data');
+    // 1. UI Buttons
+    if (btnElement) {
+        const parent = btnElement.parentElement;
+        if (parent) {
+            parent.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+            btnElement.classList.add('active');
         }
-    }, 1000);
-});
+    }
+
+    // 2. Data Source
+    const data = window.LIEUX_DATA || [];
+    if (data.length === 0) console.warn("⚠️ LIEUX_DATA vide !");
+
+    // 3. Normalisation Arg Villes (Pour matching data)
+    // Diego-Suarez dans Data, Antsiranana dans Code/ID
+    const targetCityLower = city.toLowerCase();
+
+    // 4. Filtrage
+    const filtered = data.filter(item => {
+        const itemVille = (item.ville || "").toLowerCase();
+        let cityMatch = false;
+
+        // Logique stricte mais tolérante
+        if (itemVille.includes(targetCityLower)) cityMatch = true;
+        if (targetCityLower.includes(itemVille) && itemVille.length > 3) cityMatch = true;
+
+        // Aliases explicites
+        if (targetCityLower.includes('antsiranana') && itemVille.includes('diego')) cityMatch = true;
+        if (targetCityLower.includes('diego') && itemVille.includes('antsiranana')) cityMatch = true;
+
+        if (targetCityLower.includes('nosy') && itemVille.includes('nosy')) cityMatch = true;
+
+        if (targetCityLower.includes('tulear') && itemVille.includes('toliara')) cityMatch = true;
+        if (targetCityLower.includes('toliara') && itemVille.includes('tulear')) cityMatch = true;
+
+        if (targetCityLower.includes('tamatave') && itemVille.includes('toamasina')) cityMatch = true;
+        if (targetCityLower.includes('toamasina') && itemVille.includes('tamatave')) cityMatch = true;
+
+        if (targetCityLower.includes('majunga') && itemVille.includes('mahajanga')) cityMatch = true;
+        if (targetCityLower.includes('mahajanga') && itemVille.includes('majunga')) cityMatch = true;
+
+        if (!cityMatch) return false;
+
+        // Filtre Tag
+        if (filterType === 'all') return true;
+
+        // Mapping Tags
+        let tagTarget = filterType;
+        if (filterType === 'low') tagTarget = '€'; // budget_1 ? non data uses prices mostly or budget tags. Let's check logic.
+        // Data has tags: "budget_1", "budget_2", "budget_3" OR "€", "€€" ?
+        // Look at data: "budget_1"
+        if (filterType === 'low' || filterType === '€') tagTarget = 'budget_1';
+        if (filterType === 'mid' || filterType === '€€') tagTarget = 'budget_2';
+        if (filterType === 'high' || filterType === '€€€') tagTarget = 'budget_3';
+
+        // Tag matching
+        if (!item.tags) return false;
+
+        // Match exact or partial? Array includes.
+        // Data tags are capitalized "Explorer", "Manger" etc.
+        // UI sends 'explorer' (lowercase).
+        // Let's lowercase everything for check
+        const itemTagsLow = item.tags.map(t => t.toLowerCase());
+        return itemTagsLow.includes(tagTarget.toLowerCase()) ||
+            (item.type && item.type.toLowerCase() === tagTarget.toLowerCase());
+    });
+
+    console.log(`📊 ${filtered.length} résultats trouvés.`);
+
+    // 5. Injection DOM
+    // Identification Conteneur ID
+    let container = null;
+
+    // Essais successifs d'IDs
+    const candidates = [
+        'grid-' + city,
+        'grid-' + city.replace(/ /g, ''),
+        'grid-' + city.replace(/-/g, ''),
+        'grid-' + city.split(' ')[0]
+    ];
+
+    // Aliases IDs
+    if (targetCityLower.includes('diego') || targetCityLower.includes('antsiranana')) candidates.push('grid-Antsiranana');
+    if (targetCityLower.includes('nosy')) candidates.push('grid-NosyBe');
+    if (targetCityLower.includes('tana')) candidates.push('grid-Antananarivo');
+    if (targetCityLower.includes('tamatave') || targetCityLower.includes('toamasina')) candidates.push('grid-Toamasina');
+    if (targetCityLower.includes('majunga') || targetCityLower.includes('mahajanga')) candidates.push('grid-Mahajanga');
+    if (targetCityLower.includes('tulear') || targetCityLower.includes('toliara')) candidates.push('grid-Toliara');
+
+    for (let id of candidates) {
+        const el = document.getElementById(id);
+        if (el) { container = el; break; }
+    }
+
+    if (!container) {
+        console.error("❌ CRITIQUE: Aucun conteneur trouvé pour " + city);
+        return;
+    }
+
+    // Reset et Remplissage
+    container.innerHTML = '';
+
+    // Style de Grille Force
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+    container.style.gap = '20px';
+
+    if (filtered.length === 0) {
+        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px; color:#999;">Aucun lieu pour ce filtre.</div>';
+        return;
+    }
+
+    filtered.forEach(item => {
+        container.insertAdjacentHTML('beforeend', window.createLieuCard(item));
+    });
+};

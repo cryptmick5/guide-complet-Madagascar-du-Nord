@@ -1,4 +1,4 @@
-const LIEUX_DATA = [
+window.LIEUX_DATA = [
     {
         "id": 1,
         "ville": "Antananarivo",
@@ -10,18 +10,22 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.5,
-        "description": "Le Rova de Manjakamiadana est le cœur historique et spirituel de l'Imerina. Perché sur la plus haute colline, ce complexe royal offre une plongée fascinante dans l'histoire des monarques malgaches et une vue imprenable à 360° sur toute la ville.",
+        "description": "Le Rova de Manjakamiadana est le cœur historique et spirituel de l’Imerina. Perché sur la plus haute colline, ce complexe royal offre une plongée fascinante dans l’histoire des monarques malgaches et une vue imprenable à 360° sur toute la ville.",
         "image": "images/villes/palais-reine.jpg",
-        "acces": "Centre-ville d'Antananarivo, colline d'Ambohimanga",
+        "acces": "Centre-ville d’Antananarivo, colline d’Ambohimanga",
         "horaires": "9h-17h tous les jours",
         "respect": "Tenue correcte exigée, pas de short",
-        "conseil": "Prenez un guide officiel à l'entrée pour comprendre l'histoire complexe des incendies et de la reconstruction.",
+        "conseil": "Prenez un guide officiel à l’entrée pour comprendre l’histoire complexe des incendies et de la reconstruction.",
         "duree": "1h30",
         "siteWeb": "https://tourisme-antananarivo.com/activities/rova-antananarivo/",
         "tags": [
-            "Culture",
-            "Plage"
-        ]
+            "Tana",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.5,
+        "duration": "1h30"
     },
     {
         "id": 2,
@@ -34,16 +38,21 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.3,
-        "description": "Le plus grand marché artisanal de la capitale. Un labyrinthe de couleurs et de senteurs où vous trouverez tout l'artisanat malgache : vannerie, marqueterie, pierres semi-précieuses, broderies et sculptures en bois. L'endroit idéal pour vos souvenirs.",
+        "description": "Le plus grand marché artisanal de la capitale. Un labyrinthe de couleurs et de senteurs où vous trouverez tout l’artisanat malgache : vannerie, marqueterie, pierres semi-précieuses, broderies et sculptures en bois. L’endroit idéal pour vos souvenirs.",
         "image": "images/villes/marche-la-digue.jpg",
-        "acces": "Avenue de l'Indépendance",
+        "acces": "Avenue de l’Indépendance",
         "horaires": "8h-18h du lundi au samedi",
         "conseil": "Le marchandage est de rigueur ici ! Divisez le premier prix annoncé par deux ou trois, toujours avec le sourire.",
         "duree": "2h",
         "siteWeb": "https://tourisme-antananarivo.com/",
         "tags": [
-            "Culture"
-        ]
+            "Tana",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.3,
+        "duration": "2h"
     },
     {
         "id": 3,
@@ -56,22 +65,26 @@ const LIEUX_DATA = [
         "prixEur": "1 €",
         "prixNum": 5000,
         "note": 4.6,
-        "description": "Un havre de paix inattendu en plein cœur de la ville. Ce parc privé classé RAMSAR est un refuge vital pour de nombreuses espèces d'oiseaux endémiques, dont le héron de Humblot. Parfait pour une pause nature loin du tumulte urbain.",
+        "description": "Un havre de paix inattendu en plein cœur de la ville. Ce parc privé classé RAMSAR est un refuge vital pour de nombreuses espèces d’oiseaux endémiques, dont le héron de Humblot. Parfait pour une pause nature loin du tumulte urbain.",
         "image": "images/spots/parc-tsarasaotra.jpg",
         "acces": "Quartier Tsarasaotra",
         "horaires": "7h-17h tous les jours",
-        "conseil": "Apportez des jumelles si vous en avez, c'est un paradis pour l'ornithologie, surtout tôt le matin.",
+        "conseil": "Apportez des jumelles si vous en avez, c’est un paradis pour l’ornithologie, surtout tôt le matin.",
         "duree": "1h",
         "siteWeb": "https://rsis.ramsar.org/ris/1464",
         "tags": [
-            "Nature",
-            "Culture"
-        ]
+            "Tana",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "5 000 Ar",
+        "rating": 4.6,
+        "duration": "1h"
     },
     {
         "id": 4,
         "ville": "Antananarivo",
-        "nom": "Source Sacrée d'Ambohijatovo",
+        "nom": "Source Sacrée d’Ambohijatovo",
         "type": "Spot Local",
         "lat": -18.9151,
         "lng": 47.5283,
@@ -79,17 +92,22 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4,
-        "description": "Une source mystique chargée de légendes, vénérée par les habitants du quartier. On dit que son eau possède des vertus purificatrices. C'est un lieu secret, hors des guides touristiques classiques, où l'on ressent la spiritualité quotidienne malgache.",
+        "description": "Une source mystique chargée de légendes, vénérée par les habitants du quartier. On dit que son eau possède des vertus purificatrices. C’est un lieu secret, hors des guides touristiques classiques, où l’on ressent la spiritualité quotidienne malgache.",
         "image": "images/spots/source-ambohijatovo.jpg",
-        "acces": "Pas de GPS - Derrière l'église Andohalo, demander au gardien qui montre le chemin",
+        "acces": "Pas de GPS - Derrière l’église Andohalo, demander au gardien qui montre le chemin",
         "contactLocal": "Le gardien de l'église (présent le matin)",
         "respect": "Offrande traditionnelle recommandée, silence requis, ne pas toucher l'eau sans permission",
         "conseil": "Montrez du respect et demandez toujours la permission avant de prendre une photo. Une petite pièce au gardien est appréciée.",
         "duree": "30 min",
         "siteWeb": "https://tourisme-antananarivo.com/",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "Tana",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4,
+        "duration": "30 min"
     },
     {
         "id": 5,
@@ -102,7 +120,7 @@ const LIEUX_DATA = [
         "prixEur": "9 €",
         "prixNum": 40000,
         "note": 4.7,
-        "description": "Une institution gastronomique à Tana. Installé dans une magnifique villa coloniale remplie d'antiquités, ce restaurant propose une cuisine fusion raffinée. Le cadre est aussi exquis que les plats, avec une collection d'objets d'art hétéroclite fascinante.",
+        "description": "Une institution gastronomique à Tana. Installé dans une magnifique villa coloniale remplie d’antiquités, ce restaurant propose une cuisine fusion raffinée. Le cadre est aussi exquis que les plats, avec une collection d’objets d’art hétéroclite fascinante.",
         "image": "images/restaurants/la-varangue.jpg",
         "acces": "Rue Printsy Ratsimamanga, Isoraka",
         "horaires": "12h-14h30 et 19h-22h",
@@ -110,13 +128,18 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com",
         "tags": [
-            "Manger"
-        ]
+            "Tana",
+            "Manger",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 6,
+        "id": 515,
         "ville": "Antananarivo",
-        "nom": "Colline Royale d'Ambohimanga",
+        "nom": "Colline Royale d’Ambohimanga",
         "type": "Culture",
         "lat": -18.7614,
         "lng": 47.5622,
@@ -124,7 +147,7 @@ const LIEUX_DATA = [
         "prixEur": "4 €",
         "prixNum": 20000,
         "note": 4.8,
-        "description": "Le berceau de la royauté Merina, classé à l'UNESCO. Une cité interdite préservée avec ses palais en bois précieux, ses tombeaux royaux et ses ficus sacrés. Un lieu chargé de spiritualité et d'histoire, indispensable pour comprendre Madagascar.",
+        "description": "Le berceau de la royauté Merina, classé à l’UNESCO. Une cité interdite préservée avec ses palais en bois précieux, ses tombeaux royaux et ses ficus sacrés. Un lieu chargé de spiritualité et d’histoire, indispensable pour comprendre Madagascar.",
         "image": "images/tana/tana_ambohimanga_royal_hill_1765475311821.png",
         "acces": "20 km au nord de Tana, compter 1h de route",
         "horaires": "9h-16h30 tous les jours",
@@ -132,14 +155,18 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://whc.unesco.org/fr/list/950/",
         "tags": [
-            "Culture",
-            "Plage"
-        ]
+            "Tana",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.8,
+        "duration": "Demi-journée"
     },
     {
-        "id": 7,
+        "id": 516,
         "ville": "Antananarivo",
-        "nom": "Lemurs' Park",
+        "nom": "Lemurs’ Park",
         "type": "Nature",
         "lat": -18.9667,
         "lng": 47.3833,
@@ -147,19 +174,25 @@ const LIEUX_DATA = [
         "prixEur": "15 €",
         "prixNum": 75000,
         "note": 4.6,
-        "description": "Une réserve botanique privée où 9 espèces de lémuriens vivent en semi-liberté. C'est le meilleur endroit près de Tana pour observer les Makis Cattas, les Sifakas danseurs et les lémuriens nocturnes dans un cadre verdoyant au bord de la rivière.",
+        "description": "Une réserve botanique privée où 9 espèces de lémuriens vivent en semi-liberté. C’est le meilleur endroit près de Tana pour observer les Makis Cattas, les Sifakas danseurs et les lémuriens nocturnes dans un cadre verdoyant au bord de la rivière.",
         "image": "images/tana/tana_lemurs_park_1765475327277.png",
-        "acces": "RN1, PK 22 (route d'Ampefy)",
+        "acces": "RN1, PK 22 (route d’Ampefy)",
         "horaires": "8h-16h (Dernière entrée)",
         "conseil": "Arrivez le matin à 9h quand les lémuriens sont les plus actifs avant la chaleur de midi.",
         "duree": "2h",
         "siteWeb": "https://www.lemurspark.com",
         "tags": [
-            "Nature"
-        ]
+            "Tana",
+            "Explorer",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "75 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 8,
+        "id": 517,
         "ville": "Antananarivo",
         "nom": "Le Carré",
         "type": "Restaurant",
@@ -169,19 +202,26 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.5,
-        "description": "Le spot branché d'Antanimena. Un cadre moderne très végétalisé, une belle terrasse et une carte immense qui plaira à tout le monde (bons burgers, sushis, grillades). L'ambiance y est toujours animée et cosmopolite.",
+        "description": "Le spot branché d’Antanimena. Un cadre moderne très végétalisé, une belle terrasse et une carte immense qui plaira à tout le monde (bons burgers, sushis, grillades). L’ambiance y est toujours animée et cosmopolite.",
         "image": "images/tana/tana_le_carre_restaurant_1765475346465.png",
         "acces": "Quartier Antanimena, Zone Galaxy",
         "horaires": "10h-22h",
-        "conseil": "Parfait pour un déjeuner d'affaires ou un brunch tardif le samedi.",
+        "conseil": "Parfait pour un déjeuner d’affaires ou un brunch tardif le samedi.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/lecarretana",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Tana",
+            "Sortir",
+            "Spots",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.5,
+        "duration": "2h"
     },
     {
-        "id": 9,
+        "id": 518,
         "ville": "Antananarivo",
         "nom": "Kudeta Urban Club",
         "type": "Restaurant",
@@ -199,11 +239,18 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://www.kudeta.com",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Tana",
+            "Sortir",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "50 000 Ar",
+        "rating": 4.7,
+        "duration": "Soirée"
     },
     {
-        "id": 10,
+        "id": 519,
         "ville": "Antananarivo",
         "nom": "Lokanga Boutique Hotel",
         "type": "Restaurant",
@@ -221,11 +268,17 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://lokanga-hotel.mg",
         "tags": [
-            "Manger"
-        ]
+            "Tana",
+            "Manger",
+            "Dormir",
+            "budget_2"
+        ],
+        "price": "60 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 11,
+        "id": 520,
         "ville": "Antananarivo",
         "nom": "Nerone",
         "type": "Restaurant",
@@ -235,7 +288,7 @@ const LIEUX_DATA = [
         "prixEur": "7 €",
         "prixNum": 30000,
         "note": 4.6,
-        "description": "L'Italie authentique à Tana. Une trattoria chaleureuse où le patron italien veille au grain. Pizzas au feu de bois à la pâte fine, pâtes fraîches maison et tiramisu crémeux. On s'y sent comme à Rome, l'accueil malgache en plus.",
+        "description": "L’Italie authentique à Tana. Une trattoria chaleureuse où le patron italien veille au grain. Pizzas au feu de bois à la pâte fine, pâtes fraîches maison et tiramisu crémeux. On s’y sent comme à Rome, l’accueil malgache en plus.",
         "image": "images/tana/tana_nerone_italian_restaurant_1765475395930.png",
         "acces": "Quartier Ambatonakanga",
         "horaires": "12h-14h et 19h-22h",
@@ -243,11 +296,16 @@ const LIEUX_DATA = [
         "duree": "1h30",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Manger"
-        ]
+            "Tana",
+            "Manger",
+            "budget_2"
+        ],
+        "price": "30 000 Ar",
+        "rating": 4.6,
+        "duration": "1h30"
     },
     {
-        "id": 12,
+        "id": 521,
         "ville": "Antananarivo",
         "nom": "Grand Hôtel Urban",
         "type": "Hôtel",
@@ -257,7 +315,7 @@ const LIEUX_DATA = [
         "prixEur": "80 €",
         "prixNum": 350000,
         "note": 4.7,
-        "description": "Le chic colonial revisité. Façade blanche immaculée, parquets en bois sombre et design épuré. C'est l'un des hôtels de charme les plus élégants du centre-ville, avec un rooftop bar très prisé pour les afterworks.",
+        "description": "Le chic colonial revisité. Façade blanche immaculée, parquets en bois sombre et design épuré. C’est l’un des hôtels de charme les plus élégants du centre-ville, avec un rooftop bar très prisé pour les afterworks.",
         "image": "images/tana/tana_grand_hotel_urban.jpg",
         "acces": "Ambatonakanga, proche ambassades",
         "horaires": "Réception 24h/24",
@@ -265,13 +323,17 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://www.grandhotelurban.com",
         "tags": [
-            "Manger",
+            "Tana",
+            "Sortir",
             "Dormir",
-            "Culture"
-        ]
+            "budget_3"
+        ],
+        "price": "350 000 Ar",
+        "rating": 4.7,
+        "duration": "Séjour"
     },
     {
-        "id": 13,
+        "id": 522,
         "ville": "Antananarivo",
         "nom": "Le Centell Hotel & Spa",
         "type": "Hôtel",
@@ -281,19 +343,24 @@ const LIEUX_DATA = [
         "prixEur": "70 €",
         "prixNum": 300000,
         "note": 4.6,
-        "description": "Le standing international 4 étoiles. Un bâtiment moderne vitré qui tranche avec l'architecture locale. Chambres spacieuses et sobres, spa complet et surtout 'La Canopée', son rooftop offrant une vue panoramique sur tout Tana.",
+        "description": "Le standing international 4 étoiles. Un bâtiment moderne vitré qui tranche avec l’architecture locale. Chambres spacieuses et sobres, spa complet et surtout ’La Canopée’, son rooftop offrant une vue panoramique sur tout Tana.",
         "image": "images/tana/tana_le_centell_hotel.jpg",
         "acces": "Quartier Antanimena",
         "horaires": "Réception 24h/24",
-        "conseil": "Idéal pour les voyages d'affaires grâce à son confort moderne et fonctionnel.",
+        "conseil": "Idéal pour les voyages d’affaires grâce à son confort moderne et fonctionnel.",
         "duree": "Séjour",
         "siteWeb": "https://www.centellhotel.com",
         "tags": [
-            "Dormir"
-        ]
+            "Tana",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "300 000 Ar",
+        "rating": 4.6,
+        "duration": "Séjour"
     },
     {
-        "id": 14,
+        "id": 523,
         "ville": "Antananarivo",
         "nom": "Le Sakamanga",
         "type": "Hôtel",
@@ -303,19 +370,26 @@ const LIEUX_DATA = [
         "prixEur": "35 €",
         "prixNum": 150000,
         "note": 4.5,
-        "description": "Plus qu'un hôtel, une institution. Un véritable musée vivant rempli d'objets historiques et de photos anciennes. L'ambiance y est unique, avec une petite piscine dans un patio végétalisé. C'est le point de chute préféré des voyageurs depuis des décennies.",
+        "description": "Plus qu’un hôtel, une institution. Un véritable musée vivant rempli d’objets historiques et de photos anciennes. L’ambiance y est unique, avec une petite piscine dans un patio végétalisé. C’est le point de chute préféré des voyageurs depuis des décennies.",
         "image": "images/tana/tana_sakamanga_pool.jpg",
         "acces": "Rue Andrianary Ratianarivo, Isoraka",
         "horaires": "Réception 24h/24",
-        "conseil": "Explorez les couloirs de l'hôtel comme on visite une galerie d'art, c'est fascinant.",
+        "conseil": "Explorez les couloirs de l’hôtel comme on visite une galerie d’art, c’est fascinant.",
         "duree": "Séjour",
         "siteWeb": "https://www.sakamanga.com",
         "tags": [
-            "Dormir"
-        ]
+            "Tana",
+            "Sortir",
+            "Explorer",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "150 000 Ar",
+        "rating": 4.5,
+        "duration": "Séjour"
     },
     {
-        "id": 15,
+        "id": 524,
         "ville": "Antananarivo",
         "nom": "Le Citizen Guest House",
         "type": "Hôtel",
@@ -325,19 +399,25 @@ const LIEUX_DATA = [
         "prixEur": "90 €",
         "prixNum": 380000,
         "note": 4.9,
-        "description": "L'élégance intimiste au bord du lac. Situé dans une maison traditionnelle rénovée face au lac Anosy, il offre seulement quelques chambres sublimes et une terrasse en bois parfaite pour un dîner romantique avec vue sur le Rova illuminé.",
+        "description": "L’élégance intimiste au bord du lac. Situé dans une maison traditionnelle rénovée face au lac Anosy, il offre seulement quelques chambres sublimes et une terrasse en bois parfaite pour un dîner romantique avec vue sur le Rova illuminé.",
         "image": "images/tana/tana_le_citizen_terrace.jpg",
         "acces": "Isoraka, face au lac Anosy",
         "horaires": "Réception 24h/24",
-        "conseil": "Réservez des mois à l'avance, le nombre de chambres est très limité.",
+        "conseil": "Réservez des mois à l’avance, le nombre de chambres est très limité.",
         "duree": "Séjour",
         "siteWeb": "https://www.le-citizen.com",
         "tags": [
-            "Dormir"
-        ]
+            "Manger",
+            "Tana",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "380 000 Ar",
+        "rating": 4.9,
+        "duration": "Séjour"
     },
     {
-        "id": 16,
+        "id": 525,
         "ville": "Antananarivo",
         "nom": "Maison Gallieni",
         "type": "Hôtel",
@@ -347,20 +427,24 @@ const LIEUX_DATA = [
         "prixEur": "170 €",
         "prixNum": 750000,
         "note": 4.9,
-        "description": "Le luxe confidentiel. Cette ancienne banque coloniale en briques rouges transformée en maison d'hôtes exclusive propose un jardin tropical avec piscine et une vue imprenable. Un havre de paix absolu sur les hauteurs de la ville.",
+        "description": "Le luxe confidentiel. Cette ancienne banque coloniale en briques rouges transformée en maison d’hôtes exclusive propose un jardin tropical avec piscine et une vue imprenable. Un havre de paix absolu sur les hauteurs de la ville.",
         "image": "images/tana/tana_maison_gallieni.jpg",
         "acces": "Colline de Faravohitra",
         "horaires": "Sur réservation uniquement",
-        "conseil": "Pour une expérience 'comme à la maison' mais en version grand luxe.",
+        "conseil": "Pour une expérience ’comme à la maison’ mais en version grand luxe.",
         "duree": "Séjour",
         "siteWeb": "https://www.maisongallieni.com",
         "tags": [
+            "Tana",
             "Dormir",
-            "Culture"
-        ]
+            "budget_3"
+        ],
+        "price": "750 000 Ar",
+        "rating": 4.9,
+        "duration": "Séjour"
     },
     {
-        "id": 17,
+        "id": 526,
         "ville": "Antananarivo",
         "nom": "No Comment Bar",
         "type": "Sortir",
@@ -370,19 +454,25 @@ const LIEUX_DATA = [
         "prixEur": "3 €",
         "prixNum": 15000,
         "note": 4.6,
-        "description": "L'afterwork incontournable d'Isoraka. Ambiance pub cosy à l'étage pour déguster un bon whisky et club animé au sous-sol pour danser. Les concerts live (jazz, rock, fusion) y sont fréquents et de très bonne qualité.",
+        "description": "L’afterwork incontournable d’Isoraka. Ambiance pub cosy à l’étage pour déguster un bon whisky et club animé au sous-sol pour danser. Les concerts live (jazz, rock, fusion) y sont fréquents et de très bonne qualité.",
         "image": "images/tana/tana_no_comment_bar.jpg",
         "acces": "Quartier Isoraka",
         "horaires": "17h-3h (Fermé dimanche)",
-        "conseil": "Arrivez tôt le jeudi soir pour avoir une table, c'est bondé.",
+        "conseil": "Arrivez tôt le jeudi soir pour avoir une table, c’est bondé.",
         "duree": "Soirée",
         "siteWeb": "https://www.nocomment.mg",
         "tags": [
-            "Manger"
-        ]
+            "Explorer",
+            "Tana",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.6,
+        "duration": "Soirée"
     },
     {
-        "id": 18,
+        "id": 527,
         "ville": "Antananarivo",
         "nom": "Taxi Be Antanimena",
         "type": "Sortir",
@@ -392,19 +482,24 @@ const LIEUX_DATA = [
         "prixEur": "4 €",
         "prixNum": 20000,
         "note": 4.4,
-        "description": "L'ambiance 'chaude' à la malgache. Un grand club populaire où tout le monde se mélange pour danser sur du Salegy et de l'électro jusqu'au petit matin. C'est bruyant, joyeux et intense. Animation garantie toute la semaine.",
+        "description": "L’ambiance ’chaude’ à la malgache. Un grand club populaire où tout le monde se mélange pour danser sur du Salegy et de l’électro jusqu’au petit matin. C’est bruyant, joyeux et intense. Animation garantie toute la semaine.",
         "image": "images/tana/tana_taxi_be.jpg",
         "acces": "Antanimena, bord de route",
         "horaires": "18h-5h tous les jours",
-        "conseil": "L'entrée est souvent gratuite mais conso obligatoire. Surveillez vos affaires.",
+        "conseil": "L’entrée est souvent gratuite mais conso obligatoire. Surveillez vos affaires.",
         "duree": "Nuit blanche",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Culture"
-        ]
+            "Tana",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.4,
+        "duration": "Nuit blanche"
     },
     {
-        "id": 19,
+        "id": 528,
         "ville": "Antananarivo",
         "nom": "La Teinturerie",
         "type": "Sortir",
@@ -414,7 +509,7 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.7,
-        "description": "Le spot arty et culturel. Une galerie d'art qui fait bar et salle de concert. L'ambiance y est alternative, détendue et créative. Idéal pour ceux qui cherchent autre chose que les boîtes de nuit classiques : expos, débats et musique indé.",
+        "description": "Le spot arty et culturel. Une galerie d’art qui fait bar et salle de concert. L’ambiance y est alternative, détendue et créative. Idéal pour ceux qui cherchent autre chose que les boîtes de nuit classiques : expos, débats et musique indé.",
         "image": "images/tana/tana_la_teinturerie.jpg",
         "acces": "Ampasanimalo, près université",
         "horaires": "10h-22h (selon événements)",
@@ -422,12 +517,18 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/LaTeinturerieAssociation",
         "tags": [
-            "Manger",
-            "Culture"
-        ]
+            "Tana",
+            "Sortir",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 20,
+        "id": 529,
         "ville": "Antananarivo",
         "nom": "Le Glacier",
         "type": "Sortir",
@@ -437,19 +538,24 @@ const LIEUX_DATA = [
         "prixEur": "3 €",
         "prixNum": 15000,
         "note": 4.2,
-        "description": "Mythique et sulfureux. Situé en plein Analakely, c'est le cabaret le plus célèbre de Tana. Concerts de Tsapiky et Salegy tous les soirs. L'ambiance est très locale, parfois un peu interlope, mais c'est une expérience brute de la nuit malgache.",
+        "description": "Mythique et sulfureux. Situé en plein Analakely, c’est le cabaret le plus célèbre de Tana. Concerts de Tsapiky et Salegy tous les soirs. L’ambiance est très locale, parfois un peu interlope, mais c’est une expérience brute de la nuit malgache.",
         "image": "images/tana/tana_le_glacier.jpg",
-        "acces": "Avenue de l'Indépendance",
+        "acces": "Avenue de l’Indépendance",
         "horaires": "20h-4h",
-        "conseil": "Pour les amateurs de sensations fortes et d'authenticité brute. À éviter en famille.",
+        "conseil": "Pour les amateurs de sensations fortes et d’authenticité brute. À éviter en famille.",
         "duree": "Soirée",
         "siteWeb": "https://www.hotel-glacier.com",
         "tags": [
-            "Manger"
-        ]
+            "Tana",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.2,
+        "duration": "Soirée"
     },
     {
-        "id": 21,
+        "id": 530,
         "ville": "Antananarivo",
         "nom": "Le Piment Café",
         "type": "Sortir",
@@ -459,19 +565,24 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 25000,
         "note": 4.6,
-        "description": "Le temple du cabaret. Un lieu convivial où les plus grands artistes de variété malgache viennent jouer en acoustique ou en groupe. L'ambiance est respectueuse de la musique, on y vient pour écouter et chanter en chœur.",
+        "description": "Le temple du cabaret. Un lieu convivial où les plus grands artistes de variété malgache viennent jouer en acoustique ou en groupe. L’ambiance est respectueuse de la musique, on y vient pour écouter et chanter en chœur.",
         "image": "images/tana/tana_piment_cafe.jpg",
         "acces": "Behoririka",
         "horaires": "19h-1h (Soirées cabaret Jeudi/Vendredi)",
-        "conseil": "Réservez votre table, c'est souvent complet lors des grosses affiches.",
+        "conseil": "Réservez votre table, c’est souvent complet lors des grosses affiches.",
         "duree": "Soirée",
         "siteWeb": "https://www.facebook.com/pimentcafe",
         "tags": [
-            "Manger"
-        ]
+            "Tana",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "25 000 Ar",
+        "rating": 4.6,
+        "duration": "Soirée"
     },
     {
-        "id": 22,
+        "id": 531,
         "ville": "Ampefy",
         "nom": "Chute de la Lily",
         "type": "Nature",
@@ -481,21 +592,26 @@ const LIEUX_DATA = [
         "prixEur": "0.5 €",
         "prixNum": 2000,
         "note": 4.8,
-        "description": "La star d'Ampefy. Une cascade spectaculaire de 26m de haut qui gronde au milieu des collines verdoyantes volcaniques. La légende raconte qu'une jeune fille nommée Lily y a disparu. C'est un spot photo magnifique et rafraîchissant.",
+        "description": "La star d’Ampefy. Une cascade spectaculaire de 26m de haut qui gronde au milieu des collines verdoyantes volcaniques. La légende raconte qu’une jeune fille nommée Lily y a disparu. C’est un spot photo magnifique et rafraîchissant.",
         "image": "images/tana/ampefy_chute_lily.jpg",
         "acces": "15 min de route depuis Ampefy village",
         "horaires": "Journée",
-        "conseil": "Ne manquez pas le point de vue d'en haut avant de descendre au pied de la chute.",
+        "conseil": "Ne manquez pas le point de vue d’en haut avant de descendre au pied de la chute.",
         "duree": "1h30",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Nature"
-        ]
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "2 000 Ar",
+        "rating": 4.8,
+        "duration": "1h30"
     },
     {
-        "id": 23,
+        "id": 532,
         "ville": "Ampefy",
-        "nom": "Geysers d'Analavory",
+        "nom": "Geysers d’Analavory",
         "type": "Nature",
         "lat": -19,
         "lng": 46.75,
@@ -503,19 +619,23 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Un phénomène géologique curieux. Ce ne sont pas des geysers volcaniques chauds, mais des puits artésiens d'eau froide riche en gaz carbonique qui jaillissent du sol, créant des formations de travertin jaune et rouge étonnantes. On peut s'y doucher !",
+        "description": "Un phénomène géologique curieux. Ce ne sont pas des geysers volcaniques chauds, mais des puits artésiens d’eau froide riche en gaz carbonique qui jaillissent du sol, créant des formations de travertin jaune et rouge étonnantes. On peut s’y doucher !",
         "image": "images/tana/ampefy_geysers.jpg",
-        "acces": "20km d'Ampefy vers Analavory",
+        "acces": "20km d’Ampefy vers Analavory",
         "horaires": "Journée",
         "conseil": "Apportez votre maillot pour une douche naturelle massante (argile bénéfique).",
         "duree": "1h",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "1h"
     },
     {
-        "id": 24,
+        "id": 533,
         "ville": "Ampefy",
         "nom": "Ilot de la Vierge",
         "type": "Culture",
@@ -529,15 +649,19 @@ const LIEUX_DATA = [
         "image": "images/tana/ampefy_ilot_vierge.jpg",
         "acces": "Route panoramique depuis Ampefy (piste)",
         "horaires": "Coucher de soleil recommandé",
-        "conseil": "Le meilleur spot pour voir l'étendue du lac Itasy et ses volcans éteints.",
+        "conseil": "Le meilleur spot pour voir l’étendue du lac Itasy et ses volcans éteints.",
         "duree": "1h",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Culture"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.9,
+        "duration": "1h"
     },
     {
-        "id": 25,
+        "id": 534,
         "ville": "Antsirabe",
         "nom": "Lac Tritriva",
         "type": "Nature",
@@ -547,20 +671,23 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.8,
-        "description": "Le lac mystérieux. Un cratère volcanique profond aux eaux vert émeraude sombre. La légende des 'amants maudits' (Romeo & Juliette malgaches) qui s'y sont noyés hante les lieux. La forme du lac ressemble à la carte de Madagascar.",
+        "description": "Le lac mystérieux. Un cratère volcanique profond aux eaux vert émeraude sombre. La légende des ’amants maudits’ (Romeo & Juliette malgaches) qui s’y sont noyés hante les lieux. La forme du lac ressemble à la carte de Madagascar.",
         "image": "images/tana/antsirabe_lac_tritriva.jpg",
-        "acces": "15km d'Antsirabe (piste)",
+        "acces": "15km d’Antsirabe (piste)",
         "horaires": "8h-17h",
-        "conseil": "Faites le tour du cratère à pied (30 min) pour apprécier la couleur changeante de l'eau. Baignade interdite (sacré).",
+        "conseil": "Faites le tour du cratère à pied (30 min) pour apprécier la couleur changeante de l’eau. Baignade interdite (sacré).",
         "duree": "Demi-journée",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.8,
+        "duration": "Demi-journée"
     },
     {
-        "id": 26,
+        "id": 535,
         "ville": "Antsirabe",
         "nom": "Cathédrale Notre-Dame de la Salette",
         "type": "Culture",
@@ -570,7 +697,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Un chef-d'œuvre architectural. Cette immense cathédrale fait la fierté de la 'Ville d'Eau'. Son architecture mêlant gothique et roman, avec ses briques rouges typiques des Hautes Terres, est majestueuse. Le parvis est un lieu de vie animé.",
+        "description": "Un chef-d’œuvre architectural. Cette immense cathédrale fait la fierté de la ’Ville d’Eau’. Son architecture mêlant gothique et roman, avec ses briques rouges typiques des Hautes Terres, est majestueuse. Le parvis est un lieu de vie animé.",
         "image": "images/tana/antsirabe_cathedrale.jpg",
         "acces": "Centre-ville Antsirabe",
         "horaires": "8h-18h",
@@ -578,11 +705,15 @@ const LIEUX_DATA = [
         "duree": "45 min",
         "siteWeb": "https://diocese-antsirabe.mg",
         "tags": [
-            "Culture"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "45 min"
     },
     {
-        "id": 27,
+        "id": 6,
         "ville": "Diego-Suarez",
         "nom": "Plage de Ramena",
         "type": "Plage",
@@ -592,7 +723,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Bien plus qu'une simple plage, Ramena est un village de pêcheurs vibrant. La plage de sable blanc s'étire sur des kilomètres, bordée de gargotes servant du poisson grillé fraîchement pêché. L'ambiance y est détendue et festive le dimanche.",
+        "description": "Bien plus qu’une simple plage, Ramena est un village de pêcheurs vibrant. La plage de sable blanc s’étire sur des kilomètres, bordée de gargotes servant du poisson grillé fraîchement pêché. L’ambiance y est détendue et festive le dimanche.",
         "image": "images/iles/plage-ramena.jpg",
         "acces": "18 km de Diego, taxi-brousse ou taxi",
         "horaires": "Accessible 24h/24",
@@ -600,13 +731,19 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Plage"
-        ]
+            "Diego",
+            "Explorer",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "Demi-journée"
     },
     {
-        "id": 28,
+        "id": 7,
         "ville": "Diego-Suarez",
-        "nom": "Mer d'Émeraude",
+        "nom": "Mer d’Émeraude",
         "type": "Plage",
         "lat": -12.3333,
         "lng": 49.4833,
@@ -614,19 +751,25 @@ const LIEUX_DATA = [
         "prixEur": "18 €",
         "prixNum": 80000,
         "note": 4.8,
-        "description": "Un lagon aux couleurs irréelles, digne des plus belles cartes postales. L'eau peu profonde et turquoise est idéale pour le snorkeling et le kitesurf. Le déjeuner se prend souvent sur un îlot désert avec au menu : poisson grillé et riz coco.",
+        "description": "Un lagon aux couleurs irréelles, digne des plus belles cartes postales. L’eau peu profonde et turquoise est idéale pour le snorkeling et le kitesurf. Le déjeuner se prend souvent sur un îlot désert avec au menu : poisson grillé et riz coco.",
         "image": "images/iles/mer-emeraude.jpg",
         "acces": "Excursion bateau depuis Ramena (45 min)",
         "horaires": "Départ 8h-9h, retour 16h-17h",
-        "conseil": "Le vent souffle fort (Varatraza) l'après-midi, idéal pour le kite mais protégez-vous du sable.",
+        "conseil": "Le vent souffle fort (Varatraza) l’après-midi, idéal pour le kite mais protégez-vous du sable.",
         "duree": "Journée",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Plage"
-        ]
+            "Diego",
+            "Manger",
+            "Explorer",
+            "budget_3"
+        ],
+        "price": "80 000 Ar",
+        "rating": 4.8,
+        "duration": "Journée"
     },
     {
-        "id": 29,
+        "id": 8,
         "ville": "Diego-Suarez",
         "nom": "Les Trois Baies",
         "type": "Plage",
@@ -636,21 +779,26 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Une succession spectaculaire de baies sauvages : la Baie des Dunes, la Baie des Pigeons et la Baie des Sakalava. C'est un paradis pour les marcheurs et les photographes, offrant des panoramas contrastés entre sable blanc, eau turquoise et rochers sombres.",
+        "description": "Une succession spectaculaire de baies sauvages : la Baie des Dunes, la Baie des Pigeons et la Baie des Sakalava. C’est un paradis pour les marcheurs et les photographes, offrant des panoramas contrastés entre sable blanc, eau turquoise et rochers sombres.",
         "image": "images/iles/trois-baies.jpg",
         "acces": "Excursion bateau depuis Diego",
         "horaires": "Journée complète recommandée",
-        "conseil": "Faites la balade à pied d'une baie à l'autre (environ 3h de marche facile) pour profiter pleinement des paysages.",
+        "conseil": "Faites la balade à pied d’une baie à l’autre (environ 3h de marche facile) pour profiter pleinement des paysages.",
         "duree": "Demi-journée",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Plage"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "Demi-journée"
     },
     {
-        "id": 30,
+        "id": 9,
         "ville": "Diego-Suarez",
-        "nom": "Montagne d'Ambre",
+        "nom": "Montagne d’Ambre",
         "type": "Nature",
         "lat": -12.5186,
         "lng": 49.1769,
@@ -662,15 +810,20 @@ const LIEUX_DATA = [
         "image": "images/spots/montagne-ambre.jpg",
         "acces": "30 km au sud de Diego par RN6, depuis Joffreville",
         "horaires": "8h-16h avec guide obligatoire",
-        "conseil": "Prévoyez un vêtement de pluie et de bonnes chaussures, le climat est humide et plus frais qu'en ville.",
+        "conseil": "Prévoyez un vêtement de pluie et de bonnes chaussures, le climat est humide et plus frais qu’en ville.",
         "duree": "4h à 6h",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php",
         "tags": [
-            "Nature"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.7,
+        "duration": "4h à 6h"
     },
     {
-        "id": 31,
+        "id": 10,
         "ville": "Diego-Suarez",
         "nom": "Tsingy Rouge",
         "type": "Spot Local",
@@ -680,19 +833,24 @@ const LIEUX_DATA = [
         "prixEur": "12 €",
         "prixNum": 50000,
         "note": 4.8,
-        "description": "Une curiosité géologique unique, différente des Tsingy gris. Ici, l'érosion a sculpté le grès rouge et la latérite pour former des cheminées de fée aux couleurs flamboyantes. Le contraste avec la végétation verte est saisissant.",
+        "description": "Une curiosité géologique unique, différente des Tsingy gris. Ici, l’érosion a sculpté le grès rouge et la latérite pour former des cheminées de fée aux couleurs flamboyantes. Le contraste avec la végétation verte est saisissant.",
         "image": "images/spots/tsingy-rouge.jpg",
         "acces": "60 km de Diego, route de Joffreville",
         "horaires": "Lever/coucher de soleil recommandé",
-        "conseil": "La lumière de fin d'après-midi (Golden Hour) rend le rouge de la roche particulièrement intense.",
+        "conseil": "La lumière de fin d’après-midi (Golden Hour) rend le rouge de la roche particulièrement intense.",
         "duree": "2h",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Plage"
-        ]
+            "Diego",
+            "Spots",
+            "budget_2"
+        ],
+        "price": "50 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 32,
+        "id": 11,
         "ville": "Diego-Suarez",
         "nom": "Windsor Castle",
         "type": "Spot Local",
@@ -702,7 +860,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Un ancien fort militaire perché sur un énorme monolithe rocheux. L'ascension est un peu raide mais la récompense est là : une vue panoramique époustouflante sur le Canal du Mozambique, l'Océan Indien et la baie de Diego.",
+        "description": "Un ancien fort militaire perché sur un énorme monolithe rocheux. L’ascension est un peu raide mais la récompense est là : une vue panoramique époustouflante sur le Canal du Mozambique, l’Océan Indien et la baie de Diego.",
         "image": "images/spots/windsor-castle.jpg",
         "acces": "Accessible depuis Diego, sentier de randonnée",
         "horaires": "Matinée recommandée (chaleur)",
@@ -710,11 +868,16 @@ const LIEUX_DATA = [
         "duree": "3h",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "3h"
     },
     {
-        "id": 33,
+        "id": 12,
         "ville": "Diego-Suarez",
         "nom": "Montagne des Français",
         "type": "Nature",
@@ -724,19 +887,25 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.6,
-        "description": "Un chemin de croix grimpe le long de cette montagne calcaire recouverte de forêt sèche et de baobabs. Au sommet, les ruines d'un fort colonial et une vue imprenable sur toute la baie de Diego vous attendent. C'est aussi un spot d'escalade réputé.",
+        "description": "Un chemin de croix grimpe le long de cette montagne calcaire recouverte de forêt sèche et de baobabs. Au sommet, les ruines d’un fort colonial et une vue imprenable sur toute la baie de Diego vous attendent. C’est aussi un spot d’escalade réputé.",
         "image": "images/spots/montagne-francais.jpg",
         "acces": "7 km au sud de Diego, accessible en taxi",
         "horaires": "6h-18h, guide recommandé",
-        "conseil": "L'ascension est exposée au soleil, faites-la très tôt le matin ou en fin de journée pour la vue.",
+        "conseil": "L’ascension est exposée au soleil, faites-la très tôt le matin ou en fin de journée pour la vue.",
         "duree": "3h",
         "siteWeb": "http://montagnedesfrancais-anosiravo.com",
         "tags": [
-            "Nature"
-        ]
+            "Diego",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.6,
+        "duration": "3h"
     },
     {
-        "id": 34,
+        "id": 13,
         "ville": "Diego-Suarez",
         "nom": "Restaurant Le Melville",
         "type": "Restaurant",
@@ -746,21 +915,24 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.7,
-        "description": "Une adresse historique avec vue sur la baie. Le Melville propose une cuisine généreuse centrée sur les produits de la mer. Le cadre, un peu hors du temps, rappelle l'époque coloniale avec ses boiseries et sa grande terrasse.",
+        "description": "Une adresse historique avec vue sur la baie. Le Melville propose une cuisine généreuse centrée sur les produits de la mer. Le cadre, un peu hors du temps, rappelle l’époque coloniale avec ses boiseries et sa grande terrasse.",
         "image": "images/restaurants/le-melville.jpg",
         "acces": "Front de mer de Diego, centre-ville",
         "horaires": "11h-22h, fermé lundi",
-        "conseil": "Commandez le crabe farci, c'est leur spécialité reconnue dans toute la ville.",
+        "conseil": "Commandez le crabe farci, c’est leur spécialité reconnue dans toute la ville.",
         "duree": "2h",
         "siteWeb": "https://www.hotels-diego.com/en/restaurant-bar",
         "tags": [
+            "Diego",
             "Manger",
-            "Culture",
-            "Plage"
-        ]
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 35,
+        "id": 14,
         "ville": "Diego-Suarez",
         "nom": "Restaurant La Cambusa",
         "type": "Restaurant",
@@ -774,15 +946,21 @@ const LIEUX_DATA = [
         "image": "images/restaurants/la-cambusa.jpg",
         "acces": "Centre-ville de Diego, rue Colbert",
         "horaires": "12h-14h et 19h-22h",
-        "conseil": "Leurs carpaccios de poisson (esadon, thon) sont d'une fraîcheur absolue, à tester en entrée.",
+        "conseil": "Leurs carpaccios de poisson (esadon, thon) sont d’une fraîcheur absolue, à tester en entrée.",
         "duree": "1h30",
         "siteWeb": "https://www.tripadvisor.fr/Restaurant_Review-g303985-d2217997-Reviews-La_Cambusa-Antsiranana_Diego_Suarez_Diana_Region.html",
         "tags": [
-            "Manger"
-        ]
+            "Diego",
+            "Manger",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.8,
+        "duration": "1h30"
     },
     {
-        "id": 36,
+        "id": 15,
         "ville": "Diego-Suarez",
         "nom": "Nosy Lonjo (Pain de Sucre)",
         "type": "Nature",
@@ -792,46 +970,25 @@ const LIEUX_DATA = [
         "prixEur": "9 €",
         "prixNum": 40000,
         "note": 4.6,
-        "description": "Ce cône volcanique parfait émerge de la baie tel un gardien sacré. Appelé 'Pain de Sucre' pour sa forme, il est couvert de végétation et abrite des rituels traditionnels. On ne peut généralement pas y débarquer, mais en faire le tour en bateau est magique.",
+        "description": "Ce cône volcanique parfait émerge de la baie tel un gardien sacré. Appelé ’Pain de Sucre’ pour sa forme, il est couvert de végétation et abrite des rituels traditionnels. On ne peut généralement pas y débarquer, mais en faire le tour en bateau est magique.",
         "image": "images/iles/nosy-lonjo.png",
         "acces": "Excursion bateau depuis Diego (30 min)",
         "horaires": "Matinée recommandée",
-        "conseil": "Demandez à votre piroguier de s'approcher doucement pour voir les oiseaux nichant dans la paroi.",
+        "conseil": "Demandez à votre piroguier de s’approcher doucement pour voir les oiseaux nichant dans la paroi.",
         "duree": "1h",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Nature",
-            "Manger",
-            "Plage"
-        ]
+            "Diego",
+            "Explorer",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.6,
+        "duration": "1h"
     },
     {
-        "id": 37,
-        "ville": "Diego-Suarez",
-        "nom": "Grotte des Pêcheurs",
-        "type": "Spot Local",
-        "spotLocal": true,
-        "lat": -12.2389,
-        "lng": 49.3012,
-        "prix": "Gratuit",
-        "prixEur": "Gratuit",
-        "prixNum": 0,
-        "note": 4.8,
-        "description": "Un lieu fascinant, à la fois merveille naturelle et temple à ciel ouvert. Cette grotte s'ouvre sur la mer et sert de lieu de culte aux ancêtres. L'atmosphère y est solennelle et mystérieuse, bercée par le bruit des vagues.",
-        "image": "images/spots/grotte-pecheurs.jpg",
-        "acces": "Plage nord de Ramena à marée basse uniquement - Demander Paul au marché aux poissons qui guide gratuitement",
-        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
-        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
-        "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
-        "duree": "45 min",
-        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
-        "tags": [
-            "Nature",
-            "Plage"
-        ]
-    },
-    {
-        "id": 38,
+        "id": 16,
         "ville": "Diego-Suarez",
         "nom": "Le Melville",
         "type": "Restaurant",
@@ -841,20 +998,28 @@ const LIEUX_DATA = [
         "prixEur": "9 €",
         "prixNum": 40000,
         "note": 4.6,
-        "description": "Une institution historique face à la baie. Cuisine raffinée (crabes, camarons) servie sur une magnifique terrasse coloniale. Le coucher de soleil y est spectaculaire. Un lieu chargé d'histoire.",
+        "description": "Une institution historique face à la baie. Cuisine raffinée (crabes, camarons) servie sur une magnifique terrasse coloniale. Le coucher de soleil y est spectaculaire. Un lieu chargé d’histoire.",
         "image": "images/restaurants/diego_le_melville.png",
         "acces": "Rue Richelieu, Centre-ville",
         "horaires": "11h-22h",
         "conseil": "Réservez la table au coin de la terrasse pour la meilleure vue.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/LeMelvilleDiego",
+        "spotLocal": true,
+        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
+        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
         "tags": [
+            "Diego",
             "Manger",
-            "Culture"
-        ]
+            "Spots",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 39,
+        "id": 100,
         "ville": "Diego-Suarez",
         "nom": "Le Grand Hôtel",
         "type": "Hotel",
@@ -864,20 +1029,24 @@ const LIEUX_DATA = [
         "prixEur": "55 €",
         "prixNum": 250000,
         "note": 4.5,
-        "description": "L'adresse de référence pour le luxe à Diego. Situé en plein centre-ville, cet hôtel historique offre des prestations haut de gamme : grande piscine, spa, casino et chambres spacieuses. Idéal pour ceux qui cherchent confort et services irréprochables.",
+        "description": "L’adresse de référence pour le luxe à Diego. Situé en plein centre-ville, cet hôtel historique offre des prestations haut de gamme : grande piscine, spa, casino et chambres spacieuses. Idéal pour ceux qui cherchent confort et services irréprochables.",
         "image": "images/hotels/grand-hotel-diego.jpg",
         "acces": "Rue Colbert, centre-ville",
         "horaires": "Réception 24h/24",
-        "conseil": "La pâtisserie de l'hôtel est réputée comme la meilleure de la ville, parfaite pour le goûter.",
+        "conseil": "La pâtisserie de l’hôtel est réputée comme la meilleure de la ville, parfaite pour le goûter.",
         "duree": "Séjour",
         "siteWeb": "http://www.grand-hotel-diego.com",
         "tags": [
+            "Diego",
             "Dormir",
-            "Culture"
-        ]
+            "budget_3"
+        ],
+        "price": "250 000 Ar",
+        "rating": 4.5,
+        "duration": "Séjour"
     },
     {
-        "id": 40,
+        "id": 101,
         "ville": "Diego-Suarez",
         "nom": "Suarez Hotel",
         "type": "Hotel",
@@ -887,7 +1056,7 @@ const LIEUX_DATA = [
         "prixEur": "40 €",
         "prixNum": 180000,
         "note": 4.6,
-        "description": "Un havre de paix niché dans un jardin tropical luxuriant. Les bungalows offrent une intimité totale avec vue sur le Pain de Sucre. L'ambiance y est zen et raffinée, loin du tumulte du centre-ville (tout en restant proche).",
+        "description": "Un havre de paix niché dans un jardin tropical luxuriant. Les bungalows offrent une intimité totale avec vue sur le Pain de Sucre. L’ambiance y est zen et raffinée, loin du tumulte du centre-ville (tout en restant proche).",
         "image": "images/hotels/suarez-hotel.jpg",
         "acces": "Route de Ramena, à 10 min du centre",
         "horaires": "Réception 24h/24",
@@ -895,11 +1064,17 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "http://www.suarez-hotel.com",
         "tags": [
-            "Culture"
-        ]
+            "Sortir",
+            "Dormir",
+            "Diego",
+            "budget_3"
+        ],
+        "price": "180 000 Ar",
+        "rating": 4.6,
+        "duration": "Séjour"
     },
     {
-        "id": 41,
+        "id": 102,
         "ville": "Diego-Suarez",
         "nom": "Allamanda Hôtel",
         "type": "Hotel",
@@ -909,20 +1084,24 @@ const LIEUX_DATA = [
         "prixEur": "45 €",
         "prixNum": 200000,
         "note": 4.4,
-        "description": "Le charme colonial au bord de l'eau. Situé en front de mer, l'Allamanda propose des chambres confortables avec balcon donnant sur la baie. C'est un excellent compromis entre standing et authenticité.",
+        "description": "Le charme colonial au bord de l’eau. Situé en front de mer, l’Allamanda propose des chambres confortables avec balcon donnant sur la baie. C’est un excellent compromis entre standing et authenticité.",
         "image": "images/hotels/allamanda-hotel.jpg",
         "acces": "Rue Richelieu, bord de mer",
         "horaires": "Réception 24h/24",
-        "conseil": "Leur restaurant 'Le Melville' est sur place, pratique pour les dîners gastronomiques sans bouger.",
+        "conseil": "Leur restaurant ’Le Melville’ est sur place, pratique pour les dîners gastronomiques sans bouger.",
         "duree": "Séjour",
         "siteWeb": "http://www.allamanda-hotel.com",
         "tags": [
+            "Diego",
             "Dormir",
-            "Plage"
-        ]
+            "budget_3"
+        ],
+        "price": "200 000 Ar",
+        "rating": 4.4,
+        "duration": "Séjour"
     },
     {
-        "id": 42,
+        "id": 103,
         "ville": "Diego-Suarez",
         "nom": "Le Tsara Be Vaovao",
         "type": "Restaurant",
@@ -932,7 +1111,7 @@ const LIEUX_DATA = [
         "prixEur": "11 €",
         "prixNum": 50000,
         "note": 4.6,
-        "description": "Une table incontournable pour les gourmets. Ce restaurant propose une cuisine fusion métissée, mettant à l'honneur les produits locaux (crabe, zébu, vanille) avec une touche française. Le cadre est élégant et le service attentionné.",
+        "description": "Une table incontournable pour les gourmets. Ce restaurant propose une cuisine fusion métissée, mettant à l’honneur les produits locaux (crabe, zébu, vanille) avec une touche française. Le cadre est élégant et le service attentionné.",
         "image": "images/restaurants/tsara-be.jpg",
         "acces": "Centre-ville, proche marché",
         "horaires": "Midi et Soir, fermé dimanche",
@@ -940,11 +1119,17 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.tripadvisor.com",
         "tags": [
-            "Manger"
-        ]
+            "Diego",
+            "Manger",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "50 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 43,
+        "id": 104,
         "ville": "Diego-Suarez",
         "nom": "Taxi Be",
         "type": "Boîte de nuit",
@@ -954,20 +1139,25 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.3,
-        "description": "L'institution de la nuit à Diego ! Plus qu'une boîte de nuit, c'est un monument. Tout le monde s'y retrouve : locaux, touristes, expats. L'ambiance est survoltée chaque soir avec concerts live de Salegy et DJ sets jusqu'au petit matin.",
+        "description": "Le temple de la nuit majungaise. Une ambiance survoltée, de la musique live tous les soirs (Salegy, Slow, Variété) et une foule cosmopolite. C’est l’endroit où tout Majunga se retrouve pour danser et faire la fête jusqu’au bout de la nuit.",
         "image": "images/nightlife/taxi-be.jpg",
         "acces": "Rue Colbert (impossible de le rater !)",
         "horaires": "21h - Aube",
         "respect": "L'ambiance est 'chaude' mais bon enfant, restez vigilant comme partout la nuit.",
-        "conseil": "Arrivez vers 23h pour le début du concert live, c'est là que l'ambiance décolle vraiment.",
+        "conseil": "Arrivez vers 23h pour le début du concert live, c’est là que l’ambiance décolle vraiment.",
         "duree": "Soirée",
         "siteWeb": "https://www.facebook.com/taxibediego",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.3,
+        "duration": "Soirée"
     },
     {
-        "id": 44,
+        "id": 105,
         "ville": "Diego-Suarez",
         "nom": "La Bodega",
         "type": "Bar",
@@ -977,7 +1167,7 @@ const LIEUX_DATA = [
         "prixEur": "3.50 €",
         "prixNum": 15000,
         "note": 4.5,
-        "description": "Le repaire cool et branché de la rue Colbert. Ambiance tapas, cocktails soignés et musique latine/rock. C'est l'endroit parfait pour commencer la soirée (before) avant d'aller danser. La terrasse permet d'observer l'animation de la rue.",
+        "description": "Le repaire cool et branché de la rue Colbert. Ambiance tapas, cocktails soignés et musique latine/rock. C’est l’endroit parfait pour commencer la soirée (before) avant d’aller danser. La terrasse permet d’observer l’animation de la rue.",
         "image": "images/nightlife/la-bodega.jpg",
         "acces": "Rue Colbert",
         "horaires": "18h - 2h",
@@ -985,11 +1175,16 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/labodegadiego",
         "tags": [
-            "Manger"
-        ]
+            "Diego",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.5,
+        "duration": "2h"
     },
     {
-        "id": 45,
+        "id": 106,
         "ville": "Diego-Suarez",
         "nom": "Nouvel Hôtel (New Bar)",
         "type": "Boîte de nuit",
@@ -999,20 +1194,25 @@ const LIEUX_DATA = [
         "prixEur": "4.50 €",
         "prixNum": 20000,
         "note": 4.2,
-        "description": "Un club plus sélect et climatisé, souvent préféré pour finir la soirée dans une ambiance plus 'clubbing' international. Le cadre est plus moderne que le Taxi Be, attirant une jeunesse dorée et les touristes.",
+        "description": "Un club plus sélect et climatisé, souvent préféré pour finir la soirée dans une ambiance plus ’clubbing’ international. Le cadre est plus moderne que le Taxi Be, attirant une jeunesse dorée et les touristes.",
         "image": "images/nightlife/nouvel-hotel-club.jpg",
         "acces": "Rue Colbert",
         "horaires": "23h - Aube",
-        "conseil": "Tenue correcte exigée (pantalon pour les hommes), l'ambiance est un peu plus chic.",
+        "conseil": "Tenue correcte exigée (pantalon pour les hommes), l’ambiance est un peu plus chic.",
         "duree": "Nuit",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Manger",
-            "Dormir"
-        ]
+            "Diego",
+            "Dormir",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.2,
+        "duration": "Nuit"
     },
     {
-        "id": 46,
+        "id": 56,
         "ville": "Diego-Suarez",
         "nom": "Les Salines de Diego",
         "type": "Spot Local",
@@ -1023,20 +1223,25 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.6,
-        "description": "Un paysage lunaire fascinant de 700 hectares. Les bassins de sel s'étendent à perte de vue, changeant de couleur du blanc aveuglant au rose selon la concentration. Un contraste saisissant avec la mangrove verte environnante.",
+        "description": "Un paysage lunaire fascinant de 700 hectares. Les bassins de sel s’étendent à perte de vue, changeant de couleur du blanc aveuglant au rose selon la concentration. Un contraste saisissant avec la mangrove verte environnante.",
         "image": "images/spots/salines-diego.jpg",
-        "acces": "7 km à l'ouest de Diego, piste via Anamakia",
+        "acces": "7 km à l’ouest de Diego, piste via Anamakia",
         "contactLocal": "Association des paludiers (sur place)",
         "respect": "Ne pas marcher dans les bassins de récolte",
-        "conseil": "La lumière de fin d'après-midi crée des reflets spectaculaires sur l'eau.",
+        "conseil": "La lumière de fin d’après-midi crée des reflets spectaculaires sur l’eau.",
         "duree": "1h30",
         "siteWeb": "http://www.office-tourisme-diego-suarez.com",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.6,
+        "duration": "1h30"
     },
     {
-        "id": 47,
+        "id": 600,
         "ville": "Diego-Suarez",
         "nom": "Rue Colbert",
         "type": "Culture",
@@ -1044,17 +1249,23 @@ const LIEUX_DATA = [
         "lng": 49.29,
         "prix": "Gratuit",
         "note": 4.5,
-        "description": "L'artère vitale de Diego. Bordée de bâtiments coloniaux aux façades pastel délavées, cette rue raconte l'histoire de la ville. C'est ici que tout se passe : commerces, rencontres, flâneries. L'ambiance y est unique, mêlant nostalgie et effervescence tropicale.",
+        "description": "L'artère vitale de Diego. Bordée de bâtiments coloniaux aux façades pastel, cette rue raconte l'histoire de la ville. Commerces, rencontres, flâneries. Ambiance unique mêlant nostalgie et effervescence.",
         "image": "images/diego/rue-colbert.jpg",
         "conseil": "Levez la tête pour admirer les varangues et les balcons en fer forgé.",
         "duree": "1h",
         "tags": [
-            "Culture",
-            "Plage"
-        ]
+            "Diego",
+            "Explorer",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "1h",
+        "prixNum": 0
     },
     {
-        "id": 48,
+        "id": 601,
         "ville": "Diego-Suarez",
         "nom": "Ancien Hôtel de la Marine",
         "type": "Culture",
@@ -1062,18 +1273,23 @@ const LIEUX_DATA = [
         "lng": 49.29,
         "prix": "Gratuit",
         "note": 4.7,
-        "description": "Une ruine majestueuse qui trône face à la mer. Cet immense bâtiment fantomatique est l'un des symboles les plus photogéniques de Diego. Bien qu'abandonné, il dégage une aura puissante et romantique, témoignage de la grandeur passée du port.",
+        "description": "Une ruine majestueuse qui trône face à la mer. Cet immense bâtiment fantomatique est l’un des symboles les plus photogéniques de Diego. Bien qu’abandonné, il dégage une aura puissante et romantique, témoignage de la grandeur passée du port.",
         "image": "images/diego/hotel-marine.jpg",
-        "conseil": "Idéal pour des photos d'ambiance 'urbex' au coucher du soleil.",
+        "conseil": "Idéal pour des photos d’ambiance ’urbex’ au coucher du soleil.",
         "duree": "30 min",
         "tags": [
+            "Diego",
             "Dormir",
-            "Culture",
-            "Plage"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.7,
+        "duration": "30 min",
+        "prixNum": 0
     },
     {
-        "id": 49,
+        "id": 602,
         "ville": "Diego-Suarez",
         "nom": "Marché Bazarikely",
         "type": "Culture",
@@ -1081,16 +1297,22 @@ const LIEUX_DATA = [
         "lng": 49.3,
         "prix": "Gratuit",
         "note": 4.4,
-        "description": "Le cœur battant de la vie locale. Moins touristique que le grand bazar, c'est ici que les Diégo-mananets font leurs courses. Épices, fruits tropicaux, crabes, tissus... C'est un festival de couleurs et d'odeurs.",
+        "description": "Le cœur battant de la vie locale. Moins touristique que le grand bazar, c’est ici que les Diégo-mananets font leurs courses. Épices, fruits tropicaux, crabes, tissus... C’est un festival de couleurs et d’odeurs.",
         "image": "images/diego/marche-bazarikely.jpg",
         "conseil": "Achetez-y votre poivre vert de Madagascar et de la vanille.",
         "duree": "1h",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.4,
+        "duration": "1h",
+        "prixNum": 0
     },
     {
-        "id": 50,
+        "id": 603,
         "ville": "Diego-Suarez",
         "nom": "Place Joffre",
         "type": "Point de Vue",
@@ -1098,68 +1320,93 @@ const LIEUX_DATA = [
         "lng": 49.29,
         "prix": "Gratuit",
         "note": 4.6,
-        "description": "Le belvédère de la ville. Située à la pointe de Diego, cette place offre une vue panoramique imprenable sur la baie et le port. La statue du Maréchal Joffre y veille toujours. C'est le lieu de rendez-vous des amoureux le soir.",
+        "description": "Le belvédère de la ville. Située à la pointe de Diego, cette place offre une vue panoramique imprenable sur la baie et le port. La statue du Maréchal Joffre y veille toujours. C’est le lieu de rendez-vous des amoureux le soir.",
         "image": "images/diego/place-joffre.jpg",
         "conseil": "Le meilleur endroit pour observer les mouvements des bateaux dans la baie.",
         "duree": "45 min",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "45 min",
+        "prixNum": 0
     },
     {
-        "id": 51,
+        "id": 610,
         "ville": "Diego-Suarez",
         "nom": "Gîte du Voyageur",
         "type": "Hébergement",
         "note": 4.3,
         "prix": "Convivial",
-        "description": "Une institution pour les routards. Simple, propre et incroyablement convivial. Le patio intérieur est un lieu de rencontre génial pour échanger des infos avec d'autres voyageurs.",
+        "description": "Une institution pour les routards. Simple, propre et incroyablement convivial. Le patio intérieur est un lieu de rencontre génial pour échanger des infos avec d’autres voyageurs.",
         "image": "images/hotels/gite-voyageur.jpg",
-        "conseil": "Réservez à l'avance, c'est souvent complet.",
+        "conseil": "Réservez à l’avance, c’est souvent complet.",
         "duree": "Nuit",
         "tags": [
-            "Culture"
+            "Diego",
+            "Dormir",
+            "budget_1"
         ],
-        "lat": -12.27241912821169,
-        "lng": 49.3030710835879
+        "price": "Convivial",
+        "rating": 4.3,
+        "duration": "Nuit",
+        "lat": -12.27300778403283,
+        "lng": 49.309440490434945,
+        "generated_gps": true,
+        "prixNum": 0
     },
     {
-        "id": 52,
+        "id": 611,
         "ville": "Diego-Suarez",
         "nom": "Allamanda Hotel",
         "type": "Hébergement",
         "note": 4.5,
         "prix": "Confort",
-        "description": "Le meilleur rapport qualité/prix en bord de mer. Piscine agréable, chambres confortables avec balcon vue mer. C'est calme tout en étant à 5mn à pied de la rue Colbert.",
+        "description": "Le meilleur rapport qualité/prix en bord de mer. Piscine agréable, chambres confortables avec balcon vue mer. C’est calme tout en étant à 5mn à pied de la rue Colbert.",
         "image": "images/hotels/allamanda.jpg",
-        "conseil": "Demandez une chambre à l'étage pour une meilleure vue sur la baie.",
+        "conseil": "Demandez une chambre à l’étage pour une meilleure vue sur la baie.",
         "duree": "Nuit",
         "tags": [
-            "Plage"
+            "Diego",
+            "Dormir",
+            "budget_1"
         ],
-        "lat": -12.283655045283588,
-        "lng": 49.28922763116871
+        "price": "Confort",
+        "rating": 4.5,
+        "duration": "Nuit",
+        "lat": -12.282662977289531,
+        "lng": 49.286306596611105,
+        "generated_gps": true,
+        "prixNum": 0
     },
     {
-        "id": 53,
+        "id": 612,
         "ville": "Diego-Suarez",
         "nom": "Grand Hôtel",
         "type": "Hébergement",
         "note": 4.6,
         "prix": "Luxe",
-        "description": "La grande dame de Diego. Un établissement historique qui a su garder son prestige. Le service y est impeccable, la piscine immense, et c'est le centre névralgique de la vie sociale chic de la ville.",
+        "description": "La grande dame de Diego. Un établissement historique qui a su garder son prestige. Le service y est impeccable, la piscine immense, et c’est le centre névralgique de la vie sociale chic de la ville.",
         "image": "images/hotels/grand-hotel.jpg",
         "conseil": "Leur petit-déjeuner buffet est le meilleur de la ville.",
         "duree": "Nuit",
         "tags": [
+            "Diego",
             "Dormir",
-            "Culture"
+            "budget_1"
         ],
-        "lat": -12.26541063916036,
-        "lng": 49.30140297652849
+        "price": "Luxe",
+        "rating": 4.6,
+        "duration": "Nuit",
+        "lat": -12.291848485528677,
+        "lng": 49.29843897985259,
+        "generated_gps": true,
+        "prixNum": 0
     },
     {
-        "id": 54,
+        "id": 60,
         "ville": "Anivorano",
         "nom": "Lac Sacré Antagnavo",
         "type": "Culture",
@@ -1169,21 +1416,25 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.6,
-        "description": "Un lieu chargé de mystère et de légendes. Selon la croyance, ce lac serait un ancien village dont les habitants, ayant refusé de l'eau à un voyageur assoiffé (un sorcier déguisé), furent maudits et transformés en crocodiles. Le village fut englouti par les eaux. Aujourd'hui, on y vient pour voir les nombreux crocodiles sacrés qui répondent à l'appel des gardiens et pour faire des offrandes.",
+        "description": "Un lieu chargé de mystère et de légendes. Selon la croyance, ce lac serait un ancien village dont les habitants, ayant refusé de l’eau à un voyageur assoiffé (un sorcier déguisé), furent maudits et transformés en crocodiles. Le village fut englouti par les eaux. Aujourd’hui, on y vient pour voir les nombreux crocodiles sacrés qui répondent à l’appel des gardiens et pour faire des offrandes.",
         "image": "images/spots/lac-antagnavo.jpg",
         "acces": "75 km au sud de Diego sur la RN6, après Anivorano Nord",
         "horaires": "Visites guidées en journée",
-        "conseil": "Apportez de la viande (le gardien s'en occupe) pour faire sortir les crocodiles. Respectez scrupuleusement les fady (tabous) du lieu.",
+        "conseil": "Apportez de la viande (le gardien s’en occupe) pour faire sortir les crocodiles. Respectez scrupuleusement les fady (tabous) du lieu.",
         "duree": "2h",
         "siteWeb": "https://primemadaguide.com/guide-des-destinations-de-madagascar-lac-sacr%C3%A9-anivorano.html",
         "tags": [
-            "Culture"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 55,
+        "id": 17,
         "ville": "Nosy Be",
-        "nom": "Plage d'Andilana",
+        "nom": "Plage d’Andilana",
         "type": "Incontournable",
         "lat": -13.2205,
         "lng": 48.1824,
@@ -1191,7 +1442,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.8,
-        "description": "Sans doute la plage la plus célèbre de l'île aux Parfums. Andilana offre deux baies aux eaux cristallines, séparées par une pointe rocheuse. C'est le spot baignade par excellence, avec des eaux calmes et peu profondes, idéales pour les familles.",
+        "description": "Sans doute la plage la plus célèbre de l’île aux Parfums. Andilana offre deux baies aux eaux cristallines, séparées par une pointe rocheuse. C’est le spot baignade par excellence, avec des eaux calmes et peu profondes, idéales pour les familles.",
         "image": "images/iles/plage-andilana.jpg",
         "acces": "Nord de Nosy Be, 25 km de Hell-Ville",
         "horaires": "Accessible 24h/24",
@@ -1199,11 +1450,17 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://andilanaresort.com",
         "tags": [
-            "Plage"
-        ]
+            "Spots",
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.8,
+        "duration": "Demi-journée"
     },
     {
-        "id": 56,
+        "id": 18,
         "ville": "Nosy Be",
         "nom": "Nosy Komba",
         "type": "Incontournable",
@@ -1213,7 +1470,7 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.7,
-        "description": "Surnommée l'île aux lémuriens, Nosy Komba est une montagne volcanique émergée de la forêt. Ici, pas de voitures, tout se fait à pied. Les lémuriens Macaco viennent manger dans votre main, et le village d'Ampangorinana est célèbre pour ses nappes brodées.",
+        "description": "Surnommée l’île aux lémuriens, Nosy Komba est une montagne volcanique émergée de la forêt. Ici, pas de voitures, tout se fait à pied. Les lémuriens Macaco viennent manger dans votre main, et le village d’Ampangorinana est célèbre pour ses nappes brodées.",
         "image": "images/iles/nosy-komba.jpg",
         "acces": "Bateau depuis Ambatoloaka (25 min)",
         "horaires": "Excursion journée ou demi-journée",
@@ -1221,13 +1478,17 @@ const LIEUX_DATA = [
         "duree": "3h",
         "siteWeb": "https://nosykomba.com",
         "tags": [
-            "Nature",
             "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.7,
+        "duration": "3h"
     },
     {
-        "id": 57,
+        "id": 19,
         "ville": "Nosy Be",
         "nom": "Parc Marin Nosy Tanikely",
         "type": "Nature",
@@ -1237,19 +1498,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.9,
-        "description": "Un véritable aquarium naturel protégé. Nosy Tanikely est une réserve marine où il suffit d'un masque et d'un tuba pour nager avec des tortues imbriquées, des mérous et des milliers de poissons colorés à quelques mètres du bord.",
+        "description": "Un véritable aquarium naturel protégé. Nosy Tanikely est une réserve marine où il suffit d’un masque et d’un tuba pour nager avec des tortues imbriquées, des mérous et des milliers de poissons colorés à quelques mètres du bord.",
         "image": "images/iles/nosy-tanikely.jpg",
         "acces": "Excursion bateau, tous clubs de plongée",
         "horaires": "Sortie journée avec déjeuner",
-        "conseil": "Montez jusqu'au phare au sommet de l'île pour une vue panoramique incroyable sur l'archipel.",
+        "conseil": "Montez jusqu’au phare au sommet de l’île pour une vue panoramique incroyable sur l’archipel.",
         "duree": "Demi-journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/nosy-tanikely.php",
         "tags": [
-            "Nature"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.9,
+        "duration": "Demi-journée"
     },
     {
-        "id": 58,
+        "id": 20,
         "ville": "Nosy Be",
         "nom": "Nosy Iranja",
         "type": "Incontournable",
@@ -1259,7 +1525,7 @@ const LIEUX_DATA = [
         "prixEur": "35 €",
         "prixNum": 150000,
         "note": 4.9,
-        "description": "La perle de Madagascar. Deux îlots (Nosy Iranja Be et Nosy Iranja Kely) reliés par un banc de sable blanc d'un kilomètre, submergé à marée haute. L'eau y est d'un bleu turquoise irréel. C'est aussi un lieu de ponte important pour les tortues.",
+        "description": "La perle de Madagascar. Deux îlots (Nosy Iranja Be et Nosy Iranja Kely) reliés par un banc de sable blanc d’un kilomètre, submergé à marée haute. L’eau y est d’un bleu turquoise irréel. C’est aussi un lieu de ponte important pour les tortues.",
         "image": "images/iles/nosy-iranja.jpg",
         "acces": "Excursion bateau (1h30), départ Hell-Ville",
         "horaires": "Journée complète, départ 7h",
@@ -1267,11 +1533,16 @@ const LIEUX_DATA = [
         "duree": "Journée",
         "siteWeb": "https://nosyiranja.com",
         "tags": [
-            "Plage"
-        ]
+            "Explorer",
+            "Nosy Be",
+            "budget_3"
+        ],
+        "price": "150 000 Ar",
+        "rating": 4.9,
+        "duration": "Journée"
     },
     {
-        "id": 59,
+        "id": 21,
         "ville": "Nosy Be",
         "nom": "Réserve Naturelle de Lokobe",
         "type": "Nature",
@@ -1281,19 +1552,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.6,
-        "description": "Dernier vestige de la forêt primaire sambirano qui recouvrait autrefois l'île. Lokobe est un sanctuaire accessible en pirogue traditionnelle. Vous y verrez le lémurien nocturne (Lepilemur), des boas, des caméléons et une flore exubérante.",
+        "description": "Dernier vestige de la forêt primaire sambirano qui recouvrait autrefois l’île. Lokobe est un sanctuaire accessible en pirogue traditionnelle. Vous y verrez le lémurien nocturne (Lepilemur), des boas, des caméléons et une flore exubérante.",
         "image": "images/spots/reserve-lokobe.jpg",
-        "acces": "Sud-est de l'île, accessible en bateau + randonnée",
+        "acces": "Sud-est de l’île, accessible en bateau + randonnée",
         "horaires": "Excursions guidées matin (fraîcheur)",
-        "conseil": "L'arrivée en pirogue à rames est magique, profitez du silence pour observer les martins-pêcheurs.",
+        "conseil": "L’arrivée en pirogue à rames est magique, profitez du silence pour observer les martins-pêcheurs.",
         "duree": "Demi-journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/lokobe.php",
         "tags": [
-            "Nature"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.6,
+        "duration": "Demi-journée"
     },
     {
-        "id": 60,
+        "id": 22,
         "ville": "Nosy Be",
         "nom": "Mont Passot",
         "type": "Incontournable",
@@ -1303,19 +1579,24 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.7,
-        "description": "Le toit de Nosy Be. Ce point culminant offre une vue à 360 degrés sur toute l'île et ses lacs sacrés volcaniques. C'est le rendez-vous incontournable pour un coucher de soleil spectaculaire, un cocktail à la main.",
+        "description": "Le toit de Nosy Be. Ce point culminant offre une vue à 360 degrés sur toute l’île et ses lacs sacrés volcaniques. C’est le rendez-vous incontournable pour un coucher de soleil spectaculaire, un cocktail à la main.",
         "image": "images/spots/mont-passot.jpg",
-        "acces": "Centre de l'île, 15 km de Hell-Ville",
+        "acces": "Centre de l’île, 15 km de Hell-Ville",
         "horaires": "Lever/coucher de soleil recommandés",
         "conseil": "Arrivez au moins 30 minutes avant le coucher du soleil pour avoir une bonne place sur la terrasse panoramique.",
         "duree": "1h30",
         "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/",
         "tags": [
-            "Culture"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.7,
+        "duration": "1h30"
     },
     {
-        "id": 61,
+        "id": 23,
         "ville": "Nosy Be",
         "nom": "Lemuria Land",
         "type": "Culture",
@@ -1325,22 +1606,26 @@ const LIEUX_DATA = [
         "prixEur": "7 €",
         "prixNum": 30000,
         "note": 4.6,
-        "description": "Une réserve zoologique et botanique privée très bien entretenue. Vous pourrez y voir de près de nombreuses espèces de lémuriens, des crocodiles impressionnants et visiter une distillerie d'ylang-ylang traditionnelle toujours en activité.",
+        "description": "Une réserve zoologique et botanique privée très bien entretenue. Vous pourrez y voir de près de nombreuses espèces de lémuriens, des crocodiles impressionnants et visiter une distillerie d’ylang-ylang traditionnelle toujours en activité.",
         "image": "images/spots/lemuria-land.jpg",
         "acces": "Route Hell-Ville - Andilana, bien indiqué",
         "horaires": "8h-17h tous les jours",
-        "conseil": "La visite guidée de la distillerie est incluse, ne la manquez pas pour tout savoir sur l'essence de parfum.",
+        "conseil": "La visite guidée de la distillerie est incluse, ne la manquez pas pour tout savoir sur l’essence de parfum.",
         "duree": "2h",
         "siteWeb": "https://lemurialand.com",
         "tags": [
-            "Nature",
-            "Culture"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "30 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 62,
+        "id": 24,
         "ville": "Nosy Be",
-        "nom": "Plage d'Ambatoloaka",
+        "nom": "Plage d’Ambatoloaka",
         "type": "Incontournable",
         "lat": -13.3639,
         "lng": 48.2045,
@@ -1348,20 +1633,26 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.2,
-        "description": "Le quartier général de la vie nocturne et touristique. C'est ici que tout se passe : départs d'excursions, restaurants les pieds dans le sable, bars animés. L'ambiance y est festive, bruyante et colorée, mélangeant touristes et locaux.",
+        "description": "Le quartier général de la vie nocturne et touristique. C’est ici que tout se passe : départs d’excursions, restaurants les pieds dans le sable, bars animés. L’ambiance y est festive, bruyante et colorée, mélangeant touristes et locaux.",
         "image": "images/iles/plage-ambatoloaka.jpg",
         "acces": "5 km de Hell-Ville, taxi ou location",
         "horaires": "24h/24, vie nocturne dès 19h",
-        "conseil": "Parfait pour un apéro au coucher du soleil au 'Badamera', mais préférez Andilana pour le calme absolu.",
+        "conseil": "Parfait pour un apéro au coucher du soleil au ’Badamera’, mais préférez Andilana pour le calme absolu.",
         "duree": "Soirée",
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.2,
+        "duration": "Soirée"
     },
     {
-        "id": 63,
+        "id": 25,
         "ville": "Nosy Be",
         "nom": "Nosy Sakatia",
         "type": "Nature",
@@ -1371,22 +1662,26 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.7,
-        "description": "L'île tranquille. Sakatia est authentique, avec ses sentiers de randonnée traversant les champs de vanille et d'orchidées. La plage aux tortues permet de nager avec d'immenses tortues vertes qui viennent brouter les herbiers à marée haute.",
+        "description": "L’île tranquille. Sakatia est authentique, avec ses sentiers de randonnée traversant les champs de vanille et d’orchidées. La plage aux tortues permet de nager avec d’immenses tortues vertes qui viennent brouter les herbiers à marée haute.",
         "image": "images/iles/nosy-sakatia.jpg",
         "acces": "Bateau (20 min) depuis côte ouest Nosy Be",
         "horaires": "Excursion journée avec guide local",
-        "conseil": "Le déjeuner chez l'habitant sur la plage est souvent un délice (poisson coco).",
+        "conseil": "Le déjeuner chez l’habitant sur la plage est souvent un délice (poisson coco).",
         "duree": "Demi-journée",
         "siteWeb": "https://sakatia.com",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.7,
+        "duration": "Demi-journée"
     },
     {
-        "id": 64,
+        "id": 27,
         "ville": "Nosy Be",
-        "nom": "Restaurant L'Heure Bleue",
+        "nom": "Restaurant L’Heure Bleue",
         "type": "Restaurant",
         "lat": -13.3645,
         "lng": 48.2823,
@@ -1394,7 +1689,7 @@ const LIEUX_DATA = [
         "prixEur": "12 €",
         "prixNum": 50000,
         "note": 4.9,
-        "description": "Le restaurant pour un dîner romantique par excellence. Perché sur une colline dominant la baie de Madirokely, la vue est imprenable. La cuisine est l'une des meilleures de l'île, mêlant gastronomie française et produits locaux.",
+        "description": "Le restaurant pour un dîner romantique par excellence. Perché sur une colline dominant la baie de Madirokely, la vue est imprenable. La cuisine est l’une des meilleures de l’île, mêlant gastronomie française et produits locaux.",
         "image": "images/restaurants/heure-bleue.jpg",
         "acces": "Hell-Ville, près du front de mer",
         "horaires": "12h-14h et 19h-22h, fermé dimanche",
@@ -1402,11 +1697,16 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://heurebleue.com",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Nosy Be",
+            "budget_2"
+        ],
+        "price": "50 000 Ar",
+        "rating": 4.9,
+        "duration": "2h"
     },
     {
-        "id": 65,
+        "id": 28,
         "ville": "Nosy Be",
         "nom": "Plongée Nosy Be",
         "type": "Culture",
@@ -1416,7 +1716,7 @@ const LIEUX_DATA = [
         "prixEur": "18 €",
         "prixNum": 75000,
         "note": 4.9,
-        "description": "Découvrez les fonds marins exceptionnels de Nosy Be. Ce centre professionnel vous emmène sur les meilleurs spots : tombants, épaves, et réserve de Tanikely. En saison (octobre-novembre), c'est le spot mondial pour nager avec les requins-baleines.",
+        "description": "Découvrez les fonds marins exceptionnels de Nosy Be. Ce centre professionnel vous emmène sur les meilleurs spots : tombants, épaves, et réserve de Tanikely. En saison (octobre-novembre), c’est le spot mondial pour nager avec les requins-baleines.",
         "image": "images/iles/plongee-nosy-be.webp",
         "acces": "Clubs de plongée à Madirokely, Ambatoloaka",
         "horaires": "Sorties matin et après-midi",
@@ -1424,11 +1724,17 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "75 000 Ar",
+        "rating": 4.9,
+        "duration": "Demi-journée"
     },
     {
-        "id": 66,
+        "id": 29,
         "ville": "Nosy Be",
         "nom": "Distillerie Ylang Ylang",
         "type": "Culture",
@@ -1438,19 +1744,24 @@ const LIEUX_DATA = [
         "prixEur": "3.50 €",
         "prixNum": 15000,
         "note": 4.5,
-        "description": "Nosy Be n'est pas l'île aux Parfums pour rien. Visiter une distillerie permet de comprendre le processus ancestral d'extraction de l'essence d'Ylang-Ylang. L'odeur entêtante des fleurs jaunes fraîchement cueillies est inoubliable.",
+        "description": "Nosy Be n’est pas l’île aux Parfums pour rien. Visiter une distillerie permet de comprendre le processus ancestral d’extraction de l’essence d’Ylang-Ylang. L’odeur entêtante des fleurs jaunes fraîchement cueillies est inoubliable.",
         "image": "images/spots/ylang-ylang-distillerie.jpg",
-        "acces": "Plusieurs distilleries sur l'île, guides locaux",
+        "acces": "Plusieurs distilleries sur l’île, guides locaux",
         "horaires": "8h-16h, meilleur en matinée",
-        "conseil": "Achetez votre huile essentielle ici, c'est bien moins cher et garanti pur par rapport aux revendeurs de plage.",
+        "conseil": "Achetez votre huile essentielle ici, c’est bien moins cher et garanti pur par rapport aux revendeurs de plage.",
         "duree": "1h",
         "siteWeb": "https://ylang-ylang-nosybe.com",
         "tags": [
-            "Culture"
-        ]
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.5,
+        "duration": "1h"
     },
     {
-        "id": 67,
+        "id": 30,
         "ville": "Nosy Be",
         "nom": "Grotte de la Vierge",
         "type": "Spot Local",
@@ -1461,7 +1772,7 @@ const LIEUX_DATA = [
         "prixEur": "1 €",
         "prixNum": 5000,
         "note": 4.9,
-        "description": "Un lieu de syncrétisme religieux étonnant. Cette grotte marine abrite une statue de la Vierge, mais est aussi un lieu de culte pour les esprits locaux. L'accès se fait par la mer, ajoutant au mystère. C'est un endroit calme, respecté et très photogénique.",
+        "description": "Un lieu de syncrétisme religieux étonnant. Cette grotte marine abrite une statue de la Vierge, mais est aussi un lieu de culte pour les esprits locaux. L’accès se fait par la mer, ajoutant au mystère. C’est un endroit calme, respecté et très photogénique.",
         "image": "images/spots/grotte-vierge.jpg",
         "acces": "En pirogue depuis plage Ambatoloaka - Contacter Marie qui loue sa pirogue et guide (cabane bleue)",
         "contactLocal": "Marie, sur la plage d'Ambatoloaka, reconnaissable à sa cabane bleue",
@@ -1470,11 +1781,16 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "https://nosybe-tourisme.com",
         "tags": [
-            "Plage"
-        ]
+            "Spots",
+            "Nosy Be",
+            "budget_1"
+        ],
+        "price": "5 000 Ar",
+        "rating": 4.9,
+        "duration": "1h"
     },
     {
-        "id": 68,
+        "id": 201,
         "ville": "Nosy Be",
         "nom": "Ravintsara Wellness Hotel",
         "type": "Hotel",
@@ -1489,11 +1805,17 @@ const LIEUX_DATA = [
         "acces": "Côte Ouest, Dzamandzar",
         "siteWeb": "https://ravintsara.mg",
         "tags": [
-            "Plage"
-        ]
+            "Manger",
+            "Nosy Be",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "Dès 180 €",
+        "rating": 4.9,
+        "duration": "Libre"
     },
     {
-        "id": 69,
+        "id": 202,
         "ville": "Nosy Be",
         "nom": "Vanila Hotel & Spa",
         "type": "Hotel",
@@ -1505,14 +1827,19 @@ const LIEUX_DATA = [
         "note": 4.7,
         "description": "Architecture traditionnelle malgache et confort moderne. Piscines à débordement et vue imprenable sur le coucher de soleil.",
         "image": "images/hotels/vanila-hotel.jpg",
-        "acces": "Ambaro, route de l'Ouest",
+        "acces": "Ambaro, route de l’Ouest",
         "siteWeb": "https://vanila-hotel.com",
         "tags": [
-            "Culture"
-        ]
+            "Nosy Be",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "Dès 120 €",
+        "rating": 4.7,
+        "duration": "Libre"
     },
     {
-        "id": 70,
+        "id": 203,
         "ville": "Nosy Be",
         "nom": "Manga Soa Lodge",
         "type": "Hotel",
@@ -1522,17 +1849,22 @@ const LIEUX_DATA = [
         "prixEur": "200 €",
         "prixNum": 900000,
         "note": 4.8,
-        "description": "L'élégance à l'état pur. Ecolodge de luxe isolé sur la côte Est, offrant intimité totale et plage privée.",
+        "description": "L’élégance à l’état pur. Ecolodge de luxe isolé sur la côte Est, offrant intimité totale et plage privée.",
         "image": "images/hotels/manga-soa.jpg",
         "acces": "Befefika, Côte Est",
         "siteWeb": "https://mangasoalodge.com",
         "tags": [
+            "Nosy Be",
+            "Explorer",
             "Dormir",
-            "Plage"
-        ]
+            "budget_3"
+        ],
+        "price": "Dès 200 €",
+        "rating": 4.8,
+        "duration": "Libre"
     },
     {
-        "id": 71,
+        "id": 204,
         "ville": "Nosy Be",
         "nom": "Le Grand Bleu",
         "type": "Hotel",
@@ -1542,16 +1874,22 @@ const LIEUX_DATA = [
         "prixEur": "60 €",
         "prixNum": 270000,
         "note": 4.6,
-        "description": "Perché sur une colline avec une vue panoramique à 180° sur la baie d'Andilana. Ambiance conviviale et décontractée.",
+        "description": "Perché sur une colline avec une vue panoramique à 180° sur la baie d’Andilana. Ambiance conviviale et décontractée.",
         "image": "images/hotels/grand-bleu.jpg",
-        "acces": "Presqu'île d'Andilana, Nord",
+        "acces": "Presqu’île d’Andilana, Nord",
         "siteWeb": "https://legrandbleunosybe.com",
         "tags": [
-            "Culture"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "Dès 60 €",
+        "rating": 4.6,
+        "duration": "Libre"
     },
     {
-        "id": 72,
+        "id": 205,
         "ville": "Nosy Be",
         "nom": "Hôtel Clair de Lune",
         "type": "Hotel",
@@ -1561,18 +1899,23 @@ const LIEUX_DATA = [
         "prixEur": "45 €",
         "prixNum": 200000,
         "note": 4.5,
-        "description": "Un havre de paix au milieu de l'animation d'Ambatoloaka. Bungalows de charme dans un jardin tropical calme.",
+        "description": "Un havre de paix au milieu de l’animation d’Ambatoloaka. Bungalows de charme dans un jardin tropical calme.",
         "image": "images/hotels/clair-de-lune.jpg",
         "acces": "Ambatoloaka, à 200m de la plage",
         "siteWeb": "https://clair-de-lune-nosybe.com",
         "tags": [
-            "Dormir"
-        ]
+            "Nosy Be",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "Dès 45 €",
+        "rating": 4.5,
+        "duration": "Libre"
     },
     {
-        "id": 73,
+        "id": 206,
         "ville": "Nosy Be",
-        "nom": "La Table d'Alexandre",
+        "nom": "La Table d’Alexandre",
         "type": "Restaurant",
         "lat": -13.365,
         "lng": 48.215,
@@ -1580,15 +1923,20 @@ const LIEUX_DATA = [
         "prixEur": "15 €",
         "prixNum": 60000,
         "note": 4.8,
-        "description": "La référence gastronomique de l'île. Cuisine créative mêlant saveurs locales et techniques françaises.",
+        "description": "Table élégante, cuisine fusion franco-malgache raffinée. Le chef sublime les produits locaux. Cadre soigné.",
         "image": "images/restaurants/alexandre.jpg",
         "acces": "Ambatoloaka",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Nosy Be",
+            "budget_2"
+        ],
+        "price": "60 000 Ar",
+        "rating": 4.8,
+        "duration": "Libre"
     },
     {
-        "id": 74,
+        "id": 207,
         "ville": "Nosy Be",
         "nom": "Le Papillon",
         "type": "Restaurant",
@@ -1604,12 +1952,15 @@ const LIEUX_DATA = [
         "horaires": "11h-22h",
         "tags": [
             "Manger",
-            "Culture",
-            "Plage"
-        ]
+            "Nosy Be",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.6,
+        "duration": "Libre"
     },
     {
-        "id": 75,
+        "id": 208,
         "ville": "Nosy Be",
         "nom": "Karibo",
         "type": "Restaurant",
@@ -1624,11 +1975,17 @@ const LIEUX_DATA = [
         "acces": "Ambatoloaka",
         "horaires": "12h-14h, 18h-22h",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Nosy Be",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "30 000 Ar",
+        "rating": 4.5,
+        "duration": "Libre"
     },
     {
-        "id": 76,
+        "id": 209,
         "ville": "Nosy Be",
         "nom": "Le Pily Pily",
         "type": "Restaurant",
@@ -1644,11 +2001,15 @@ const LIEUX_DATA = [
         "conseil": "Allez-y au coucher du soleil pour la vue.",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "budget_2"
+        ],
+        "price": "70 000 Ar",
+        "rating": 4.7,
+        "duration": "Libre"
     },
     {
-        "id": 77,
+        "id": 214,
         "ville": "Nosy Be",
         "nom": "Restaurant Cacao Beach",
         "type": "Restaurant",
@@ -1658,20 +2019,25 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.8,
-        "description": "Une institution à Andilana. Ce restaurant est littéralement sur le sable. On y mange les pieds dans l'eau des fruits de mer d'une fraîcheur absolue. L'ambiance est décontractée, avec des transats pour la sieste après le repas.",
+        "description": "Une institution à Andilana. Ce restaurant est littéralement sur le sable. On y mange les pieds dans l’eau des fruits de mer d’une fraîcheur absolue. L’ambiance est décontractée, avec des transats pour la sieste après le repas.",
         "image": "images/restaurants/cacao-beach.jpg",
-        "acces": "Plage d'Andilana, nord de l'île",
+        "acces": "Plage d’Andilana, nord de l’île",
         "horaires": "10h-22h tous les jours",
-        "conseil": "Réservez le buffet de fruits de mer du dimanche midi, c'est gargantuesque et très couru !",
+        "conseil": "Réservez le buffet de fruits de mer du dimanche midi, c’est gargantuesque et très couru !",
         "duree": "3h (repas + plage)",
         "siteWeb": "https://www.facebook.com/cacaobeachnosybe",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.8,
+        "duration": "3h (repas + plage)"
     },
     {
-        "id": 78,
+        "id": 215,
         "ville": "Nosy Be",
         "nom": "Safari Ambaro",
         "type": "Restaurant",
@@ -1681,20 +2047,26 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.6,
-        "description": "Restaurant de charme sur la plage d'Ambaro. Spécialités italiennes et malgaches. C'est l'endroit idéal pour un déjeuner paisible loin de la foule ou un dîner romantique devant le coucher de soleil sur Sakatia.",
+        "description": "Restaurant de charme sur la plage d’Ambaro. Spécialités italiennes et malgaches. C’est l’endroit idéal pour un déjeuner paisible loin de la foule ou un dîner romantique devant le coucher de soleil sur Sakatia.",
         "image": "images/restaurants/safari-ambaro.jpg",
-        "acces": "Plage d'Ambaro, route de l'Ouest",
+        "acces": "Plage d’Ambaro, route de l’Ouest",
         "horaires": "11h-22h",
         "conseil": "Leurs pâtes aux fruits de mer sont excellentes.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/safariambaro",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 79,
+        "id": 210,
         "ville": "Nosy Be",
         "nom": "Le Bar de la Plage",
         "type": "Bar",
@@ -1706,14 +2078,20 @@ const LIEUX_DATA = [
         "note": 4.6,
         "description": "Le spot incontournable pour commencer la soirée. Cocktails les pieds dans le sable et bonne musique.",
         "image": "images/nightlife/bar-de-la-plage.jpg",
-        "acces": "Plage d'Ambatoloaka",
+        "acces": "Plage d’Ambatoloaka",
         "tags": [
-            "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.6,
+        "duration": "Libre"
     },
     {
-        "id": 80,
+        "id": 211,
         "ville": "Nosy Be",
         "nom": "Le Djembe",
         "type": "Boîte de nuit",
@@ -1723,17 +2101,22 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.4,
-        "description": "Club mythique pour danser jusqu'au bout de la nuit. Ambiance électrique garantie.",
+        "description": "Club mythique pour danser jusqu’au bout de la nuit. Ambiance électrique garantie.",
         "image": "images/nightlife/djembe-club.jpg",
         "acces": "Hell-Ville",
         "tags": [
-            "Culture"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Entrée 20 000 Ar",
+        "rating": 4.4,
+        "duration": "Libre"
     },
     {
-        "id": 81,
+        "id": 212,
         "ville": "Nosy Be",
-        "nom": "L'Apero",
+        "nom": "L’Apero",
         "type": "Bar",
         "lat": -13.363,
         "lng": 48.213,
@@ -1745,11 +2128,16 @@ const LIEUX_DATA = [
         "image": "images/nightlife/lapero.jpg",
         "acces": "Ambatoloaka",
         "tags": [
-            "Manger"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.5,
+        "duration": "Libre"
     },
     {
-        "id": 82,
+        "id": 213,
         "ville": "Nosy Be",
         "nom": "Beach Klub",
         "type": "Bar",
@@ -1763,12 +2151,16 @@ const LIEUX_DATA = [
         "image": "images/nightlife/beach-klub.jpg",
         "acces": "Andilana",
         "tags": [
-            "Manger",
-            "Plage"
-        ]
+            "Nosy Be",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.7,
+        "duration": "Libre"
     },
     {
-        "id": 83,
+        "id": 31,
         "ville": "Mahajanga",
         "nom": "Cirque Rouge",
         "type": "Incontournable",
@@ -1778,7 +2170,7 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.8,
-        "description": "Un amphithéâtre naturel sculpté par le vent et la pluie. Le Cirque Rouge est célèbre pour ses cheminées de fée et ses strates de sédiments aux 12 nuances de couleurs, du blanc à l'ocre foncé. C'est aussi un site paléontologique important.",
+        "description": "Un amphithéâtre naturel sculpté par le vent et la pluie. Le Cirque Rouge est célèbre pour ses cheminées de fée et ses strates de sédiments aux 12 nuances de couleurs, du blanc à l’ocre foncé. C’est aussi un site paléontologique important.",
         "image": "images/spots/cirque-rouge.jpg",
         "acces": "12 km au nord, piste praticable",
         "horaires": "Tôt le matin ou fin d'après-midi (chaleur)",
@@ -1786,11 +2178,16 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Nature"
-        ]
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 84,
+        "id": 32,
         "ville": "Mahajanga",
         "nom": "Baobabs Sacrés de Mahabibo",
         "type": "Nature",
@@ -1800,19 +2197,24 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Au milieu de la route se dressent majestueusement de gigantesques baobabs. L'un d'eux est particulièrement vénéré : c'est un arbre sacré où les habitants viennent déposer des offrandes et faire des vœux aux ancêtres.",
+        "description": "Au milieu de la route se dressent majestueusement de gigantesques baobabs. L’un d’eux est particulièrement vénéré : c’est un arbre sacré où les habitants viennent déposer des offrandes et faire des vœux aux ancêtres.",
         "image": "images/spots/baobabs-sacres.jpg",
         "acces": "Route de Katsepy, 15 km",
         "horaires": "Lever et coucher de soleil recommandés",
-        "conseil": "Respectez les tissus rouges et les objets (bouteilles, pièces) au pied de l'arbre, ne les touchez surtout pas.",
+        "conseil": "Respectez les tissus rouges et les objets (bouteilles, pièces) au pied de l’arbre, ne les touchez surtout pas.",
         "duree": "30 min",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Nature"
-        ]
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "30 min"
     },
     {
-        "id": 85,
+        "id": 33,
         "ville": "Mahajanga",
         "nom": "Source Sacrée de Marovoay",
         "type": "Spot Local",
@@ -1823,20 +2225,25 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.7,
-        "description": "Cette source d'eau douce ne tarit jamais et joue un rôle centrale dans la vie spirituelle locale. C'est un lieu de rituels Sakalava où l'on vient demander bénédiction et guérison. L'atmosphère y est paisible et empreinte de respect.",
+        "description": "Cette source d’eau douce ne tarit jamais et joue un rôle centrale dans la vie spirituelle locale. C’est un lieu de rituels Sakalava où l’on vient demander bénédiction et guérison. L’atmosphère y est paisible et empreinte de respect.",
         "image": "images/spots/source-marovoay.jpg",
-        "acces": "Près de l'école primaire de Marovoay, chemin de terre à gauche après le pont",
+        "acces": "Près de l’école primaire de Marovoay, chemin de terre à gauche après le pont",
         "contactLocal": "Demander au directeur de l'école qui indique le chemin",
         "respect": "Offrande traditionnelle obligatoire (rhum, miel), ne pas se baigner",
         "conseil": "Ne portez pas de rouge (fady/tabou) lors de votre visite à la source.",
         "duree": "45 min",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "Majunga",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.7,
+        "duration": "45 min"
     },
     {
-        "id": 86,
+        "id": 34,
         "ville": "Mahajanga",
         "nom": "Plage de Mahajanga",
         "type": "Incontournable",
@@ -1846,23 +2253,27 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Le 'Bord' est le cœur battant de Mahajanga. Le soir, tout la ville vient s'y promener pour profiter de la brise marine, manger des brochettes et admirer le crépuscule. Le célèbre Baobab géant, emblème de la ville, veille sur les passants.",
+        "description": "Le ’Bord’ est le cœur battant de Mahajanga. Le soir, tout la ville vient s’y promener pour profiter de la brise marine, manger des brochettes et admirer le crépuscule. Le célèbre Baobab géant, emblème de la ville, veille sur les passants.",
         "image": "images/iles/plage-mahajanga.jpg",
         "acces": "Centre-ville, front de mer (boulevard Poincaré)",
         "horaires": "Accessible 24h/24, meilleur au coucher de soleil",
-        "conseil": "Goûtez absolument aux 'Masikita' (brochettes de zébu) vendues par les marchands ambulants le soir.",
+        "conseil": "Goûtez absolument aux ’Masikita’ (brochettes de zébu) vendues par les marchands ambulants le soir.",
         "duree": "Soirée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
             "Manger",
-            "Culture",
-            "Plage"
-        ]
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "Soirée"
     },
     {
-        "id": 87,
+        "id": 35,
         "ville": "Mahajanga",
-        "nom": "Parc National d'Ankarafantsika",
+        "nom": "Parc National d’Ankarafantsika",
         "type": "Nature",
         "lat": -16.3167,
         "lng": 46.8167,
@@ -1870,19 +2281,25 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.8,
-        "description": "Un mix unique de forêt sèche, de savane et de zones humides. Le parc est le royaume des oiseaux (le Pygargue de Madagascar y règne) et des lémuriens (Sifaka Coquereli 'danseurs'). Le lac Ravelobe offre des balades en bateau paisibles.",
+        "description": "Un mix unique de forêt sèche, de savane et de zones humides. Le parc est le royaume des oiseaux (le Pygargue de Madagascar y règne) et des lémuriens (Sifaka Coquereli ’danseurs’). Le lac Ravelobe offre des balades en bateau paisibles.",
         "image": "images/spots/ankarafantsika.jpg",
         "acces": "115 km sur RN4, accessible en taxi-brousse ou 4x4",
         "horaires": "7h-17h avec guide obligatoire",
-        "conseil": "Faites le circuit du canyon pour voir les formations géologiques 'Lavaka', c'est impressionnant.",
+        "conseil": "Faites le circuit du canyon pour voir les formations géologiques ’Lavaka’, c’est impressionnant.",
         "duree": "Journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarafantsika.php",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "Majunga",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.8,
+        "duration": "Journée"
     },
     {
-        "id": 88,
+        "id": 36,
         "ville": "Mahajanga",
         "nom": "Katsepy et le Phare",
         "type": "Nature",
@@ -1892,7 +2309,7 @@ const LIEUX_DATA = [
         "prixEur": "3.50 €",
         "prixNum": 15000,
         "note": 4.5,
-        "description": "Une escapade hors du temps. Après la traversée de l'estuaire en bac, vous arrivez dans un village de brousse paisible. Les lémuriens à couronne viennent saluer près du phare, et l'ambiance est totalement déconnectée de la ville.",
+        "description": "Une escapade hors du temps. Après la traversée de l’estuaire en bac, vous arrivez dans un village de brousse paisible. Les lémuriens à couronne viennent saluer près du phare, et l’ambiance est totalement déconnectée de la ville.",
         "image": "images/spots/katsepy-phare.jpg",
         "acces": "Bac depuis le port de Mahajanga (30 min de traversée)",
         "horaires": "Bacs : 6h, 8h, 11h, 14h, 16h",
@@ -1900,14 +2317,19 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Nature",
-            "Culture"
-        ]
+            "Explorer",
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.5,
+        "duration": "Demi-journée"
     },
     {
-        "id": 89,
+        "id": 37,
         "ville": "Mahajanga",
-        "nom": "Grotte d'Anjohibe",
+        "nom": "Grotte d’Anjohibe",
         "type": "Nature",
         "lat": -15.5234,
         "lng": 46.8567,
@@ -1915,7 +2337,7 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.7,
-        "description": "Une aventure pour y aller, mais le site est grandiose. Un réseau de grottes immenses, des piscines naturelles d'eau douce vert émeraude et une cascade nichée dans la verdure. Les lémuriens et les perroquets peuplent les arbres alentour.",
+        "description": "Une aventure pour y aller, mais le site est grandiose. Un réseau de grottes immenses, des piscines naturelles d’eau douce vert émeraude et une cascade nichée dans la verdure. Les lémuriens et les perroquets peuplent les arbres alentour.",
         "image": "images/spots/grotte-anjohibe.jpg",
         "acces": "85 km sur RN4 puis piste. Excursion journée avec guide local",
         "horaires": "Excursion départ 7h, retour 17h",
@@ -1923,12 +2345,16 @@ const LIEUX_DATA = [
         "duree": "Journée complète",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Majunga",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.7,
+        "duration": "Journée complète"
     },
     {
-        "id": 90,
+        "id": 38,
         "ville": "Mahajanga",
         "nom": "Restaurant Chez Karon",
         "type": "Restaurant",
@@ -1938,20 +2364,24 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.8,
-        "description": "Une institution culinaire face à la mer. Chez Karon est célèbre pour ses fruits de mer ultra-frais et ses plats généreux : langoustes grillées, crabes farcis, crevettes géantes. Le cadre est simple mais l'assiette est royale.",
+        "description": "Une institution culinaire face à la mer. Chez Karon est célèbre pour ses fruits de mer ultra-frais et ses plats généreux : langoustes grillées, crabes farcis, crevettes géantes. Le cadre est simple mais l’assiette est royale.",
         "image": "images/restaurants/chez-karon.jpg",
         "acces": "Boulevard Poincaré, front de mer",
         "horaires": "11h-22h tous les jours",
-        "conseil": "Leur 'Capitaine à la plancha' est un délice absolu, demandez la sauce à l'ail à part.",
+        "conseil": "Leur ’Capitaine à la plancha’ est un délice absolu, demandez la sauce à l’ail à part.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com/ChezKaronMajunga",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Majunga",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 91,
+        "id": 39,
         "ville": "Mahajanga",
         "nom": "Marché Couvert de Mahajanga",
         "type": "Culture",
@@ -1961,19 +2391,24 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.4,
-        "description": "Plongez dans l'authenticité de Majunga. Ce marché couvert regorge d'épices odorantes, de fruits exotiques colorés et de poissons séchés. C'est aussi le meilleur endroit pour acheter le célèbre artisanat Sakalava en raphia et en bois.",
+        "description": "Plongez dans l’authenticité de Majunga. Ce marché couvert regorge d’épices odorantes, de fruits exotiques colorés et de poissons séchés. C’est aussi le meilleur endroit pour acheter le célèbre artisanat Sakalava en raphia et en bois.",
         "image": "images/villes/marche-couvert-mahajanga.jpg",
         "acces": "Centre-ville, rue du Commerce",
         "horaires": "5h-18h, meilleur en matinée",
-        "conseil": "Achetez ici votre poivre sauvage de Madagascar et de la vanille, les prix sont bien meilleurs qu'en boutique.",
+        "conseil": "Achetez ici votre poivre sauvage de Madagascar et de la vanille, les prix sont bien meilleurs qu’en boutique.",
         "duree": "1h",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture"
-        ]
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.4,
+        "duration": "1h"
     },
     {
-        "id": 92,
+        "id": 40,
         "ville": "Mahajanga",
         "nom": "Complexe Sportif Ankorondrano",
         "type": "Culture",
@@ -1983,7 +2418,7 @@ const LIEUX_DATA = [
         "prixEur": "1 €",
         "prixNum": 5000,
         "note": 4.3,
-        "description": "Le poumon sportif de la ville. Avec sa piscine olympique (rare dans la région) et ses terrains de sport, c'est le lieu de rencontre de la jeunesse locale. L'ambiance y est dynamique et conviviale, parfaite pour une pause active.",
+        "description": "Le poumon sportif de la ville. Avec sa piscine olympique (rare dans la région) et ses terrains de sport, c’est le lieu de rencontre de la jeunesse locale. L’ambiance y est dynamique et conviviale, parfaite pour une pause active.",
         "image": "images/villes/complexe-sportif-ankorondrano.jpg",
         "acces": "Quartier Ankorondrano, bien indiqué",
         "horaires": "8h-18h en semaine, 8h-20h weekend",
@@ -1991,11 +2426,17 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture"
-        ]
+            "Explorer",
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "5 000 Ar",
+        "rating": 4.3,
+        "duration": "2h"
     },
     {
-        "id": 93,
+        "id": 500,
         "ville": "Mahajanga",
         "nom": "Lac Sacré de Mangatsa",
         "type": "Nature",
@@ -2005,7 +2446,7 @@ const LIEUX_DATA = [
         "prixEur": "2.30 €",
         "prixNum": 10000,
         "note": 4.6,
-        "description": "Un lieu mystique où l'histoire et la légende se rencontrent. Ce lac aux eaux émeraude cristallines abrite des carpes et des anguilles sacrées gigantesques, qui seraient les ancêtres d'un ancien village. L'ambiance y est solennelle et paisible. Les mardis et jeudis sont fady (tabous).",
+        "description": "Un lieu mystique où l’histoire et la légende se rencontrent. Ce lac aux eaux émeraude cristallines abrite des carpes et des anguilles sacrées gigantesques, qui seraient les ancêtres d’un ancien village. L’ambiance y est solennelle et paisible. Les mardis et jeudis sont fady (tabous).",
         "image": "images/mahajanga/mahajanga_lac_mangatsa_1765469963847.png",
         "acces": "18 km au nord-est de Mahajanga, piste sablonneuse (4x4 recommandé)",
         "horaires": "8h-17h (sauf tabous)",
@@ -2013,15 +2454,19 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Nature",
-            "Culture",
-            "Plage"
-        ]
+            "Explorer",
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 94,
+        "id": 501,
         "ville": "Mahajanga",
-        "nom": "Plage d'Amborovy",
+        "nom": "Plage d’Amborovy",
         "type": "Spot Local",
         "spotLocal": true,
         "lat": -15.6667,
@@ -2030,20 +2475,25 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "La plage préférée des Majungais pour le week-end. Une longue étendue de sable fin bordée de filaos, animée par les gargotes et la musique. C'est ici que bat le cœur populaire de la ville le dimanche, loin de l'agitation du centre.",
+        "description": "La plage préférée des Majungais pour le week-end. Une longue étendue de sable fin bordée de filaos, animée par les gargotes et la musique. C’est ici que bat le cœur populaire de la ville le dimanche, loin de l’agitation du centre.",
         "image": "images/mahajanga/mahajanga_plage_amborovy_1765469996725.png",
         "acces": "10 km du centre, route goudronnée puis piste facile",
         "horaires": "Accès libre",
-        "conseil": "Goûtez aux 'masikita' (brochettes) sur la plage au coucher du soleil.",
+        "conseil": "Goûtez aux ’masikita’ (brochettes) sur la plage au coucher du soleil.",
         "duree": "Demi-journée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture",
-            "Plage"
-        ]
+            "Spots",
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "Demi-journée"
     },
     {
-        "id": 95,
+        "id": 502,
         "ville": "Mahajanga",
         "nom": "Le Guest",
         "type": "Restaurant",
@@ -2062,11 +2512,15 @@ const LIEUX_DATA = [
         "siteWeb": "https://restaurantleguest.com",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Majunga",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 96,
+        "id": 503,
         "ville": "Mahajanga",
         "nom": "Coco Lodge Majunga",
         "type": "Restaurant",
@@ -2085,11 +2539,17 @@ const LIEUX_DATA = [
         "siteWeb": "https://cocolodgemajunga-madagascar.com",
         "tags": [
             "Manger",
-            "Dormir"
-        ]
+            "Majunga",
+            "Sortir",
+            "Dormir",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 97,
+        "id": 504,
         "ville": "Mahajanga",
         "nom": "Chez Papy Râleur",
         "type": "Restaurant",
@@ -2099,20 +2559,26 @@ const LIEUX_DATA = [
         "prixEur": "6 €",
         "prixNum": 25000,
         "note": 4.4,
-        "description": "Une paillote mythique sur la plage d'Amborovy. Ici, pas de chichis, on mange les pieds dans le sable des produits d'une fraîcheur absolue (poissons, crabes). L'ambiance est conviviale, typique des dimanches à la plage.",
+        "description": "Une paillote mythique sur la plage d’Amborovy. Ici, pas de chichis, on mange les pieds dans le sable des produits d’une fraîcheur absolue (poissons, crabes). L’ambiance est conviviale, typique des dimanches à la plage.",
         "image": "images/mahajanga/mahajanga_papy_raleur_1765470086451.png",
-        "acces": "Plage d'Amborovy (Petite Plage)",
+        "acces": "Plage d’Amborovy (Petite Plage)",
         "horaires": "10h-21h",
         "conseil": "Commandez le poisson grillé entier du jour, simple et délicieux.",
         "duree": "2h",
         "siteWeb": "https://www.facebook.com",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Majunga",
+            "Sortir",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "25 000 Ar",
+        "rating": 4.4,
+        "duration": "2h"
     },
     {
-        "id": 98,
+        "id": 510,
         "ville": "Mahajanga",
         "nom": "Petite Plage (Amborovy)",
         "type": "Spot Local",
@@ -2123,19 +2589,25 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Plus intime et paisible que sa grande sœur, la Petite Plage est un joyau bordé de filaos. L'eau y est calme et transparente, idéale pour la baignade en famille. C'est le lieu parfait pour admirer le coucher de soleil en toute tranquillité.",
+        "description": "Plus intime et paisible que sa grande sœur, la Petite Plage est un joyau bordé de filaos. L’eau y est calme et transparente, idéale pour la baignade en famille. C’est le lieu parfait pour admirer le coucher de soleil en toute tranquillité.",
         "image": "images/mahajanga/petite_plage_mahajanga_1765473415665.png",
-        "acces": "Amborovy, après l'aéroport, suivre la piste côtière",
+        "acces": "Amborovy, après l’aéroport, suivre la piste côtière",
         "horaires": "Accès libre",
-        "conseil": "Marchez jusqu'au bout de la plage pour voir les pêcheurs réparer leurs pirogues à l'ombre des arbres.",
+        "conseil": "Marchez jusqu’au bout de la plage pour voir les pêcheurs réparer leurs pirogues à l’ombre des arbres.",
         "duree": "Demi-journée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Plage"
-        ]
+            "Spots",
+            "Majunga",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "Demi-journée"
     },
     {
-        "id": 99,
+        "id": 505,
         "ville": "Mahajanga",
         "nom": "Baobab Tree Hôtel & Spa",
         "type": "Hôtel",
@@ -2145,7 +2617,7 @@ const LIEUX_DATA = [
         "prixEur": "80 €",
         "prixNum": 350000,
         "note": 4.8,
-        "description": "Le standing international à Mahajanga. Chambres spacieuses, immense piscine à débordement et spa de qualité. Situé sur la Corniche, c'est l'adresse idéale pour un séjour confort et luxe avec tous les standards modernes.",
+        "description": "Le standing international à Mahajanga. Chambres spacieuses, immense piscine à débordement et spa de qualité. Situé sur la Corniche, c’est l’adresse idéale pour un séjour confort et luxe avec tous les standards modernes.",
         "image": "images/mahajanga/mahajanga_baobab_tree_1765470123908.png",
         "acces": "Boulevard de la Corniche",
         "horaires": "Réception 24h/24",
@@ -2153,11 +2625,17 @@ const LIEUX_DATA = [
         "duree": "Nuitée",
         "siteWeb": "https://baobab-tree-hotel.mg",
         "tags": [
-            "Dormir"
-        ]
+            "Explorer",
+            "Majunga",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "350 000 Ar",
+        "rating": 4.8,
+        "duration": "Nuitée"
     },
     {
-        "id": 100,
+        "id": 506,
         "ville": "Mahajanga",
         "nom": "Antsanitia Resort",
         "type": "Hôtel",
@@ -2167,20 +2645,25 @@ const LIEUX_DATA = [
         "prixEur": "65 €",
         "prixNum": 280000,
         "note": 4.7,
-        "description": "Plus qu'un hôtel, une destination écotouristique. Niché entre rivière et mer, loin de tout, cet écolodge offre une déconnexion totale. Bungalows charmants, cuisine bio locale et engagement communautaire fort.",
+        "description": "Plus qu’un hôtel, une destination écotouristique. Niché entre rivière et mer, loin de tout, cet écolodge offre une déconnexion totale. Bungalows charmants, cuisine bio locale et engagement communautaire fort.",
         "image": "images/mahajanga/mahajanga_antsanitia_1765470152704.png",
-        "acces": "25 km de l'aéroport, transfert organisé par l'hôtel recommandé (piste)",
+        "acces": "25 km de l’aéroport, transfert organisé par l’hôtel recommandé (piste)",
         "horaires": "Réception 24h/24",
         "conseil": "Participez à la remontée de la rivière Morira en pirogue organisée par le lodge.",
         "duree": "Nuitée",
         "siteWeb": "https://antsanitia.com",
         "tags": [
+            "Manger",
+            "Majunga",
             "Dormir",
-            "Plage"
-        ]
+            "budget_3"
+        ],
+        "price": "280 000 Ar",
+        "rating": 4.7,
+        "duration": "Nuitée"
     },
     {
-        "id": 101,
+        "id": 507,
         "ville": "Mahajanga",
         "nom": "Hôtel Edena Kely",
         "type": "Hôtel",
@@ -2190,19 +2673,25 @@ const LIEUX_DATA = [
         "prixEur": "28 €",
         "prixNum": 120000,
         "note": 4.5,
-        "description": "Un petit jardin d'Eden. Cet hôtel à taille humaine charme par son jardin tropical luxuriant et son ambiance intimiste. Les bungalows sont décorés avec soin et la piscine est un havre de paix.",
+        "description": "Un petit jardin d’Eden. Cet hôtel à taille humaine charme par son jardin tropical luxuriant et son ambiance intimiste. Les bungalows sont décorés avec soin et la piscine est un havre de paix.",
         "image": "images/mahajanga/mahajanga_edena_kely_1765470183184.png",
-        "acces": "Route d'Amborovy, Petite Plage",
+        "acces": "Route d’Amborovy, Petite Plage",
         "horaires": "Réception 7h-22h",
         "conseil": "Idéal pour les couples cherchant du calme tout en étant proche de la plage.",
         "duree": "Nuitée",
         "siteWeb": "http://www.edenakely.com",
         "tags": [
-            "Dormir"
-        ]
+            "Sortir",
+            "Majunga",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "120 000 Ar",
+        "rating": 4.5,
+        "duration": "Nuitée"
     },
     {
-        "id": 102,
+        "id": 508,
         "ville": "Mahajanga",
         "nom": "Hôtel des Roches Rouges",
         "type": "Hôtel",
@@ -2212,42 +2701,25 @@ const LIEUX_DATA = [
         "prixEur": "35 €",
         "prixNum": 150000,
         "note": 4.3,
-        "description": "Une légende de Majunga. Cet hôtel historique offre le panorama le plus spectaculaire de la ville sur la baie de Bombetoka. Son architecture coloniale Art Déco et sa terrasse 'La Rotonde' sont des incontournables empreints de nostalgie.",
+        "description": "Une légende de Majunga. Cet hôtel historique offre le panorama le plus spectaculaire de la ville sur la baie de Bombetoka. Son architecture coloniale Art Déco et sa terrasse ’La Rotonde’ sont des incontournables empreints de nostalgie.",
         "image": "images/mahajanga/mahajanga_roches_rouges_1765470209131.png",
         "acces": "Boulevard de la Corniche",
         "horaires": "Réception 24h/24",
-        "conseil": "Même si vous n'y dormez pas, venez prendre un verre au coucher du soleil à La Rotonde.",
+        "conseil": "Même si vous n’y dormez pas, venez prendre un verre au coucher du soleil à La Rotonde.",
         "duree": "Nuitée",
         "siteWeb": "https://rochesrouges.mg",
         "tags": [
+            "Explorer",
+            "Majunga",
             "Dormir",
-            "Culture"
-        ]
+            "budget_3"
+        ],
+        "price": "150 000 Ar",
+        "rating": 4.3,
+        "duration": "Nuitée"
     },
     {
-        "id": 103,
-        "ville": "Mahajanga",
-        "nom": "Taxi Be",
-        "type": "Sortir",
-        "lat": -15.722,
-        "lng": 46.318,
-        "prix": "Gratuit",
-        "prixEur": "Gratuit",
-        "prixNum": 0,
-        "note": 4.4,
-        "description": "Le temple de la nuit majungaise. Une ambiance survoltée, de la musique live tous les soirs (Salegy, Slow, Variété) et une foule cosmopolite. C'est l'endroit où tout Majunga se retrouve pour danser et faire la fête jusqu'au bout de la nuit.",
-        "image": "images/mahajanga/mahajanga_taxi_be_1765470294627.png",
-        "acces": "Boulevard de la Corniche, près du bord",
-        "horaires": "21h à l'aube",
-        "conseil": "L'ambiance décolle vraiment vers 23h. Tenue correcte et bonne humeur exigées.",
-        "duree": "Soirée",
-        "siteWeb": "https://www.facebook.com",
-        "tags": [
-            "Culture"
-        ]
-    },
-    {
-        "id": 104,
+        "id": 511,
         "ville": "Mahajanga",
         "nom": "Club 73 (ex-Shakira)",
         "type": "Boîte de nuit",
@@ -2261,15 +2733,22 @@ const LIEUX_DATA = [
         "image": "images/mahajanga/mahajanga_club73_nightclub_1765473978259.png",
         "acces": "Centre-ville, face Galana",
         "horaires": "18h-5h (fermé Lundi)",
-        "conseil": "Arrivez vers minuit pour l'ambiance maximale côté club.",
+        "conseil": "Arrivez vers minuit pour l’ambiance maximale côté club.",
         "duree": "Soirée",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Culture"
-        ]
+            "Majunga",
+            "Sortir",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Entrée ~10 000 Ar",
+        "rating": 4.3,
+        "duration": "Soirée"
     },
     {
-        "id": 105,
+        "id": 512,
         "ville": "Mahajanga",
         "nom": "Le Zebulon",
         "type": "Bar",
@@ -2279,7 +2758,7 @@ const LIEUX_DATA = [
         "prixEur": "3.5 €",
         "prixNum": 15000,
         "note": 4.6,
-        "description": "Les pieds dans le sable à Petite Plage. Le Zebulon est l'endroit parfait pour un apéro sunset décontracté. Franck et Miel vous accueillent dans une ambiance rasta-chic très chaleureuse. Bon son, bons cocktails.",
+        "description": "Les pieds dans le sable à Petite Plage. Le Zebulon est l’endroit parfait pour un apéro sunset décontracté. Franck et Miel vous accueillent dans une ambiance rasta-chic très chaleureuse. Bon son, bons cocktails.",
         "image": "images/mahajanga/mahajanga_zebulon_beach_bar_1765473995356.png",
         "acces": "Petite Plage Amborovy",
         "horaires": "10h-22h",
@@ -2287,12 +2766,17 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://www.facebook.com",
         "tags": [
-            "Manger",
-            "Plage"
-        ]
+            "Explorer",
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Cocktails 15 000 Ar",
+        "rating": 4.6,
+        "duration": "2h"
     },
     {
-        "id": 106,
+        "id": 513,
         "ville": "Mahajanga",
         "nom": "Bar de la Marine",
         "type": "Bar",
@@ -2302,20 +2786,24 @@ const LIEUX_DATA = [
         "prixEur": "1 €",
         "prixNum": 4000,
         "note": 4.2,
-        "description": "Une institution authentique face au Port aux Boutres. Ici, on boit sa THB au milieu des marins et des locaux. L'ambiance est bruyante, vivante et sans filtre. Idéal pour sentir le pouls réel de la ville.",
+        "description": "Une institution authentique face au Port aux Boutres. Ici, on boit sa THB au milieu des marins et des locaux. L’ambiance est bruyante, vivante et sans filtre. Idéal pour sentir le pouls réel de la ville.",
         "image": "images/mahajanga/mahajanga_bar_marine_harbor_1765474012619.png",
         "acces": "Port aux Boutres, Quai Orsini",
         "horaires": "8h-23h",
-        "conseil": "Venez en fin d'après-midi pour voir le ballet des bateaux qui rentrent.",
+        "conseil": "Venez en fin d’après-midi pour voir le ballet des bateaux qui rentrent.",
         "duree": "1h",
         "siteWeb": "",
         "tags": [
-            "Manger",
-            "Culture"
-        ]
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Bière 4 000 Ar",
+        "rating": 4.2,
+        "duration": "1h"
     },
     {
-        "id": 107,
+        "id": 514,
         "ville": "Mahajanga",
         "nom": "Cotton Club",
         "type": "Sortir",
@@ -2325,19 +2813,24 @@ const LIEUX_DATA = [
         "prixEur": "4 €",
         "prixNum": 20000,
         "note": 4.5,
-        "description": "Une ambiance plus feutrée et jazzy pour des soirées élégantes. Situé près de la Rotonde, c'est un club un peu 'privé' où l'on vient discuter tranquillement autour d'un bon whisky ou d'un cocktail soigné.",
+        "description": "Une ambiance plus feutrée et jazzy pour des soirées élégantes. Situé près de la Rotonde, c’est un club un peu ’privé’ où l’on vient discuter tranquillement autour d’un bon whisky ou d’un cocktail soigné.",
         "image": "images/mahajanga/mahajanga_cotton_club_jazz_1765474031058.png",
-        "acces": "À côté de l'Hôtel de France",
+        "acces": "À côté de l’Hôtel de France",
         "horaires": "20h-3h",
         "conseil": "Parfait pour un dernier verre au calme après un repas en ville.",
         "duree": "Soirée",
         "siteWeb": "",
         "tags": [
-            "Culture"
-        ]
+            "Majunga",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Verre 20 000 Ar",
+        "rating": 4.5,
+        "duration": "Soirée"
     },
     {
-        "id": 108,
+        "id": 41,
         "ville": "Andasibe",
         "nom": "Parc National Andasibe-Mantadia",
         "type": "Nature",
@@ -2347,19 +2840,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.8,
-        "description": "L'un des parcs les plus visités et pour cause : c'est le seul endroit où l'on peut entendre le chant puissant de l'Indri, le plus grand lémurien vivant. La forêt de brume, les orchidées rares et les caméléons de Parson géants créent une ambiance jurassique.",
+        "description": "L’un des parcs les plus visités et pour cause : c’est le seul endroit où l’on peut entendre le chant puissant de l’Indri, le plus grand lémurien vivant. La forêt de brume, les orchidées rares et les caméléons de Parson géants créent une ambiance jurassique.",
         "image": "images/spots/andasibe-mantadia.jpg",
-        "acces": "RN2, 140 km d'Antananarivo (3h)",
+        "acces": "RN2, 140 km d’Antananarivo (3h)",
         "horaires": "Circuits 4h à 6h avec guide obligatoire",
         "conseil": "Le matin très tôt (6h-7h) est le meilleur moment pour entendre le chant des Indris.",
         "duree": "4h",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/andasibe-mantadia.php",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.8,
+        "duration": "4h"
     },
     {
-        "id": 109,
+        "id": 42,
         "ville": "Andasibe",
         "nom": "Réserve de Vakona",
         "type": "Nature",
@@ -2369,7 +2867,7 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.7,
-        "description": "Une expérience inoubliable pour les familles. Sur « l'île aux lémuriens », les animaux sont en liberté et n'hésitent pas à sauter sur vos épaules pour réclamer une banane. C'est l'occasion unique de voir de très près des espèces difficiles à observer en forêt dense.",
+        "description": "Une expérience inoubliable pour les familles. Sur « l’île aux lémuriens », les animaux sont en liberté et n’hésitent pas à sauter sur vos épaules pour réclamer une banane. C’est l’occasion unique de voir de très près des espèces difficiles à observer en forêt dense.",
         "image": "images/spots/reserve-vakona.jpg",
         "acces": "À côté du parc, bien indiqué",
         "horaires": "8h-17h tous les jours",
@@ -2377,12 +2875,15 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "https://vakonaforestlodge.com",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 110,
+        "id": 43,
         "ville": "Andasibe",
         "nom": "Cascade Cachée",
         "type": "Spot Local",
@@ -2393,7 +2894,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.8,
-        "description": "Un secret bien gardé à l'écart des circuits classiques. Cette petite cascade se jette dans un bassin naturel entouré de fougères arborescentes. L'eau y est fraîche et revigorante, idéale pour se baigner en toute tranquillité.",
+        "description": "Un secret bien gardé à l’écart des circuits classiques. Cette petite cascade se jette dans un bassin naturel entouré de fougères arborescentes. L’eau y est fraîche et revigorante, idéale pour se baigner en toute tranquillité.",
         "image": "images/spots/cascade-cachee.jpg",
         "acces": "Sentier derrière le Lodge Vakona (non balisé) - Demander Jean, guide local qui connaît le chemin",
         "contactLocal": "Jean, guide à l'entrée de Vakona (gilet orange)",
@@ -2402,13 +2903,18 @@ const LIEUX_DATA = [
         "duree": "1h30",
         "siteWeb": "https://vakonaforestlodge.com",
         "tags": [
-            "Nature"
-        ]
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.8,
+        "duration": "1h30"
     },
     {
-        "id": 111,
+        "id": 44,
         "ville": "Isalo",
-        "nom": "Parc National de l'Isalo",
+        "nom": "Parc National de l’Isalo",
         "type": "Incontournable",
         "lat": -22.5833,
         "lng": 45.3667,
@@ -2416,20 +2922,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.9,
-        "description": "Le Colorado malgache. Un paysage ruiniforme de grès jurassique, entaillé de canyons profonds. On passe de la savane aride à des oasis de fraîcheur luxuriantes en quelques pas. C'est un parc grandiose, sacré pour l'ethnie Bara qui y enterre ses morts.",
+        "description": "Le Colorado malgache. Un paysage ruiniforme de grès jurassique, entaillé de canyons profonds. On passe de la savane aride à des oasis de fraîcheur luxuriantes en quelques pas. C’est un parc grandiose, sacré pour l’ethnie Bara qui y enterre ses morts.",
         "image": "images/spots/parc-isalo.jpg",
         "acces": "RN7, entre Tuléar et Fianarantsoa",
         "horaires": "Circuits à la journée avec guide obligatoire",
-        "conseil": "Ne manquez pas le coucher de soleil à la 'Fenêtre de l'Isalo', un classique mais toujours spectaculaire.",
+        "conseil": "Ne manquez pas le coucher de soleil à la ’Fenêtre de l’Isalo’, un classique mais toujours spectaculaire.",
         "duree": "Journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
         "tags": [
-            "Nature",
-            "Manger"
-        ]
+            "Explorer",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.9,
+        "duration": "Journée"
     },
     {
-        "id": 112,
+        "id": 45,
         "ville": "Isalo",
         "nom": "Piscine Naturelle",
         "type": "Nature",
@@ -2439,19 +2949,23 @@ const LIEUX_DATA = [
         "prixEur": "Inclus",
         "prixNum": 0,
         "note": 4.8,
-        "description": "La récompense après la marche. Une vasque d'eau cristalline alimentée par une cascade, entourée de pandanus et de palmiers, le tout encaissé dans la roche. C'est l'image d'Épinal de l'Isalo, un petit paradis perdu.",
+        "description": "La récompense après la marche. Une vasque d’eau cristalline alimentée par une cascade, entourée de pandanus et de palmiers, le tout encaissé dans la roche. C’est l’image d’Épinal de l’Isalo, un petit paradis perdu.",
         "image": "images/spots/piscine-naturelle.jpg",
         "acces": "Circuit de 2-3h dans le parc",
         "horaires": "Matin recommandé (moins de monde)",
-        "conseil": "L'eau est très fraîche, même en été, ça surprend après la chaleur du canyon !",
+        "conseil": "L’eau est très fraîche, même en été, ça surprend après la chaleur du canyon !",
         "duree": "1h (pause)",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Inclus parc",
+        "rating": 4.8,
+        "duration": "1h (pause)"
     },
     {
-        "id": 113,
+        "id": 46,
         "ville": "Isalo",
         "nom": "Point de Vue Secret du Canyon",
         "type": "Spot Local",
@@ -2462,22 +2976,27 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.9,
-        "description": "Pour ceux qui aiment sortir des sentiers battus. Ce point de vue offre une perspective unique et vertigineuse sur l'immensité des canyons de l'Isalo, loin de la foule de la Fenêtre classique. Le silence y est absolu.",
+        "description": "Pour ceux qui aiment sortir des sentiers battus. Ce point de vue offre une perspective unique et vertigineuse sur l’immensité des canyons de l’Isalo, loin de la foule de la Fenêtre classique. Le silence y est absolu.",
         "image": "images/spots/point-vue-canyon.jpg",
-        "acces": "Sentier non balisé à 500m de la Fenêtre de l'Isalo - Guide familial obligatoire",
+        "acces": "Sentier non balisé à 500m de la Fenêtre de l’Isalo - Guide familial obligatoire",
         "contactLocal": "Famille Rakoto au village de Ranohira, demander 'Papa Koto'",
         "respect": "Coucher de soleil uniquement, ne pas sortir du sentier",
-        "conseil": "Demandez à Papa Koto de vous raconter l'histoire des tombeaux que l'on aperçoit dans la falaise en face.",
+        "conseil": "Demandez à Papa Koto de vous raconter l’histoire des tombeaux que l’on aperçoit dans la falaise en face.",
         "duree": "1h",
         "siteWeb": "https://www.parcs-madagascar.com",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.9,
+        "duration": "1h"
     },
     {
-        "id": 114,
+        "id": 47,
         "ville": "Ifaty",
-        "nom": "Plage d'Ifaty / Mangily",
+        "nom": "Plage d’Ifaty / Mangily",
         "type": "Plage",
         "lat": -23.15,
         "lng": 43.6167,
@@ -2485,7 +3004,7 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Station balnéaire décontractée protégée par un immense lagon. Ici, on vit au rythme des marées et des pêcheurs Vezo. La forêt épineuse de l'arrière-pays, avec ses baobabs bouteilles, est tout aussi fascinante que le récif corallien.",
+        "description": "Station balnéaire décontractée protégée par un immense lagon. Ici, on vit au rythme des marées et des pêcheurs Vezo. La forêt épineuse de l’arrière-pays, avec ses baobabs bouteilles, est tout aussi fascinante que le récif corallien.",
         "image": "images/iles/plage-ifaty.jpg",
         "acces": "27 km au nord de Tuléar par piste",
         "horaires": "Accessible 24h/24",
@@ -2493,11 +3012,15 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Plage"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "Séjour"
     },
     {
-        "id": 115,
+        "id": 48,
         "ville": "Ifaty",
         "nom": "Forêt de Baobabs de Mangily",
         "type": "Nature",
@@ -2507,19 +3030,23 @@ const LIEUX_DATA = [
         "prixEur": "3.50 €",
         "prixNum": 15000,
         "note": 4.6,
-        "description": "Une forêt digne d'un conte de fées. Ici, les baobabs prennent des formes étranges (bouteilles, carottes) pour stocker l'eau. La forêt abrite aussi des oiseaux endémiques rares et des plantes succulentes adaptées à la sécheresse extrême.",
+        "description": "Une forêt digne d’un conte de fées. Ici, les baobabs prennent des formes étranges (bouteilles, carottes) pour stocker l’eau. La forêt abrite aussi des oiseaux endémiques rares et des plantes succulentes adaptées à la sécheresse extrême.",
         "image": "images/spots/foret-baobabs-mangily.jpg",
         "acces": "Village de Mangily, guide local recommandé",
         "horaires": "Matin ou fin d'après-midi (chaleur)",
-        "conseil": "Visitez le parc 'Mosa' juste à côté pour voir des lémuriens et des tortues radiata.",
+        "conseil": "Visitez le parc ’Mosa’ juste à côté pour voir des lémuriens et des tortues radiata.",
         "duree": "1h30",
         "siteWeb": "https://www.reniala.com",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.6,
+        "duration": "1h30"
     },
     {
-        "id": 116,
+        "id": 49,
         "ville": "Ifaty",
         "nom": "Arbre Millénaire Sacré",
         "type": "Spot Local",
@@ -2530,22 +3057,27 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.9,
-        "description": "Un géant de la nature. Ce baobab a plus de 1000 ans et une circonférence impressionnante. C'est un arbre sacré pour les Vezo, qui le considèrent comme la demeure des esprits. On y vient pour des cérémonies et des offrandes.",
+        "description": "Un géant de la nature. Ce baobab a plus de 1000 ans et une circonférence impressionnante. C’est un arbre sacré pour les Vezo, qui le considèrent comme la demeure des esprits. On y vient pour des cérémonies et des offrandes.",
         "image": "images/spots/arbre-millenaire-sacre.jpg",
-        "acces": "Intérieur des terres à 2 km d'Ifaty - Pas de panneau, chef du village montre le chemin",
+        "acces": "Intérieur des terres à 2 km d’Ifaty - Pas de panneau, chef du village montre le chemin",
         "contactLocal": "Chef du village d'Ifaty (mairie)",
         "respect": "Offrande traditionnelle obligatoire (rhum, tabac), ne pas toucher l'arbre",
-        "conseil": "Soyez très respectueux et ne touchez l'arbre que si le guide vous y invite explicitement.",
+        "conseil": "Soyez très respectueux et ne touchez l’arbre que si le guide vous y invite explicitement.",
         "duree": "45 min",
         "siteWeb": "https://madagascar-tourisme.com",
         "tags": [
-            "Nature"
-        ]
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.9,
+        "duration": "45 min"
     },
     {
-        "id": 117,
+        "id": 50,
         "ville": "Ankarana",
-        "nom": "Réserve Spéciale de l'Ankarana",
+        "nom": "Réserve Spéciale de l’Ankarana",
         "type": "Incontournable",
         "lat": -12.9167,
         "lng": 49.0833,
@@ -2553,19 +3085,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.8,
-        "description": "Des Tsingy gris acérés comme des lames de rasoir, une forêt sèche décidue et des grottes immenses abritant des chauves-souris. Ce parc est une aventure géologique. Le 'Pont Suspendu' au-dessus des Tsingy est le spot photo incontournable.",
+        "description": "Des Tsingy gris acérés comme des lames de rasoir, une forêt sèche décidue et des grottes immenses abritant des chauves-souris. Ce parc est une aventure géologique. Le ’Pont Suspendu’ au-dessus des Tsingy est le spot photo incontournable.",
         "image": "images/spots/ankarana.jpg",
         "acces": "108 km au sud de Diego-Suarez",
         "horaires": "Circuits guidés, harnais fourni",
-        "conseil": "Il fait très chaud dans les Tsingy (réverbération). Partez à l'aube et prenez beaucoup d'eau.",
+        "conseil": "Il fait très chaud dans les Tsingy (réverbération). Partez à l’aube et prenez beaucoup d’eau.",
         "duree": "Journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
         "tags": [
-            "Nature"
-        ]
+            "Spots",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.8,
+        "duration": "Journée"
     },
     {
-        "id": 118,
+        "id": 51,
         "ville": "Ankarana",
         "nom": "Grottes des Chauves-Souris",
         "type": "Nature",
@@ -2575,19 +3112,24 @@ const LIEUX_DATA = [
         "prixEur": "Inclus",
         "prixNum": 0,
         "note": 4.7,
-        "description": "Une exploration souterraine fascinante. Ces grottes calcaires sont ornées de stalactites et stalagmites géantes. Elles abritent d'immenses colonies de chauves-souris frugivores qui s'envolent à la tombée de la nuit.",
+        "description": "Une exploration souterraine fascinante. Ces grottes calcaires sont ornées de stalactites et stalagmites géantes. Elles abritent d’immenses colonies de chauves-souris frugivores qui s’envolent à la tombée de la nuit.",
         "image": "images/spots/grottes-chauves-souris.jpg",
-        "acces": "Sentier depuis l'entrée du parc",
+        "acces": "Sentier depuis l’entrée du parc",
         "horaires": "Lampe frontale obligatoire",
-        "conseil": "L'odeur de guano peut être forte, un foulard ou un masque peut être utile.",
+        "conseil": "L’odeur de guano peut être forte, un foulard ou un masque peut être utile.",
         "duree": "1h",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Inclus parc",
+        "rating": 4.7,
+        "duration": "1h"
     },
     {
-        "id": 119,
+        "id": 52,
         "ville": "Ankarana",
         "nom": "Grotte Interdite (Anjohibe)",
         "type": "Spot Local",
@@ -2598,7 +3140,7 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.8,
-        "description": "Grotte sacrée par excellence. Elle abrite les sépultures royales de la tribu Antakarana. L'accès est strictement réglementé et soumis à l'approbation des ancêtres via les gardiens traditionnels. C'est un lieu chargée d'histoire et de mystère.",
+        "description": "Grotte sacrée par excellence. Elle abrite les sépultures royales de la tribu Antakarana. L’accès est strictement réglementé et soumis à l’approbation des ancêtres via les gardiens traditionnels. C’est un lieu chargée d’histoire et de mystère.",
         "image": "images/spots/grotte-interdite-anjohibe.jpg",
         "acces": "Autorisation du chef Antakarana obligatoire - Contacter Papa Solo à Antsiranana qui organise",
         "contactLocal": "Papa Solo (guide agréé), bureau près du marché central Diego",
@@ -2607,11 +3149,15 @@ const LIEUX_DATA = [
         "duree": "Demi-journée",
         "siteWeb": "https://tourisme-majunga.com",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.8,
+        "duration": "Demi-journée"
     },
     {
-        "id": 120,
+        "id": 53,
         "ville": "Mananara",
         "nom": "Parc National Mananara-Nord",
         "type": "Incontournable",
@@ -2621,19 +3167,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.6,
-        "description": "L'un des parcs les plus sauvages. Il combine une réserve marine et une forêt humide de basse altitude. C'est le seul endroit où l'on peut espérer voir l'Aye-Aye à l'état sauvage la nuit, ainsi que les baleines à bosse en saison.",
+        "description": "L’un des parcs les plus sauvages. Il combine une réserve marine et une forêt humide de basse altitude. C’est le seul endroit où l’on peut espérer voir l’Aye-Aye à l’état sauvage la nuit, ainsi que les baleines à bosse en saison.",
         "image": "images/spots/parc-mananara-nord.jpg",
         "acces": "Côte est, 250 km de Toamasina (difficile)",
         "horaires": "Excursions guidées",
-        "conseil": "L'accès est difficile (piste ou bateau), c'est une expédition pour les aventuriers, pas pour le tourisme de masse.",
+        "conseil": "L’accès est difficile (piste ou bateau), c’est une expédition pour les aventuriers, pas pour le tourisme de masse.",
         "duree": "2 jours",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
         "tags": [
-            "Nature"
-        ]
+            "Explorer",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.6,
+        "duration": "2 jours"
     },
     {
-        "id": 121,
+        "id": 54,
         "ville": "Mananara",
         "nom": "Parc National Nosy Atafana",
         "type": "Nature",
@@ -2643,20 +3194,23 @@ const LIEUX_DATA = [
         "prixEur": "5 €",
         "prixNum": 20000,
         "note": 4.7,
-        "description": "Un parc marin exceptionnel situé au large de la côte Est. Il protège des écosystèmes coralliens préservés. C'est l'un des rares endroits où la forêt humide dense rejoint presque la mer, créant des paysages uniques de jungle et de plage.",
+        "description": "Un parc marin exceptionnel situé au large de la côte Est. Il protège des écosystèmes coralliens préservés. C’est l’un des rares endroits où la forêt humide dense rejoint presque la mer, créant des paysages uniques de jungle et de plage.",
         "image": "images/spots/nosy_atafana.png",
         "acces": "Pirogue depuis Mananara (15 min)",
         "horaires": "Départs matin et après-midi",
-        "conseil": "C'est un spot de réserve de Biosphère, respectez scrupuleusement les consignes (pas de coquillages, pas de touche au corail).",
+        "conseil": "C’est un spot de réserve de Biosphère, respectez scrupuleusement les consignes (pas de coquillages, pas de touche au corail).",
         "duree": "Demi-journée",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.7,
+        "duration": "Demi-journée"
     },
     {
-        "id": 122,
+        "id": 55,
         "ville": "Mananara",
         "nom": "Lac aux Crocodiles Sacrés",
         "type": "Spot Local",
@@ -2667,18 +3221,22 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.8,
-        "description": "Le repaire des ancêtres. Un lac sacré pour l'ethnie Betsimisaraka où les crocodiles sont vénérés comme des aïeux. Les villageois leur font des offrandes de zébu. Une atmosphère mystique règne ici, entre crainte et respect, au cœur de la forêt.",
+        "description": "Le repaire des ancêtres. Un lac sacré pour l’ethnie Betsimisaraka où les crocodiles sont vénérés comme des aïeux. Les villageois leur font des offrandes de zébu. Une atmosphère mystique règne ici, entre crainte et respect, au cœur de la forêt.",
         "image": "images/spots/lac-crocodiles-sacres.jpg",
         "acces": "Forêt à 5 km de Mananara, sentier depuis le village - Parler au gardien du lac",
         "contactLocal": "Gardien au village (maison toit rouge)",
         "respect": "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise",
         "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
         "tags": [
-            "Culture"
-        ]
+            "Spots",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.8,
+        "duration": "Libre"
     },
     {
-        "id": 123,
+        "id": 300,
         "ville": "Fianarantsoa",
         "nom": "La Haute Villle (Vieille Ville)",
         "type": "Incontournable",
@@ -2688,18 +3246,23 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.8,
-        "description": "Classée au patrimoine mondial, la Haute Ville est le cœur historique. C'est un dédale de ruelles pavées et de maisons traditionnelles en briques rouges aux toits de tuiles, rappelant Tana d'autrefois. La vue depuis le sommet est imprenable.",
+        "description": "Classée au patrimoine mondial, la Haute Ville est le cœur historique. C’est un dédale de ruelles pavées et de maisons traditionnelles en briques rouges aux toits de tuiles, rappelant Tana d’autrefois. La vue depuis le sommet est imprenable.",
         "image": "images/fianarantsoa/fianar_haute_ville.png",
         "acces": "Centre-ville, accès pédestre uniquement dans les ruelles",
         "horaires": "24h/24, de jour recommandé",
-        "conseil": "Montez jusqu'à l'école pour le meilleur panorama au coucher du soleil.",
+        "conseil": "Montez jusqu’à l’école pour le meilleur panorama au coucher du soleil.",
         "duree": "2h",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 124,
+        "id": 301,
         "ville": "Fianarantsoa",
         "nom": "Gare FCE",
         "type": "Incontournable",
@@ -2709,18 +3272,24 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Le point de départ du mythique train Fianar-Côte Est. Même si vous ne prenez pas le train, l'ambiance de la gare, avec sa Micheline d'époque et son agitation, vaut le détour. Un saut dans le temps colonial.",
+        "description": "Le point de départ du mythique train Fianar-Côte Est. Même si vous ne prenez pas le train, l’ambiance de la gare, avec sa Micheline d’époque et son agitation, vaut le détour. Un saut dans le temps colonial.",
         "image": "images/fianarantsoa/fianar_gare_fce.png",
         "acces": "Quartier de la Gare, ville basse",
         "horaires": "Matin pour l'animation des départs",
-        "conseil": "Vérifiez les jours de départ (souvent mardi/samedi) pour voir l'effervescence.",
+        "conseil": "Vérifiez les jours de départ (souvent mardi/samedi) pour voir l’effervescence.",
         "duree": "1h",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Explorer",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Gratuit (visite)",
+        "rating": 4.6,
+        "duration": "1h"
     },
     {
-        "id": 125,
+        "id": 302,
         "ville": "Fianarantsoa",
         "nom": "Plantations de Thé Sahambavy",
         "type": "Nature",
@@ -2730,20 +3299,25 @@ const LIEUX_DATA = [
         "prixEur": "3.5 €",
         "prixNum": 15000,
         "note": 4.7,
-        "description": "Les seules plantations de thé de l'île. Un paysage de collines verdoyantes à perte de vue où s'activent les cueilleuses. L'odeur du thé frais et l'usine de transformation (SIDEXAM) offrent une visite unique.",
+        "description": "Les seules plantations de thé de l’île. Un paysage de collines verdoyantes à perte de vue où s’activent les cueilleuses. L’odeur du thé frais et l’usine de transformation (SIDEXAM) offrent une visite unique.",
         "image": "images/fianarantsoa/fianar_plantations_the.png",
         "acces": "23 km de Fianar (45 min), taxi ou train",
         "horaires": "8h-16h, visite guidée",
         "conseil": "Dégustez le thé sur place au Lac Hôtel voisin après la visite.",
         "duree": "Demi-journée",
         "tags": [
-            "Nature"
-        ]
+            "Fianar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.7,
+        "duration": "Demi-journée"
     },
     {
-        "id": 126,
+        "id": 303,
         "ville": "Fianarantsoa",
-        "nom": "Cathédrale d'Ambozontany",
+        "nom": "Cathédrale d’Ambozontany",
         "type": "Culture",
         "lat": -21.451,
         "lng": 47.087,
@@ -2751,18 +3325,23 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Majestueuse, cette cathédrale en briques rouges domine la ville basse. Son escalier monumental et son clocher sont les symboles de Fianarantsoa. L'intérieur est sobre mais empreint de spiritualité.",
+        "description": "Majestueuse, cette cathédrale en briques rouges domine la ville basse. Son escalier monumental et son clocher sont les symboles de Fianarantsoa. L’intérieur est sobre mais empreint de spiritualité.",
         "image": "images/fianarantsoa/fianar_cathedrale.png",
         "acces": "Montée vers la Haute Ville",
         "horaires": "8h-17h",
         "conseil": "Assistez à la messe du dimanche pour les chants choraux magnifiques.",
         "duree": "30 min",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "30 min"
     },
     {
-        "id": 127,
+        "id": 304,
         "ville": "Fianarantsoa",
         "nom": "Labo Men (Pierrot Men)",
         "type": "Culture",
@@ -2772,20 +3351,25 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.9,
-        "description": "La galerie du plus célèbre photographe malgache, Pierrot Men. Ses clichés en noir et blanc capturent l'âme de Madagascar. Un lieu de silence et de beauté artistique incontournable.",
+        "description": "La galerie du plus célèbre photographe malgache, Pierrot Men. Ses clichés en noir et blanc capturent l’âme de Madagascar. Un lieu de silence et de beauté artistique incontournable.",
         "image": "images/fianarantsoa/fianar_pierrot_men.png",
         "acces": "Ville moyenne, Suotama",
         "horaires": "9h-18h, fermé dimanche",
         "conseil": "On peut acheter des tirages ou des cartes postales signées, un souvenir précieux.",
         "duree": "1h",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.9,
+        "duration": "1h"
     },
     {
-        "id": 128,
+        "id": 305,
         "ville": "Fianarantsoa",
-        "nom": "L'Ancre d'Or",
+        "nom": "L’Ancre d’Or",
         "type": "Restaurant",
         "lat": -21.449,
         "lng": 47.085,
@@ -2793,18 +3377,24 @@ const LIEUX_DATA = [
         "prixEur": "9 €",
         "prixNum": 40000,
         "note": 4.5,
-        "description": "Une institution. On y vient pour sa fameuse fondue bourguignonne de zébu et son ambiance chaleureuse un peu rétro. C'est le rendez-vous des expatriés et des voyageurs.",
+        "description": "Une institution. On y vient pour sa fameuse fondue bourguignonne de zébu et son ambiance chaleureuse un peu rétro. C’est le rendez-vous des expatriés et des voyageurs.",
         "image": "images/fianarantsoa/fianar_ancre_or.png",
         "acces": "Centre-ville, Tsianolondroa",
         "horaires": "Midi et Soir",
         "conseil": "La fondue est copieuse, à partager !",
         "duree": "2h",
         "tags": [
-            "Manger"
-        ]
+            "Fianar",
+            "Manger",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "40 000 Ar",
+        "rating": 4.5,
+        "duration": "2h"
     },
     {
-        "id": 129,
+        "id": 306,
         "ville": "Fianarantsoa",
         "nom": "Tsara Guest House",
         "type": "Restaurant",
@@ -2814,19 +3404,25 @@ const LIEUX_DATA = [
         "prixEur": "14 €",
         "prixNum": 60000,
         "note": 4.8,
-        "description": "Le raffinement à Fianar. Une terrasse avec vue panoramique sur la ville et une cuisine gastronomique locale. Le cadre est élégant, parfait pour un dîner romantique.",
+        "description": "L’adresse de charme incontournable. Une architecture traditionnelle soignée, des briques rouges, et une vue imprenable sur la ville depuis la terrasse. Ambiance cosy et chaleureuse.",
         "image": "images/fianarantsoa/fianar_tsara_guest_resto.png",
         "acces": "Près de la Haute Ville",
         "horaires": "12h-14h, 19h-21h30",
         "conseil": "Réservez la table au bord de la terrasse pour le coucher de soleil.",
         "duree": "2h",
         "tags": [
+            "Fianar",
             "Manger",
-            "Culture"
-        ]
+            "Sortir",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "60 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 130,
+        "id": 307,
         "ville": "Fianarantsoa",
         "nom": "La Rizière",
         "type": "Restaurant",
@@ -2836,19 +3432,24 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.7,
-        "description": "Le restaurant d'application de la célèbre école hôtelière. Service impeccable, plats soignés et créatifs préparés par les futurs grands chefs du pays. Le cadre en briques rouges est magnifique.",
+        "description": "Le restaurant d’application de la célèbre école hôtelière. Service impeccable, plats soignés et créatifs préparés par les futurs grands chefs du pays. Le cadre en briques rouges est magnifique.",
         "image": "images/fianarantsoa/fianar_la_riziere.png",
         "acces": "Sortie Sud de la ville",
         "horaires": "Midi seulement (souvent)",
-        "conseil": "Le menu change selon les saisons et l'apprentissage des élèves.",
+        "conseil": "Le menu change selon les saisons et l’apprentissage des élèves.",
         "duree": "2h",
         "tags": [
+            "Fianar",
             "Manger",
-            "Dormir"
-        ]
+            "Dormir",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 131,
+        "id": 308,
         "ville": "Fianarantsoa",
         "nom": "Le Panda",
         "type": "Restaurant",
@@ -2858,18 +3459,23 @@ const LIEUX_DATA = [
         "prixEur": "6 €",
         "prixNum": 25000,
         "note": 4.3,
-        "description": "Le bon plan populaire. Cuisine chinoise et malgache généreuse, service rapide et prix doux. C'est bruyant, vivant et toujours bon.",
+        "description": "Le bon plan populaire. Cuisine chinoise et malgache généreuse, service rapide et prix doux. C’est bruyant, vivant et toujours bon.",
         "image": "images/fianarantsoa/fianar_panda.png",
         "acces": "Centre-ville, Ampasambazaha",
         "horaires": "10h-22h",
         "conseil": "Leur soupe de nouilles est légendaire après une longue route.",
         "duree": "1h",
         "tags": [
-            "Manger"
-        ]
+            "Fianar",
+            "Manger",
+            "budget_2"
+        ],
+        "price": "25 000 Ar",
+        "rating": 4.3,
+        "duration": "1h"
     },
     {
-        "id": 132,
+        "id": 309,
         "ville": "Fianarantsoa",
         "nom": "Le Zomatel",
         "type": "Restaurant",
@@ -2879,21 +3485,26 @@ const LIEUX_DATA = [
         "prixEur": "8 €",
         "prixNum": 35000,
         "note": 4.4,
-        "description": "Célèbre pour ses pizzas au feu de bois et ses pâtisseries. Le cadre est celui d'un grand hôtel classique, confortable et climatisé.",
+        "description": "Célèbre pour ses pizzas au feu de bois et ses pâtisseries. Le cadre est celui d’un grand hôtel classique, confortable et climatisé.",
         "image": "images/fianarantsoa/fianar_zomatel_resto.png",
         "acces": "Place du Zoma",
         "horaires": "11h-22h",
         "conseil": "Gardez de la place pour une religieuse ou un éclair en dessert !",
         "duree": "1h30",
         "tags": [
+            "Fianar",
             "Manger",
-            "Dormir"
-        ]
+            "Dormir",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.4,
+        "duration": "1h30"
     },
     {
-        "id": 133,
+        "id": 310,
         "ville": "Fianarantsoa",
-        "nom": "La Chaud'hier",
+        "nom": "La Chaud’hier",
         "type": "Bar",
         "lat": -21.447,
         "lng": 47.085,
@@ -2901,19 +3512,25 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.5,
-        "description": "Le spot culturel et musical. Concerts live le week-end, ambiance cabaret et rencontres artistiques. L'endroit où il faut être pour sentir le pouls de la ville.",
+        "description": "Le spot culturel et musical. Concerts live le week-end, ambiance cabaret et rencontres artistiques. L’endroit où il faut être pour sentir le pouls de la ville.",
         "image": "images/fianarantsoa/fianar_chaudhier.png",
         "acces": "Centre-ville",
         "horaires": "Soirée, concerts vend/sam",
-        "conseil": "L'ambiance monte vers 22h lors des concerts.",
+        "conseil": "L’ambiance monte vers 22h lors des concerts.",
         "duree": "Soirée",
         "tags": [
-            "Manger",
-            "Culture"
-        ]
+            "Fianar",
+            "Sortir",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.5,
+        "duration": "Soirée"
     },
     {
-        "id": 134,
+        "id": 311,
         "ville": "Fianarantsoa",
         "nom": "Chez Marie Zooze",
         "type": "Bar",
@@ -2929,11 +3546,16 @@ const LIEUX_DATA = [
         "horaires": "Jusqu'à tard",
         "duree": "2h",
         "tags": [
-            "Manger"
-        ]
+            "Fianar",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "8 000 Ar",
+        "rating": 4.3,
+        "duration": "2h"
     },
     {
-        "id": 135,
+        "id": 312,
         "ville": "Fianarantsoa",
         "nom": "Discothèque du Soafia",
         "type": "Boîte de nuit",
@@ -2943,18 +3565,23 @@ const LIEUX_DATA = [
         "prixEur": "3.5 €",
         "prixNum": 15000,
         "note": 4,
-        "description": "La référence pour danser. Située dans l'hôtel Soafia, c'est le club le plus équipé de la ville. Ambiance locale et tubes internationaux.",
+        "description": "La référence pour danser. Située dans l’hôtel Soafia, c’est le club le plus équipé de la ville. Ambiance locale et tubes internationaux.",
         "image": "images/fianarantsoa/fianar_soafia.png",
         "acces": "Hôtel Soafia",
         "horaires": "23h - Aube",
         "duree": "Nuit",
         "tags": [
+            "Fianar",
             "Dormir",
-            "Culture"
-        ]
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4,
+        "duration": "Nuit"
     },
     {
-        "id": 136,
+        "id": 313,
         "ville": "Fianarantsoa",
         "nom": "Pavillon Bar (La Rizière)",
         "type": "Bar",
@@ -2964,18 +3591,23 @@ const LIEUX_DATA = [
         "prixEur": "3 €",
         "prixNum": 12000,
         "note": 4.6,
-        "description": "Pour un verre au calme. Cadre apaisant avec vue sur les jardins de l'école hôtelière. Idéal pour un apéritif tranquille.",
+        "description": "Pour un verre au calme. Cadre apaisant avec vue sur les jardins de l’école hôtelière. Idéal pour un apéritif tranquille.",
         "image": "images/fianarantsoa/fianar_pavillon_bar.png",
         "acces": "La Rizière",
         "horaires": "Fin d'après-midi",
         "duree": "1h",
         "tags": [
-            "Manger",
-            "Dormir"
-        ]
+            "Fianar",
+            "Dormir",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "12 000 Ar",
+        "rating": 4.6,
+        "duration": "1h"
     },
     {
-        "id": 137,
+        "id": 314,
         "ville": "Fianarantsoa",
         "nom": "Bar du Sorotel",
         "type": "Bar",
@@ -2985,18 +3617,23 @@ const LIEUX_DATA = [
         "prixEur": "3 €",
         "prixNum": 12000,
         "note": 4.2,
-        "description": "Ambiance lounge et fauteuils confortables. C'est le bar d'hôtel classique pour discuter affaires ou se détendre au frais.",
+        "description": "Ambiance lounge et fauteuils confortables. C’est le bar d’hôtel classique pour discuter affaires ou se détendre au frais.",
         "image": "images/fianarantsoa/fianar_sorotel_bar.png",
         "acces": "Hôtel Sorotel",
         "horaires": "Soirée",
         "duree": "1h",
         "tags": [
-            "Manger",
-            "Dormir"
-        ]
+            "Fianar",
+            "Dormir",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "12 000 Ar",
+        "rating": 4.2,
+        "duration": "1h"
     },
     {
-        "id": 138,
+        "id": 315,
         "ville": "Fianarantsoa",
         "nom": "Escaliers de la Haute Ville",
         "type": "Spot Local",
@@ -3012,13 +3649,18 @@ const LIEUX_DATA = [
         "acces": "Accès piéton partout",
         "duree": "30 min (montée !)",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.7,
+        "duration": "30 min (montée !)"
     },
     {
-        "id": 139,
+        "id": 316,
         "ville": "Fianarantsoa",
-        "nom": "Marché d'Anjoma",
+        "nom": "Marché d’Anjoma",
         "type": "Spot Local",
         "spotLocal": true,
         "lat": -21.44,
@@ -3027,18 +3669,24 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.4,
-        "description": "L'effervescence pure. C'est l'un des plus grands marchés du sud. On y trouve tout : zébus, artisanat, fruits, épices. Attention aux pickpockets, mais l'ambiance est inoubliable.",
+        "description": "L’effervescence pure. C’est l’un des plus grands marchés du sud. On y trouve tout : zébus, artisanat, fruits, épices. Attention aux pickpockets, mais l’ambiance est inoubliable.",
         "image": "images/fianarantsoa/fianar_marche_anjoma.png",
         "acces": "Quartier Anjoma",
         "horaires": "Matin (mardi/vendredi jours de grand marché)",
         "conseil": "Allez voir la section des vanneries Betsileo.",
         "duree": "1h",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Spots",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.4,
+        "duration": "1h"
     },
     {
-        "id": 140,
+        "id": 317,
         "ville": "Fianarantsoa",
         "nom": "Point de Vue Kianjasoa",
         "type": "Spot Local",
@@ -3049,16 +3697,21 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.6,
-        "description": "Une colline offrant un panorama à 360° sur toute la ville et les vallées environnantes. Un bol d'air frais à quelques minutes du centre.",
+        "description": "Une colline offrant un panorama à 360° sur toute la ville et les vallées environnantes. Un bol d’air frais à quelques minutes du centre.",
         "image": "images/fianarantsoa/fianar_vue_kianjasoa.png",
         "acces": "Piste montante, 4x4 ou marche",
         "duree": "1h",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.6,
+        "duration": "1h"
     },
     {
-        "id": 141,
+        "id": 318,
         "ville": "Fianarantsoa",
         "nom": "Lac Anosy",
         "type": "Spot Local",
@@ -3074,11 +3727,16 @@ const LIEUX_DATA = [
         "acces": "Ville basse, pied de la colline",
         "duree": "45 min",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.2,
+        "duration": "45 min"
     },
     {
-        "id": 142,
+        "id": 319,
         "ville": "Fianarantsoa",
         "nom": "Statue de la Vierge",
         "type": "Spot Local",
@@ -3089,37 +3747,22 @@ const LIEUX_DATA = [
         "prixEur": "Gratuit",
         "prixNum": 0,
         "note": 4.5,
-        "description": "Une statue blanche monumentale qui veille sur la ville. Le site offre l'un des meilleurs points de vue pour comprendre la géographie des trois niveaux de la ville.",
+        "description": "Une statue blanche monumentale qui veille sur la ville. Le site offre l’un des meilleurs points de vue pour comprendre la géographie des trois niveaux de la ville.",
         "image": "images/fianarantsoa/fianar_statue_vierge.png",
         "acces": "Hauteurs sud",
         "duree": "30 min",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.5,
+        "duration": "30 min"
     },
     {
-        "id": 143,
-        "ville": "Fianarantsoa",
-        "nom": "Tsara Guest House",
-        "type": "Hotel",
-        "lat": -21.452,
-        "lng": 47.088,
-        "prix": "180 000 Ar",
-        "prixEur": "40 €",
-        "prixNum": 180000,
-        "note": 4.8,
-        "description": "L'adresse de charme incontournable. Une architecture traditionnelle soignée, des briques rouges, et une vue imprenable sur la ville depuis la terrasse. Ambiance cosy et chaleureuse.",
-        "image": "images/fianarantsoa/fianar_tsara_guest.png",
-        "acces": "Près de la Haute Ville",
-        "horaires": "Réception 24h/24",
-        "conseil": "Demandez une chambre avec balcon pour le coucher de soleil.",
-        "duree": "Nuit",
-        "tags": [
-            "Culture"
-        ]
-    },
-    {
-        "id": 144,
+        "id": 321,
         "ville": "Fianarantsoa",
         "nom": "Zomatel Hôtel",
         "type": "Hotel",
@@ -3136,11 +3779,16 @@ const LIEUX_DATA = [
         "conseil": "Profitez de la piscine après une longue journée de route (RN7).",
         "duree": "Nuit",
         "tags": [
-            "Dormir"
-        ]
+            "Fianar",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "200 000 Ar",
+        "rating": 4.5,
+        "duration": "Nuit"
     },
     {
-        "id": 145,
+        "id": 322,
         "ville": "Fianarantsoa",
         "nom": "Hôtel Cotsoyannis",
         "type": "Hotel",
@@ -3157,12 +3805,16 @@ const LIEUX_DATA = [
         "conseil": "Le petit-déjeuner dans le jardin est un moment délicieux.",
         "duree": "Nuit",
         "tags": [
+            "Fianar",
             "Dormir",
-            "Culture"
-        ]
+            "budget_3"
+        ],
+        "price": "140 000 Ar",
+        "rating": 4.4,
+        "duration": "Nuit"
     },
     {
-        "id": 146,
+        "id": 323,
         "ville": "Fianarantsoa",
         "nom": "Villa Sylvestre",
         "type": "Hotel",
@@ -3172,41 +3824,25 @@ const LIEUX_DATA = [
         "prixEur": "35 €",
         "prixNum": 160000,
         "note": 4.7,
-        "description": "Une magnifique demeure coloniale des années 1920 restaurée avec goût. Parquets d'époque, varangue, charme fou. On s'y sent comme dans une maison de famille d'antan.",
+        "description": "Une magnifique demeure coloniale des années 1920 restaurée avec goût. Parquets d’époque, varangue, charme fou. On s’y sent comme dans une maison de famille d’antan.",
         "image": "images/fianarantsoa/fianar_villa_sylvestre.png",
         "acces": "Quartier administratif",
         "horaires": "Réception 24h/24",
-        "conseil": "Réservez à l'avance, il y a peu de chambres.",
+        "conseil": "Réservez à l’avance, il y a peu de chambres.",
         "duree": "Nuit",
         "tags": [
-            "Culture"
-        ]
+            "Fianar",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "160 000 Ar",
+        "rating": 4.7,
+        "duration": "Nuit"
     },
     {
-        "id": 147,
-        "ville": "Fianarantsoa",
-        "nom": "La Rizière",
-        "type": "Hotel",
-        "lat": -21.46,
-        "lng": 47.09,
-        "prix": "130 000 Ar",
-        "prixEur": "30 €",
-        "prixNum": 130000,
-        "note": 4.6,
-        "description": "Plus qu'un hôtel, une école hôtelière de renom. Cadre magnifique en briques rouges entouré de jardins et rizières. Service aux petits soins par les étudiants.",
-        "image": "images/fianarantsoa/fianar_la_riziere_hotel.png",
-        "acces": "Sortie Sud",
-        "horaires": "Réception 24h/24",
-        "conseil": "Soutenez la formation des jeunes malgaches en y séjournant.",
-        "duree": "Nuit",
-        "tags": [
-            "Dormir"
-        ]
-    },
-    {
-        "id": 148,
+        "id": 400,
         "ville": "Tuléar",
-        "nom": "Arboretum d'Antsokay",
+        "nom": "Arboretum d’Antsokay",
         "type": "Nature",
         "lat": -23.4167,
         "lng": 43.75,
@@ -3222,11 +3858,16 @@ const LIEUX_DATA = [
         "duree": "2h",
         "siteWeb": "http://www.antsokayarboretum.org",
         "tags": [
-            "Nature"
-        ]
+            "Tuléar",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "30 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 149,
+        "id": 401,
         "ville": "Tuléar",
         "nom": "Baie de Saint-Augustin",
         "type": "Nature",
@@ -3240,17 +3881,21 @@ const LIEUX_DATA = [
         "image": "images/toliara/toliara_saint_augustin.png",
         "acces": "Piste depuis Toliara (1h30)",
         "horaires": "Journée",
-        "conseil": "Spot idéal pour le snorkeling et l'observation des baleines (saison).",
+        "conseil": "Spot idéal pour le snorkeling et l’observation des baleines (saison).",
         "duree": "Demi-journée",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Tuléar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.7,
+        "duration": "Demi-journée"
     },
     {
-        "id": 150,
+        "id": 402,
         "ville": "Tuléar",
-        "nom": "Plage d'Anakao",
+        "nom": "Plage d’Anakao",
         "type": "Nature",
         "lat": -23.65,
         "lng": 43.65,
@@ -3266,12 +3911,16 @@ const LIEUX_DATA = [
         "duree": "Séjour",
         "siteWeb": "https://madagascar-tourisme.com/fr/destinations/toliara-et-le-sud-ouest/anakao/",
         "tags": [
-            "Nature",
-            "Plage"
-        ]
+            "Tuléar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "Gratuit",
+        "rating": 4.9,
+        "duration": "Séjour"
     },
     {
-        "id": 151,
+        "id": 403,
         "ville": "Tuléar",
         "nom": "Forêt de Baobabs Mangily",
         "type": "Nature",
@@ -3285,15 +3934,20 @@ const LIEUX_DATA = [
         "image": "images/toliara/toliara_baobabs_mangily.png",
         "acces": "Mangily / Ifaty (30 km nord)",
         "horaires": "6h - 17h",
-        "conseil": "Cherchez le fameux 'Baobab théière'.",
+        "conseil": "Cherchez le fameux ’Baobab théière’.",
         "duree": "1h30",
         "siteWeb": "https://reniala-ecotourisme.jimdo.com",
         "tags": [
-            "Nature"
-        ]
+            "Tuléar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "20 000 Ar",
+        "rating": 4.6,
+        "duration": "1h30"
     },
     {
-        "id": 152,
+        "id": 404,
         "ville": "Tuléar",
         "nom": "Musée de la Mer",
         "type": "Spot Local",
@@ -3303,7 +3957,7 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.3,
-        "description": "Musée de l'Institut Halieutique. Découvrez la biodiversité marine du canal du Mozambique et le célèbre cœlacanthe fossile.",
+        "description": "Musée de l’Institut Halieutique. Découvrez la biodiversité marine du canal du Mozambique et le célèbre cœlacanthe fossile.",
         "image": "images/toliara/toliara_musee_mer.png",
         "acces": "Port de Toliara",
         "horaires": "8h-12h, 14h-17h",
@@ -3311,11 +3965,17 @@ const LIEUX_DATA = [
         "duree": "1h",
         "siteWeb": "https://www.ihsm.mg",
         "tags": [
-            "Plage"
-        ]
+            "Spots",
+            "Tuléar",
+            "Explorer",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.3,
+        "duration": "1h"
     },
     {
-        "id": 153,
+        "id": 405,
         "ville": "Tuléar",
         "nom": "Le Jardin de Giancarlo",
         "type": "Restaurant",
@@ -3325,7 +3985,7 @@ const LIEUX_DATA = [
         "prixEur": "10 €",
         "prixNum": 45000,
         "note": 4.7,
-        "description": "Institution gastronomique italienne. Produits de la mer d'une fraîcheur absolue, cadre jardin tropical apaisant. Une valeur sûre.",
+        "description": "Institution gastronomique italienne. Produits de la mer d’une fraîcheur absolue, cadre jardin tropical apaisant. Une valeur sûre.",
         "image": "images/toliara/toliara_giancarlo.png",
         "acces": "Centre-ville",
         "horaires": "Midi et Soir",
@@ -3334,11 +3994,15 @@ const LIEUX_DATA = [
         "siteWeb": "https://www.facebook.com/giancarlo.faussone",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Tuléar",
+            "budget_2"
+        ],
+        "price": "45 000 Ar",
+        "rating": 4.7,
+        "duration": "2h"
     },
     {
-        "id": 154,
+        "id": 406,
         "ville": "Tuléar",
         "nom": "Chez Freddy",
         "type": "Restaurant",
@@ -3348,7 +4012,7 @@ const LIEUX_DATA = [
         "prixEur": "6 €",
         "prixNum": 25000,
         "note": 4.4,
-        "description": "L'ambiance routard mythique de Tuléar. Convivial, pas cher, copieux. Le point de ralliement des voyageurs pour échanger des infos.",
+        "description": "L’ambiance routard mythique de Tuléar. Convivial, pas cher, copieux. Le point de ralliement des voyageurs pour échanger des infos.",
         "image": "images/toliara/toliara_chez_freddy.png",
         "acces": "Boulevard Lyautey",
         "horaires": "11h - 23h",
@@ -3356,13 +4020,19 @@ const LIEUX_DATA = [
         "duree": "1h30",
         "siteWeb": "https://www.facebook.com/chezfreddyifaty",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Tuléar",
+            "Sortir",
+            "budget_2"
+        ],
+        "price": "25 000 Ar",
+        "rating": 4.4,
+        "duration": "1h30"
     },
     {
-        "id": 155,
+        "id": 407,
         "ville": "Tuléar",
-        "nom": "L'Étoile de Mer",
+        "nom": "L’Étoile de Mer",
         "type": "Restaurant",
         "lat": -23.356,
         "lng": 43.665,
@@ -3378,33 +4048,15 @@ const LIEUX_DATA = [
         "duree": "2h",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Tuléar",
+            "budget_2"
+        ],
+        "price": "35 000 Ar",
+        "rating": 4.5,
+        "duration": "2h"
     },
     {
-        "id": 156,
-        "ville": "Tuléar",
-        "nom": "La Table d'Alexandre",
-        "type": "Restaurant",
-        "lat": -23.35,
-        "lng": 43.672,
-        "prix": "50 000 Ar",
-        "prixEur": "11 €",
-        "prixNum": 50000,
-        "note": 4.6,
-        "description": "Table élégante, cuisine fusion franco-malgache raffinée. Le chef sublime les produits locaux. Cadre soigné.",
-        "image": "images/toliara/toliara_table_alexandre.png",
-        "acces": "Quartier résidentiel",
-        "horaires": "Soir uniquement",
-        "conseil": "Réservation conseillée.",
-        "duree": "2h30",
-        "siteWeb": "http://www.aubergedelatable.com",
-        "tags": [
-            "Manger"
-        ]
-    },
-    {
-        "id": 157,
+        "id": 409,
         "ville": "Tuléar",
         "nom": "Le Vezo (Anakao)",
         "type": "Restaurant",
@@ -3416,18 +4068,23 @@ const LIEUX_DATA = [
         "note": 4.8,
         "description": "Restaurant de plage les pieds dans le sable à Anakao. Langoustes grillées pêchées du matin. Le goût du paradis.",
         "image": "images/toliara/toliara_vezo_anakao.png",
-        "acces": "Plage d'Anakao",
+        "acces": "Plage d’Anakao",
         "horaires": "Midi",
         "conseil": "Commandez votre langouste le matin.",
         "duree": "2h",
         "siteWeb": "http://www.longovezo.com",
         "tags": [
             "Manger",
-            "Plage"
-        ]
+            "Tuléar",
+            "Explorer",
+            "budget_2"
+        ],
+        "price": "30 000 Ar",
+        "rating": 4.8,
+        "duration": "2h"
     },
     {
-        "id": 158,
+        "id": 410,
         "ville": "Tuléar",
         "nom": "Bakouba Concept Hotel",
         "type": "Hotel",
@@ -3441,15 +4098,20 @@ const LIEUX_DATA = [
         "image": "images/toliara/toliara_bakouba.png",
         "acces": "Saint-Augustin",
         "horaires": "24h/24",
-        "conseil": "Vaut le détour même juste pour voir l'architecture.",
+        "conseil": "Vaut le détour même juste pour voir l’architecture.",
         "duree": "Nuit",
         "siteWeb": "http://www.bakuba-lodge.com",
         "tags": [
-            "Culture"
-        ]
+            "Tuléar",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "350 000 Ar",
+        "rating": 4.9,
+        "duration": "Nuit"
     },
     {
-        "id": 159,
+        "id": 411,
         "ville": "Tuléar",
         "nom": "Moringa Hotel",
         "type": "Hotel",
@@ -3467,11 +4129,16 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "http://www.moringa-tulear.mg",
         "tags": [
-            "Culture"
-        ]
+            "Tuléar",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "200 000 Ar",
+        "rating": 4.7,
+        "duration": "Nuit"
     },
     {
-        "id": 160,
+        "id": 412,
         "ville": "Tuléar",
         "nom": "Peter Pan",
         "type": "Hotel",
@@ -3481,7 +4148,7 @@ const LIEUX_DATA = [
         "prixEur": "35 €",
         "prixNum": 150000,
         "note": 4.6,
-        "description": "Charme italien à Anakao. Bungalows rustiques-chic, cuisine délicieuse d'inspiration italienne. Ambiance familiale et décontractée.",
+        "description": "Charme italien à Anakao. Bungalows rustiques-chic, cuisine délicieuse d’inspiration italienne. Ambiance familiale et décontractée.",
         "image": "images/toliara/toliara_peter_pan.png",
         "acces": "Anakao Village",
         "horaires": "8h-20h",
@@ -3489,11 +4156,18 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "http://www.peter-pan-anakao.com",
         "tags": [
-            "Culture"
-        ]
+            "Manger",
+            "Tuléar",
+            "Sortir",
+            "Dormir",
+            "budget_3"
+        ],
+        "price": "150 000 Ar",
+        "rating": 4.6,
+        "duration": "Nuit"
     },
     {
-        "id": 161,
+        "id": 413,
         "ville": "Tuléar",
         "nom": "Le Paradisier",
         "type": "Hotel",
@@ -3511,14 +4185,18 @@ const LIEUX_DATA = [
         "duree": "Nuit",
         "siteWeb": "https://www.paradisier.net",
         "tags": [
+            "Tuléar",
             "Dormir",
-            "Plage"
-        ]
+            "budget_3"
+        ],
+        "price": "300 000 Ar",
+        "rating": 4.8,
+        "duration": "Nuit"
     },
     {
-        "id": 162,
+        "id": 414,
         "ville": "Tuléar",
-        "nom": "Les Dunes d'Ifaty",
+        "nom": "Les Dunes d’Ifaty",
         "type": "Hotel",
         "lat": -23.1,
         "lng": 43.6,
@@ -3533,14 +4211,18 @@ const LIEUX_DATA = [
         "conseil": "Nombreuses activités nautiques disponibles.",
         "duree": "Nuit",
         "tags": [
+            "Tuléar",
             "Dormir",
-            "Plage"
-        ]
+            "budget_3"
+        ],
+        "price": "250 000 Ar",
+        "rating": 4.6,
+        "duration": "Nuit"
     },
     {
-        "id": 163,
+        "id": 415,
         "ville": "Tuléar",
-        "nom": "Le T'Hôtre Chose",
+        "nom": "Le T’Hôtre Chose",
         "type": "Bar",
         "lat": -23.357,
         "lng": 43.67,
@@ -3555,13 +4237,19 @@ const LIEUX_DATA = [
         "conseil": "Grosse ambiance le vendredi soir.",
         "duree": "Soirée",
         "tags": [
-            "Manger"
-        ]
+            "Explorer",
+            "Tuléar",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.4,
+        "duration": "Soirée"
     },
     {
-        "id": 164,
+        "id": 416,
         "ville": "Tuléar",
-        "nom": "Bar de l'Hôtel Plazza",
+        "nom": "Bar de l’Hôtel Plazza",
         "type": "Bar",
         "lat": -23.358,
         "lng": 43.66,
@@ -3569,19 +4257,25 @@ const LIEUX_DATA = [
         "prixEur": "3.5 €",
         "prixNum": 15000,
         "note": 4.5,
-        "description": "Le spot 'Sunset'. Terrasse panoramique face au canal du Mozambique. Cocktails soignés et brise marine.",
+        "description": "Le spot ’Sunset’. Terrasse panoramique face au canal du Mozambique. Cocktails soignés et brise marine.",
         "image": "images/toliara/toliara_plazza.png",
         "acces": "Front de mer",
         "horaires": "16h - 22h",
         "conseil": "Arriver à 17h30 pour la meilleure vue.",
         "duree": "Soirée",
         "tags": [
-            "Manger",
-            "Dormir"
-        ]
+            "Dormir",
+            "Tuléar",
+            "Sortir",
+            "Spots",
+            "budget_1"
+        ],
+        "price": "15 000 Ar",
+        "rating": 4.5,
+        "duration": "Soirée"
     },
     {
-        "id": 165,
+        "id": 418,
         "ville": "Tuléar",
         "nom": "Chez Alain",
         "type": "Bar",
@@ -3599,11 +4293,17 @@ const LIEUX_DATA = [
         "duree": "Soirée",
         "siteWeb": "https://www.facebook.com/chezalaintoliara/",
         "tags": [
-            "Manger"
-        ]
+            "Manger",
+            "Tuléar",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "12 000 Ar",
+        "rating": 4.6,
+        "duration": "Soirée"
     },
     {
-        "id": 166,
+        "id": 419,
         "ville": "Tuléar",
         "nom": "Mangily Beach Bar",
         "type": "Bar",
@@ -3613,18 +4313,23 @@ const LIEUX_DATA = [
         "prixEur": "2 €",
         "prixNum": 10000,
         "note": 4.5,
-        "description": "Le QG d'Ifaty. Les pieds dans le sable, reggae, cocktails coco. Le chill absolu.",
+        "description": "Le QG d’Ifaty. Les pieds dans le sable, reggae, cocktails coco. Le chill absolu.",
         "image": "images/toliara/toliara_mangily_bar.png",
         "acces": "Plage de Mangily",
         "horaires": "10h - Tard",
         "conseil": "Punch coco maison recommandé.",
         "duree": "Soirée",
         "tags": [
-            "Manger"
-        ]
+            "Tuléar",
+            "Sortir",
+            "budget_1"
+        ],
+        "price": "10 000 Ar",
+        "rating": 4.5,
+        "duration": "Soirée"
     },
     {
-        "id": 167,
+        "id": 613,
         "nom": "Ankarana",
         "ville": "Diego-Suarez",
         "type": "nature",
@@ -3635,12 +4340,18 @@ const LIEUX_DATA = [
         "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
         "image": "images/spots/ankarana.jpg",
         "is_recovered_spot": true,
+        "price": ">= 10 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre",
         "tags": [
-            "Nature"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_1"
+        ],
+        "prixNum": 10000
     },
     {
-        "id": 168,
+        "id": 614,
         "nom": "Diego-Suarez",
         "ville": "Diego-Suarez",
         "type": "ville",
@@ -3651,12 +4362,17 @@ const LIEUX_DATA = [
         "description": "Une ville portuaire animée avec une architecture coloniale et une baie spectaculaire.",
         "image": "images/villes/diego-suarez.jpg",
         "is_recovered_spot": true,
+        "price": "gratuit",
+        "rating": "4.5",
+        "duration": "Libre",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "budget_1"
+        ],
+        "prixNum": 0
     },
     {
-        "id": 169,
+        "id": 615,
         "nom": "Baie Sakalava",
         "ville": "Diego-Suarez",
         "type": "plage",
@@ -3667,12 +4383,18 @@ const LIEUX_DATA = [
         "description": "Une baie magnifique avec des plages de sable blanc et des eaux turquoise, idéale pour le kitesurf.",
         "image": "images/iles/baie-sakalava.jpg",
         "is_recovered_spot": true,
+        "price": "gratuit",
+        "rating": "4.5",
+        "duration": "Libre",
         "tags": [
-            "Plage"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_1"
+        ],
+        "prixNum": 0
     },
     {
-        "id": 170,
+        "id": 616,
         "nom": "Pain de Sucre",
         "ville": "Diego-Suarez",
         "type": "spot-local",
@@ -3683,12 +4405,18 @@ const LIEUX_DATA = [
         "description": "Un îlot emblématique au milieu de la baie de Diego-Suarez, offrant une vue panoramique.",
         "image": "images/spots/pain-de-sucre.jpg",
         "is_recovered_spot": true,
+        "price": "gratuit",
+        "rating": "4.5",
+        "duration": "Libre",
         "tags": [
-            "Culture"
-        ]
+            "Diego",
+            "Spots",
+            "budget_1"
+        ],
+        "prixNum": 0
     },
     {
-        "id": 171,
+        "id": 617,
         "nom": "Réserve Ankarana",
         "ville": "Diego-Suarez",
         "type": "nature",
@@ -3699,12 +4427,18 @@ const LIEUX_DATA = [
         "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
         "image": "images/spots/ankarana.jpg",
         "is_recovered_spot": true,
+        "price": ">= 10 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre",
         "tags": [
-            "Nature"
-        ]
+            "Diego",
+            "Explorer",
+            "budget_1"
+        ],
+        "prixNum": 10000
     },
     {
-        "id": 172,
+        "id": 618,
         "nom": "Jungle Park",
         "ville": "Diego-Suarez",
         "type": "Lodge",
@@ -3712,15 +4446,20 @@ const LIEUX_DATA = [
         "prixNum": 150000,
         "note": "4.8",
         "image": "images/spots/piscine-naturelle.jpg",
-        "description": "Camping éco-responsable et escalade à l'entrée de la Montagne des Français.",
+        "description": "Camping éco-responsable et escalade à l’entrée de la Montagne des Français.",
         "tags": [
-            "Dormir"
+            "Diego",
+            "Dormir",
+            "budget_3"
         ],
         "lat": -12.3,
-        "lng": 49.3
+        "lng": 49.3,
+        "price": "150 000 Ar",
+        "rating": "4.8",
+        "duration": "Libre"
     },
     {
-        "id": 173,
+        "id": 619,
         "nom": "Nosy Tanikely",
         "ville": "Nosy Be",
         "type": "Nature",
@@ -3730,14 +4469,19 @@ const LIEUX_DATA = [
         "image": "images/iles/nosy-tanikely.jpg",
         "description": "Réserve marine protégée. Aquarium naturel parfait pour le snorkeling.",
         "tags": [
-            "Nature"
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -13.4833,
-        "lng": 48.2389
+        "lng": 48.2389,
+        "price": "45 000 Ar",
+        "rating": "4.9",
+        "duration": "Libre"
     },
     {
-        "id": 174,
-        "nom": "L'Heure Bleue",
+        "id": 620,
+        "nom": "L’Heure Bleue",
         "ville": "Nosy Be",
         "type": "Hotel",
         "prix": "450 000 Ar",
@@ -3746,13 +4490,18 @@ const LIEUX_DATA = [
         "image": "images/restaurants/heure-bleue.jpg",
         "description": "Ecolodge chic à Madirokely avec vue imprenable sur la baie.",
         "tags": [
-            "Dormir"
+            "Nosy Be",
+            "Dormir",
+            "budget_3"
         ],
         "lat": -13.4,
-        "lng": 48.2
+        "lng": 48.2,
+        "price": "450 000 Ar",
+        "rating": "4.7",
+        "duration": "Libre"
     },
     {
-        "id": 175,
+        "id": 621,
         "nom": "Arbre Sacré",
         "ville": "Nosy Be",
         "type": "Culture",
@@ -3760,15 +4509,20 @@ const LIEUX_DATA = [
         "prixNum": 10000,
         "note": "4.5",
         "image": "images/spots/arbre-millenaire-sacre.jpg",
-        "description": "Un banian millénaire impressionnant, lieu de culte et d'offrandes.",
+        "description": "Un banian millénaire impressionnant, lieu de culte et d’offrandes.",
         "tags": [
-            "Culture"
+            "Nosy Be",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -13.3,
-        "lng": 48.3
+        "lng": 48.3,
+        "price": "10 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre"
     },
     {
-        "id": 176,
+        "id": 622,
         "nom": "Lokobe Special Reserve",
         "ville": "Nosy Be",
         "type": "Nature",
@@ -3776,15 +4530,20 @@ const LIEUX_DATA = [
         "prixNum": 50000,
         "note": "4.6",
         "image": "images/spots/lokobe.jpg",
-        "description": "Dernière forêt primaire de l'île. Accès en pirogue, observation de caméléons et boas.",
+        "description": "Dernière forêt primaire de l’île. Accès en pirogue, observation de caméléons et boas.",
         "tags": [
-            "Nature"
+            "Nosy Be",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -13.4,
-        "lng": 48.3
+        "lng": 48.3,
+        "price": "50 000 Ar",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 177,
+        "id": 623,
         "nom": "Le Louvre Hotel & Spa",
         "ville": "Antananarivo",
         "type": "Hotel",
@@ -3792,15 +4551,20 @@ const LIEUX_DATA = [
         "prixNum": 350000,
         "note": "4.6",
         "image": "images/hotels/louvre-tana.jpg",
-        "description": "Hôtel d'affaires moderne et spa en plein quartier d'Antaninarenina.",
+        "description": "Hôtel d’affaires moderne et spa en plein quartier d’Antaninarenina.",
         "tags": [
-            "Dormir"
+            "Tana",
+            "Dormir",
+            "budget_3"
         ],
         "lat": -18.9,
-        "lng": 47.5
+        "lng": 47.5,
+        "price": "350 000 Ar",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 178,
+        "id": 624,
         "nom": "Sakamanga",
         "ville": "Antananarivo",
         "type": "Hotel",
@@ -3808,16 +4572,21 @@ const LIEUX_DATA = [
         "prixNum": 150000,
         "note": "4.5",
         "image": "images/hotels/sakamanga.jpg",
-        "description": "Une institution ! Musée-hôtel plein de charme et d'histoire.",
+        "description": "Une institution ! Musée-hôtel plein de charme et d’histoire.",
         "tags": [
+            "Explorer",
+            "Tana",
             "Dormir",
-            "Culture"
+            "budget_3"
         ],
         "lat": -18.9,
-        "lng": 47.5
+        "lng": 47.5,
+        "price": "150 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre"
     },
     {
-        "id": 179,
+        "id": 625,
         "nom": "Croc Farm",
         "ville": "Antananarivo",
         "type": "Nature",
@@ -3827,13 +4596,18 @@ const LIEUX_DATA = [
         "image": "images/spots/croc-farm.jpg",
         "description": "Elevage de crocodiles, parc botanique et dégustation de viande de croco.",
         "tags": [
-            "Nature"
+            "Tana",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -18.8,
-        "lng": 47.4
+        "lng": 47.4,
+        "price": "30 000 Ar",
+        "rating": "4.3",
+        "duration": "Libre"
     },
     {
-        "id": 180,
+        "id": 626,
         "nom": "Bord de Mer",
         "ville": "Mahajanga",
         "type": "Spot Local",
@@ -3843,15 +4617,21 @@ const LIEUX_DATA = [
         "image": "images/iles/plage-mahajanga.jpg",
         "description": "Le cœur vibrant de la ville le soir. Brochettes, baobab et ambiance festive.",
         "tags": [
-            "Culture",
-            "Plage"
+            "Majunga",
+            "Sortir",
+            "Spots",
+            "Explorer",
+            "budget_1"
         ],
         "spotLocal": true,
         "lat": -15.7167,
-        "lng": 46.3167
+        "lng": 46.3167,
+        "price": "Gratuit",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 181,
+        "id": 627,
         "nom": "Parc Ankarafantsika",
         "ville": "Mahajanga",
         "type": "Nature",
@@ -3861,13 +4641,18 @@ const LIEUX_DATA = [
         "image": "images/spots/ankarafantsika.jpg",
         "description": "Royaume des oiseaux et des Sifakas. Paysages de canyon et de lacs.",
         "tags": [
-            "Nature"
+            "Majunga",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -16.3167,
-        "lng": 46.8167
+        "lng": 46.8167,
+        "price": "45 000 Ar",
+        "rating": "4.8",
+        "duration": "Libre"
     },
     {
-        "id": 182,
+        "id": 628,
         "nom": "Katsepy",
         "ville": "Mahajanga",
         "type": "Nature",
@@ -3877,13 +4662,18 @@ const LIEUX_DATA = [
         "image": "images/spots/katsepy-phare.jpg",
         "description": "Village de pêcheurs accessible en bac. Lémuriens et phare historique.",
         "tags": [
-            "Nature"
+            "Majunga",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -15.7456,
-        "lng": 46.2234
+        "lng": 46.2234,
+        "price": "15 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre"
     },
     {
-        "id": 183,
+        "id": 629,
         "nom": "Grand Pavois",
         "ville": "Mahajanga",
         "type": "Plage",
@@ -3894,13 +4684,18 @@ const LIEUX_DATA = [
         "description": "La plage préférée des Majungais. Restaurants de fruits de mer les pieds dans le sable.",
         "tags": [
             "Manger",
-            "Plage"
+            "Majunga",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -15.6,
-        "lng": 46.3
+        "lng": 46.3,
+        "price": "Gratuit",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 184,
+        "id": 630,
         "nom": "Parc Andasibe-Mantadia",
         "ville": "Toamasina",
         "type": "Nature",
@@ -3908,15 +4703,20 @@ const LIEUX_DATA = [
         "prixNum": 45000,
         "note": "4.8",
         "image": "images/spots/andasibe-mantadia.jpg",
-        "description": "La maison de l'Indri Indri. Forêt humide et chant des lémuriens.",
+        "description": "La maison de l’Indri Indri. Forêt humide et chant des lémuriens.",
         "tags": [
-            "Nature"
+            "Tamatave",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -18.9333,
-        "lng": 48.4167
+        "lng": 48.4167,
+        "price": "45 000 Ar",
+        "rating": "4.8",
+        "duration": "Libre"
     },
     {
-        "id": 185,
+        "id": 631,
         "nom": "Canal des Pangalanes",
         "ville": "Toamasina",
         "type": "Nature",
@@ -3926,13 +4726,23 @@ const LIEUX_DATA = [
         "image": "images/tamatave/pangalanes.jpg",
         "description": "Navigation fluviale apaisante à travers la végétation luxuriante.",
         "tags": [
-            "Nature"
+            "Tamatave",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -18.1499,
-        "lng": 49.4023
+        "lng": 49.4023,
+        "price": "40 000 Ar",
+        "rating": "4.6",
+        "duration": "Libre",
+        "conseil": "Pour une expérience authentique, optez pour une balade en pirogue traditionnelle au coucher du soleil. Les reflets sur l'eau sont magiques.",
+        "acces": "Port fluvial de Toamasina (Zone Ivondro). accessible en taxi ou tuk-tuk.",
+        "horaires": "Départs toute la journée, idéalement le matin.",
+        "duree": "Demi-journée ou journée complète",
+        "siteWeb": "https://madagascar-tourisme.com/fr/les-incontournables/le-canal-des-pangalanes/"
     },
     {
-        "id": 186,
+        "id": 632,
         "nom": "Palmarium Reserve",
         "ville": "Toamasina",
         "type": "Lodge",
@@ -3940,16 +4750,21 @@ const LIEUX_DATA = [
         "prixNum": 200000,
         "note": "4.8",
         "image": "images/hotels/palmarium.jpg",
-        "description": "Dormez au milieu des lémuriens. Visite de l'Aye-Aye nocturne.",
+        "description": "Dormez au milieu des lémuriens. Visite de l’Aye-Aye nocturne.",
         "tags": [
-            "Nature",
-            "Dormir"
+            "Tamatave",
+            "Explorer",
+            "Dormir",
+            "budget_3"
         ],
         "lat": -18.6,
-        "lng": 49.2
+        "lng": 49.2,
+        "price": "200 000 Ar",
+        "rating": "4.8",
+        "duration": "Libre"
     },
     {
-        "id": 187,
+        "id": 633,
         "nom": "Île aux Nattes",
         "ville": "Toamasina",
         "type": "Plage",
@@ -3959,14 +4774,19 @@ const LIEUX_DATA = [
         "image": "images/iles/ile-aux-nattes.jpg",
         "description": "Le paradis tropical par excellence, sans voitures, juste du sable blanc.",
         "tags": [
-            "Plage"
+            "Tamatave",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -17.0,
-        "lng": 49.8
+        "lng": 49.8,
+        "price": "Gratuit",
+        "rating": "4.9",
+        "duration": "Libre"
     },
     {
-        "id": 188,
-        "nom": "Plage d'Ifaty",
+        "id": 634,
+        "nom": "Plage d’Ifaty",
         "ville": "Toliara",
         "type": "Plage",
         "prix": "Gratuit",
@@ -3975,13 +4795,18 @@ const LIEUX_DATA = [
         "image": "images/iles/plage-ifaty.jpg",
         "description": "Station balnéaire et village de pêcheurs Vezo. Baignade et détente.",
         "tags": [
-            "Plage"
+            "Tuléar",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -23.15,
-        "lng": 43.6167
+        "lng": 43.6167,
+        "price": "Gratuit",
+        "rating": "4.5",
+        "duration": "Libre"
     },
     {
-        "id": 189,
+        "id": 635,
         "nom": "Forêt des Baobabs (Reniala)",
         "ville": "Toliara",
         "type": "Nature",
@@ -3991,13 +4816,18 @@ const LIEUX_DATA = [
         "image": "images/spots/foret-baobabs-mangily.jpg",
         "description": "Forêt épineuse spectaculaire avec des baobabs bouteilles.",
         "tags": [
-            "Nature"
+            "Tuléar",
+            "Explorer",
+            "budget_1"
         ],
         "lat": -23.1667,
-        "lng": 43.6
+        "lng": 43.6,
+        "price": "15 000 Ar",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 190,
+        "id": 636,
         "nom": "Anakao Ocean Lodge",
         "ville": "Toliara",
         "type": "Hotel",
@@ -4007,14 +4837,18 @@ const LIEUX_DATA = [
         "image": "images/hotels/anakao-ocean.jpg",
         "description": "Luxe sauvage au sud de Toliara, accessible en bateau.",
         "tags": [
+            "Tuléar",
             "Dormir",
-            "Plage"
+            "budget_3"
         ],
         "lat": -23.6,
-        "lng": 43.6
+        "lng": 43.6,
+        "price": "400 000 Ar",
+        "rating": "4.8",
+        "duration": "Libre"
     },
     {
-        "id": 191,
+        "id": 637,
         "nom": "Bakuba Lodge",
         "ville": "Toliara",
         "type": "Lodge",
@@ -4024,14 +4858,19 @@ const LIEUX_DATA = [
         "image": "images/toliara/toliara_anakao.png",
         "description": "Architecture Gaudi-esque incroyable en plein bush.",
         "tags": [
-            "Dormir"
+            "Tuléar",
+            "Dormir",
+            "budget_3"
         ],
         "lat": -23.3,
-        "lng": 43.7
+        "lng": 43.7,
+        "price": "500 000 Ar",
+        "rating": "4.9",
+        "duration": "Libre"
     },
     {
-        "id": 192,
-        "nom": "Cathédrale d'Antsirabe",
+        "id": 638,
+        "nom": "Cathédrale d’Antsirabe",
         "ville": "Antsirabe",
         "type": "Culture",
         "prix": "Gratuit",
@@ -4040,13 +4879,17 @@ const LIEUX_DATA = [
         "image": "images/tana/antsirabe_cathedrale.jpg",
         "description": "Majestueuse cathédrale et balade en pousse-pousse.",
         "tags": [
-            "Culture"
+            "Explorer",
+            "budget_1"
         ],
         "lat": -19.8667,
-        "lng": 47.0333
+        "lng": 47.0333,
+        "price": "Gratuit",
+        "rating": "4.6",
+        "duration": "Libre"
     },
     {
-        "id": 193,
+        "id": 639,
         "nom": "Ranomafana National Park",
         "ville": "Fianarantsoa",
         "type": "Nature",
@@ -4056,13 +4899,18 @@ const LIEUX_DATA = [
         "image": "images/spots/ranomafana.jpg",
         "description": "Forêt dense humide, thermes et lémuriens dorés.",
         "tags": [
-            "Nature"
+            "Fianar",
+            "Explorer",
+            "budget_2"
         ],
         "lat": -21.2,
-        "lng": 47.4
+        "lng": 47.4,
+        "price": "55 000 Ar",
+        "rating": "4.7",
+        "duration": "Libre"
     },
     {
-        "id": 194,
+        "id": 640,
         "nom": "Train Fianar-Manakara",
         "ville": "Fianarantsoa",
         "type": "Aventure",
@@ -4070,11 +4918,45 @@ const LIEUX_DATA = [
         "prixNum": 70000,
         "note": "4.5",
         "image": "images/spots/train-fianar.jpg",
-        "description": " Voyage mythique à travers la jungle. Une expérience hors du temps.",
+        "description": "Voyage mythique à travers la jungle. Une expérience hors du temps.",
         "tags": [
-            "Culture"
+            "Fianar",
+            "budget_2"
         ],
         "lat": -21.4,
-        "lng": 47.1
+        "lng": 47.1,
+        "price": "70 000 Ar",
+        "rating": "4.5",
+        "duration": "Libre"
+    },
+    {
+        "id": 16,
+        "ville": "Diego-Suarez",
+        "nom": "Grotte des Pêcheurs",
+        "type": "Spot Local",
+        "spotLocal": true,
+        "lat": -12.2389,
+        "lng": 49.3012,
+        "prix": "Gratuit",
+        "prixEur": "Gratuit",
+        "prixNum": 0,
+        "note": 4.8,
+        "description": "Un lieu fascinant, à la fois merveille naturelle et temple à ciel ouvert. Cette grotte s’ouvre sur la mer et sert de lieu de culte aux ancêtres. L’atmosphère y est solennelle et mystérieuse, bercée par le bruit des vagues.",
+        "image": "images/spots/grotte-pecheurs.jpg",
+        "acces": "Plage nord de Ramena à marée basse uniquement - Demander Paul au marché aux poissons qui guide gratuitement",
+        "contactLocal": "Paul, pêcheur au marché central de Diego (matin 6h-9h)",
+        "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
+        "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
+        "duree": "45 min",
+        "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+        "price": "Gratuit",
+        "rating": 4.8,
+        "duration": "45 min",
+        "tags": [
+            "Diego",
+            "Spots",
+            "Explorer",
+            "budget_1"
+        ]
     }
 ];

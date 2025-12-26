@@ -5195,8 +5195,7 @@ window.LIEUX_DATA = [
     "acces": "Au centre du Bazar Be, accessible en pousse-pousse depuis le centre-ville",
     "horaires": "Lun-Sam 6h-14h",
     "id": 641,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Gargote+Bazar+Be+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Fatapera du Bord de Mer",
@@ -5220,8 +5219,7 @@ window.LIEUX_DATA = [
     "acces": "Boulevard Ratsimilaho (bord de mer), entre le port et la Place de l'Indépendance",
     "horaires": "Tlj 17h-22h",
     "id": 642,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Fatapera+du+Bord+de+Mer+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Snack du Marché Kely",
@@ -5244,8 +5242,7 @@ window.LIEUX_DATA = [
     "acces": "Marché Kely (petit marché), accessible à pied depuis Avenue de l'Indépendance",
     "horaires": "Tlj 6h-15h",
     "id": 643,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Snack+du+Marché+Kely+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Chez Mama Rasoava",
@@ -5268,8 +5265,7 @@ window.LIEUX_DATA = [
     "acces": "Quartier résidentiel, 10 minutes en pousse-pousse du centre",
     "horaires": "Lun-Sam 7h-16h",
     "id": 644,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Chez+Mama+Rasoava+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Stand Fruits de Mer du Port",
@@ -5293,8 +5289,7 @@ window.LIEUX_DATA = [
     "acces": "Zone portuaire, près de l'embarcadère principal",
     "horaires": "Tlj 8h-12h",
     "id": 645,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Stand+Fruits+de+Mer+du+Port+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Restaurant Darafify",
@@ -5318,8 +5313,7 @@ window.LIEUX_DATA = [
     "acces": "Centre-ville, proche de l'Avenue de l'Indépendance",
     "horaires": "Mar-Dim 11h-22h",
     "id": 646,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Restaurant+Darafify+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Koinonia Restaurant",
@@ -5343,8 +5337,7 @@ window.LIEUX_DATA = [
     "acces": "Front de mer, près de la Place de la République",
     "horaires": "Tlj 11h-23h",
     "id": 647,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Koinonia+Restaurant+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "La Paillote",
@@ -5367,8 +5360,7 @@ window.LIEUX_DATA = [
     "acces": "Quartier résidentiel calme, 5 minutes en taxi du centre",
     "horaires": "Lun-Sam 11h30-22h",
     "id": 648,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/La+Paillote+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Poisson d'Or",
@@ -5392,8 +5384,7 @@ window.LIEUX_DATA = [
     "acces": "Bord de mer, proche de l'Hôtel de Ville",
     "horaires": "Mar-Dim 12h-22h30",
     "id": 649,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Poisson+d'Or+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Angel's Café & Restaurant Bar",
@@ -5416,8 +5407,7 @@ window.LIEUX_DATA = [
     "acces": "Centre-ville, accessible à pied depuis les principaux hôtels",
     "horaires": "Tlj 7h-23h",
     "id": 650,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Angel's+Café+&+Restaurant+Bar+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "La Braise Côté Cour",
@@ -5441,8 +5431,7 @@ window.LIEUX_DATA = [
     "acces": "Quartier résidentiel huppé, taxi recommandé",
     "horaires": "Mar-Dim 12h-14h30, 19h-23h",
     "id": 651,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/La+Braise+Côté+Cour+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Restaurant Le Régal",
@@ -5466,8 +5455,7 @@ window.LIEUX_DATA = [
     "acces": "Centre-ville, parking privé disponible",
     "horaires": "Mer-Lun 12h-14h, 19h-22h30",
     "id": 652,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Restaurant+Le+Régal+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Cosy Restaurant",
@@ -5491,8 +5479,7 @@ window.LIEUX_DATA = [
     "acces": "Front de mer, valet parking disponible",
     "horaires": "Mar-Dim 12h-23h",
     "id": 653,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Cosy+Restaurant+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "Lotus Rouge",
@@ -5516,8 +5503,7 @@ window.LIEUX_DATA = [
     "acces": "Centre-ville, près de l'Alliance Française",
     "horaires": "Tlj 11h30-14h30, 18h30-23h",
     "id": 654,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Lotus+Rouge+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   },
   {
     "nom": "La Terrasse - El Barco",
@@ -5542,368 +5528,6 @@ window.LIEUX_DATA = [
     "acces": "Boulevard Ratsimilaho, parking sécurisé",
     "horaires": "Tlj 12h-23h30",
     "id": 655,
-    "image": "images/placeholder-restaurant.jpg",
-    "siteWeb": "https://www.google.com/maps/search/La+Terrasse+-+El+Barco+Toamasina"
-  },
-  {
-    "nom": "Hôtel Nado",
-    "ville": "Toamasina",
-    "description": "Petit hôtel récent et propre près de la gare routière. Chambres simples mais fonctionnelles avec ventilateur. Idéal pour arrivée ou départ tardif ou matinal. Wi-Fi gratuit dans les espaces communs.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_1"
-    ],
-    "prix": "18 000 Ar",
-    "prixNum": 18000,
-    "lat": -18.1425,
-    "lng": 49.4008,
-    "note": 4.0,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Parfait pour une nuit de transit. Demandez une chambre côté cour pour plus de calme.",
-    "acces": "Près de la gare routière, 5 minutes en taxi du centre-ville",
-    "horaires": "Réception 24h/24",
-    "id": 656,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Hôtel+Nado+Toamasina"
-  },
-  {
-    "nom": "Guest House Villa Nancy",
-    "ville": "Toamasina",
-    "description": "Chambres d'hôtes familiales avec patio et jardin verdoyant. Ambiance conviviale, chambres propres avec ventilateur. Parking privé gratuit et Wi-Fi. Petit-déjeuner continental inclus.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_1",
-      "famille"
-    ],
-    "prix": "22 000 Ar",
-    "prixNum": 22000,
-    "lat": -18.1438,
-    "lng": 49.4028,
-    "note": 4.2,
-    "type": "Guest House",
-    "duree": "Nuitée",
-    "conseil": "Les propriétaires sont chaleureux et donnent de bons conseils sur la ville et ses environs.",
-    "acces": "Quartier résidentiel calme, 10 minutes en pousse-pousse du centre",
-    "horaires": "Check-in 14h-22h",
-    "id": 657,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Guest+House+Villa+Nancy+Toamasina"
-  },
-  {
-    "nom": "Chambres d'hôtes Evasion",
-    "ville": "Toamasina",
-    "description": "Maison d'hôtes avec terrasse ensoleillée et jardin tropical. Accueil chaleureux, chambres confortables et propres. Petit-déjeuner malgache inclus avec produits locaux frais.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_1",
-      "nature"
-    ],
-    "prix": "25 000 Ar",
-    "prixNum": 25000,
-    "lat": -18.1455,
-    "lng": 49.4048,
-    "note": 4.3,
-    "type": "Chambres d'hôtes",
-    "duree": "Nuitée",
-    "conseil": "Le jardin est idéal pour se détendre après une journée de visite. Demandez le petit-déjeuner sur la terrasse.",
-    "acces": "Quartier résidentiel, accessible en taxi ou pousse-pousse",
-    "horaires": "Check-in 12h-20h",
-    "id": 658,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Chambres+d'hôtes+Evasion+Toamasina"
-  },
-  {
-    "nom": "Pension Lalao",
-    "ville": "Toamasina",
-    "description": "Pension simple avec vue sur jardin fleuri. Chambres propres et bien entretenues. Ambiance familiale et accueil authentique malgache. Excellent rapport qualité-prix pour petit budget.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_1",
-      "famille"
-    ],
-    "prix": "20 000 Ar",
-    "prixNum": 20000,
-    "lat": -18.1468,
-    "lng": 49.4035,
-    "note": 4.1,
-    "type": "Pension",
-    "duree": "Nuitée",
-    "conseil": "Quartier calme et sûr. Supérette à 2 minutes à pied pour vos besoins essentiels.",
-    "acces": "Zone résidentielle tranquille, 15 minutes à pied du centre",
-    "horaires": "Réception 7h-21h",
-    "id": 659,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Pension+Lalao+Toamasina"
-  },
-  {
-    "nom": "Hôtel H1 Tamatave",
-    "ville": "Toamasina",
-    "description": "Option économique au centre-ville de Tamatave. Chambres basiques mais propres avec ventilateur. Personnel serviable et accueillant. Proche des commerces, restaurants et attractions principales.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_1"
-    ],
-    "prix": "24 000 Ar",
-    "prixNum": 24000,
-    "lat": -18.1472,
-    "lng": 49.4058,
-    "note": 4.0,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Emplacement pratique pour explorer la ville à pied. Marché et restaurants à proximité immédiate.",
-    "acces": "Centre-ville, à pied depuis la plupart des sites touristiques",
-    "horaires": "Réception 24h/24",
-    "id": 660,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Hôtel+H1+Tamatave+Toamasina"
-  },
-  {
-    "nom": "Stephen Hotel",
-    "ville": "Toamasina",
-    "description": "Hôtel moderne rénové avec staff compétent et courtois. Propreté impeccable, chambres confortables climatisées avec TV. Proche du centre-ville, parking privé sécurisé gratuit. Excellent rapport qualité-prix.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_2"
-    ],
-    "prix": "55 000 Ar",
-    "prixNum": 55000,
-    "lat": -18.1465,
-    "lng": 49.4068,
-    "note": 4.5,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Les chambres rénovées au 2ème étage sont les plus calmes. Petit-déjeuner continental de qualité.",
-    "acces": "Centre-ville, parking privé disponible",
-    "horaires": "Réception 24h/24",
-    "id": 661,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Stephen+Hotel+Toamasina"
-  },
-  {
-    "nom": "Java Hotel",
-    "ville": "Toamasina",
-    "description": "Hôtel confortable avec salon commun élégant, restaurant sur place et bar cosy. Chambres spacieuses climatisées, Wi-Fi gratuit haut débit. Ambiance décontractée, personnel attentif aux besoins des clients.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_2"
-    ],
-    "prix": "60 000 Ar",
-    "prixNum": 60000,
-    "lat": -18.1478,
-    "lng": 49.4072,
-    "note": 4.4,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Le petit-déjeuner buffet est copieux et varié. Parking sécurisé derrière l'hôtel.",
-    "acces": "Centre-ville, proche des principaux commerces",
-    "horaires": "Réception 24h/24",
-    "id": 662,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Java+Hotel+Toamasina"
-  },
-  {
-    "nom": "Satrana Hotel Tamatave",
-    "ville": "Toamasina",
-    "description": "Hôtel avec jardin tropical agréable et terrasse ombragée. Restaurant servant cuisine locale et internationale. Chambres modernes climatisées avec balcon. Parking privé gratuit et sécurisé. Ambiance paisible.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_2",
-      "nature"
-    ],
-    "prix": "58 000 Ar",
-    "prixNum": 58000,
-    "lat": -18.1458,
-    "lng": 49.4052,
-    "note": 4.3,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Demandez une chambre avec vue sur le jardin pour plus de tranquillité et profiter de la verdure.",
-    "acces": "Quartier calme, 10 minutes à pied du centre",
-    "horaires": "Réception 24h/24",
-    "id": 663,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Satrana+Hotel+Tamatave+Toamasina"
-  },
-  {
-    "nom": "Hôtel Les Flamboyants",
-    "ville": "Toamasina",
-    "description": "Chambres rénovées et confortables dans quartier résidentiel sécurisé. Wi-Fi gratuit fiable, parking privé. Bon équilibre entre confort moderne et prix raisonnable. Service attentionné et professionnel.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_2"
-    ],
-    "prix": "52 000 Ar",
-    "prixNum": 52000,
-    "lat": -18.1485,
-    "lng": 49.4045,
-    "note": 4.2,
-    "type": "Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Quartier calme mais proche du centre. Restaurant de fruits de mer recommandé à 100m.",
-    "acces": "Zone résidentielle, taxi ou pousse-pousse pour le centre",
-    "horaires": "Check-in 14h-22h",
-    "id": 664,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Hôtel+Les+Flamboyants+Toamasina"
-  },
-  {
-    "nom": "Résidence Magali",
-    "ville": "Toamasina",
-    "description": "Chambres d'hôtes confortables au centre de Tamatave. Accueil personnalisé et chaleureux, ambiance familiale authentique. Petit-déjeuner malgache traditionnel inclus. Conseils touristiques sur mesure offerts par les propriétaires.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_2",
-      "famille",
-      "culture"
-    ],
-    "prix": "48 000 Ar",
-    "prixNum": 48000,
-    "lat": -18.1448,
-    "lng": 49.4038,
-    "note": 4.6,
-    "type": "Chambres d'hôtes",
-    "duree": "Nuitée",
-    "conseil": "Idéal pour séjour prolongé. Les propriétaires organisent des excursions personnalisées.",
-    "acces": "Centre-ville, à pied des principales attractions",
-    "horaires": "Check-in flexible sur demande",
-    "id": 665,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Résidence+Magali+Toamasina"
-  },
-  {
-    "nom": "Calypso Hôtel & SPA",
-    "ville": "Toamasina",
-    "description": "Hôtel de référence à Tamatave avec chambres modernes et luxueuses. Literie premium 5 étoiles, SPA complet avec massages, piscine chauffée. Restaurant gastronomique sur place. Service d'excellence à la malgache.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_3",
-      "luxe",
-      "detente"
-    ],
-    "prix": "145 000 Ar",
-    "prixNum": 145000,
-    "lat": -18.1488,
-    "lng": 49.4082,
-    "note": 4.8,
-    "type": "Hôtel de Luxe",
-    "duree": "Nuitée",
-    "conseil": "Le forfait SPA + massage est très apprécié. Réservez le massage aux pierres chaudes à l'avance.",
-    "acces": "Front de mer, navette aéroport disponible",
-    "horaires": "Réception 24h/24, SPA 9h-21h",
-    "id": 666,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Calypso+Hôtel+&+SPA+Toamasina"
-  },
-  {
-    "nom": "The Streamliner Hotel Apartment",
-    "ville": "Toamasina",
-    "description": "Appartements spacieux avec cuisine entièrement équipée et vue panoramique sur ville. Piscine extérieure moderne, salle de sport équipée, terrasse panoramique. Wi-Fi fibre premium. Emplacement central privilégié. Standing haut de gamme.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_3",
-      "luxe",
-      "famille"
-    ],
-    "prix": "120 000 Ar",
-    "prixNum": 120000,
-    "lat": -18.1462,
-    "lng": 49.4075,
-    "note": 4.7,
-    "type": "Appartement Hôtel",
-    "duree": "Nuitée",
-    "conseil": "Parfait pour séjour longue durée ou en famille. Les appartements 2 chambres sont très spacieux.",
-    "acces": "Centre-ville, parking souterrain sécurisé",
-    "horaires": "Réception 24h/24",
-    "id": 667,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/The+Streamliner+Hotel+Apartment+Toamasina"
-  },
-  {
-    "nom": "Le Majestic Toamasina Hotel",
-    "ville": "Toamasina",
-    "description": "Hôtel 4 étoiles au bord de mer avec vue imprenable. Chambres élégantes avec balcon privé vue océan Indien. Restaurant panoramique gastronomique, bar lounge sur toit-terrasse, salle de fitness moderne. Luxe tropical raffiné.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_3",
-      "luxe",
-      "nature"
-    ],
-    "prix": "135 000 Ar",
-    "prixNum": 135000,
-    "lat": -18.1495,
-    "lng": 49.4098,
-    "note": 4.8,
-    "type": "Hôtel de Luxe",
-    "duree": "Nuitée",
-    "conseil": "Chambres avec vue mer au lever du soleil valent largement le supplément de prix.",
-    "acces": "Boulevard Ratsimilaho, front de mer",
-    "horaires": "Réception 24h/24",
-    "id": 668,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Le+Majestic+Toamasina+Hotel+Toamasina"
-  },
-  {
-    "nom": "Résidence Anjara Tanamakoa",
-    "ville": "Toamasina",
-    "description": "Appartements meublés haut standing proche centre-ville. Cuisine complète équipée moderne, salon spacieux avec canapé, Wi-Fi fibre optique. Parking privé sécurisé 24h/24. Confort premium pour séjours prolongés.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_3",
-      "luxe"
-    ],
-    "prix": "110 000 Ar",
-    "prixNum": 110000,
-    "lat": -18.1452,
-    "lng": 49.4062,
-    "note": 4.6,
-    "type": "Résidence Meublée",
-    "duree": "Nuitée",
-    "conseil": "Idéal pour séjours d'affaires ou en famille. Supermarché moderne à 50m à pied.",
-    "acces": "Centre-ville, proche commerces et restaurants",
-    "horaires": "Check-in 15h-20h",
-    "id": 669,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/Résidence+Anjara+Tanamakoa+Toamasina"
-  },
-  {
-    "nom": "La Case à Ianou",
-    "ville": "Toamasina",
-    "description": "Maison d'hôtes de charme exclusive au nord de Tamatave. Bungalows privatifs luxueux dans jardin tropical luxuriant. Piscine à débordement, cuisine gastronomique raffinée. Havre de paix authentique et romantique. Service personnalisé exceptionnel.",
-    "tags": [
-      "toamasina",
-      "dormir",
-      "budget_3",
-      "luxe",
-      "nature",
-      "detente"
-    ],
-    "prix": "150 000 Ar",
-    "prixNum": 150000,
-    "lat": -18.1305,
-    "lng": 49.3988,
-    "note": 4.9,
-    "type": "Lodge de Charme",
-    "duree": "Nuitée",
-    "conseil": "Parfait pour escapade romantique ou lune de miel. Service conciergerie personnalisé disponible.",
-    "acces": "Au nord de Tamatave, transfert privé recommandé",
-    "horaires": "Check-in sur rendez-vous",
-    "id": 670,
-    "image": "images/placeholder-hotel.jpg",
-    "siteWeb": "https://www.google.com/maps/search/La+Case+à+Ianou+Toamasina"
+    "image": "images/placeholder-restaurant.jpg"
   }
 ];

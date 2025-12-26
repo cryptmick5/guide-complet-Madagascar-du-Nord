@@ -1213,17 +1213,17 @@ window.openLieuModal = function (lieu) {
     const villeDisplay = lieu.ville || 'Madagascar';
 
     const html = `
-    <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;">
+    <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;" onclick="if(event.target.id === 'lieu-modal-overlay') window.closeLieuModal();">
         <div class="modal-content fade-in-up">
             
             <!-- 1. HERO HEADER (Fixed with fallback & 100% min-height) -->
             <div class="modal-hero-header" style="min-height: 200px; background: var(--bg-secondary); position: relative;">
                 <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
                      style="width: 100%; height: 250px; object-fit: cover;"
-                     onerror="this.onerror=null; this.src=''; this.parentElement.style.background='linear-gradient(135deg, var(--laterite), var(--noir))'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:3rem;\'><i class=\'fas fa-image\'></i></div>' + this.parentElement.innerHTML;">
+                     onerror="this.onerror=null; this.src=''; this.parentElement.style.background='linear-gradient(135deg, var(--laterite), var(--noir))'; this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:3rem;&quot;><i class=&quot;fas fa-image&quot;></i></div>' + this.parentElement.innerHTML;">
                 
                 <!-- Close Button: FORCED POSITION & Z-INDEX -->
-                <button class="btn-close-modal-overlay" onclick="window.closeLieuModal();" 
+                <button class="btn-close-modal-overlay" id="modal-close-btn" 
                         style="position: absolute; top: 15px; right: 15px; z-index: 99999; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary);">
                     <i class="fas fa-times" style="font-size: 1.2rem;"></i>
                 </button>
@@ -1320,6 +1320,12 @@ window.openLieuModal = function (lieu) {
 
     document.body.insertAdjacentHTML('beforeend', html);
     document.body.style.overflow = 'hidden';
+
+    // Attacher l'event listener au bouton X IMMÉDIATEMENT après création
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', window.closeLieuModal);
+    }
 };
 
 window.closeLieuModal = function () {

@@ -28,7 +28,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture",
+      "aventure"
     ],
     "price": "10 000 Ar",
     "rating": 4.5,
@@ -55,7 +57,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "Gratuit",
     "rating": 4.3,
@@ -82,7 +85,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "famille"
     ],
     "price": "5 000 Ar",
     "rating": 4.6,
@@ -137,7 +142,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "manger",
-      "budget_2"
+      "budget_2",
+      "gastronomie",
+      "nature"
     ],
     "price": "40 000 Ar",
     "rating": 4.7,
@@ -164,7 +171,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "20 000 Ar",
     "rating": 4.8,
@@ -192,7 +200,8 @@ window.LIEUX_DATA = [
       "tana",
       "explorer",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "price": "75 000 Ar",
     "rating": 4.6,
@@ -250,7 +259,8 @@ window.LIEUX_DATA = [
       "tana",
       "sortir",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "50 000 Ar",
     "rating": 4.7,
@@ -278,7 +288,9 @@ window.LIEUX_DATA = [
       "tana",
       "manger",
       "dormir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "luxe"
     ],
     "price": "60 000 Ar",
     "rating": 4.8,
@@ -305,7 +317,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "manger",
-      "budget_2"
+      "budget_2",
+      "spots"
     ],
     "price": "30 000 Ar",
     "rating": 4.6,
@@ -360,7 +373,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "spots",
+      "detente"
     ],
     "price": "300 000 Ar",
     "rating": 4.6,
@@ -389,7 +404,8 @@ window.LIEUX_DATA = [
       "sortir",
       "explorer",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "culture"
     ],
     "price": "150 000 Ar",
     "rating": 4.5,
@@ -416,7 +432,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature",
+      "culture"
     ],
     "price": "380 000 Ar",
     "rating": 4.9,
@@ -443,7 +461,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "luxe",
+      "spots"
     ],
     "price": "750 000 Ar",
     "rating": 4.9,
@@ -527,7 +547,8 @@ window.LIEUX_DATA = [
       "sortir",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.7,
@@ -554,7 +575,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "famille"
     ],
     "price": "15 000 Ar",
     "rating": 4.2,
@@ -581,7 +604,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "culture"
     ],
     "price": "25 000 Ar",
     "rating": 4.6,
@@ -608,7 +633,9 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "detente"
     ],
     "price": "2 000 Ar",
     "rating": 4.8,
@@ -634,7 +661,8 @@ window.LIEUX_DATA = [
     "siteWeb": "https://madagascar-tourisme.com",
     "tags": [
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -712,7 +740,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://diocese-antsirabe.mg",
     "tags": [
       "explorer",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "gastronomie"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -741,7 +771,8 @@ window.LIEUX_DATA = [
       "explorer",
       "sortir",
       "budget_1",
-      "spots"
+      "spots",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -770,7 +801,8 @@ window.LIEUX_DATA = [
       "manger",
       "explorer",
       "budget_3",
-      "spots"
+      "spots",
+      "aventure"
     ],
     "price": "80 000 Ar",
     "rating": 4.8,
@@ -798,7 +830,8 @@ window.LIEUX_DATA = [
       "diego",
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -825,7 +858,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "price": "45 000 Ar",
     "rating": 4.7,
@@ -879,7 +913,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "spots",
-      "budget_1"
+      "budget_1",
+      "aventure"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -907,7 +942,9 @@ window.LIEUX_DATA = [
       "diego",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "aventure"
     ],
     "price": "20 000 Ar",
     "rating": 4.6,
@@ -934,7 +971,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "manger",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "35 000 Ar",
     "rating": 4.7,
@@ -990,7 +1028,8 @@ window.LIEUX_DATA = [
       "diego",
       "explorer",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "culture"
     ],
     "price": "40 000 Ar",
     "rating": 4.6,
@@ -1021,7 +1060,9 @@ window.LIEUX_DATA = [
       "diego",
       "manger",
       "spots",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "culture"
     ],
     "price": "40 000 Ar",
     "rating": 4.6,
@@ -1048,7 +1089,9 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "luxe",
+      "detente"
     ],
     "price": "250 000 Ar",
     "rating": 4.5,
@@ -1076,7 +1119,9 @@ window.LIEUX_DATA = [
       "sortir",
       "dormir",
       "diego",
-      "budget_3"
+      "budget_3",
+      "detente",
+      "luxe"
     ],
     "price": "180 000 Ar",
     "rating": 4.6,
@@ -1103,7 +1148,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "gastronomie"
     ],
     "price": "200 000 Ar",
     "rating": 4.4,
@@ -1131,7 +1177,9 @@ window.LIEUX_DATA = [
       "diego",
       "manger",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "gastronomie",
+      "culture"
     ],
     "price": "50 000 Ar",
     "rating": 4.6,
@@ -1159,7 +1207,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.3,
@@ -1186,7 +1235,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots"
     ],
     "price": "15 000 Ar",
     "rating": 4.5,
@@ -1243,7 +1293,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "spots",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "10 000 Ar",
     "rating": 4.6,
@@ -1266,7 +1317,8 @@ window.LIEUX_DATA = [
       "diego",
       "explorer",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -1313,7 +1365,9 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "culture"
     ],
     "price": "Gratuit",
     "rating": 4.4,
@@ -1358,7 +1412,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "dormir",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Convivial",
     "rating": 4.3,
@@ -1464,7 +1519,9 @@ window.LIEUX_DATA = [
       "spots",
       "nosybe",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "famille"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -1492,7 +1549,8 @@ window.LIEUX_DATA = [
       "manger",
       "nosybe",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "20 000 Ar",
     "rating": 4.7,
@@ -1519,7 +1577,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.9,
@@ -1573,7 +1633,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "culture"
     ],
     "price": "45 000 Ar",
     "rating": 4.6,
@@ -1627,7 +1689,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "culture"
     ],
     "price": "30 000 Ar",
     "rating": 4.6,
@@ -1656,7 +1720,8 @@ window.LIEUX_DATA = [
       "nosybe",
       "sortir",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.2,
@@ -1683,7 +1748,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.7,
@@ -1710,7 +1777,9 @@ window.LIEUX_DATA = [
     "tags": [
       "manger",
       "nosybe",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "gastronomie"
     ],
     "price": "50 000 Ar",
     "rating": 4.9,
@@ -1738,7 +1807,9 @@ window.LIEUX_DATA = [
       "spots",
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "aventure"
     ],
     "price": "75 000 Ar",
     "rating": 4.9,
@@ -1765,7 +1836,8 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "15 000 Ar",
     "rating": 4.5,
@@ -1794,7 +1866,9 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "nosybe",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "culture"
     ],
     "price": "5 000 Ar",
     "rating": 4.9,
@@ -1819,7 +1893,9 @@ window.LIEUX_DATA = [
       "manger",
       "nosybe",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "detente",
+      "luxe"
     ],
     "price": "Dès 180 €",
     "rating": 4.9,
@@ -1843,7 +1919,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "culture",
+      "detente"
     ],
     "price": "Dès 120 €",
     "rating": 4.7,
@@ -1868,7 +1946,9 @@ window.LIEUX_DATA = [
       "nosybe",
       "explorer",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature",
+      "luxe"
     ],
     "price": "Dès 200 €",
     "rating": 4.8,
@@ -1917,7 +1997,8 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature"
     ],
     "price": "Dès 45 €",
     "rating": 4.5,
@@ -1940,7 +2021,9 @@ window.LIEUX_DATA = [
     "tags": [
       "manger",
       "nosybe",
-      "budget_2"
+      "budget_2",
+      "gastronomie",
+      "luxe"
     ],
     "price": "60 000 Ar",
     "rating": 4.8,
@@ -2041,7 +2124,8 @@ window.LIEUX_DATA = [
       "manger",
       "nosybe",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "price": "45 000 Ar",
     "rating": 4.8,
@@ -2070,7 +2154,9 @@ window.LIEUX_DATA = [
       "nosybe",
       "sortir",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "aventure"
     ],
     "price": "35 000 Ar",
     "rating": 4.6,
@@ -2095,7 +2181,8 @@ window.LIEUX_DATA = [
       "sortir",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "10 000 Ar",
     "rating": 4.6,
@@ -2191,7 +2278,8 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "10 000 Ar",
     "rating": 4.8,
@@ -2275,7 +2363,8 @@ window.LIEUX_DATA = [
       "manger",
       "majunga",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -2303,7 +2392,9 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.8,
@@ -2331,7 +2422,8 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots"
     ],
     "price": "15 000 Ar",
     "rating": 4.5,
@@ -2358,7 +2450,9 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "spots"
     ],
     "price": "35 000 Ar",
     "rating": 4.7,
@@ -2412,7 +2506,9 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.4,
@@ -2440,7 +2536,8 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots"
     ],
     "price": "5 000 Ar",
     "rating": 4.3,
@@ -2468,7 +2565,8 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.6,
@@ -2497,7 +2595,8 @@ window.LIEUX_DATA = [
       "spots",
       "majunga",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -2524,7 +2623,9 @@ window.LIEUX_DATA = [
     "tags": [
       "manger",
       "majunga",
-      "budget_2"
+      "budget_2",
+      "spots",
+      "luxe"
     ],
     "price": "45 000 Ar",
     "rating": 4.7,
@@ -2553,7 +2654,9 @@ window.LIEUX_DATA = [
       "majunga",
       "sortir",
       "dormir",
-      "budget_2"
+      "budget_2",
+      "spots",
+      "gastronomie"
     ],
     "price": "35 000 Ar",
     "rating": 4.6,
@@ -2582,7 +2685,8 @@ window.LIEUX_DATA = [
       "majunga",
       "sortir",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "price": "25 000 Ar",
     "rating": 4.4,
@@ -2611,7 +2715,9 @@ window.LIEUX_DATA = [
       "spots",
       "majunga",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "detente"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -2639,7 +2745,9 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "detente",
+      "luxe"
     ],
     "price": "350 000 Ar",
     "rating": 4.8,
@@ -2667,7 +2775,9 @@ window.LIEUX_DATA = [
       "manger",
       "majunga",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "spots",
+      "gastronomie"
     ],
     "price": "280 000 Ar",
     "rating": 4.7,
@@ -2695,7 +2805,8 @@ window.LIEUX_DATA = [
       "sortir",
       "majunga",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature"
     ],
     "price": "120 000 Ar",
     "rating": 4.5,
@@ -2780,7 +2891,8 @@ window.LIEUX_DATA = [
       "explorer",
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Cocktails 15 000 Ar",
     "rating": 4.6,
@@ -2807,7 +2919,8 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots"
     ],
     "price": "Bière 4 000 Ar",
     "rating": 4.2,
@@ -2834,7 +2947,8 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "detente"
     ],
     "price": "Verre 20 000 Ar",
     "rating": 4.5,
@@ -2861,7 +2975,9 @@ window.LIEUX_DATA = [
     "tags": [
       "explorer",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.8,
@@ -2887,7 +3003,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://vakonaforestlodge.com",
     "tags": [
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "35 000 Ar",
     "rating": 4.7,
@@ -2916,7 +3034,8 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -2943,7 +3062,9 @@ window.LIEUX_DATA = [
     "tags": [
       "explorer",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.9,
@@ -2969,7 +3090,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
     "tags": [
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "famille"
     ],
     "price": "Inclus parc",
     "rating": 4.8,
@@ -2998,7 +3121,8 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.9,
@@ -3025,7 +3149,8 @@ window.LIEUX_DATA = [
     "tags": [
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -3051,7 +3176,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://www.reniala.com",
     "tags": [
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "spots"
     ],
     "price": "15 000 Ar",
     "rating": 4.6,
@@ -3080,7 +3207,8 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "gastronomie"
     ],
     "price": "Gratuit",
     "rating": 4.9,
@@ -3107,7 +3235,9 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.8,
@@ -3134,7 +3264,9 @@ window.LIEUX_DATA = [
     "tags": [
       "explorer",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "famille"
     ],
     "price": "Inclus parc",
     "rating": 4.7,
@@ -3162,7 +3294,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://tourisme-majunga.com",
     "tags": [
       "spots",
-      "budget_1"
+      "budget_1",
+      "culture",
+      "gastronomie"
     ],
     "price": "20 000 Ar",
     "rating": 4.8,
@@ -3189,7 +3323,9 @@ window.LIEUX_DATA = [
     "tags": [
       "explorer",
       "sortir",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "price": "45 000 Ar",
     "rating": 4.6,
@@ -3215,7 +3351,9 @@ window.LIEUX_DATA = [
     "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
     "tags": [
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature",
+      "famille"
     ],
     "price": "20 000 Ar",
     "rating": 4.7,
@@ -3241,7 +3379,8 @@ window.LIEUX_DATA = [
     "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
     "tags": [
       "spots",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -3267,7 +3406,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -3320,7 +3460,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "15 000 Ar",
     "rating": 4.7,
@@ -3427,7 +3568,9 @@ window.LIEUX_DATA = [
       "manger",
       "sortir",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "culture"
     ],
     "price": "60 000 Ar",
     "rating": 4.8,
@@ -3454,7 +3597,8 @@ window.LIEUX_DATA = [
       "fianar",
       "manger",
       "dormir",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "45 000 Ar",
     "rating": 4.7,
@@ -3480,7 +3624,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "manger",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "25 000 Ar",
     "rating": 4.3,
@@ -3534,7 +3679,8 @@ window.LIEUX_DATA = [
       "sortir",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.5,
@@ -3559,7 +3705,9 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "famille"
     ],
     "price": "8 000 Ar",
     "rating": 4.3,
@@ -3585,7 +3733,8 @@ window.LIEUX_DATA = [
       "fianar",
       "dormir",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "spots"
     ],
     "price": "15 000 Ar",
     "rating": 4,
@@ -3611,7 +3760,8 @@ window.LIEUX_DATA = [
       "fianar",
       "dormir",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "detente"
     ],
     "price": "12 000 Ar",
     "rating": 4.6,
@@ -3690,7 +3840,8 @@ window.LIEUX_DATA = [
       "fianar",
       "spots",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "Gratuit",
     "rating": 4.4,
@@ -3792,7 +3943,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "detente"
     ],
     "price": "200 000 Ar",
     "rating": 4.5,
@@ -3844,7 +3996,9 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature",
+      "famille"
     ],
     "price": "160 000 Ar",
     "rating": 4.7,
@@ -3897,7 +4051,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "aventure",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.7,
@@ -3924,7 +4080,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "spots",
+      "nature"
     ],
     "price": "Gratuit",
     "rating": 4.9,
@@ -3951,7 +4109,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "20 000 Ar",
     "rating": 4.6,
@@ -3979,7 +4138,8 @@ window.LIEUX_DATA = [
       "spots",
       "tulear",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "culture"
     ],
     "price": "10 000 Ar",
     "rating": 4.3,
@@ -4006,7 +4166,8 @@ window.LIEUX_DATA = [
     "tags": [
       "manger",
       "tulear",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "45 000 Ar",
     "rating": 4.7,
@@ -4060,7 +4221,8 @@ window.LIEUX_DATA = [
     "tags": [
       "manger",
       "tulear",
-      "budget_2"
+      "budget_2",
+      "gastronomie"
     ],
     "price": "35 000 Ar",
     "rating": 4.5,
@@ -4088,7 +4250,8 @@ window.LIEUX_DATA = [
       "manger",
       "tulear",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "price": "30 000 Ar",
     "rating": 4.8,
@@ -4142,7 +4305,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "detente"
     ],
     "price": "200 000 Ar",
     "rating": 4.7,
@@ -4171,7 +4335,8 @@ window.LIEUX_DATA = [
       "tulear",
       "sortir",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "gastronomie"
     ],
     "price": "150 000 Ar",
     "rating": 4.6,
@@ -4198,7 +4363,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "aventure",
+      "luxe"
     ],
     "price": "300 000 Ar",
     "rating": 4.8,
@@ -4224,7 +4391,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "famille"
     ],
     "price": "250 000 Ar",
     "rating": 4.6,
@@ -4333,7 +4501,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "sortir",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "price": "10 000 Ar",
     "rating": 4.5,
@@ -4357,7 +4526,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "prixNum": 10000
   },
@@ -4403,7 +4573,8 @@ window.LIEUX_DATA = [
       "diego",
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "nature"
     ],
     "prixNum": 0
   },
@@ -4447,7 +4618,8 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "prixNum": 10000
   },
@@ -4464,7 +4636,9 @@ window.LIEUX_DATA = [
     "tags": [
       "diego",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature",
+      "aventure"
     ],
     "lat": -12.3,
     "lng": 49.3,
@@ -4485,7 +4659,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "aventure"
     ],
     "lat": -13.4833,
     "lng": 48.2389,
@@ -4548,7 +4724,9 @@ window.LIEUX_DATA = [
     "tags": [
       "nosybe",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "aventure"
     ],
     "lat": -13.4,
     "lng": 48.3,
@@ -4569,7 +4747,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "detente"
     ],
     "lat": -18.9,
     "lng": 47.5,
@@ -4591,7 +4770,8 @@ window.LIEUX_DATA = [
       "explorer",
       "tana",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "culture"
     ],
     "lat": -18.9,
     "lng": 47.5,
@@ -4612,7 +4792,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tana",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "lat": -18.8,
     "lng": 47.4,
@@ -4657,7 +4839,9 @@ window.LIEUX_DATA = [
     "tags": [
       "majunga",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "lat": -16.3167,
     "lng": 46.8167,
@@ -4701,7 +4885,8 @@ window.LIEUX_DATA = [
       "majunga",
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "nature"
     ],
     "lat": -15.6,
     "lng": 46.3,
@@ -4722,7 +4907,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tamatave",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature",
+      "famille"
     ],
     "lat": -18.9333,
     "lng": 48.4167,
@@ -4743,7 +4930,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tamatave",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "spots",
+      "culture"
     ],
     "lat": -18.1499,
     "lng": 49.4023,
@@ -4814,7 +5003,9 @@ window.LIEUX_DATA = [
       "tulear",
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "nature",
+      "detente"
     ],
     "lat": -23.15,
     "lng": 43.6167,
@@ -4835,7 +5026,8 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "nature"
     ],
     "lat": -23.1667,
     "lng": 43.6,
@@ -4856,7 +5048,9 @@ window.LIEUX_DATA = [
     "tags": [
       "tulear",
       "dormir",
-      "budget_3"
+      "budget_3",
+      "nature",
+      "luxe"
     ],
     "lat": -23.6,
     "lng": 43.6,
@@ -4918,7 +5112,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "explorer",
-      "budget_2"
+      "budget_2",
+      "nature"
     ],
     "lat": -21.2,
     "lng": 47.4,

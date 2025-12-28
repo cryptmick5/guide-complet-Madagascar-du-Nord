@@ -29,6 +29,26 @@ class GasikaraAnimations {
         console.log('✅ Animations initialized');
     }
 
+    /**
+     * Refresh animations for dynamically loaded cards
+     * Call this after filtering or page navigation
+     */
+    static refresh() {
+        console.log('🔄 Refreshing animations...');
+
+        // Kill existing ScrollTriggers
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+        // Re-initialize
+        this.initCardHovers();
+        this.initScrollReveals();
+
+        // Refresh ScrollTrigger
+        ScrollTrigger.refresh();
+
+        console.log('✅ Animations refreshed');
+    }
+
     // ==========================================
     // CARD ANIMATIONS
     // ==========================================
@@ -123,7 +143,7 @@ class GasikaraAnimations {
             opacity: 0,
             duration: GSAP_CONFIG.modal.backdropFade,
             ease: 'none'
-        })
+        }, 0)
             .from(content, {
                 scale: GSAP_CONFIG.modal.contentScale.from,
                 opacity: 0,
@@ -135,7 +155,10 @@ class GasikaraAnimations {
                 opacity: 0,
                 y: -20,
                 duration: 0.3
-            }, '-=0.2');
+            }, '-=0.2')
+            // CRITICAL FIX: Ensure final opacity is explicitly set
+            .set(overlay, { opacity: 1 })
+            .set(content, { opacity: 1 });
 
         // Stagger info items if they exist
         if (infoItems.length > 0) {
@@ -299,22 +322,27 @@ class GasikaraAnimations {
     static initScrollReveals() {
         if (shouldReduceMotion()) return;
 
-        // Reveal sections on scroll
-        gsap.utils.toArray('.page-section').forEach(section => {
-            gsap.from(section, {
-                opacity: 0,
-                y: 30,
-                duration: 0.6,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 50%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
+        // Use ScrollTrigger.batch for better performance with many cards
+        ScrollTrigger.batch('.lieu-card', {
+            onEnter: batch => {
+                gsap.from(batch, {
+                    opacity: 0,
+                    y: GSAP_CONFIG.cards.revealY,
+                    stagger: {
+                        amount: GSAP_CONFIG.cards.staggerAmount,
+                        from: GSAP_CONFIG.cards.staggerFrom,
+                        ease: 'power1.out'
+                    },
+                    duration: GSAP_CONFIG.cards.revealDuration,
+                    ease: GSAP_CONFIG.cards.hoverEase,
+                    overwrite: 'auto'
+                });
+            },
+            start: 'top 85%',
+            once: true // Only animate once
         });
 
-        console.log('  ✓ Scroll reveals initialized');
+        console.log('  ✓ Scroll reveals initialized for cards');
     }
 
     // ==========================================

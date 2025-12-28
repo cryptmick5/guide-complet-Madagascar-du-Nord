@@ -196,6 +196,13 @@ window.navigateToPage = function (pageName) {
             setTimeout(() => { if (window.leafletMap) window.leafletMap.invalidateSize(); }, 300);
         }
 
+        // GSAP: Refresh animations for new page content
+        setTimeout(() => {
+            if (window.GasikaraAnimations) {
+                window.GasikaraAnimations.refresh();
+            }
+        }, 100);
+
         // SPECIAL NORD LOGIC RE-TRIGGER
         // ⚡ FORCE PREMIUM ENGINE TRIGGER (Mirroring Diego & Nosy Be)
         if (targetId.toLowerCase().includes('antsiranana') || targetId.toLowerCase().includes('diego')) {
@@ -1333,15 +1340,34 @@ window.openLieuModal = function (lieu) {
     if (closeBtn) {
         closeBtn.addEventListener('click', window.closeLieuModal);
     }
+
+    // GSAP Animation: Animate modal opening
+    const modal = document.getElementById('lieu-modal-overlay');
+    if (modal && window.GasikaraAnimations) {
+        window.GasikaraAnimations.openModal(modal);
+    }
 };
 
 window.closeLieuModal = function () {
     const modal = document.getElementById('lieu-modal-overlay');
     if (modal) {
-        modal.classList.remove('active');
-        setTimeout(() => modal.remove(), 300);
+        // GSAP Animation: Animate modal closing (with callback)
+        if (window.GasikaraAnimations) {
+            window.GasikaraAnimations.closeModal(modal, () => {
+                modal.remove();
+                document.body.style.overflow = '';
+            });
+        } else {
+            // Fallback without GSAP
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.remove();
+                document.body.style.overflow = '';
+            }, 300);
+        }
+    } else {
+        document.body.style.overflow = '';
     }
-    document.body.style.overflow = '';
 };
 
 window.locateOnMap = function (lat, lng) {

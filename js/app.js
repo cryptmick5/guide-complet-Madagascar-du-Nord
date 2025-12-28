@@ -925,6 +925,13 @@ window.renderCityData = function () {
 
     // Auto-Init Switch if on North Page
     // initNorthSwitch(); // REMOVED: Nosy Be is independent
+
+    // ✨ GSAP: Re-initialize animations after cards are rendered
+    // Fix timing issue where cards are generated after initial GSAP init
+    if (window.GasikaraAnimations && typeof window.GasikaraAnimations.init === 'function') {
+        console.log('🎨 Re-initializing GSAP animations for newly rendered cards...');
+        window.GasikaraAnimations.init();
+    }
 }
 
 /* ============================================

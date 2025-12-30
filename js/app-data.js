@@ -46,24 +46,16 @@ async function initData() {
     }
 }
 
-// --- SHARED CARD GENERATOR ---
-// --- SHARED CARD GENERATOR ---
+// --- SHARED CARD GENERATOR - 2026 MODERN DESIGN ---
 function createLieuCard(lieu) {
     const createBudgetBadge = (price) => {
         if (!price) return '';
         const num = parseInt(price.replace(/\D/g, '')) || 0;
 
-        // Logic: Low (<50k), Mid (50-180k), High (>180k)
-        // Adapted for Restaurants (<15k, 15-45k, >50k) ?
-        // Simplifying rule for mixed content:
-        // Food: Low < 20k, Mid < 50k, High > 50k
-        // Hotel: Low < 60k, Mid < 180k, High > 180k
-
         let level = 'low';
         let symbol = '€';
         let label = 'Éco';
 
-        // Basic heuristic detection based on type (if available) or generic threshold
         const isResto = ['Restaurant', 'Bar', 'Snack'].includes(lieu.type);
 
         if (isResto) {
@@ -74,36 +66,92 @@ function createLieuCard(lieu) {
             else if (num > 60000) { level = 'mid'; symbol = '€€'; label = 'Confort'; }
         }
 
-        if (num === 0) return '<span class="badge-budget budget-low">Gratuit</span>';
+        if (num === 0) return '<span class="badge-budget-2026 budget-low">Gratuit</span>';
 
-        return `<span class="badge-budget budget-${level}" title="${label}">${symbol}</span>`;
+        return `<span class="badge-budget-2026 budget-${level}" title="${label}">${symbol}</span>`;
     };
 
     const imagePath = lieu.image || 'https://placehold.co/600x400?text=No+Image';
+    const isFavorite = window.favorites && window.favorites.includes(lieu.id);
+    const favoriteClass = isFavorite ? 'active' : '';
+    const favoriteIcon = isFavorite ? 'fa-solid' : 'fa-regular';
+
+    // Détecter si c'est Incontournable
+    const isIncontournable = lieu.type === 'Incontournable' ||
+        (lieu.tags && lieu.tags.includes('Incontournable'));
+    const badgeTypeClass = isIncontournable ? 'incontournable' : '';
 
     return `
-        <div class="lieu-card" data-id="${lieu.id}" data-type="${lieu.type}" data-ville="${lieu.ville}">
-             <div class="lieu-image" style="background-image: url('${imagePath}'); position:relative; background-size: cover; background-position: center;">
-                  <button class="btn-favorite" onclick="toggleLieuFavorite(${lieu.id}, this, event)">
-                        <i class="fa-regular fa-bookmark"></i>
-                  </button>
-                  <div style="position:absolute; bottom:10px; left:10px; display:flex; gap:6px;">
-                      <span class="card-image-badge-city"><i class="fas fa-map-marker-alt"></i> ${lieu.ville}</span>
-                  </div>
-             </div>
-             <div class="lieu-content">
-                <div class="lieu-header-row">
-                    <h3 class="lieu-title">${lieu.nom}</h3>
-                    ${lieu.note ? `<span class="lieu-note">⭐ ${lieu.note}</span>` : ''}
-                </div>
-                <div class="lieu-meta-row">
-                    <span class="badge-type">${lieu.type}</span>
+        <article class="lieu-card-2026" data-id="${lieu.id}" data-type="${lieu.type}" data-ville="${lieu.ville}">
+            <!-- Image Section avec overlay premium -->
+            <div class="card-image-2026">
+                <img src="${imagePath}" alt="${lieu.nom}" loading="lazy">
+                
+                <!-- Badges overlay (haut) -->
+                <div class="badges-overlay-2026">
+                    <span class="badge-type-2026 ${badgeTypeClass}">${lieu.type}</span>
                     ${createBudgetBadge(lieu.prix)}
                 </div>
-                <div class="lieu-desc">${lieu.description ? lieu.description.substring(0, 90) + '...' : ''}</div>
-                <button class="btn-details full-width" onclick="openModal(${lieu.id})">Voir détails</button>
-             </div>
-        </div>
+                
+                <!-- Badge ville (bas gauche) -->
+                <div class="badge-ville-2026">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${lieu.ville}</span>
+                </div>
+                
+                <!-- Bouton favori (haut droite) -->
+                <button class="btn-favorite-2026 ${favoriteClass}" data-lieu-id="${lieu.id}" aria-label="Ajouter aux favoris">
+                    <i class="${favoriteIcon} fa-bookmark"></i>
+                </button>
+                
+                <!-- Note si disponible -->
+                ${lieu.note ? `
+                <div class="card-rating-2026">
+                    <i class="fas fa-star"></i>
+                    <span>${lieu.note}</span>
+                </div>
+                ` : ''}
+            </div>
+            
+            <!-- Info Bar Horizontale (style référence moderne) -->
+            <div class="card-info-bar-2026">
+                <div class="info-item-2026">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="info-label">Lieu</span>
+                    <span class="info-value">${lieu.ville}</span>
+                </div>
+                
+                <div class="info-divider-2026"></div>
+                
+                <div class="info-item-2026">
+                    <i class="fas fa-wallet"></i>
+                    <span class="info-label">Prix</span>
+                    <span class="info-value">${lieu.prix || 'Gratuit'}</span>
+                </div>
+                
+                <div class="info-divider-2026"></div>
+                
+                <div class="info-item-2026">
+                    <i class="fas fa-star"></i>
+                    <span class="info-label">Note</span>
+                    <span class="info-value">${lieu.note || '-'}</span>
+                </div>
+                
+                <div class="info-divider-2026"></div>
+                
+                <div class="info-item-2026">
+                    <i class="fas fa-clock"></i>
+                    <span class="info-label">Durée</span>
+                    <span class="info-value">${lieu.duree || 'Variable'}</span>
+                </div>
+            </div>
+            
+            <!-- Content (Titre + Description) -->
+            <div class="card-content-2026">
+                <h3 class="card-title-2026">${lieu.nom}</h3>
+                <p class="card-description-2026">${lieu.description || 'Découvrez ce lieu unique à Madagascar...'}</p>
+            </div>
+        </article>
     `;
 }
 
@@ -387,3 +435,39 @@ function applyExplorerFilters() {
         container.innerHTML = filtered.map(lieu => createLieuCard(lieu)).join('');
     }
 }
+
+/* =========================================================================
+   EVENT DELEGATION FOR 2026 CARDS - Modern Approach
+   ========================================================================= */
+
+// Use event delegation on document for all card interactions
+document.addEventListener('click', function (e) {
+    // Handle favorite button clicks
+    if (e.target.closest('.btn-favorite-2026')) {
+        e.stopPropagation(); // Prevent card click
+        const btn = e.target.closest('.btn-favorite-2026');
+        const lieuId = parseInt(btn.dataset.lieuId);
+
+        if (typeof window.toggleLieuFavorite === 'function') {
+            window.toggleLieuFavorite(lieuId, btn, e);
+        }
+        return;
+    }
+
+    // Handle card clicks to open modal
+    const card = e.target.closest('.lieu-card-2026');
+    if (card) {
+        const lieuId = parseInt(card.dataset.id);
+
+        // Open modal - check if openModal or openLieuModal exists
+        if (typeof window.openModal === 'function') {
+            window.openModal(lieuId);
+        } else if (typeof window.openLieuModal === 'function') {
+            // Find lieu object from LIEUX_DATA
+            const lieu = window.LIEUX_DATA.find(l => l.id === lieuId);
+            if (lieu) {
+                window.openLieuModal(lieu);
+            }
+        }
+    }
+});

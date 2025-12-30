@@ -6,7 +6,11 @@
     "type": "spot-local",
     "prix": "< 10 000 Ar",
     "description": "Un paysage surréaliste de formations de grès rouge sculptées par l'érosion.",
-    "image": "images/spots/tsingy-rouge.jpg"
+    "image": "images/spots/tsingy-rouge.jpg",
+    "tags": [
+      "spots",
+      "explorer"
+    ]
   },
   {
     "nom": "Montagne d'Ambre",
@@ -15,7 +19,11 @@
     "type": "nature",
     "prix": ">= 10 000 Ar",
     "description": "Un parc national luxuriant avec des cascades, des lacs de cratère et une faune endémique.",
-    "image": "images/spots/montagne-ambre.jpg"
+    "image": "images/spots/montagne-ambre.jpg",
+    "tags": [
+      "explorer",
+      "nature"
+    ]
   },
   {
     "nom": "Ankarana",
@@ -24,7 +32,11 @@
     "type": "nature",
     "prix": ">= 10 000 Ar",
     "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
-    "image": "images/spots/ankarana.jpg"
+    "image": "images/spots/ankarana.jpg",
+    "tags": [
+      "explorer",
+      "nature"
+    ]
   },
   {
     "nom": "Diego-Suarez",
@@ -33,7 +45,10 @@
     "type": "ville",
     "prix": "gratuit",
     "description": "Une ville portuaire animée avec une architecture coloniale et une baie spectaculaire.",
-    "image": "images/villes/diego-suarez.jpg"
+    "image": "images/villes/diego-suarez.jpg",
+    "tags": [
+      "explorer"
+    ]
   },
   {
     "nom": "Baie Sakalava",
@@ -42,7 +57,11 @@
     "type": "plage",
     "prix": "gratuit",
     "description": "Une baie magnifique avec des plages de sable blanc et des eaux turquoise, idéale pour le kitesurf.",
-    "image": "images/iles/baie-sakalava.jpg"
+    "image": "images/iles/baie-sakalava.jpg",
+    "tags": [
+      "explorer",
+      "nature"
+    ]
   },
   {
     "nom": "Mer d'Émeraude",
@@ -51,7 +70,11 @@
     "type": "plage",
     "prix": "< 10 000 Ar",
     "description": "Un lagon aux eaux cristallines et aux couleurs éblouissantes, parfait pour la plongée en apnée.",
-    "image": "images/iles/mer-emeraude.jpg"
+    "image": "images/iles/mer-emeraude.jpg",
+    "tags": [
+      "explorer",
+      "nature"
+    ]
   },
   {
     "nom": "Pain de Sucre",
@@ -60,7 +83,11 @@
     "type": "spot-local",
     "prix": "gratuit",
     "description": "Un îlot emblématique au milieu de la baie de Diego-Suarez, offrant une vue panoramique.",
-    "image": "images/spots/pain-de-sucre.jpg"
+    "image": "images/spots/pain-de-sucre.jpg",
+    "tags": [
+      "spots",
+      "explorer"
+    ]
   },
   {
     "nom": "Windsor Castle",
@@ -69,7 +96,11 @@
     "type": "spot-local",
     "prix": "gratuit",
     "description": "Une formation rocheuse offrant une vue imprenable sur la baie de Diego-Suarez.",
-    "image": "images/spots/windsor-castle.jpg"
+    "image": "images/spots/windsor-castle.jpg",
+    "tags": [
+      "spots",
+      "explorer"
+    ]
   },
   {
     "nom": "Réserve Ankarana",
@@ -78,6 +109,10 @@
     "type": "nature",
     "prix": ">= 10 000 Ar",
     "description": "Une réserve spéciale célèbre pour ses tsingy, ses grottes et ses canyons.",
-    "image": "images/spots/ankarana.jpg"
+    "image": "images/spots/ankarana.jpg",
+    "tags": [
+      "explorer",
+      "nature"
+    ]
   }
 ]

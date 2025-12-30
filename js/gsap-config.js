@@ -24,37 +24,37 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 const GSAP_CONFIG = {
     // Card Animations
     cards: {
-        hoverDuration: 0.3,
+        hoverDuration: 0.25,     // Faster hover response
         hoverEase: 'power2.out',
         hoverLift: -8,          // pixels to lift on hover
         hoverScale: 1.02,
         hoverShadow: '0 20px 60px rgba(0,0,0,0.15)',
-        staggerAmount: 0.8,      // total time for stagger animation
+        staggerAmount: 0.3,      // REDUCED: 0.8s → 0.3s for faster reveals
         staggerFrom: 'start',
-        revealDuration: 0.5,
+        revealDuration: 0.4,     // REDUCED: 0.5s → 0.4s
         revealY: 40
     },
 
     // Modal Animations
     modal: {
-        openDuration: 0.6,
-        closeDuration: 0.3,
-        backdropFade: 0.3,
-        contentScale: { from: 0.8, to: 1 },
-        contentY: 50,
-        stagger: 0.08,
+        openDuration: 0.35,      // REDUCED: 0.6s → 0.35s for snappier feel
+        closeDuration: 0.25,     // REDUCED: 0.3s → 0.25s
+        backdropFade: 0.2,       // REDUCED: 0.3s → 0.2s
+        contentScale: { from: 0.9, to: 1 },  // REDUCED scale from 0.8 → 0.9 for subtler effect
+        contentY: 30,            // REDUCED: 50px → 30px for less dramatic entrance
+        stagger: 0.05,           // REDUCED: 0.08s → 0.05s
         ease: {
-            open: 'back.out(1.2)',
+            open: 'power3.out',  // CHANGED: back.out → power3.out for smoother, faster feel
             close: 'power2.in'
         }
     },
 
     // Filter Transitions
     filters: {
-        fadeOutDuration: 0.2,
-        fadeInDuration: 0.4,
+        fadeOutDuration: 0.15,   // REDUCED: 0.2s → 0.15s
+        fadeInDuration: 0.3,     // REDUCED: 0.4s → 0.3s
         fadeOutScale: 0.95,
-        staggerAmount: 0.5,
+        staggerAmount: 0.25,     // REDUCED: 0.5s → 0.25s (2x faster)
         staggerFrom: 'random',
         badgeBounce: 'back.out(1.1)'
     },

@@ -886,7 +886,8 @@ window.renderCityData = function () {
         'Toliara': 'Toliara', 'Tuléar': 'Toliara', 'Tulear': 'Toliara',
         // MISSING CITIES MAPPED TO HUBS
         'Isalo': 'Toliara', 'Ifaty': 'Toliara', 'Anakao': 'Toliara',
-        'Andasibe': 'Toamasina', 'Sainte-Marie': 'Toamasina', 'Mananara': 'Toamasina',
+        'Andasibe': 'Toamasina', 'Mananara': 'Toamasina',
+        'Sainte-Marie': 'Saintemarie', 'Ile aux Nattes': 'Saintemarie', // New Independent Hub
         'Ankarana': 'Antsiranana', 'Sambava': 'Antsiranana', 'Antalaha': 'Antsiranana', 'Vohémar': 'Antsiranana', 'Ambilobe': 'Antsiranana',
         // NEW ORPHANS
         'Ampefy': 'Antananarivo', 'Antsirabe': 'Antananarivo',
@@ -1228,19 +1229,19 @@ window.openLieuModal = function (lieu) {
 
     const html = `
     <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;" onclick="if(event.target.id === 'lieu-modal-overlay') window.closeLieuModal();">
-        <div class="modal-content fade-in-up">
+        <div class="modal-content fade-in-up" style="position:relative;">
             
+            <!-- Close Button: MOVED OUTSIDE HEADER FOR Z-INDEX FIX -->
+            <button class="btn-close-modal-overlay" id="modal-close-btn" onclick="window.closeLieuModal()"
+                    style="position: absolute; top: 15px; right: 15px; z-index: 100000; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary); pointer-events: auto;">
+                <i class="fas fa-times" style="font-size: 1.2rem;"></i>
+            </button>
+
             <!-- 1. HERO HEADER (Fixed with fallback & 100% min-height) -->
             <div class="modal-hero-header" style="min-height: 200px; background: var(--bg-secondary); position: relative;">
                 <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
                      style="width: 100%; height: 250px; object-fit: cover;"
                      onerror="this.onerror=null; this.src=''; this.parentElement.style.background='linear-gradient(135deg, var(--laterite), var(--noir))'; this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:3rem;&quot;><i class=&quot;fas fa-image&quot;></i></div>' + this.parentElement.innerHTML;">
-                
-                <!-- Close Button: FORCED POSITION & Z-INDEX -->
-                <button class="btn-close-modal-overlay" id="modal-close-btn" 
-                        style="position: absolute; top: 15px; right: 15px; z-index: 99999; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary);">
-                    <i class="fas fa-times" style="font-size: 1.2rem;"></i>
-                </button>
                 
                 <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
             </div>
@@ -1592,73 +1593,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // --- FIX: SECURE CARD GENERATION ---
-/* DUPLICATE - COMMENTED OUT
-window.createLieuCard = function (lieu, category = '') {
-    // 1. Logic & Safety
-    if (!category) category = lieu.categorie || 'Explorer';
 
-    const prixClass = (lieu.prixNum === 0) ? 'gratuit' : (lieu.prixNum < 10000) ? 'abordable' : 'premium';
-    const isFav = (window.isFavorite && window.isFavorite(lieu.id));
-    const activeClass = isFav ? 'active' : '';
-    const icon = isFav ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
-
-    // 2. Data Preparation
-    // Escape quotes in strings to avoid HTML breakage
-    const escapeAttr = (s) => String(s || '').replace(/"/g, '&quot;');
-    const escapeJs = (s) => String(s || '').replace(/'/g, "\'");
-
-    const tagsString = (lieu.tags || []).join(',');
-    const displayTags = (lieu.tags || []).slice(0, 3).map(t =>
-        `<span class="card-tag" style="background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:12px; font-size:0.7rem; color:var(--text-secondary); border:1px solid var(--border-color);">${t}</span>`
-    ).join('');
-
-    const isMustSee = lieu.type === 'Incontournable' || (lieu.tags && lieu.tags.includes('Incontournable'));
-    const badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
-    const badgeText = isMustSee ? 'Incontournable' : lieu.type;
-
-    // 3. Template (Rich & Premium)
-    // NOTE: Onclick handlers use QUOTED strings for safety
-    return `
-        <article class="lieu-card" 
-                 data-id="${lieu.id}" 
-                 data-tags="${escapeAttr(tagsString)}" 
-                 data-ville="${escapeAttr(lieu.ville)}"
-                 style="position: relative; cursor: pointer; display: flex; flex-direction: column; background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s; border: 1px solid var(--border-color);">
-            
-            <div class="badge-location" style="position: absolute; top: 10px; left: 10px; z-index: 5; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
-                <i class="fas fa-map-marker-alt" style="margin-right:4px;"></i> ${lieu.ville}
-            </div>
-
-            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite ${activeClass}" 
-                    style="position: absolute; top: 10px; right: 10px; z-index: 5; background: white; border-radius: 50%; width: 32px; height: 32px; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                ${icon}
-            </button>
-            
-            <div class="lieu-image" onclick="showLieuDetailsByID(${lieu.id})" style="position: relative; height: 180px; overflow: hidden;">
-                <img src="${lieu.image}" alt="${escapeAttr(lieu.nom)}" loading="lazy" onerror="this.src='images/placeholder.jpg'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
-                <div class="lieu-badge" style="position: absolute; bottom: 10px; left: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; ${badgeStyle}">${badgeText}</div>
-            </div>
-            
-            <div class="lieu-content" onclick="showLieuDetailsByID(${lieu.id})" style="padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                <div class="lieu-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin: 0;">
-                    <h3 class="lieu-title" style="margin: 0; font-size: 1.1rem; color: var(--text-primary); line-height: 1.3; font-weight: 700;">${lieu.nom}</h3>
-                    <div class="lieu-rating" style="display: flex; align-items: center; gap: 4px; font-size: 0.85rem; color: var(--text-primary); background: var(--bg-body); padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border-color);">
-                        <i class="fas fa-star" style="color: #f1c40f; font-size: 0.8rem;"></i> ${lieu.note}
-                    </div>
-                </div>
-
-                <div class="lieu-tags" style="display: flex; gap: 6px; flex-wrap: wrap;">${displayTagsWithBudget}</div>
-
-                <p class="lieu-desc" style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">${lieu.description}</p>
-
-                <div class="lieu-footer" style="margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; border-top: 1px solid var(--border-color);">
-                     <div style="font-weight: 700; color: #b03030;">${lieu.prix || ''}</div>
-                </div>
-            </div>
-        </article>
-    `;
-};
-*/ // END DUPLICATE 2
 
 
 // --- PATCH FINAL : FILTRES BUDGET & VILLES ---
@@ -1679,72 +1614,7 @@ window.createLieuCard = function (lieu, category = '') {
 // ============================================
 
 // A. Création Carte Premium (Sécurisée)
-/* DUPLICATE 3 - COMMENTED OUT - CAUSES UNDEFINED DATA-TAGS
-window.createLieuCard = function (lieu, category = '') {
-    if (!category) category = lieu.categorie || 'Explorer';
 
-    // Détection Prix
-    let prixAffich = lieu.prix || '';
-    if (prixAffich === 'Gratuit' || prixAffich === '0') prixAffich = '<span style="color:#2ecc71">Gratuit</span>';
-
-    // Badges & Favoris
-    const isFav = (window.isFavorite && window.isFavorite(lieu.id));
-    const activeClass = isFav ? 'active' : '';
-    const icon = isFav ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
-
-    const isMustSee = lieu.type === 'Incontournable' || (lieu.tags && lieu.tags.includes('Incontournable'));
-    const badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
-    const badgeText = isMustSee ? 'Incontournable' : lieu.type;
-
-    // Tags
-    const tagsHtml = (lieu.tags || []).slice(0, 3).map(t =>
-        `<span style="background:var(--bg-primary); padding:3px 8px; border-radius:4px; font-size:0.7rem; color:var(--text-secondary); border:1px solid var(--border-color);">${t}</span>`
-    ).join('');
-
-    // Escapes
-    const safeName = (lieu.nom || '').replace(/"/g, '&quot;');
-    const safeVille = (lieu.ville || '').replace(/"/g, '&quot;');
-    const safeImage = lieu.image || 'images/placeholders/default.jpg';
-
-    return `
-        <article class="lieu-card" onclick="showLieuDetailsByID(${lieu.id})"
-                 style="position: relative; background: var(--bg-secondary); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid var(--border-color); cursor: pointer; display: flex; flex-direction: column;">
-            
-            <div style="position: relative; height: 180px; overflow: hidden;">
-                <img src="${safeImage}" alt="${safeName}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.src='images/placeholder.jpg'">
-                
-                <div style="position: absolute; top: 10px; left: 10px; ${badgeStyle} padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">
-                    ${badgeText}
-                </div>
-
-                <div onclick="event.stopPropagation(); toggleLieuFavorite(${lieu.id}, this, event)" class="${activeClass}"
-                     style="position: absolute; top: 10px; right: 10px; background: var(--bg-secondary); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); color: ${isFav ? 'var(--premium)' : 'var(--text-secondary)'}; font-size: 1rem;">
-                     ${icon}
-                </div>
-            </div>
-            
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column;">
-                <h3 style="margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700; color: var(--text-primary); line-height: 1.4;">${lieu.nom}</h3>
-                
-                <div style="display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
-                    ${tagsHtml}
-                </div>
-                
-                <p style="margin: 0 0 15px 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                    ${lieu.description}
-                </p>
-                
-                <div style="margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 700; color: var(--abordable); font-size: 0.95rem;">${prixAffich}</div>
-                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: #f1c40f; font-weight: 700; background: var(--bg-primary); padding: 2px 6px; border-radius: 4px;">
-                        <i class="fas fa-star"></i> ${lieu.note}
-                    </div>
-                </div>
-            </div>
-        </article>
-    `;
-};
-*/ // END DUPLICATE 3
 
 
 // B. Moteur de Filtre Centralisé (Diego & Nosy Be & autres)
@@ -1783,4 +1653,166 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('✅ Cards regenerated with fresh data');
         }
     }, 1000);
+});
+
+// ============================================================================
+// GLOBAL SEARCH LOGIC (PREMIUM 2026)
+// ============================================================================
+function initGlobalSearch() {
+    const searchInput = document.getElementById('globalSearchInput');
+    const resultsContainer = document.getElementById('searchResults');
+
+    if (!searchInput || !resultsContainer) {
+        console.warn('Global Search elements not found.');
+        return;
+    }
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.classList.remove('active');
+        }
+    });
+
+    // Focus input -> show results if not empty
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim().length > 0) {
+            resultsContainer.classList.add('active');
+        }
+    });
+
+    // Input handler
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length === 0) {
+            resultsContainer.classList.remove('active');
+            resultsContainer.innerHTML = '';
+            return;
+        }
+
+        if (!window.LIEUX_DATA) return;
+
+        // Filter Logic
+        const matches = window.LIEUX_DATA.filter(item => {
+            const name = (item.nom || '').toLowerCase();
+            const city = (item.ville || '').toLowerCase();
+            const tags = (item.tags || []).join(' ').toLowerCase();
+            const type = (item.type || '').toLowerCase();
+
+            return name.includes(query) ||
+                city.includes(query) ||
+                tags.includes(query) ||
+                type.includes(query);
+        }).slice(0, 10); // Limit to 10 results
+
+        renderSearchResults(matches, resultsContainer);
+    });
+}
+
+function renderSearchResults(results, container) {
+    if (results.length === 0) {
+        container.innerHTML = '<div class="search-no-results">Aucun résultat trouvé</div>';
+        container.classList.add('active');
+        return;
+    }
+
+    const html = results.map(item => `
+        <div class="search-result-item" onclick="openLieuFromSearch(${item.id})">
+            <img src="${item.image}" class="search-result-thumb" onerror="this.src='images/placeholders/default.jpg'">
+            <div class="search-result-info">
+                <h4>${item.nom}</h4>
+                <p>${item.ville} • ${item.type}</p>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = html;
+    container.classList.add('active');
+}
+
+window.openLieuFromSearch = function (id) {
+    const item = window.LIEUX_DATA.find(i => i.id === id);
+    if (item) {
+        showLieuModalDirectly(item);
+    }
+
+    // Close search
+    document.getElementById('searchResults').classList.remove('active');
+    document.getElementById('globalSearchInput').value = '';
+};
+
+function showLieuModalDirectly(lieu) {
+    const badgeType = lieu.type || 'Découverte';
+
+    const isFav = window.favorites && window.favorites.includes(lieu.id);
+    const favIcon = isFav ? '<i class="fas fa-heart text-red-500"></i>' : '<i class="far fa-heart"></i>';
+    const activeClass = isFav ? 'active' : '';
+
+    const hasYAller = lieu.y_aller && lieu.y_aller.trim() !== "";
+    // const hasWebsite = lieu.siteWeb && lieu.siteWeb.trim() !== ""; // unused in this simplified modal
+
+    const priceDisplay = lieu.prix || 'Gratuit';
+    const noteDisplay = lieu.note || '-';
+    // const dureeDisplay = lieu.duree || 'Variable'; // unused
+    const villeDisplay = lieu.ville || 'Madagascar';
+
+    const html = `
+            <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;" onclick="if(event.target.id === 'lieu-modal-overlay') window.closeLieuModal();">
+                <div class="modal-content fade-in-up" style="position:relative;">
+                    
+                     <button class="btn-close-modal-overlay" id="modal-close-btn" onclick="window.closeLieuModal()"
+                        style="position: absolute; top: 15px; right: 15px; z-index: 100000; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary); pointer-events: auto;">
+                        <i class="fas fa-times" style="font-size: 1.2rem;"></i>
+                    </button>
+
+                    <div class="modal-hero-header" style="min-height: 200px; background: var(--bg-secondary); position: relative;">
+                        <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
+                             style="width: 100%; height: 250px; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='images/placeholders/default.jpg'">
+                        <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
+                    </div>
+
+                    <div class="modal-title-block">
+                        <h2 class="modal-main-title">${lieu.nom}</h2>
+                        <span class="modal-category-badge">${badgeType}</span>
+                        <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" 
+                                style="position:absolute; top:15px; left:15px; background:white; color:var(--laterite); width:36px; height:36px; border-radius:50%; border:none; box-shadow:0 4px 6px rgba(0,0,0,0.2); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10;">
+                            ${favIcon}
+                        </button>
+                    </div>
+
+                    <div class="modal-info-grid">
+                        <div class="modal-info-box"><span class="modal-info-label">Ville</span><span class="modal-info-value">${villeDisplay}</span></div>
+                        <div class="modal-info-box"><span class="modal-info-label">Prix</span><span class="modal-info-value">${priceDisplay}</span></div>
+                        <div class="modal-info-box"><span class="modal-info-label">Note</span><span class="modal-info-value">${noteDisplay}</span></div>
+                    </div>
+
+                    <div class="modal-description-text">${lieu.description}</div>
+                    
+                    ${lieu.conseil ? `<div class="modal-conseil-block"><div class="modal-conseil-title">💡 Conseil du Local</div><p class="modal-conseil-text">${lieu.conseil}</p></div>` : ''}
+
+                    <div class="modal-footer-actions">
+                         <div class="modal-action-row" style="display:flex; flex-direction:column; gap:10px;">
+                            ${hasYAller ? `<button class="btn-action-red" onclick="window.open('${lieu.y_aller}', '_blank')" style="width:100%; padding:14px; background:var(--laterite); color:white; border:none; border-radius:12px; font-weight:700;">Y aller</button>` :
+            `<button class="btn-action secondary" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})" style="width:100%; padding:14px; background:var(--bg-secondary); border:2px solid var(--border-color); border-radius:12px;">Voir sur la carte</button>`}
+                        </div>
+                    </div>
+                    <div style="height:20px;"></div>
+                </div>
+            </div>
+            `;
+    document.body.insertAdjacentHTML('beforeend', html);
+    document.body.style.overflow = 'hidden';
+
+    // GSAP Animation if available
+    const modal = document.getElementById('lieu-modal-overlay');
+    if (modal && window.GasikaraAnimations) {
+        window.GasikaraAnimations.openModal(modal);
+    }
+}
+
+// Init when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initGlobalSearch, 500);
 });

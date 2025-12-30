@@ -30,7 +30,11 @@
                     "respect": "Tenue correcte exigée, pas de short",
                     "conseil": "Prenez un guide officiel à l'entrée pour comprendre l'histoire complexe des incendies et de la reconstruction.",
                     "duree": "1h30",
-                    "siteWeb": "https://tourisme-antananarivo.com/activities/rova-antananarivo/"
+                    "siteWeb": "https://tourisme-antananarivo.com/activities/rova-antananarivo/",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 2,
@@ -49,7 +53,11 @@
                     "horaires": "8h-18h du lundi au samedi",
                     "conseil": "Le marchandage est de rigueur ici ! Divisez le premier prix annoncé par deux ou trois, toujours avec le sourire.",
                     "duree": "2h",
-                    "siteWeb": "https://tourisme-antananarivo.com/"
+                    "siteWeb": "https://tourisme-antananarivo.com/",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 3,
@@ -68,7 +76,11 @@
                     "horaires": "7h-17h tous les jours",
                     "conseil": "Apportez des jumelles si vous en avez, c'est un paradis pour l'ornithologie, surtout tôt le matin.",
                     "duree": "1h",
-                    "siteWeb": "https://rsis.ramsar.org/ris/1464"
+                    "siteWeb": "https://rsis.ramsar.org/ris/1464",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 4,
@@ -88,7 +100,11 @@
                     "respect": "Offrande traditionnelle recommandée, silence requis, ne pas toucher l'eau sans permission",
                     "conseil": "Montrez du respect et demandez toujours la permission avant de prendre une photo. Une petite pièce au gardien est appréciée.",
                     "duree": "30 min",
-                    "siteWeb": "https://tourisme-antananarivo.com/"
+                    "siteWeb": "https://tourisme-antananarivo.com/",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 5,
@@ -107,7 +123,10 @@
                     "horaires": "12h-14h30 et 19h-22h",
                     "conseil": "Réservez une table en terrasse ou près de la cheminée en hiver. Essayez leur foie gras maison.",
                     "duree": "2h",
-                    "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com"
+                    "siteWeb": "https://www.hotel-restaurant-lavarangue-tananarive.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 515,
@@ -126,7 +145,11 @@
                     "horaires": "9h-16h30 tous les jours",
                     "conseil": "Prenez impérativement un guide sur place pour saisir la symbolique de chaque porte et bâtiment.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://whc.unesco.org/fr/list/950/"
+                    "siteWeb": "https://whc.unesco.org/fr/list/950/",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 516,
@@ -145,7 +168,11 @@
                     "horaires": "8h-16h (Dernière entrée)",
                     "conseil": "Arrivez le matin à 9h quand les lémuriens sont les plus actifs avant la chaleur de midi.",
                     "duree": "2h",
-                    "siteWeb": "https://www.lemurspark.com"
+                    "siteWeb": "https://www.lemurspark.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 517,
@@ -164,7 +191,10 @@
                     "horaires": "10h-22h",
                     "conseil": "Parfait pour un déjeuner d'affaires ou un brunch tardif le samedi.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/lecarretana"
+                    "siteWeb": "https://www.facebook.com/lecarretana",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 518,
@@ -183,7 +213,10 @@
                     "horaires": "11h-Minuit (plus tard le WE)",
                     "conseil": "Leurs cocktails signature sont parmi les meilleurs de la ville.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.kudeta.com"
+                    "siteWeb": "https://www.kudeta.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 519,
@@ -202,7 +235,10 @@
                     "horaires": "Diner sur réservation, Salon de thé l'aprem",
                     "conseil": "Réservez impérativement la table en terrasse pour le coucher du soleil à 17h30.",
                     "duree": "2h",
-                    "siteWeb": "https://lokanga-hotel.mg"
+                    "siteWeb": "https://lokanga-hotel.mg",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 520,
@@ -221,7 +257,10 @@
                     "horaires": "12h-14h et 19h-22h",
                     "conseil": "Ne partez pas sans goûter à leurs glaces maison en dessert.",
                     "duree": "1h30",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 521,
@@ -240,7 +279,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Demandez une chambre avec balcon donnant sur la ville pour une vue dégagée.",
                     "duree": "Séjour",
-                    "siteWeb": "https://www.grandhotelurban.com"
+                    "siteWeb": "https://www.grandhotelurban.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 522,
@@ -259,7 +301,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Idéal pour les voyages d'affaires grâce à son confort moderne et fonctionnel.",
                     "duree": "Séjour",
-                    "siteWeb": "https://www.centellhotel.com"
+                    "siteWeb": "https://www.centellhotel.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 523,
@@ -278,7 +323,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Explorez les couloirs de l'hôtel comme on visite une galerie d'art, c'est fascinant.",
                     "duree": "Séjour",
-                    "siteWeb": "https://www.sakamanga.com"
+                    "siteWeb": "https://www.sakamanga.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 524,
@@ -297,7 +345,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Réservez des mois à l'avance, le nombre de chambres est très limité.",
                     "duree": "Séjour",
-                    "siteWeb": "https://www.le-citizen.com"
+                    "siteWeb": "https://www.le-citizen.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 525,
@@ -316,7 +367,10 @@
                     "horaires": "Sur réservation uniquement",
                     "conseil": "Pour une expérience 'comme à la maison' mais en version grand luxe.",
                     "duree": "Séjour",
-                    "siteWeb": "https://www.maisongallieni.com"
+                    "siteWeb": "https://www.maisongallieni.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 526,
@@ -335,7 +389,10 @@
                     "horaires": "17h-3h (Fermé dimanche)",
                     "conseil": "Arrivez tôt le jeudi soir pour avoir une table, c'est bondé.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.nocomment.mg"
+                    "siteWeb": "https://www.nocomment.mg",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 527,
@@ -354,7 +411,10 @@
                     "horaires": "18h-5h tous les jours",
                     "conseil": "L'entrée est souvent gratuite mais conso obligatoire. Surveillez vos affaires.",
                     "duree": "Nuit blanche",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 528,
@@ -373,7 +433,10 @@
                     "horaires": "10h-22h (selon événements)",
                     "conseil": "Vérifiez leur page Facebook pour le programme des vernissages et concerts.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/LaTeinturerieAssociation"
+                    "siteWeb": "https://www.facebook.com/LaTeinturerieAssociation",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 529,
@@ -392,7 +455,10 @@
                     "horaires": "20h-4h",
                     "conseil": "Pour les amateurs de sensations fortes et d'authenticité brute. À éviter en famille.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.hotel-glacier.com"
+                    "siteWeb": "https://www.hotel-glacier.com",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 530,
@@ -411,7 +477,10 @@
                     "horaires": "19h-1h (Soirées cabaret Jeudi/Vendredi)",
                     "conseil": "Réservez votre table, c'est souvent complet lors des grosses affiches.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.facebook.com/pimentcafe"
+                    "siteWeb": "https://www.facebook.com/pimentcafe",
+                    "tags": [
+                        "sortir"
+                    ]
                 }
             ]
         },
@@ -444,7 +513,11 @@
                     "horaires": "Journée",
                     "conseil": "Ne manquez pas le point de vue d'en haut avant de descendre au pied de la chute.",
                     "duree": "1h30",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 532,
@@ -463,7 +536,11 @@
                     "horaires": "Journée",
                     "conseil": "Apportez votre maillot pour une douche naturelle massante (argile bénéfique).",
                     "duree": "1h",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 533,
@@ -482,7 +559,11 @@
                     "horaires": "Coucher de soleil recommandé",
                     "conseil": "Le meilleur spot pour voir l'étendue du lac Itasy et ses volcans éteints.",
                     "duree": "1h",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 }
             ]
         },
@@ -515,7 +596,11 @@
                     "horaires": "8h-17h",
                     "conseil": "Faites le tour du cratère à pied (30 min) pour apprécier la couleur changeante de l'eau. Baignade interdite (sacré).",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 535,
@@ -534,7 +619,11 @@
                     "horaires": "8h-18h",
                     "conseil": "Profitez-en pour faire un tour en pousse-pousse (la spécialité locale) juste devant.",
                     "duree": "45 min",
-                    "siteWeb": "https://diocese-antsirabe.mg"
+                    "siteWeb": "https://diocese-antsirabe.mg",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 }
             ]
         },
@@ -567,7 +656,11 @@
                     "horaires": "Accessible 24h/24",
                     "conseil": "Commandez des brochettes de poisson dans une gargote le midi. Le soir, attention aux moustiques !",
                     "duree": "Demi-journée",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 7,
@@ -586,7 +679,11 @@
                     "horaires": "Départ 8h-9h, retour 16h-17h",
                     "conseil": "Le vent souffle fort (Varatraza) l'après-midi, idéal pour le kite mais protégez-vous du sable.",
                     "duree": "Journée",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 8,
@@ -605,7 +702,11 @@
                     "horaires": "Journée complète recommandée",
                     "conseil": "Faites la balade à pied d'une baie à l'autre (environ 3h de marche facile) pour profiter pleinement des paysages.",
                     "duree": "Demi-journée",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 9,
@@ -624,7 +725,11 @@
                     "horaires": "8h-16h avec guide obligatoire",
                     "conseil": "Prévoyez un vêtement de pluie et de bonnes chaussures, le climat est humide et plus frais qu'en ville.",
                     "duree": "4h à 6h",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/montagne%20d%20ambre.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 10,
@@ -643,7 +748,11 @@
                     "horaires": "Lever/coucher de soleil recommandé",
                     "conseil": "La lumière de fin d'après-midi (Golden Hour) rend le rouge de la roche particulièrement intense.",
                     "duree": "2h",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 11,
@@ -662,7 +771,11 @@
                     "horaires": "Matinée recommandée (chaleur)",
                     "conseil": "Partez très tôt le matin pour éviter la grosse chaleur pendant la montée des marches.",
                     "duree": "3h",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 12,
@@ -681,7 +794,11 @@
                     "horaires": "6h-18h, guide recommandé",
                     "conseil": "L'ascension est exposée au soleil, faites-la très tôt le matin ou en fin de journée pour la vue.",
                     "duree": "3h",
-                    "siteWeb": "http://montagnedesfrancais-anosiravo.com"
+                    "siteWeb": "http://montagnedesfrancais-anosiravo.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 13,
@@ -700,7 +817,10 @@
                     "horaires": "11h-22h, fermé lundi",
                     "conseil": "Commandez le crabe farci, c'est leur spécialité reconnue dans toute la ville.",
                     "duree": "2h",
-                    "siteWeb": "https://www.hotels-diego.com/en/restaurant-bar"
+                    "siteWeb": "https://www.hotels-diego.com/en/restaurant-bar",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 14,
@@ -719,7 +839,10 @@
                     "horaires": "12h-14h et 19h-22h",
                     "conseil": "Leurs carpaccios de poisson (esadon, thon) sont d'une fraîcheur absolue, à tester en entrée.",
                     "duree": "1h30",
-                    "siteWeb": "https://www.tripadvisor.fr/Restaurant_Review-g303985-d2217997-Reviews-La_Cambusa-Antsiranana_Diego_Suarez_Diana_Region.html"
+                    "siteWeb": "https://www.tripadvisor.fr/Restaurant_Review-g303985-d2217997-Reviews-La_Cambusa-Antsiranana_Diego_Suarez_Diana_Region.html",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 15,
@@ -738,7 +861,11 @@
                     "horaires": "Matinée recommandée",
                     "conseil": "Demandez à votre piroguier de s'approcher doucement pour voir les oiseaux nichant dans la paroi.",
                     "duree": "1h",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 16,
@@ -759,7 +886,11 @@
                     "respect": "Retirer chaussures à l'entrée, ne pas toucher aux offrandes, silence",
                     "conseil": "Vérifiez impérativement les horaires de marée, la grotte est inaccessible à marée haute !",
                     "duree": "45 min",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 16,
@@ -778,7 +909,10 @@
                     "horaires": "11h-22h",
                     "conseil": "Réservez la table au coin de la terrasse pour la meilleure vue.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/LeMelvilleDiego"
+                    "siteWeb": "https://www.facebook.com/LeMelvilleDiego",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 100,
@@ -797,7 +931,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "La pâtisserie de l'hôtel est réputée comme la meilleure de la ville, parfaite pour le goûter.",
                     "duree": "Séjour",
-                    "siteWeb": "http://www.grand-hotel-diego.com"
+                    "siteWeb": "http://www.grand-hotel-diego.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 101,
@@ -816,7 +953,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Profitez de la piscine à débordement au coucher du soleil, la vue sur la baie est magique.",
                     "duree": "Séjour",
-                    "siteWeb": "http://www.suarez-hotel.com"
+                    "siteWeb": "http://www.suarez-hotel.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 102,
@@ -835,7 +975,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Leur restaurant 'Le Melville' est sur place, pratique pour les dîners gastronomiques sans bouger.",
                     "duree": "Séjour",
-                    "siteWeb": "http://www.allamanda-hotel.com"
+                    "siteWeb": "http://www.allamanda-hotel.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 103,
@@ -854,7 +997,10 @@
                     "horaires": "Midi et Soir, fermé dimanche",
                     "conseil": "Leur filet de zébu au poivre vert de Madagascar est un classique indémodable.",
                     "duree": "2h",
-                    "siteWeb": "https://www.tripadvisor.com"
+                    "siteWeb": "https://www.tripadvisor.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 104,
@@ -874,7 +1020,10 @@
                     "respect": "L'ambiance est 'chaude' mais bon enfant, restez vigilant comme partout la nuit.",
                     "conseil": "Arrivez vers 23h pour le début du concert live, c'est là que l'ambiance décolle vraiment.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.facebook.com/taxibediego"
+                    "siteWeb": "https://www.facebook.com/taxibediego",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 105,
@@ -893,7 +1042,11 @@
                     "horaires": "18h - 2h",
                     "conseil": "Leurs mojitos sont réputés pour être les meilleurs de la ville (avec menthe fraîche locale !).",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/labodegadiego"
+                    "siteWeb": "https://www.facebook.com/labodegadiego",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 106,
@@ -912,7 +1065,10 @@
                     "horaires": "23h - Aube",
                     "conseil": "Tenue correcte exigée (pantalon pour les hommes), l'ambiance est un peu plus chic.",
                     "duree": "Nuit",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 56,
@@ -933,7 +1089,11 @@
                     "respect": "Ne pas marcher dans les bassins de récolte",
                     "conseil": "La lumière de fin d'après-midi crée des reflets spectaculaires sur l'eau.",
                     "duree": "1h30",
-                    "siteWeb": "http://www.office-tourisme-diego-suarez.com"
+                    "siteWeb": "http://www.office-tourisme-diego-suarez.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 600,
@@ -947,7 +1107,11 @@
                     "description": "L'artère vitale de Diego. Bordée de bâtiments coloniaux aux façades pastel délavées, cette rue raconte l'histoire de la ville. C'est ici que tout se passe : commerces, rencontres, flâneries. L'ambiance y est unique, mêlant nostalgie et effervescence tropicale.",
                     "image": "images/diego/rue-colbert.jpg",
                     "conseil": "Levez la tête pour admirer les varangues et les balcons en fer forgé.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 601,
@@ -961,7 +1125,11 @@
                     "description": "Une ruine majestueuse qui trône face à la mer. Cet immense bâtiment fantomatique est l'un des symboles les plus photogéniques de Diego. Bien qu'abandonné, il dégage une aura puissante et romantique, témoignage de la grandeur passée du port.",
                     "image": "images/diego/hotel-marine.jpg",
                     "conseil": "Idéal pour des photos d'ambiance 'urbex' au coucher du soleil.",
-                    "duree": "30 min"
+                    "duree": "30 min",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 602,
@@ -975,7 +1143,11 @@
                     "description": "Le cœur battant de la vie locale. Moins touristique que le grand bazar, c'est ici que les Diégo-mananets font leurs courses. Épices, fruits tropicaux, crabes, tissus... C'est un festival de couleurs et d'odeurs.",
                     "image": "images/diego/marche-bazarikely.jpg",
                     "conseil": "Achetez-y votre poivre vert de Madagascar et de la vanille.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 603,
@@ -989,7 +1161,10 @@
                     "description": "Le belvédère de la ville. Située à la pointe de Diego, cette place offre une vue panoramique imprenable sur la baie et le port. La statue du Maréchal Joffre y veille toujours. C'est le lieu de rendez-vous des amoureux le soir.",
                     "image": "images/diego/place-joffre.jpg",
                     "conseil": "Le meilleur endroit pour observer les mouvements des bateaux dans la baie.",
-                    "duree": "45 min"
+                    "duree": "45 min",
+                    "tags": [
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 610,
@@ -1001,7 +1176,10 @@
                     "description": "Une institution pour les routards. Simple, propre et incroyablement convivial. Le patio intérieur est un lieu de rencontre génial pour échanger des infos avec d'autres voyageurs.",
                     "image": "images/hotels/gite-voyageur.jpg",
                     "conseil": "Réservez à l'avance, c'est souvent complet.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 611,
@@ -1013,7 +1191,10 @@
                     "description": "Le meilleur rapport qualité/prix en bord de mer. Piscine agréable, chambres confortables avec balcon vue mer. C'est calme tout en étant à 5mn à pied de la rue Colbert.",
                     "image": "images/hotels/allamanda.jpg",
                     "conseil": "Demandez une chambre à l'étage pour une meilleure vue sur la baie.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 612,
@@ -1025,7 +1206,10 @@
                     "description": "La grande dame de Diego. Un établissement historique qui a su garder son prestige. Le service y est impeccable, la piscine immense, et c'est le centre névralgique de la vie sociale chic de la ville.",
                     "image": "images/hotels/grand-hotel.jpg",
                     "conseil": "Leur petit-déjeuner buffet est le meilleur de la ville.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 }
             ]
         },
@@ -1058,7 +1242,11 @@
                     "horaires": "Visites guidées en journée",
                     "conseil": "Apportez de la viande (le gardien s'en occupe) pour faire sortir les crocodiles. Respectez scrupuleusement les fady (tabous) du lieu.",
                     "duree": "2h",
-                    "siteWeb": "https://primemadaguide.com/guide-des-destinations-de-madagascar-lac-sacr%C3%A9-anivorano.html"
+                    "siteWeb": "https://primemadaguide.com/guide-des-destinations-de-madagascar-lac-sacr%C3%A9-anivorano.html",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 }
             ]
         },
@@ -1091,7 +1279,11 @@
                     "horaires": "Accessible 24h/24",
                     "conseil": "Allez-y en semaine pour éviter la foule du dimanche, où les familles locales viennent pique-niquer.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://andilanaresort.com"
+                    "siteWeb": "https://andilanaresort.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 18,
@@ -1110,7 +1302,11 @@
                     "horaires": "Excursion journée ou demi-journée",
                     "conseil": "Prévoyez des bananes (souvent fournies par les guides) pour attirer les lémuriens sur vos épaules pour la photo !",
                     "duree": "3h",
-                    "siteWeb": "https://nosykomba.com"
+                    "siteWeb": "https://nosykomba.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 19,
@@ -1129,7 +1325,11 @@
                     "horaires": "Sortie journée avec déjeuner",
                     "conseil": "Montez jusqu'au phare au sommet de l'île pour une vue panoramique incroyable sur l'archipel.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/nosy-tanikely.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/nosy-tanikely.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 20,
@@ -1148,7 +1348,11 @@
                     "horaires": "Journée complète, départ 7h",
                     "conseil": "Attention au soleil ! Le sable blanc réfléchit énormément, crème solaire haute protection obligatoire.",
                     "duree": "Journée",
-                    "siteWeb": "https://nosyiranja.com"
+                    "siteWeb": "https://nosyiranja.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 21,
@@ -1167,7 +1371,11 @@
                     "horaires": "Excursions guidées matin (fraîcheur)",
                     "conseil": "L'arrivée en pirogue à rames est magique, profitez du silence pour observer les martins-pêcheurs.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/lokobe.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/lokobe.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 22,
@@ -1186,7 +1394,11 @@
                     "horaires": "Lever/coucher de soleil recommandés",
                     "conseil": "Arrivez au moins 30 minutes avant le coucher du soleil pour avoir une bonne place sur la terrasse panoramique.",
                     "duree": "1h30",
-                    "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/"
+                    "siteWeb": "https://nosybe-tourisme.com/que-faire/a-visiter/mont-passot/",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 23,
@@ -1205,7 +1417,11 @@
                     "horaires": "8h-17h tous les jours",
                     "conseil": "La visite guidée de la distillerie est incluse, ne la manquez pas pour tout savoir sur l'essence de parfum.",
                     "duree": "2h",
-                    "siteWeb": "https://lemurialand.com"
+                    "siteWeb": "https://lemurialand.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 24,
@@ -1224,7 +1440,11 @@
                     "horaires": "24h/24, vie nocturne dès 19h",
                     "conseil": "Parfait pour un apéro au coucher du soleil au 'Badamera', mais préférez Andilana pour le calme absolu.",
                     "duree": "Soirée",
-                    "siteWeb": "https://nosybe-tourisme.com"
+                    "siteWeb": "https://nosybe-tourisme.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 25,
@@ -1243,7 +1463,11 @@
                     "horaires": "Excursion journée avec guide local",
                     "conseil": "Le déjeuner chez l'habitant sur la plage est souvent un délice (poisson coco).",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://sakatia.com"
+                    "siteWeb": "https://sakatia.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 27,
@@ -1262,7 +1486,10 @@
                     "horaires": "12h-14h et 19h-22h, fermé dimanche",
                     "conseil": "La terrasse est petite, réservez votre table en bordure pour avoir la vue plongeante sur la mer.",
                     "duree": "2h",
-                    "siteWeb": "https://heurebleue.com"
+                    "siteWeb": "https://heurebleue.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 28,
@@ -1281,7 +1508,11 @@
                     "horaires": "Sorties matin et après-midi",
                     "conseil": "Si vous êtes débutant, demandez un baptême à Tanikely, les conditions sont parfaites (peu profond, clair).",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://nosybe-tourisme.com"
+                    "siteWeb": "https://nosybe-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 29,
@@ -1300,7 +1531,11 @@
                     "horaires": "8h-16h, meilleur en matinée",
                     "conseil": "Achetez votre huile essentielle ici, c'est bien moins cher et garanti pur par rapport aux revendeurs de plage.",
                     "duree": "1h",
-                    "siteWeb": "https://ylang-ylang-nosybe.com"
+                    "siteWeb": "https://ylang-ylang-nosybe.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 30,
@@ -1321,7 +1556,11 @@
                     "respect": "Bougie d'offrande recommandée (5000 Ar), silence dans la grotte, respecter les prières en cours",
                     "conseil": "Parlez à Marie, la gardienne des lieux, elle connaît toutes les histoires et légendes de la grotte.",
                     "duree": "1h",
-                    "siteWeb": "https://nosybe-tourisme.com"
+                    "siteWeb": "https://nosybe-tourisme.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 201,
@@ -1337,7 +1576,10 @@
                     "description": "Un sanctuaire de bien-être niché dans un jardin luxuriant face à la mer. Bungalows spacieux de grand standing, spa de classe mondiale et gastronomie raffinée.",
                     "image": "images/hotels/ravintsara.jpg",
                     "acces": "Côte Ouest, Dzamandzar",
-                    "siteWeb": "https://ravintsara.mg"
+                    "siteWeb": "https://ravintsara.mg",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 202,
@@ -1353,7 +1595,10 @@
                     "description": "Architecture traditionnelle malgache et confort moderne. Piscines à débordement et vue imprenable sur le coucher de soleil.",
                     "image": "images/hotels/vanila-hotel.jpg",
                     "acces": "Ambaro, route de l'Ouest",
-                    "siteWeb": "https://vanila-hotel.com"
+                    "siteWeb": "https://vanila-hotel.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 203,
@@ -1369,7 +1614,10 @@
                     "description": "L'élégance à l'état pur. Ecolodge de luxe isolé sur la côte Est, offrant intimité totale et plage privée.",
                     "image": "images/hotels/manga-soa.jpg",
                     "acces": "Befefika, Côte Est",
-                    "siteWeb": "https://mangasoalodge.com"
+                    "siteWeb": "https://mangasoalodge.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 204,
@@ -1385,7 +1633,10 @@
                     "description": "Perché sur une colline avec une vue panoramique à 180° sur la baie d'Andilana. Ambiance conviviale et décontractée.",
                     "image": "images/hotels/grand-bleu.jpg",
                     "acces": "Presqu'île d'Andilana, Nord",
-                    "siteWeb": "https://legrandbleunosybe.com"
+                    "siteWeb": "https://legrandbleunosybe.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 205,
@@ -1401,7 +1652,10 @@
                     "description": "Un havre de paix au milieu de l'animation d'Ambatoloaka. Bungalows de charme dans un jardin tropical calme.",
                     "image": "images/hotels/clair-de-lune.jpg",
                     "acces": "Ambatoloaka, à 200m de la plage",
-                    "siteWeb": "https://clair-de-lune-nosybe.com"
+                    "siteWeb": "https://clair-de-lune-nosybe.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 206,
@@ -1416,7 +1670,10 @@
                     "note": 4.8,
                     "description": "La référence gastronomique de l'île. Cuisine créative mêlant saveurs locales et techniques françaises.",
                     "image": "images/restaurants/alexandre.jpg",
-                    "acces": "Ambatoloaka"
+                    "acces": "Ambatoloaka",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 207,
@@ -1432,7 +1689,10 @@
                     "description": "Une institution à Hell-Ville. Cadre colonial historique et carte variée, célèbre pour ses pizzas et fruits de mer.",
                     "image": "images/restaurants/le-papillon.jpg",
                     "acces": "Hell-Ville, centre",
-                    "horaires": "11h-22h"
+                    "horaires": "11h-22h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 208,
@@ -1448,7 +1708,10 @@
                     "description": "Ambiance italienne chaleureuse. Pâtes fraîches et produits locaux, le tout à prix doux.",
                     "image": "images/restaurants/karibo.jpg",
                     "acces": "Ambatoloaka",
-                    "horaires": "12h-14h, 18h-22h"
+                    "horaires": "12h-14h, 18h-22h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 209,
@@ -1464,7 +1727,10 @@
                     "description": "Restaurant sur pilotis offrant une vue spectaculaire. Spécialités de fruits de mer et cadre romantique.",
                     "image": "images/restaurants/pily-pily.jpg",
                     "acces": "Hôtel Andilana Beach",
-                    "conseil": "Allez-y au coucher du soleil pour la vue."
+                    "conseil": "Allez-y au coucher du soleil pour la vue.",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 214,
@@ -1483,7 +1749,10 @@
                     "horaires": "10h-22h tous les jours",
                     "conseil": "Réservez le buffet de fruits de mer du dimanche midi, c'est gargantuesque et très couru !",
                     "duree": "3h (repas + plage)",
-                    "siteWeb": "https://www.facebook.com/cacaobeachnosybe"
+                    "siteWeb": "https://www.facebook.com/cacaobeachnosybe",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 215,
@@ -1502,7 +1771,10 @@
                     "horaires": "11h-22h",
                     "conseil": "Leurs pâtes aux fruits de mer sont excellentes.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/safariambaro"
+                    "siteWeb": "https://www.facebook.com/safariambaro",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 210,
@@ -1517,7 +1789,11 @@
                     "note": 4.6,
                     "description": "Le spot incontournable pour commencer la soirée. Cocktails les pieds dans le sable et bonne musique.",
                     "image": "images/nightlife/bar-de-la-plage.jpg",
-                    "acces": "Plage d'Ambatoloaka"
+                    "acces": "Plage d'Ambatoloaka",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 211,
@@ -1532,7 +1808,10 @@
                     "note": 4.4,
                     "description": "Club mythique pour danser jusqu'au bout de la nuit. Ambiance électrique garantie.",
                     "image": "images/nightlife/djembe-club.jpg",
-                    "acces": "Hell-Ville"
+                    "acces": "Hell-Ville",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 212,
@@ -1547,7 +1826,11 @@
                     "note": 4.5,
                     "description": "Lounge bar cosy pour se détendre. Excellents cocktails et tapas.",
                     "image": "images/nightlife/lapero.jpg",
-                    "acces": "Ambatoloaka"
+                    "acces": "Ambatoloaka",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 213,
@@ -1562,7 +1845,11 @@
                     "note": 4.7,
                     "description": "Pool party et DJ sets face à la mer. Très prisé le dimanche.",
                     "image": "images/nightlife/beach-klub.jpg",
-                    "acces": "Andilana"
+                    "acces": "Andilana",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 }
             ]
         },
@@ -1604,7 +1891,11 @@
                     "horaires": "Tôt le matin ou fin d'après-midi (chaleur)",
                     "conseil": "Ramassez un petit échantillon de sable coloré dans une bouteille (souvenir classique), mais restez raisonnable pour préserver le site.",
                     "duree": "2h",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 32,
@@ -1623,7 +1914,11 @@
                     "horaires": "Lever et coucher de soleil recommandés",
                     "conseil": "Respectez les tissus rouges et les objets (bouteilles, pièces) au pied de l'arbre, ne les touchez surtout pas.",
                     "duree": "30 min",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 33,
@@ -1644,7 +1939,11 @@
                     "respect": "Offrande traditionnelle obligatoire (rhum, miel), ne pas se baigner",
                     "conseil": "Ne portez pas de rouge (fady/tabou) lors de votre visite à la source.",
                     "duree": "45 min",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 34,
@@ -1663,7 +1962,11 @@
                     "horaires": "Accessible 24h/24, meilleur au coucher de soleil",
                     "conseil": "Goûtez absolument aux 'Masikita' (brochettes de zébu) vendues par les marchands ambulants le soir.",
                     "duree": "Soirée",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 35,
@@ -1682,7 +1985,11 @@
                     "horaires": "7h-17h avec guide obligatoire",
                     "conseil": "Faites le circuit du canyon pour voir les formations géologiques 'Lavaka', c'est impressionnant.",
                     "duree": "Journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarafantsika.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarafantsika.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 36,
@@ -1701,7 +2008,11 @@
                     "horaires": "Bacs : 6h, 8h, 11h, 14h, 16h",
                     "conseil": "Goûtez au crabe à la noix de coco préparé par Mme Chabaud, une institution locale à Katsepy.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 37,
@@ -1720,7 +2031,11 @@
                     "horaires": "Excursion départ 7h, retour 17h",
                     "conseil": "La piste est difficile, un vrai 4x4 est indispensable. Partez très tôt le matin.",
                     "duree": "Journée complète",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 38,
@@ -1739,7 +2054,10 @@
                     "horaires": "11h-22h tous les jours",
                     "conseil": "Leur 'Capitaine à la plancha' est un délice absolu, demandez la sauce à l'ail à part.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/ChezKaronMajunga"
+                    "siteWeb": "https://www.facebook.com/ChezKaronMajunga",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 39,
@@ -1758,7 +2076,11 @@
                     "horaires": "5h-18h, meilleur en matinée",
                     "conseil": "Achetez ici votre poivre sauvage de Madagascar et de la vanille, les prix sont bien meilleurs qu'en boutique.",
                     "duree": "1h",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 40,
@@ -1777,7 +2099,11 @@
                     "horaires": "8h-18h en semaine, 8h-20h weekend",
                     "conseil": "La piscine est très fréquentée le mercredi après-midi et le week-end, préférez le matin pour nager.",
                     "duree": "2h",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 500,
@@ -1796,7 +2122,11 @@
                     "horaires": "8h-17h (sauf tabous)",
                     "conseil": "Apportez du pain pour appeler les poissons, ils viennent manger dans votre main. Respectez le silence des lieux.",
                     "duree": "2h",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 501,
@@ -1816,7 +2146,11 @@
                     "horaires": "Accès libre",
                     "conseil": "Goûtez aux 'masikita' (brochettes) sur la plage au coucher du soleil.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 502,
@@ -1835,7 +2169,10 @@
                     "horaires": "11h-22h, fermé le lundi",
                     "conseil": "Le carpaccio de crocodile et le filet de mérou sont des incontournables. Réservation conseillée pour le dîner.",
                     "duree": "2h",
-                    "siteWeb": "https://restaurantleguest.com"
+                    "siteWeb": "https://restaurantleguest.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 503,
@@ -1854,7 +2191,10 @@
                     "horaires": "7h-22h tous les jours",
                     "conseil": "Ne manquez pas leur foie gras mi-cuit maison.",
                     "duree": "2h",
-                    "siteWeb": "https://cocolodgemajunga-madagascar.com"
+                    "siteWeb": "https://cocolodgemajunga-madagascar.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 504,
@@ -1873,7 +2213,10 @@
                     "horaires": "10h-21h",
                     "conseil": "Commandez le poisson grillé entier du jour, simple et délicieux.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 510,
@@ -1893,7 +2236,11 @@
                     "horaires": "Accès libre",
                     "conseil": "Marchez jusqu'au bout de la plage pour voir les pêcheurs réparer leurs pirogues à l'ombre des arbres.",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 505,
@@ -1912,7 +2259,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Demandez une chambre avec vue mer pour profiter des couchers de soleil depuis votre balcon.",
                     "duree": "Nuitée",
-                    "siteWeb": "https://baobab-tree-hotel.mg"
+                    "siteWeb": "https://baobab-tree-hotel.mg",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 506,
@@ -1931,7 +2281,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Participez à la remontée de la rivière Morira en pirogue organisée par le lodge.",
                     "duree": "Nuitée",
-                    "siteWeb": "https://antsanitia.com"
+                    "siteWeb": "https://antsanitia.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 507,
@@ -1950,7 +2303,10 @@
                     "horaires": "Réception 7h-22h",
                     "conseil": "Idéal pour les couples cherchant du calme tout en étant proche de la plage.",
                     "duree": "Nuitée",
-                    "siteWeb": "http://www.edenakely.com"
+                    "siteWeb": "http://www.edenakely.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 508,
@@ -1969,7 +2325,10 @@
                     "horaires": "Réception 24h/24",
                     "conseil": "Même si vous n'y dormez pas, venez prendre un verre au coucher du soleil à La Rotonde.",
                     "duree": "Nuitée",
-                    "siteWeb": "https://rochesrouges.mg"
+                    "siteWeb": "https://rochesrouges.mg",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 509,
@@ -1988,7 +2347,10 @@
                     "horaires": "21h à l'aube",
                     "conseil": "L'ambiance décolle vraiment vers 23h. Tenue correcte et bonne humeur exigées.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 511,
@@ -2007,7 +2369,10 @@
                     "horaires": "18h-5h (fermé Lundi)",
                     "conseil": "Arrivez vers minuit pour l'ambiance maximale côté club.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 512,
@@ -2026,7 +2391,11 @@
                     "horaires": "10h-22h",
                     "conseil": "Leur planteur maison est redoutable mais délicieux !",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com"
+                    "siteWeb": "https://www.facebook.com",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 513,
@@ -2045,7 +2414,11 @@
                     "horaires": "8h-23h",
                     "conseil": "Venez en fin d'après-midi pour voir le ballet des bateaux qui rentrent.",
                     "duree": "1h",
-                    "siteWeb": ""
+                    "siteWeb": "",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 514,
@@ -2064,7 +2437,10 @@
                     "horaires": "20h-3h",
                     "conseil": "Parfait pour un dernier verre au calme après un repas en ville.",
                     "duree": "Soirée",
-                    "siteWeb": ""
+                    "siteWeb": "",
+                    "tags": [
+                        "sortir"
+                    ]
                 }
             ]
         },
@@ -2106,7 +2482,11 @@
                     "horaires": "Circuits 4h à 6h avec guide obligatoire",
                     "conseil": "Le matin très tôt (6h-7h) est le meilleur moment pour entendre le chant des Indris.",
                     "duree": "4h",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/andasibe-mantadia.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/andasibe-mantadia.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 42,
@@ -2125,7 +2505,11 @@
                     "horaires": "8h-17h tous les jours",
                     "conseil": "Attention à vos lunettes de soleil et chapeaux, les lémuriens sont des petits voleurs espiègles !",
                     "duree": "2h",
-                    "siteWeb": "https://vakonaforestlodge.com"
+                    "siteWeb": "https://vakonaforestlodge.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 43,
@@ -2146,7 +2530,11 @@
                     "respect": "Ne pas laisser de déchets, baignade autorisée",
                     "conseil": "Le sentier peut être glissant après la pluie, prévoyez de bonnes chaussures ou des sandales de marche.",
                     "duree": "1h30",
-                    "siteWeb": "https://vakonaforestlodge.com"
+                    "siteWeb": "https://vakonaforestlodge.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 }
             ]
         },
@@ -2179,7 +2567,11 @@
                     "horaires": "Circuits à la journée avec guide obligatoire",
                     "conseil": "Ne manquez pas le coucher de soleil à la 'Fenêtre de l'Isalo', un classique mais toujours spectaculaire.",
                     "duree": "Journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 45,
@@ -2198,7 +2590,11 @@
                     "horaires": "Matin recommandé (moins de monde)",
                     "conseil": "L'eau est très fraîche, même en été, ça surprend après la chaleur du canyon !",
                     "duree": "1h (pause)",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/isalo.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 46,
@@ -2219,7 +2615,11 @@
                     "respect": "Coucher de soleil uniquement, ne pas sortir du sentier",
                     "conseil": "Demandez à Papa Koto de vous raconter l'histoire des tombeaux que l'on aperçoit dans la falaise en face.",
                     "duree": "1h",
-                    "siteWeb": "https://www.parcs-madagascar.com"
+                    "siteWeb": "https://www.parcs-madagascar.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 }
             ]
         },
@@ -2252,7 +2652,11 @@
                     "horaires": "Accessible 24h/24",
                     "conseil": "Faites une sortie en pirogue Vezo à balancier tôt le matin pour aller voir le récif.",
                     "duree": "Séjour",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 48,
@@ -2271,7 +2675,11 @@
                     "horaires": "Matin ou fin d'après-midi (chaleur)",
                     "conseil": "Visitez le parc 'Mosa' juste à côté pour voir des lémuriens et des tortues radiata.",
                     "duree": "1h30",
-                    "siteWeb": "https://www.reniala.com"
+                    "siteWeb": "https://www.reniala.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 49,
@@ -2292,7 +2700,11 @@
                     "respect": "Offrande traditionnelle obligatoire (rhum, tabac), ne pas toucher l'arbre",
                     "conseil": "Soyez très respectueux et ne touchez l'arbre que si le guide vous y invite explicitement.",
                     "duree": "45 min",
-                    "siteWeb": "https://madagascar-tourisme.com"
+                    "siteWeb": "https://madagascar-tourisme.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 }
             ]
         },
@@ -2325,7 +2737,11 @@
                     "horaires": "Circuits guidés, harnais fourni",
                     "conseil": "Il fait très chaud dans les Tsingy (réverbération). Partez à l'aube et prenez beaucoup d'eau.",
                     "duree": "Journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 51,
@@ -2344,7 +2760,11 @@
                     "horaires": "Lampe frontale obligatoire",
                     "conseil": "L'odeur de guano peut être forte, un foulard ou un masque peut être utile.",
                     "duree": "1h",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/ankarana.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 52,
@@ -2365,7 +2785,11 @@
                     "respect": "Interdiction photos, offrande obligatoire, vêtements couvrants",
                     "conseil": "Prévoyez un budget pour les offrandes rituelles (miel, rhum, zébu parfois selon les cérémonies).",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://tourisme-majunga.com"
+                    "siteWeb": "https://tourisme-majunga.com",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 }
             ]
         },
@@ -2398,7 +2822,11 @@
                     "horaires": "Excursions guidées",
                     "conseil": "L'accès est difficile (piste ou bateau), c'est une expédition pour les aventuriers, pas pour le tourisme de masse.",
                     "duree": "2 jours",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 54,
@@ -2417,7 +2845,11 @@
                     "horaires": "Départs matin et après-midi",
                     "conseil": "C'est un spot de réserve de Biosphère, respectez scrupuleusement les consignes (pas de coquillages, pas de touche au corail).",
                     "duree": "Demi-journée",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 55,
@@ -2436,7 +2868,11 @@
                     "acces": "Forêt à 5 km de Mananara, sentier depuis le village - Parler au gardien du lac",
                     "contactLocal": "Gardien au village (maison toit rouge)",
                     "respect": "Interdiction formelle de photographier, ne pas montrer du doigt, offrande requise",
-                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php"
+                    "siteWeb": "https://www.parcs-madagascar.com/parcs/mananara-nord.php",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 }
             ]
         },
@@ -2477,7 +2913,11 @@
                     "acces": "Centre-ville, accès pédestre uniquement dans les ruelles",
                     "horaires": "24h/24, de jour recommandé",
                     "conseil": "Montez jusqu'à l'école pour le meilleur panorama au coucher du soleil.",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 301,
@@ -2495,7 +2935,11 @@
                     "acces": "Quartier de la Gare, ville basse",
                     "horaires": "Matin pour l'animation des départs",
                     "conseil": "Vérifiez les jours de départ (souvent mardi/samedi) pour voir l'effervescence.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 302,
@@ -2513,7 +2957,11 @@
                     "acces": "23 km de Fianar (45 min), taxi ou train",
                     "horaires": "8h-16h, visite guidée",
                     "conseil": "Dégustez le thé sur place au Lac Hôtel voisin après la visite.",
-                    "duree": "Demi-journée"
+                    "duree": "Demi-journée",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 303,
@@ -2531,7 +2979,11 @@
                     "acces": "Montée vers la Haute Ville",
                     "horaires": "8h-17h",
                     "conseil": "Assistez à la messe du dimanche pour les chants choraux magnifiques.",
-                    "duree": "30 min"
+                    "duree": "30 min",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 304,
@@ -2549,7 +3001,11 @@
                     "acces": "Ville moyenne, Suotama",
                     "horaires": "9h-18h, fermé dimanche",
                     "conseil": "On peut acheter des tirages ou des cartes postales signées, un souvenir précieux.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "explorer",
+                        "culture"
+                    ]
                 },
                 {
                     "id": 305,
@@ -2567,7 +3023,10 @@
                     "acces": "Centre-ville, Tsianolondroa",
                     "horaires": "Midi et Soir",
                     "conseil": "La fondue est copieuse, à partager !",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 306,
@@ -2585,7 +3044,10 @@
                     "acces": "Près de la Haute Ville",
                     "horaires": "12h-14h, 19h-21h30",
                     "conseil": "Réservez la table au bord de la terrasse pour le coucher de soleil.",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 307,
@@ -2603,7 +3065,10 @@
                     "acces": "Sortie Sud de la ville",
                     "horaires": "Midi seulement (souvent)",
                     "conseil": "Le menu change selon les saisons et l'apprentissage des élèves.",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 308,
@@ -2621,7 +3086,10 @@
                     "acces": "Centre-ville, Ampasambazaha",
                     "horaires": "10h-22h",
                     "conseil": "Leur soupe de nouilles est légendaire après une longue route.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 309,
@@ -2639,7 +3107,10 @@
                     "acces": "Place du Zoma",
                     "horaires": "11h-22h",
                     "conseil": "Gardez de la place pour une religieuse ou un éclair en dessert !",
-                    "duree": "1h30"
+                    "duree": "1h30",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 310,
@@ -2657,7 +3128,11 @@
                     "acces": "Centre-ville",
                     "horaires": "Soirée, concerts vend/sam",
                     "conseil": "L'ambiance monte vers 22h lors des concerts.",
-                    "duree": "Soirée"
+                    "duree": "Soirée",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 311,
@@ -2674,7 +3149,11 @@
                     "image": "images/fianarantsoa/fianar_marie_zooze.png",
                     "acces": "Quartier Ampasambazaha",
                     "horaires": "Jusqu'à tard",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 312,
@@ -2691,7 +3170,10 @@
                     "image": "images/fianarantsoa/fianar_soafia.png",
                     "acces": "Hôtel Soafia",
                     "horaires": "23h - Aube",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 313,
@@ -2708,7 +3190,11 @@
                     "image": "images/fianarantsoa/fianar_pavillon_bar.png",
                     "acces": "La Rizière",
                     "horaires": "Fin d'après-midi",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 314,
@@ -2725,7 +3211,11 @@
                     "image": "images/fianarantsoa/fianar_sorotel_bar.png",
                     "acces": "Hôtel Sorotel",
                     "horaires": "Soirée",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 315,
@@ -2742,7 +3232,11 @@
                     "description": "Le défi sportif et photogénique. Ces grands escaliers relient la ville basse à la ville haute. La perspective est magnifique pour les photos.",
                     "image": "images/fianarantsoa/fianar_escaliers.png",
                     "acces": "Accès piéton partout",
-                    "duree": "30 min (montée !)"
+                    "duree": "30 min (montée !)",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 316,
@@ -2761,7 +3255,11 @@
                     "acces": "Quartier Anjoma",
                     "horaires": "Matin (mardi/vendredi jours de grand marché)",
                     "conseil": "Allez voir la section des vanneries Betsileo.",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 317,
@@ -2778,7 +3276,11 @@
                     "description": "Une colline offrant un panorama à 360° sur toute la ville et les vallées environnantes. Un bol d'air frais à quelques minutes du centre.",
                     "image": "images/fianarantsoa/fianar_vue_kianjasoa.png",
                     "acces": "Piste montante, 4x4 ou marche",
-                    "duree": "1h"
+                    "duree": "1h",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 318,
@@ -2795,7 +3297,11 @@
                     "description": "Le poumon vert de la ville basse. Une promenade agréable autour du lac artificiel, bordé de jacarandas (en fleurs en octobre/novembre).",
                     "image": "images/fianarantsoa/fianar_lac_anosy.png",
                     "acces": "Ville basse, pied de la colline",
-                    "duree": "45 min"
+                    "duree": "45 min",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 319,
@@ -2812,7 +3318,11 @@
                     "description": "Une statue blanche monumentale qui veille sur la ville. Le site offre l'un des meilleurs points de vue pour comprendre la géographie des trois niveaux de la ville.",
                     "image": "images/fianarantsoa/fianar_statue_vierge.png",
                     "acces": "Hauteurs sud",
-                    "duree": "30 min"
+                    "duree": "30 min",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 320,
@@ -2830,7 +3340,10 @@
                     "acces": "Près de la Haute Ville",
                     "horaires": "Réception 24h/24",
                     "conseil": "Demandez une chambre avec balcon pour le coucher de soleil.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 321,
@@ -2848,7 +3361,10 @@
                     "acces": "Place du Zoma",
                     "horaires": "Réception 24h/24",
                     "conseil": "Profitez de la piscine après une longue journée de route (RN7).",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 322,
@@ -2866,7 +3382,10 @@
                     "acces": "Centre-ville, face à la gare",
                     "horaires": "Réception 24h/24",
                     "conseil": "Le petit-déjeuner dans le jardin est un moment délicieux.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 323,
@@ -2884,7 +3403,10 @@
                     "acces": "Quartier administratif",
                     "horaires": "Réception 24h/24",
                     "conseil": "Réservez à l'avance, il y a peu de chambres.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 324,
@@ -2902,7 +3424,10 @@
                     "acces": "Sortie Sud",
                     "horaires": "Réception 24h/24",
                     "conseil": "Soutenez la formation des jeunes malgaches en y séjournant.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 }
             ]
         },
@@ -2943,7 +3468,11 @@
                     "horaires": "7h30 - 17h30",
                     "conseil": "Visitez tôt le matin pour les oiseaux et la fraîcheur.",
                     "duree": "2h",
-                    "siteWeb": "http://www.antsokayarboretum.org"
+                    "siteWeb": "http://www.antsokayarboretum.org",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 401,
@@ -2961,7 +3490,11 @@
                     "acces": "Piste depuis Toliara (1h30)",
                     "horaires": "Journée",
                     "conseil": "Spot idéal pour le snorkeling et l'observation des baleines (saison).",
-                    "duree": "Demi-journée"
+                    "duree": "Demi-journée",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 402,
@@ -2980,7 +3513,11 @@
                     "horaires": "Départ bateau matin",
                     "conseil": "Excursion incontournable à Nosy Ve juste en face.",
                     "duree": "Séjour",
-                    "siteWeb": "https://madagascar-tourisme.com/fr/destinations/toliara-et-le-sud-ouest/anakao/"
+                    "siteWeb": "https://madagascar-tourisme.com/fr/destinations/toliara-et-le-sud-ouest/anakao/",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 403,
@@ -2999,7 +3536,11 @@
                     "horaires": "6h - 17h",
                     "conseil": "Cherchez le fameux 'Baobab théière'.",
                     "duree": "1h30",
-                    "siteWeb": "https://reniala-ecotourisme.jimdo.com"
+                    "siteWeb": "https://reniala-ecotourisme.jimdo.com",
+                    "tags": [
+                        "explorer",
+                        "nature"
+                    ]
                 },
                 {
                     "id": 404,
@@ -3018,7 +3559,11 @@
                     "horaires": "8h-12h, 14h-17h",
                     "conseil": "Petit mais très instructif sur la faune locale.",
                     "duree": "1h",
-                    "siteWeb": "https://www.ihsm.mg"
+                    "siteWeb": "https://www.ihsm.mg",
+                    "tags": [
+                        "spots",
+                        "explorer"
+                    ]
                 },
                 {
                     "id": 405,
@@ -3037,7 +3582,10 @@
                     "horaires": "Midi et Soir",
                     "conseil": "Raviolis à la langouste recommandés.",
                     "duree": "2h",
-                    "siteWeb": "https://www.facebook.com/giancarlo.faussone"
+                    "siteWeb": "https://www.facebook.com/giancarlo.faussone",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 406,
@@ -3056,7 +3604,10 @@
                     "horaires": "11h - 23h",
                     "conseil": "Filet de zébu au poivre vert.",
                     "duree": "1h30",
-                    "siteWeb": "https://www.facebook.com/chezfreddyifaty"
+                    "siteWeb": "https://www.facebook.com/chezfreddyifaty",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 407,
@@ -3074,7 +3625,10 @@
                     "acces": "Front de mer",
                     "horaires": "Midi et Soir",
                     "conseil": "Plateau de fruits de mer royal.",
-                    "duree": "2h"
+                    "duree": "2h",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 408,
@@ -3093,7 +3647,10 @@
                     "horaires": "Soir uniquement",
                     "conseil": "Réservation conseillée.",
                     "duree": "2h30",
-                    "siteWeb": "http://www.aubergedelatable.com"
+                    "siteWeb": "http://www.aubergedelatable.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 409,
@@ -3112,7 +3669,10 @@
                     "horaires": "Midi",
                     "conseil": "Commandez votre langouste le matin.",
                     "duree": "2h",
-                    "siteWeb": "http://www.longovezo.com"
+                    "siteWeb": "http://www.longovezo.com",
+                    "tags": [
+                        "manger"
+                    ]
                 },
                 {
                     "id": 410,
@@ -3131,7 +3691,10 @@
                     "horaires": "24h/24",
                     "conseil": "Vaut le détour même juste pour voir l'architecture.",
                     "duree": "Nuit",
-                    "siteWeb": "http://www.bakuba-lodge.com"
+                    "siteWeb": "http://www.bakuba-lodge.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 411,
@@ -3150,7 +3713,10 @@
                     "horaires": "24h/24",
                     "conseil": "Excellent petit-déjeuner buffet.",
                     "duree": "Nuit",
-                    "siteWeb": "http://www.moringa-tulear.mg"
+                    "siteWeb": "http://www.moringa-tulear.mg",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 412,
@@ -3169,7 +3735,10 @@
                     "horaires": "8h-20h",
                     "conseil": "Leurs pizzas au feu de bois sont réputées.",
                     "duree": "Nuit",
-                    "siteWeb": "http://www.peter-pan-anakao.com"
+                    "siteWeb": "http://www.peter-pan-anakao.com",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 413,
@@ -3188,7 +3757,10 @@
                     "horaires": "24h/24",
                     "conseil": "Observation des baleines depuis la terrasse en saison.",
                     "duree": "Nuit",
-                    "siteWeb": "https://www.paradisier.net"
+                    "siteWeb": "https://www.paradisier.net",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 414,
@@ -3206,7 +3778,10 @@
                     "acces": "Nord Ifaty/Mangily",
                     "horaires": "24h/24",
                     "conseil": "Nombreuses activités nautiques disponibles.",
-                    "duree": "Nuit"
+                    "duree": "Nuit",
+                    "tags": [
+                        "dormir"
+                    ]
                 },
                 {
                     "id": 415,
@@ -3224,7 +3799,11 @@
                     "acces": "Centre-ville",
                     "horaires": "18h - Tard",
                     "conseil": "Grosse ambiance le vendredi soir.",
-                    "duree": "Soirée"
+                    "duree": "Soirée",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 416,
@@ -3242,7 +3821,11 @@
                     "acces": "Front de mer",
                     "horaires": "16h - 22h",
                     "conseil": "Arriver à 17h30 pour la meilleure vue.",
-                    "duree": "Soirée"
+                    "duree": "Soirée",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 418,
@@ -3261,7 +3844,11 @@
                     "horaires": "Soir uniquement",
                     "conseil": "Vérifier la prog musicale.",
                     "duree": "Soirée",
-                    "siteWeb": "https://www.facebook.com/chezalaintoliara/"
+                    "siteWeb": "https://www.facebook.com/chezalaintoliara/",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 },
                 {
                     "id": 419,
@@ -3279,7 +3866,11 @@
                     "acces": "Plage de Mangily",
                     "horaires": "10h - Tard",
                     "conseil": "Punch coco maison recommandé.",
-                    "duree": "Soirée"
+                    "duree": "Soirée",
+                    "tags": [
+                        "manger",
+                        "sortir"
+                    ]
                 }
             ]
         }

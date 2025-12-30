@@ -1,0 +1,54 @@
+{
+  "total_lieux": 166,
+  "issues_count": 6,
+  "issues": [
+    {
+      "id": 104,
+      "nom": "Taxi Be",
+      "ville": "Diego-Suarez",
+      "type": "Boîte de nuit",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Boîte de nuit'"
+    },
+    {
+      "id": 106,
+      "nom": "Nouvel Hôtel (New Bar)",
+      "ville": "Diego-Suarez",
+      "type": "Boîte de nuit",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Boîte de nuit'"
+    },
+    {
+      "id": 603,
+      "nom": "Place Joffre",
+      "ville": "Diego-Suarez",
+      "type": "Point de Vue",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Point de Vue'"
+    },
+    {
+      "id": 211,
+      "nom": "Le Djembe",
+      "ville": "Nosy Be",
+      "type": "Boîte de nuit",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Boîte de nuit'"
+    },
+    {
+      "id": 511,
+      "nom": "Club 73 (ex-Shakira)",
+      "ville": "Mahajanga",
+      "type": "Boîte de nuit",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Boîte de nuit'"
+    },
+    {
+      "id": 312,
+      "nom": "Discothèque du Soafia",
+      "ville": "Fianarantsoa",
+      "type": "Boîte de nuit",
+      "severity": "WARNING",
+      "message": "Type non reconnu: 'Boîte de nuit'"
+    }
+  ]
+}

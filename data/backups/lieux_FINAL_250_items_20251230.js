@@ -1,10 +1,3 @@
-// ============================================
-// BASE DE DONNÉES DES LIEUX
-// Tags entièrement normalisés (villes + catégories)
-// Dernière mise à jour: CORRECTION COMPLÈTE
-// ============================================
-
-// LAST UPDATE: 2025-12-24 12:40 - Force cache reload
 window.LIEUX_DATA = [
   {
     "id": 1,
@@ -798,7 +791,6 @@ window.LIEUX_DATA = [
     "siteWeb": "http://www.office-tourisme-diego-suarez.com",
     "tags": [
       "diego",
-      "manger",
       "explorer",
       "budget_3",
       "spots",
@@ -4881,7 +4873,6 @@ window.LIEUX_DATA = [
     "image": "images/iles/plage-mahajanga.jpg",
     "description": "La plage préférée des Majungais. Restaurants de fruits de mer les pieds dans le sable.",
     "tags": [
-      "manger",
       "majunga",
       "explorer",
       "budget_1",
@@ -4983,7 +4974,7 @@ window.LIEUX_DATA = [
       "budget_1",
       "spots"
     ],
-    "lat": -17.0,
+    "lat": -17,
     "lng": 49.8,
     "price": "Gratuit",
     "rating": "4.9",
@@ -5188,7 +5179,7 @@ window.LIEUX_DATA = [
     "prixNum": 2500,
     "lat": -18.1445,
     "lng": 49.4018,
-    "note": 4.0,
+    "note": 4,
     "type": "Gargote",
     "duree": "1h",
     "conseil": "Arrivez tôt pour profiter des plats fraîchement préparés. Les portions sont généreuses.",
@@ -5558,7 +5549,7 @@ window.LIEUX_DATA = [
     "prixNum": 18000,
     "lat": -18.1425,
     "lng": 49.4008,
-    "note": 4.0,
+    "note": 4,
     "type": "Hôtel",
     "duree": "Nuitée",
     "conseil": "Parfait pour une nuit de transit. Demandez une chambre côté cour pour plus de calme.",
@@ -5653,7 +5644,7 @@ window.LIEUX_DATA = [
     "prixNum": 24000,
     "lat": -18.1472,
     "lng": 49.4058,
-    "note": 4.0,
+    "note": 4,
     "type": "Hôtel",
     "duree": "Nuitée",
     "conseil": "Emplacement pratique pour explorer la ville à pied. Marché et restaurants à proximité immédiate.",
@@ -6153,7 +6144,7 @@ window.LIEUX_DATA = [
     "prixNum": 0,
     "lat": -18.1456,
     "lng": 49.4067,
-    "note": 4.0,
+    "note": 4,
     "type": "Parc Urbain",
     "duree": "1h",
     "conseil": "Idéal pour une pause lecture ou pique-nique en plein centre-ville.",
@@ -6382,7 +6373,7 @@ window.LIEUX_DATA = [
     "prixNum": 350000,
     "lat": -18.1123,
     "lng": 49.3967,
-    "note": 5.0,
+    "note": 5,
     "type": "Vol Panoramique",
     "duree": "30-45 min",
     "conseil": "Réservation obligatoire 1 semaine avant. Vol tôt le matin pour meilleure visibilité.",
@@ -6416,5 +6407,246 @@ window.LIEUX_DATA = [
     "id": 690,
     "image": "images/placeholder-nature.jpg",
     "siteWeb": "https://www.google.com/maps/search/Pêche+en+Haute+Mer+-+Sortie+Sportive+Toamasina"
+  },
+  {
+    "nom": "Le Neptune - Havana Club",
+    "ville": "Toamasina",
+    "description": "Club emblématique de Tamatave ouvert mercredis et samedis dès 22h. DJ résident créant une ambiance énergique et festive. Piste de danse spacieuse, bar bien fourni, système son professionnel. Incontournable de la vie nocturne locale.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_2",
+      "culture"
+    ],
+    "prix": "10 000 Ar",
+    "prixNum": 10000,
+    "lat": -18.1489,
+    "lng": 49.4095,
+    "note": 4.5,
+    "type": "Nightclub",
+    "duree": "Soirée",
+    "conseil": "Arrivez après 23h quand l'ambiance monte. Tenue correcte exigée le samedi.",
+    "acces": "Centre-ville, accessible en taxi",
+    "horaires": "Mer-Sam 22h-6h",
+    "id": 691,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Le+Neptune+-+Havana+Club+Toamasina"
+  },
+  {
+    "nom": "Le Pandora Club",
+    "ville": "Toamasina",
+    "description": "Club moderne sur la route de l'aéroport. Ouvert vendredis et samedis de 22h à 6h. Ambiance jeune et décontractée, musique variée (afrobeat, zouk, dancehall, électro). Grande terrasse fumeurs, VIP lounge disponible.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_2"
+    ],
+    "prix": "15 000 Ar",
+    "prixNum": 15000,
+    "lat": -18.1234,
+    "lng": 49.3856,
+    "note": 4.4,
+    "type": "Nightclub",
+    "duree": "Soirée",
+    "conseil": "Les vendredis sont moins bondés que les samedis. Parkings surveillés disponibles.",
+    "acces": "Route de l'aéroport, taxi recommandé",
+    "horaires": "Ven-Sam 22h-6h",
+    "id": 692,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Le+Pandora+Club+Toamasina"
+  },
+  {
+    "nom": "Queen's Club",
+    "ville": "Toamasina",
+    "description": "Club chic sur le Boulevard Maréchal-Joffre. Ambiance premium avec décoration soignée. Clientèle élégante, cocktails signatures, champagne disponible. Musique house et R&B. Dress code strictement appliqué.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_3",
+      "luxe"
+    ],
+    "prix": "25 000 Ar",
+    "prixNum": 25000,
+    "lat": -18.1478,
+    "lng": 49.4088,
+    "note": 4.6,
+    "type": "Club Premium",
+    "duree": "Soirée",
+    "conseil": "Réservation VIP table recommandée le week-end. Tenue élégante obligatoire.",
+    "acces": "Boulevard Maréchal-Joffre, service voiturier disponible",
+    "horaires": "Jeu-Sam 23h-5h",
+    "id": 693,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Queen's+Club+Toamasina"
+  },
+  {
+    "nom": "Le Taxi Be Club",
+    "ville": "Toamasina",
+    "description": "Bar-club populaire dans le quartier Bazar Be. Ouvert 7 jours sur 7, entrée gratuite, boissons à prix doux. Ambiance locale authentique et conviviale. Idéal pour danser, socialiser et faire la fête sans se ruiner. Très prisé des jeunes.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_1",
+      "culture"
+    ],
+    "prix": "Gratuit",
+    "prixNum": 0,
+    "lat": -18.1456,
+    "lng": 49.4025,
+    "note": 4.3,
+    "type": "Bar-Club",
+    "duree": "Soirée",
+    "conseil": "Arrive tôt pour avoir une table. Ambiance la plus animée après minuit.",
+    "acces": "Quartier Bazar Be, accessible en pousse-pousse",
+    "horaires": "Tlj 20h-4h",
+    "id": 694,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Le+Taxi+Be+Club+Toamasina"
+  },
+  {
+    "nom": "La Terrasse Bar Lounge",
+    "ville": "Toamasina",
+    "description": "Bar lounge élégant sur terrasse panoramique avec vue sur l'océan. Cocktails créatifs, tapas gastronomiques, musique lounge et jazz. Ambiance détendue et sophistiquée. Idéal pour after-work ou soirée romantique.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_3",
+      "luxe",
+      "gastronomie"
+    ],
+    "prix": "20 000 Ar",
+    "prixNum": 20000,
+    "lat": -18.1498,
+    "lng": 49.4108,
+    "note": 4.7,
+    "type": "Bar Lounge",
+    "duree": "Soirée",
+    "conseil": "Réservez une table en terrasse pour le coucher de soleil. Happy hour 18h-20h.",
+    "acces": "Front de mer, parking disponible",
+    "horaires": "Mar-Dim 17h-2h",
+    "id": 695,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/La+Terrasse+Bar+Lounge+Toamasina"
+  },
+  {
+    "nom": "Le Feeling Bar Karaoké",
+    "ville": "Toamasina",
+    "description": "Bar karaoké convivial et familial. Grande sélection de chansons françaises, malgaches et internationales. Soirées thématiques régulières, écrans multiples, système son de qualité. Ambiance fun et décontractée pour tous âges.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_1",
+      "famille"
+    ],
+    "prix": "5 000 Ar",
+    "prixNum": 5000,
+    "lat": -18.1467,
+    "lng": 49.4042,
+    "note": 4.2,
+    "type": "Bar Karaoké",
+    "duree": "Soirée",
+    "conseil": "Arrivez avant 21h pour réserver votre chanson. Jeudi soir = soirée karaoké compétition.",
+    "acces": "Centre-ville, accessible à pied",
+    "horaires": "Mer-Dim 19h-1h",
+    "id": 696,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Le+Feeling+Bar+Karaoké+Toamasina"
+  },
+  {
+    "nom": "Chez Moi Bar & Grill",
+    "ville": "Toamasina",
+    "description": "Bar-restaurant décontracté avec terrasse ombragée. Grillades, burgers, pizzas. Écrans géants pour matchs de foot, billard, baby-foot. Clientèle mixte locale et expatriée. Bières locales et importées à prix raisonnables.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_2",
+      "famille"
+    ],
+    "prix": "12 000 Ar",
+    "prixNum": 12000,
+    "lat": -18.1445,
+    "lng": 49.4065,
+    "note": 4.3,
+    "type": "Bar-Restaurant",
+    "duree": "Soirée",
+    "conseil": "Venez pour les matchs en soirée. Happy hour bières 17h-19h en semaine.",
+    "acces": "Centre-ville, parking petit mais disponible",
+    "horaires": "Tlj 11h-minuit",
+    "id": 697,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Chez+Moi+Bar+&+Grill+Toamasina"
+  },
+  {
+    "nom": "No Comment Bar Tamatave",
+    "ville": "Toamasina",
+    "description": "Bar tendance avec décoration moderne et urbaine. Cocktails créatifs, DJ sets week-ends, terrasse chill-out. Clientèle jeune et branchée. Bonnes vibes garanties, musique afrobeat et électro. Ambiance cool et sans prise de tête.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_2",
+      "culture"
+    ],
+    "prix": "15 000 Ar",
+    "prixNum": 15000,
+    "lat": -18.1423,
+    "lng": 49.4078,
+    "note": 4.4,
+    "type": "Bar Tendance",
+    "duree": "Soirée",
+    "conseil": "Goûtez leurs cocktails maison signature. DJ live les vendredis et samedis dès 22h.",
+    "acces": "Quartier moderne, taxi recommandé le soir",
+    "horaires": "Jeu-Dim 18h-2h",
+    "id": 698,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/No+Comment+Bar+Tamatave+Toamasina"
+  },
+  {
+    "nom": "Belle Aire Rooftop Bar",
+    "ville": "Toamasina",
+    "description": "Bar sur toit avec vue panoramique à 360° sur Tamatave et l'océan. Cocktails premium, champagne, carte de vins. Ambiance lounge chic, musique douce. Spot Instagram par excellence. Idéal pour soirée spéciale ou célébration.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_3",
+      "luxe"
+    ],
+    "prix": "30 000 Ar",
+    "prixNum": 30000,
+    "lat": -18.1412,
+    "lng": 49.4092,
+    "note": 4.8,
+    "type": "Rooftop Bar",
+    "duree": "Soirée",
+    "conseil": "Réservation obligatoire le week-end. Vue spectaculaire au coucher du soleil.",
+    "acces": "Centre-ville, ascenseur direct au rooftop",
+    "horaires": "Mer-Dim 17h-1h",
+    "id": 699,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Belle+Aire+Rooftop+Bar+Toamasina"
+  },
+  {
+    "nom": "Bar Mananara Beach",
+    "ville": "Toamasina",
+    "description": "Bar les pieds dans le sable en bordure de plage. Ambiance tropicale décontractée, cocktails fruités, barbecue le soir, musique reggae et salsa. Parfait pour after-beach, sunset drinks. Vue mer exceptionnelle, brise marine rafraîchissante.",
+    "tags": [
+      "toamasina",
+      "sortir",
+      "budget_2",
+      "nature",
+      "detente"
+    ],
+    "prix": "10 000 Ar",
+    "prixNum": 10000,
+    "lat": -18.1567,
+    "lng": 49.4201,
+    "note": 4.6,
+    "type": "Beach Bar",
+    "duree": "Soirée",
+    "conseil": "Arrivez vers 17h30 pour le coucher de soleil. Transat et parasols gratuits avec conso.",
+    "acces": "Plage sud de Tamatave, 15 min en taxi",
+    "horaires": "Tlj 15h-23h",
+    "id": 700,
+    "image": "images/placeholder-bar.jpg",
+    "siteWeb": "https://www.google.com/maps/search/Bar+Mananara+Beach+Toamasina"
   }
 ];

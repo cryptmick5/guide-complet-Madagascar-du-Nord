@@ -1,4 +1,4 @@
-const ITINERAIRES_DATA = {
+window.ITINERAIRES_DATA = {
     "circuit-nord": {
         "id": "circuit-nord",
         "nom": "L'\u00c9pop\u00e9e du Grand Nord",
@@ -74,7 +74,8 @@ const ITINERAIRES_DATA = {
                     "eco": "H\u00f4tel de la Poste"
                 },
                 "gourmandise": "D\u00eener de fruits de mer au Tsara Be ou Carpaccio de Z\u00e9bu.",
-                "astuce": "Changez vos euros en ville, le taux est bien meilleur qu'\u00e0 l'a\u00e9roport (et on \u00e9vite l'arnaque touristique)."
+                "astuce": "Changez vos euros en ville, le taux est bien meilleur qu'\u00e0 l'a\u00e9roport (et on \u00e9vite l'arnaque touristique).",
+                "lieux_ids": [601]
             },
             {
                 "jour": 2,
@@ -101,8 +102,10 @@ const ITINERAIRES_DATA = {
                     "standard": "Lakana Ramena",
                     "premium": "Mantleis"
                 },
-                "gourmandise": "Poisson Capitaine grill\u00e9 au feu de bois sur la plage.",
-                "astuce": "Prenez un chapeau qui tient bien, le vent peut souffler fort (c'est le spot mondial de Kite !)."
+                "gourmandise": "Poisson frais au feu de bois sur le bivouac.",
+                "lieux_ids": [601],
+                "astuce": "Prenez un chapeau qui tient bien, le vent peut souffler fort (c'est le spot mondial de Kite !).",
+                "lieux_ids": [602]
             },
             {
                 "jour": 3,
@@ -129,7 +132,8 @@ const ITINERAIRES_DATA = {
                     "standard": "Retour Diego"
                 },
                 "astuce": "Allez-y en fin d'aprem pour la 'Golden Hour', les couleurs explosent.",
-                "gourmandise": "Pique-nique avec vue panoramique."
+                "gourmandise": "Pique-nique avec vue panoramique.",
+                "lieux_ids": [603]
             },
             {
                 "jour": 4,
@@ -156,7 +160,8 @@ const ITINERAIRES_DATA = {
                     "standard": "Nature Lodge",
                     "eco": "G\u00eete du Parc"
                 },
-                "astuce": "Prenez un K-Way, m\u00eame s'il fait grand soleil \u00e0 Diego. La montagne a son propre micro-climat."
+                "astuce": "Prenez un K-Way, m\u00eame s'il fait grand soleil \u00e0 Diego. La montagne a son propre micro-climat.",
+                "lieux_ids": [604]
             },
             {
                 "jour": 5,
@@ -176,7 +181,8 @@ const ITINERAIRES_DATA = {
                 "hebergement_options": {
                     "standard": "Meva Plage"
                 },
-                "gourmandise": "Calmars saut\u00e9s \u00e0 l'ail."
+                "gourmandise": "Calmars saut\u00e9s \u00e0 l'ail.",
+                "lieux_ids": [605]
             },
             {
                 "jour": 6,
@@ -197,7 +203,8 @@ const ITINERAIRES_DATA = {
                     "standard": "Relais de l'Ankarana",
                     "eco": "Campement Mahamasina"
                 },
-                "astuce": "Attention aux 'Fady' (tabous) ici. \u00c9coutez bien votre guide."
+                "astuce": "Attention aux 'Fady' (tabous) ici. \u00c9coutez bien votre guide.",
+                "lieux_ids": [606]
             },
             {
                 "jour": 7,
@@ -211,7 +218,8 @@ const ITINERAIRES_DATA = {
                 ],
                 "hebergement_options": {
                     "standard": "Relais de l'Ankarana"
-                }
+                },
+                "lieux_ids": [606]
             },
             {
                 "jour": 8,
@@ -231,7 +239,8 @@ const ITINERAIRES_DATA = {
                 "hebergement_options": {
                     "standard": "H\u00f4tel Kozobe"
                 },
-                "gourmandise": "Go\u00fbtez aux 'Mofo Gasy' au march\u00e9."
+                "gourmandise": "Go\u00fbtez aux 'Mofo Gasy' au march\u00e9.",
+                "lieux_ids": [607]
             },
             {
                 "jour": 9,
@@ -250,23 +259,31 @@ const ITINERAIRES_DATA = {
                 ],
                 "hebergement_options": {
                     "standard": "Palma Nova"
-                }
+                },
+                "astuce": "Goûtez le chocolat 100% cacao sur place, c'est intense.",
+                "lieux_ids": [608]
             },
             {
                 "jour": 10,
-                "titre": "Transfert Nosy Be ou Retour",
-                "description": "Fin de l'aventure ! Soit vous prenez le bateau pour l'\u00eele aux parfums (Nosy Be), soit retour \u00e0 Diego.",
+                "astuce": "Goûtez le chocolat 100% cacao sur place, c'est intense.",
+                "lieux_ids": [606]
+            },
+            {
+                "jour": 10,
+                "titre": "Départ vers Nosy Be",
+                "description": "Transfert vers le port d'Ankify. Embarquement en vedette rapide (30 min) vers Nosy Be. L'aventure continue sur l'\u00eele aux parfums...",
                 "logistique": {
                     "depart": "Ambanja",
                     "arrivee": "Ankify",
-                    "duree_totale_transport": "30 min"
+                    "duree_totale_transport": "30 min Piste + Bateau"
                 },
                 "transports_details": [
                     {
                         "type": "Vedette Rapide",
                         "duree": "30 min vers Nosy Be"
                     }
-                ]
+                ],
+                "lieux_ids": [607]
             }
         ]
     },
@@ -314,6 +331,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 1,
                 "titre": "Descente vers Ambanja",
+                "lieux_ids": [601, 606],
                 "description": "On prend la RN6 vers le sud. C'est root, c'est beau. On traverse des savanes \u00e0 perte de vue avant d'arriver dans la verdure tropicale du Sambirano.",
                 "logistique": {
                     "depart": "Diego",
@@ -334,6 +352,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 2,
                 "titre": "Plantations Millot",
+                "lieux_ids": [610],
                 "description": "Le Graal du chocolat. Visite d'une plantation historique qui fournit les plus grands chocolatiers fran\u00e7ais. Ylang-Ylang, Poivre Vert, Cacao... vos sens vont exploser.",
                 "incontournables": [
                     "Cacao",
@@ -348,6 +367,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 3,
                 "titre": "Ankify - Farniente",
+                "lieux_ids": [607],
                 "description": "Petit village portuaire face \u00e0 Nosy Be. On se pose, on regarde les bateaux, on mange du poisson coco.",
                 "hebergement_options": {
                     "standard": "Dauphin Bleu"
@@ -363,6 +383,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 4,
                 "titre": "Remont\u00e9e du Fleuve",
+                "lieux_ids": [611],
                 "description": "Excursion en pirogue sur le fleuve Sambirano. On croise des crocodiles (de loin) et des cam\u00e9l\u00e9ons panth\u00e8res.",
                 "transports_details": [
                     {
@@ -377,6 +398,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 5,
                 "titre": "Retour ou Continuation",
+                "lieux_ids": [201, 607],
                 "description": "Soit on remonte sur Diego avec le taxi-brousse, soit on saute dans une vedette pour aller faire la f\u00eate \u00e0 Nosy Be.",
                 "transports_details": [
                     {
@@ -421,6 +443,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 1,
                 "titre": "Vol vers Sambava",
+                "lieux_ids": [701],
                 "description": "Arriv\u00e9e au c\u0153ur de la r\u00e9gion SAVA (Sambava, Antalaha, Vohemar, Andapa). L'air sent d\u00e9j\u00e0 la vanille.",
                 "hebergement_options": {
                     "standard": "Orchidea"
@@ -429,6 +452,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 2,
                 "titre": "Visite de Cocoteraie",
+                "lieux_ids": [701],
                 "description": "L'une des plus grandes du monde. C'est industriel mais impressionnant. Des millions de noix de coco.",
                 "hebergement_options": {
                     "standard": "Orchidea"
@@ -437,6 +461,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 3,
                 "titre": "Trek Marojejy - Camp 1",
+                "lieux_ids": [702],
                 "description": "On attaque la montagne. For\u00eat dense, humide. On dort au premier campement.",
                 "transports_details": [
                     {
@@ -451,6 +476,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 4,
                 "titre": "Trek Marojejy - Simpona",
+                "lieux_ids": [702],
                 "description": "On monte plus haut. C'est ici qu'on voit le fameux Sifaka Soyeux (l\u00e9murien tout blanc, tr\u00e8s rare).",
                 "hebergement_options": {
                     "standard": "Camp Simpona"
@@ -459,6 +485,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 5,
                 "titre": "Sommet Marojejy",
+                "lieux_ids": [702],
                 "description": "Le toit du Nord-Est. Vue \u00e0 couper le souffle sur l'Oc\u00e9an Indien au loin.",
                 "transports_details": [
                     {
@@ -470,6 +497,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 6,
                 "titre": "Descente et Repos",
+                "lieux_ids": [701],
                 "description": "Les mollets piquent. Retour \u00e0 la civilisation et bonne douche.",
                 "hebergement_options": {
                     "standard": "Orchidea"
@@ -478,6 +506,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 7,
                 "titre": "Route vers Antalaha",
+                "lieux_ids": [703],
                 "description": "La capitale mondiale de la vanille. La route est belle, bord\u00e9e de v\u00e9g\u00e9tation.",
                 "transports_details": [
                     {
@@ -492,12 +521,14 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 8,
                 "titre": "Ateliers de Vanille",
+                "lieux_ids": [703],
                 "description": "Vous allez tout comprendre : \u00e9chaudage, \u00e9tuvage, s\u00e9chage, massage... Un travail de titanesque pour une gousse.",
                 "astuce": "Achetez votre vanille ici, avec certificat phytosanitaire."
             },
             {
                 "jour": 9,
                 "titre": "Cap Est",
+                "lieux_ids": [704],
                 "description": "Le point le plus \u00e0 l'Est de Madagascar et d'Afrique. Phare du bout du monde.",
                 "transports_details": [
                     {
@@ -509,6 +540,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 10,
                 "titre": "Macolline",
+                "lieux_ids": [705],
                 "description": "Une colline botanique g\u00e9r\u00e9e par 'Madame Marie'. Vue panoramique sur le fleuve.",
                 "transports_details": [
                     {
@@ -520,12 +552,14 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 11,
                 "titre": "D\u00e9tente Plage",
+                "lieux_ids": [704],
                 "description": "Attention aux requins parfois, demandez aux locaux o\u00f9 se baigner. Sinon piscine de l'h\u00f4tel.",
                 "gourmandise": "Langouste grill\u00e9e."
             },
             {
                 "jour": 12,
                 "titre": "Vol Retour",
+                "lieux_ids": [703],
                 "description": "D\u00e9collage d'Antalaha avec des valises qui sentent bon.",
                 "logistique": {
                     "depart": "Antalaha",
@@ -579,6 +613,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 1,
                 "titre": "Arriv\u00e9e \u00e0 Fascene",
+                "lieux_ids": [201],
                 "description": "L'air est chaud, humide et parfum\u00e9. Transfert vers votre h\u00f4tel, cocktail de bienvenue. On enl\u00e8ve les chaussures pour 7 jours.",
                 "hebergement_options": {
                     "standard": "L'Heure Bleue",
@@ -593,6 +628,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 2,
                 "titre": "Nosy Komba & Tanikely",
+                "lieux_ids": [250, 251],
                 "description": "Le combo classique : L\u00e9muriens qui vous sautent sur l'\u00e9paule \u00e0 Komba, puis aquarium naturel \u00e0 Tanikely. Mettez la t\u00eate sous l'eau, c'est Finding Nemo en vrai.",
                 "transports_details": [
                     {
@@ -608,6 +644,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 3,
                 "titre": "Tour de l'\u00eele en Scooter",
+                "lieux_ids": [252],
                 "description": "Libert\u00e9 totale. On passe par la cascade, l'Arbre Sacr\u00e9 (un banian g\u00e9ant), et on finit au Mont Passot pour le coucher de soleil avec un ap\u00e9ro.",
                 "transports_details": [
                     {
@@ -619,6 +656,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 4,
                 "titre": "Nosy Iranja",
+                "lieux_ids": [253],
                 "description": "L'image de carte postale. Deux \u00eeles reli\u00e9es par une langue de sable blanc. L'eau est d'un bleu irr\u00e9el. Attention aux coups de soleil !",
                 "incontournables": [
                     {
@@ -633,6 +671,7 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 5,
                 "titre": "R\u00e9serve de Lokobe",
+                "lieux_ids": [254],
                 "description": "La derni\u00e8re for\u00eat primaire de l'\u00eele. On y va en pirogue traditionnelle. Cam\u00e9l\u00e9ons minuscules et boas (gentils).",
                 "transports_details": [
                     {
@@ -644,12 +683,14 @@ const ITINERAIRES_DATA = {
             {
                 "jour": 6,
                 "titre": "Plage d'Andilana & D\u00e9tente",
+                "lieux_ids": [255],
                 "description": "Dimanche \u00e0 la plage. Musique, grillades, massage sur le sable. C'est la Dolce Vita version tropiques.",
                 "gourmandise": "Langouste et Coco."
             },
             {
                 "jour": 7,
                 "titre": "D\u00e9part",
+                "lieux_ids": [201],
                 "description": "Dernier bain, achat de vanille et d'\u00e9pices au march\u00e9 d'Hell-Ville sur la route de l'a\u00e9roport. Veloma !",
                 "logistique": {
                     "depart": "H\u00f4tel",

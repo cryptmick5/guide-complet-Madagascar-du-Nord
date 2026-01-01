@@ -44,7 +44,8 @@
             rgba(46, 125, 50, 0.02) 100%);
 
     /* Accent colors modernisés */
-    --laterite-2026: #E67E22;
+    --laterite-2026: #b03030;
+    /* TRUE LATERITE RED */
     --ocean-2026: #00A8E8;
     --foret-2026: #43A047;
     --vanille-2026: #FFB74D;
@@ -64,7 +65,7 @@
 
     /* Info bar gradients - Dark mode */
     --gradient-2026-info-bar: linear-gradient(135deg,
-            rgba(230, 126, 34, 0.06) 0%,
+            rgba(176, 48, 48, 0.06) 0%,
             rgba(67, 160, 71, 0.06) 100%);
 }
 
@@ -103,7 +104,7 @@
     overflow: hidden;
     /* Background permanent pour éviter les écrans noirs pendant le chargement */
     background: linear-gradient(135deg,
-            rgba(230, 126, 34, 0.2) 0%,
+            rgba(176, 48, 48, 0.2) 0%,
             rgba(67, 160, 71, 0.2) 50%,
             rgba(0, 168, 232, 0.2) 100%);
 }
@@ -612,79 +613,7 @@
    SEARCH BAR PREMIUM 2026
    ========================================= */
 
-.search-container-2026 {
-    position: relative;
-    max-width: 800px;
-    /* Increased from 600px for better proportions */
-    margin: 32px auto;
-    /* Centered horizontally */
-    z-index: 100;
-    width: 90%;
-    /* Responsive fallback */
-}
-
-.search-wrapper-2026 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    padding: 6px 6px 6px 24px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.search-wrapper-2026:focus-within {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
-        0 0 0 2px rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-}
-
-.search-icon-left {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
-    margin-right: 12px;
-}
-
-.search-input-2026 {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    font-family: var(--font-body);
-    font-weight: 500;
-    outline: none;
-}
-
-.search-input-2026::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.search-btn-2026 {
-    background: var(--laterite-2026);
-    color: white;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.search-btn-2026:hover {
-    transform: scale(1.1) rotate(-10deg);
-    background: #ff5e3a;
-    /* Lighter shade of laterite */
-}
+/* [DUPLICATE SEARCH BLOCK REMOVED FOR CLEANUP] */
 
 /* RESULTS DROPDOWN PREMIUM */
 .search-results-2026 {
@@ -760,9 +689,668 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
+/* =========================================
+   SEARCH BAR PREMIUM (LANGUAGES)
+   ========================================= */
+
+.search-container-2026 {
+    margin: 20px auto;
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+}
+
+.search-wrapper-2026 {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-2026 {
+    width: 100%;
+    padding: 16px 20px 16px 50px;
+    border-radius: 50px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-2026-sm);
+    transition: all 0.3s ease;
+}
+
+/* Force text visibility in Day Mode explicitly */
+[data-theme="light"] .search-input-2026,
+body:not(.dark-mode) .search-input-2026 {
+    color: #1a1a1a !important;
+    background: #ffffff !important;
+    border-color: #e5e5e5 !important;
+}
+
+.search-input-2026::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.search-input-2026:focus {
+    outline: none;
+    border-color: var(--laterite-2026);
+    box-shadow: 0 0 0 4px rgba(176, 48, 48, 0.1);
+}
+
+.search-container-2026 .search-icon-left {
+    position: absolute;
+    left: 20px;
+    color: var(--laterite-2026);
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 11;
+}
+
+
+
+
 .search-no-results {
     padding: 20px;
     text-align: center;
     color: rgba(255, 255, 255, 0.5);
     font-style: italic;
+}
+
+/* =========================================
+   LANGUAGES PREMIUM 2026
+   ========================================= */
+
+/* =========================================
+   LANGUAGES PREMIUM 2026
+   ========================================= */
+
+.language-grid-2026 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-2026-lg);
+    margin-top: var(--spacing-2026-md);
+}
+
+.language-card-2026 {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2026-lg);
+    padding: var(--spacing-2026-lg);
+    box-shadow: var(--shadow-2026-sm);
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: all var(--transition-2026-base);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.language-card-2026:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2026-lg);
+    border-color: var(--laterite-2026);
+    /* Subtle brand gradient instead of orange */
+    background: linear-gradient(to right, var(--bg-secondary), rgba(176, 48, 48, 0.05));
+}
+
+.language-card-2026.active {
+    border-color: var(--laterite-2026);
+    background: rgba(176, 48, 48, 0.08);
+}
+
+.language-content {
+    flex: 1;
+}
+
+.lang-fr {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.lang-mg {
+    font-size: 1rem;
+    color: var(--laterite-2026);
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.lang-phonetic {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.btn-play-audio-2026 {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--laterite-2026);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-2026-fast);
+    box-shadow: var(--shadow-2026-sm);
+    flex-shrink: 0;
+}
+
+.language-card-2026:hover .btn-play-audio-2026 {
+    background: var(--laterite-2026);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: var(--shadow-2026-md);
+    border-color: transparent;
+}
+
+.btn-play-audio-2026.playing {
+    background: var(--laterite-2026);
+    color: white;
+    animation: pulseAudio 1.5s infinite;
+}
+
+@keyframes pulseAudio {
+    0% {
+        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(176, 48, 48, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0);
+    }
+}
+
+/* Day Mode Overrides for Cards */
+[data-theme="light"] .lang-fr,
+body:not(.dark-mode) .lang-fr {
+    color: #1a1a1a !important;
+}
+
+[data-theme="light"] .lang-mg,
+body:not(.dark-mode) .lang-mg {
+    color: #b03030 !important;
+    /* Laterite styling */
+}
+
+/* =========================================
+   ACCORDIONS PREMIUM 2026
+   ========================================= */
+
+.accordion-item-2026 {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2026-lg);
+    margin-bottom: var(--spacing-2026-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-2026-sm);
+    overflow: hidden;
+    transition: all var(--transition-2026-base);
+}
+
+.accordion-item-2026:hover {
+    box-shadow: var(--shadow-2026-md);
+    border-color: var(--laterite-2026);
+}
+
+.accordion-header-2026 {
+    padding: var(--spacing-2026-md) var(--spacing-2026-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.2s ease;
+}
+
+.accordion-header-2026:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.accordion-title-2026 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.accordion-title-2026::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 24px;
+    background: var(--laterite-2026);
+    border-radius: 4px;
+}
+
+.accordion-header-2026 i {
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.accordion-item-2026.active .accordion-header-2026 i {
+    transform: rotate(180deg);
+    color: var(--laterite-2026);
+}
+
+.accordion-content-2026 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-primary);
+    /* Slightly distinct bg for inner content */
+}
+
+.accordion-item-2026.active .accordion-content-2026 {
+    max-height: 2000px;
+    padding-bottom: var(--spacing-2026-lg);
+}
+
+.accordion-inner-padding {
+    padding: 20px var(--spacing-2026-lg);
+}
+
+/* ============================================
+   MARKER CLUSTERS PREMIUM (RED/LATERITE)
+   ============================================ */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+    background-color: rgba(176, 48, 48, 0.4) !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    /* Premium Font */
+    font-weight: 700;
+    border-radius: 50%;
+    border: 2px solid white;
+    /* Premium ring */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.marker-cluster-small div {
+    background-color: rgba(176, 48, 48, 0.85) !important;
+}
+
+.marker-cluster-medium div {
+    background-color: rgba(176, 48, 48, 0.95) !important;
+}
+
+.marker-cluster-large div {
+    background-color: rgba(139, 0, 0, 1) !important;
+}
+
+/* Pulse Animation Logic (Optional but nice) */
+.marker-cluster div {
+    animation: clusterPulse 3s infinite;
+}
+
+@keyframes clusterPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(176, 48, 48, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0);
+    }
+}
+
+/* ============================================
+   MAP BACK BUTTON (Fixed Context)
+   ============================================ */
+.btn-back-map {
+    background: var(--bg-secondary, white);
+    color: var(--text-primary, #333);
+    border: 1px solid var(--border-color, #ddd);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: var(--font-body, sans-serif);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-back-map:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    color: var(--laterite-2026, #b03030);
+}
+
+/* Specific Dark Mode Override if variables aren't perfect */
+body.dark-mode .btn-back-map {
+    background: #2a2a2a;
+    color: white;
+    border-color: #444;
+}
+
+
+/* ============================================
+   TIMELINE ACCORDION (Premium 2026)
+   ============================================ */
+
+.timeline-container {
+    padding-left: 20px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* The vertical line */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 45px;
+    /* Adjust based on dot alignment */
+    width: 2px;
+    background: rgba(176, 48, 48, 0.2);
+    /* Low opacity laterite */
+    z-index: 0;
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: 24px;
+    background: transparent;
+    border: none;
+    z-index: 1;
+    /* Above line */
+}
+
+/* The Dot */
+.timeline-marker {
+    position: absolute;
+    left: 36px;
+    /* Center on line (45px - 9px) */
+    top: 24px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--laterite-2026);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-step.active .timeline-marker {
+    background: var(--laterite-2026);
+    box-shadow: 0 0 0 4px rgba(176, 48, 48, 0.2);
+}
+
+.timeline-step:last-child .timeline-marker {
+    border-color: #22c55e;
+    /* Green for finish */
+}
+
+/* The Accordion Card */
+.timeline-card {
+    margin-left: 50px;
+    /* Space for line */
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2026-lg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-2026-sm);
+}
+
+.timeline-step.active .timeline-card {
+    box-shadow: var(--shadow-2026-md);
+    border-color: rgba(176, 48, 48, 0.3);
+}
+
+/* Header Layout */
+.timeline-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    gap: 16px;
+    background: transparent;
+}
+
+.timeline-header:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.timeline-day {
+    font-weight: 700;
+    color: var(--laterite-2026);
+    font-size: 0.9rem;
+    min-width: 60px;
+}
+
+.timeline-title {
+    flex: 1;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+/* Floating Thumbnail in Header (Clickable) */
+.timeline-thumb-container {
+    width: 60px;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.timeline-thumb-container:hover {
+    transform: scale(1.1);
+    border-color: var(--laterite-2026);
+}
+
+.timeline-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline-chevron {
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.timeline-step.active .timeline-chevron {
+    transform: rotate(180deg);
+    color: var(--laterite-2026);
+}
+
+/* Accordion Content */
+.timeline-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-primary);
+    /* Slightly distinct */
+}
+
+.timeline-step.active .timeline-content {
+    max-height: 1000px;
+    /* Arbitrary large */
+}
+
+.timeline-body {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Desktop: Text Left, Image Right */
+.timeline-body-text {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Large Clickable Image */
+.timeline-body-image-container {
+    width: 280px;
+    aspect-ratio: 16/10;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    box-shadow: var(--shadow-2026-sm);
+    transition: transform 0.3s;
+}
+
+.timeline-body-image-container:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-2026-md);
+}
+
+.timeline-body-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* View Location Overlay on Hover */
+.timeline-body-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 24px;
+    }
+
+    .timeline-marker {
+        left: 15px;
+    }
+
+    .timeline-card {
+        margin-left: 40px;
+    }
+
+    .timeline-header {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .timeline-day {
+        min-width: 40px;
+        font-size: 0.8rem;
+    }
+
+    .timeline-title {
+        font-size: 1rem;
+    }
+
+    .timeline-thumb-container {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        /* Circle on mobile */
+    }
+
+    .timeline-body {
+        flex-direction: column-reverse;
+        /* Image top or bottom? User example shows side. Let's stack image below text on mobile */
+    }
+
+    .timeline-body-image-container {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+}
+
+
+/* ==========================================
+   BACK BUTTON 2026 (Refined)
+   ========================================== */
+.btn-back-circuits {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2026-pill);
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: var(--shadow-2026-sm);
+    transition: all var(--transition-2026-base);
+    cursor: pointer;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    position: sticky;
+    /* Keep it handy if needed, or just block */
+    top: 20px;
+    z-index: 10;
+}
+
+.btn-back-circuits i {
+    font-size: 1.1rem;
+    color: var(--laterite-2026);
+    transition: transform var(--transition-2026-fast);
+}
+
+.btn-back-circuits:hover {
+    background: white;
+    color: var(--laterite-2026);
+    transform: translateX(4px);
+    /* Move right slightly */
+    box-shadow: var(--shadow-2026-md);
+    border-color: var(--laterite-2026);
+}
+
+.btn-back-circuits:hover i {
+    transform: translateX(-4px);
+    /* Move arrow left for fun contrast */
+}
+
+.btn-back-circuits:active {
+    transform: scale(0.98);
 }

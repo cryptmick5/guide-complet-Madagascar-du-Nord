@@ -1,0 +1,560 @@
+{
+    "nord_7j": {
+        "id": "nord_7j",
+        "nom": "Le Grand Nord Express",
+        "image": "images/iles/mer-emeraude.jpg",
+        "duree": "7 Jours",
+        "budget": "Moyen",
+        "description": "L'essentiel du Nord en une semaine intense. Idéal pour une première découverte.",
+        "infos": {
+            "description_fun": "Le grand classique qui ne déçoit jamais. C'est intense, ça bouge, et on en prend plein les yeux. Parfait pour les hyperactifs !",
+            "securite_level": "Sûr",
+            "conseil_securite": "Zone très touristique, vigilance standard. Attention aux coups de soleil à la Mer d'Émeraude."
+        },
+        "logistique": {
+            "vehicule_conseil": "4x4 fortement recommandé (Piste Tsingy Rouge & Ankarana)",
+            "route_etat": "RN6 : En travaux mais praticable. Pistes : Secousses garanties.",
+            "saison_ideale": "Avril à Novembre (éviter la saison des pluies)"
+        },
+        "budgets": {
+            "eco": {
+                "price": "450 €",
+                "label": "Eco / Backpacker",
+                "desc": "Transport en taxi-brousse & taxi partagé, hébergement en petits hôtels locaux ou chez l'habitant, repas en gargotes. L'aventure authentique.",
+                "inclus": [
+                    "Hébergement simple",
+                    "Transport local",
+                    "Entrées parcs"
+                ]
+            },
+            "standard": {
+                "price": "900 €",
+                "label": "Confort",
+                "desc": "4x4 privé avec chauffeur-guide, hôtels de charme 2-3 étoiles, demi-pension. Le meilleur rapport qualité/prix pour voyager sereinement.",
+                "inclus": [
+                    "Hôtels de charme",
+                    "4x4 + Chauffeur",
+                    "Demi-pension",
+                    "Guides parcs"
+                ]
+            },
+            "premium": {
+                "price": "1600 €",
+                "label": "Premium",
+                "desc": "Lodges d'exception (Maison Gallieni, Ankarana Lodge...), 4x4 récent climatisé, pension complète gourmande, activités privatisées.",
+                "inclus": [
+                    "Lodges Luxe",
+                    "4x4 Toyota récent",
+                    "Pension complète",
+                    "Tout inclus"
+                ]
+            }
+        },
+        "etapes": [
+            {
+                "jour": 1,
+                "titre": "Bienvenue à Diego-Suarez",
+                "description": "<b>(Expert)</b> ",
+                "conseil": "Allez prendre un verre au coucher du soleil face à la baie.",
+                "transport": {
+                    "mode": "Taxi",
+                    "duree": "20 min",
+                    "info": "Depuis aéroport"
+                },
+                "astuce": "Le vent souffle fort l'après-midi ! Si vous prévoyez une balade en bateau, faites-la le matin. Pour le coucher de soleil, le <b>Grand Hôtel</b> offre une terrasse avec vue imprenable.",
+                "lieux_ids": [
+                    14,
+                    13
+                ],
+                "description_expert": "<b>Bienvenue à Diego-Suarez, la perle du Nord.</b><br><br>Dès que vous posez le pied sur le tarmac d'Arrachart, l'air chaud et épicé vous saisit. Vous n'êtes pas simplement arrivés dans une ville, mais dans une époque. Antsiranana possède ce charme suranné des cités qui ont vécu mille vies. En traversant la ville vers l'hôtel, observez les <b>4L jaunes</b>, véritables icônes locales, qui se faufilent entre les tuk-tuks.<br><br>L'architecture ici raconte l'histoire coloniale : colonnades, vérandas, et façades décrépies mais superbes. Ne manquez pas la <b>Rue Colbert</b> pour sentir le pouls de la ville. Le marché est une explosion de couleurs : pyramides de mangues, étals de <i>khat</i>, et surtout, l'odeur des brochettes de zébu qui grillent à chaque coin de rue.<br><br>Mais Diego, c'est surtout sa Baie. La deuxième plus grande au monde après Rio. La lumière de fin d'après-midi sur le 'Pain de Sucre' est un spectacle à elle seule. Ce soir, vous dormirez bercés par le 'Varatraza', cet alizé puissant qui ne quitte jamais la région.",
+                "gourmandise": "Testez absolument les <b>Samosas</b> au coin de la Rue Colbert (les meilleurs de l'île) ou un <i>Romazava</i> royal au restaurant 'Le Venilla'.",
+                "incontournables": [
+                    {
+                        "id": 600,
+                        "label": "Rue Colbert (Architecture coloniale)"
+                    },
+                    {
+                        "id": 601,
+                        "label": "Ancien Hôtel de la Marine (Ruine photogénique)"
+                    },
+                    {
+                        "id": 602,
+                        "label": "Le Marché Bazarikely (Épices & Vie locale)"
+                    },
+                    {
+                        "id": 603,
+                        "label": "Place Joffre (Vue panoramique sur la Baie)"
+                    }
+                ],
+                "hebergement_options": {
+                    "eco": {
+                        "id": 610,
+                        "text": "Gîte du Voyageur (Convivial & Central)"
+                    },
+                    "standard": {
+                        "id": 611,
+                        "text": "Allamanda Hotel (Pieds dans l'eau, calme)"
+                    },
+                    "premium": {
+                        "id": 612,
+                        "text": "Grand Hotel (Historique & Luxe Old School)"
+                    }
+                }
+            },
+            {
+                "jour": 2,
+                "titre": "Les 3 Baies : Sauvages & Venteuses",
+                "description": "Une succession de plages de sable blanc : Baie des Sakalava, Baie des Pigeons et Baie des Dunes. C'est le paradis du kitesurf et de la marche. L'eau y est turquoise et le vent Varatraza souffle fort !",
+                "conseil": "Faites la marche à pied entre la Baie des Dunes et la Baie des Pigeons (30mn).",
+                "transport": {
+                    "mode": "4x4 ou Quad",
+                    "duree": "45 min",
+                    "info": "Piste sablonneuse"
+                },
+                "astuce": "Partez le matin tôt (8h) pour éviter le vent trop violent de l'après-midi.",
+                "lieux_ids": [
+                    8,
+                    6
+                ]
+            },
+            {
+                "jour": 3,
+                "titre": "Mer d'Émeraude : Le Lagon Parfait",
+                "description": "Embarquement en coque traditionnelle depuis Ramena. Traversée vers un lagon aux couleurs irréelles. Pique-nique fruits de mer sur un îlot vierge (poisson grillé, riz coco, crabe). Baignade et farniente.",
+                "conseil": "Attention, il y a peu d'ombre sur les îlots, prévoyez chapeau et crème !",
+                "transport": {
+                    "mode": "Bateau",
+                    "duree": "1h",
+                    "info": "Coque bois traditionnelle"
+                },
+                "astuce": "Demandez au capitaine de passer par la 'Passe' pour voir la houle de l'océan Indien avant d'entrer dans le calme du lagon.",
+                "lieux_ids": [
+                    7
+                ]
+            },
+            {
+                "jour": 4,
+                "titre": "Montagne d'Ambre",
+                "description": "Changement de décor complet. On monte en altitude dans une forêt pluviale fraîche et humide. Observation des lémuriens, caméléons (dont le minuscule Brookesia) et cascades sacrées.",
+                "conseil": "Prenez un K-Way, il pleut souvent même en saison sèche !",
+                "transport": {
+                    "mode": "4x4",
+                    "duree": "1h",
+                    "info": "Route de montagne"
+                },
+                "astuce": "Cherchez le caméléon 'Brookesia', l'un des plus petits au monde, il se cache dans les feuilles mortes.",
+                "lieux_ids": [
+                    9
+                ]
+            },
+            {
+                "jour": 5,
+                "titre": "Tsingy Rouge & Route du Sud",
+                "description": "Départ tôt pour les Tsingy Rouges, une formation géologique unique de latérite et de grès sculptée par la pluie. Contraste saisissant de couleurs. Puis route vers le parc de l'Ankarana.",
+                "conseil": "La lumière est meilleure en fin d'après-midi, mais il faut gérer la route.",
+                "transport": {
+                    "mode": "4x4",
+                    "duree": "2h + 1h",
+                    "info": "Piste latérite glissante"
+                },
+                "astuce": "Ne portez pas de vêtements blancs, la poussière rouge des Tsingy tâche !",
+                "lieux_ids": [
+                    10
+                ]
+            },
+            {
+                "jour": 6,
+                "titre": "Spéléo à l'Ankarana",
+                "description": "Randonnée dans les Tsingy Gris acérés de l'Ankarana. Traversée du vertigineux pont suspendu. Exploration des grottes sacrées abritant les chauves-souris. C'est physique mais grandiose.",
+                "conseil": "Marchez doucement sur les ponts suspendus pour les photos !",
+                "transport": {
+                    "mode": "Marche",
+                    "duree": "4-5h",
+                    "info": "Sentier escarpé"
+                },
+                "astuce": "Une lampe frontale puissante est indispensable pour les grottes, celle du téléphone ne suffit pas.",
+                "lieux_ids": [
+                    50,
+                    51
+                ]
+            },
+            {
+                "jour": 7,
+                "titre": "Retour ou Extension",
+                "description": "Retour vers Diego-Suarez pour votre vol, ou transfert vers le port d'Ankify si vous continuez vers l'île de Nosy Be pour la détente.",
+                "conseil": "Achetez vos derniers souvenirs au marché de Diego.",
+                "transport": {
+                    "mode": "4x4",
+                    "duree": "3h",
+                    "info": "Retour sur Diego"
+                },
+                "astuce": "Achetez de la vanille ou du poivre sauvage à Ambilobe sur la route du retour, c'est moins cher qu'à Diego.",
+                "lieux_ids": []
+            }
+        ]
+    },
+    "nord_14j": {
+        "id": "nord_14j",
+        "nom": "La Totale No Stress",
+        "image": "images/iles/nosy-iranja.jpg",
+        "duree": "14 Jours",
+        "budget": "Confort",
+        "description": "Combinez l'aventure de la Grande Terre et la farniente de Nosy Be.",
+        "infos": {
+            "description_fun": "Le combo parfait 'Aventure + Plage'. On commence par la poussière des pistes et on finit avec un cocktail les pieds dans l'eau. La définition des vacances.",
+            "securite_level": "Normal",
+            "conseil_securite": "Traversée Ankify-Nosy Be : préférez les coques rapides le matin (mer plus calme)."
+        },
+        "logistique": {
+            "vehicule_conseil": "4x4 pour la partie Nord, puis Tuk-Tuk/Scooter à Nosy Be",
+            "route_etat": "Mixte : Route goudronnée, Piste, et Bateau.",
+            "saison_ideale": "Mai à Octobre (Climat idéal à Nosy Be)"
+        },
+        "budgets": {
+            "eco": {
+                "price": "800 €",
+                "label": "Eco",
+                "desc": "Transports locaux, hôtels simples mais propres, street food.",
+                "inclus": [
+                    "Hébergement simple",
+                    "Taxi-brousse",
+                    "Transferts bateau"
+                ]
+            },
+            "standard": {
+                "price": "1500 €",
+                "label": "Confort",
+                "desc": "Le juste milieu. Hôtels avec piscine, voiture privée sur la Grande Terre, excursions organisées.",
+                "inclus": [
+                    "Hôtels 3*",
+                    "4x4 privé (J1-J6)",
+                    "Excursions Nosy Be"
+                ]
+            },
+            "premium": {
+                "price": "2800 €",
+                "label": "Luxe",
+                "desc": "Les plus beaux hôtels du Nord (Tsara Komba, Ravintsara...), services privatifs haut de gamme.",
+                "inclus": [
+                    "Hôtels 4-5*",
+                    "Tout inclus",
+                    "Bateau privé"
+                ]
+            }
+        },
+        "etapes": [
+            {
+                "jour": 1,
+                "titre": "Arrivée Diego",
+                "description": "Posez vos valises et respirez l'air du Varatratra. Profitez de votre première soirée pour déguster des brochettes de zébu.",
+                "transport": {
+                    "mode": "Taxi",
+                    "duree": "20 min",
+                    "info": "Transfert ville"
+                },
+                "astuce": "Dinez au Tsara Be pour l'ambiance, ou au Luccaloce pour les meilleures pizzas.",
+                "lieux_ids": [
+                    13,
+                    105
+                ]
+            },
+            {
+                "jour": 2,
+                "titre": "Mer d'Emeraude",
+                "description": "Journée complète 'seul au monde'. Snorkeling dans l'aquarium naturel, sieste sous les filaos.",
+                "transport": {
+                    "mode": "Bateau",
+                    "duree": "45 min",
+                    "info": "Mer agitée possible"
+                },
+                "astuce": "Si vous aimez le kitesurf, c'est l'un des meilleurs spots au monde, prenez une initiation !",
+                "lieux_ids": [
+                    7
+                ]
+            },
+            {
+                "jour": "3-5",
+                "titre": "Boucle Ankarana & Tsingy Rouge",
+                "description": "Immersion nature sur 3 jours. Tsingy Rouges, puis deux nuits à l'Ankarana pour avoir le temps de tout voir sans courir (Tsingy Gris, Lac Vert).",
+                "transport": {
+                    "mode": "4x4",
+                    "duree": "3h",
+                    "info": "Route RN6"
+                },
+                "astuce": "Dormez à l'Ankarana Lodge ou chez Aurelien pour être au plus près de l'entrée du parc.",
+                "lieux_ids": [
+                    10,
+                    50,
+                    51
+                ]
+            },
+            {
+                "jour": 6,
+                "titre": "Cap sur Nosy Be",
+                "description": "Route vers Ankify à travers les plantations de cacao et d'ylang-ylang. Traversée en bateau rapide (45mn) vers Hell-Ville.",
+                "transport": {
+                    "mode": "4x4 & Bateau",
+                    "duree": "4h",
+                    "info": "Route + Mer"
+                },
+                "astuce": "Achetez du cacao pur 100% à la plantation Millot sur le chemin, c'est un délice.",
+                "lieux_ids": []
+            },
+            {
+                "jour": "7-13",
+                "titre": "Archipel de Nosy Be",
+                "description": "Semaine libre. Au programme : Nosy Komba (lémuriens), Nosy Tanikely (aquarium géant), Nosy Iranja (la carte postale).",
+                "transport": {
+                    "mode": "Bateau/Tuk-Tuk",
+                    "duree": "Variable",
+                    "info": "Selon île"
+                },
+                "astuce": "Ne ratez pas le coucher de soleil au Mont Passot avec un cocktail, la vue à 360° est inouïe.",
+                "lieux_ids": [
+                    27,
+                    214
+                ]
+            },
+            {
+                "jour": 14,
+                "titre": "Vol Retour",
+                "description": "Dernier bain de mer et transfert vers l'aéroport de Fascene.",
+                "transport": {
+                    "mode": "Taxi",
+                    "duree": "40 min",
+                    "info": "Vers Fascene"
+                },
+                "astuce": "Bon voyage !",
+                "lieux_ids": []
+            }
+        ]
+    },
+    "1": {
+        "id": "1",
+        "nom": "L'Épopée du Grand Nord",
+        "titre_court": "Grand Nord Express",
+        "description": "Une traversée mythique de Diego-Suarez à Nosy Be, en passant par les Tsingy Rouges et la Montagne d'Ambre. Ce n'est pas juste un trajet, c'est l'essence même du Nord malgache concentrée en 4 jours intenses.",
+        "image": "images/tsingy-rouge-panorama.jpg",
+        "duree": "4 Jours / 3 Nuits",
+        "prix_base": "450 €",
+        "difficulté": "Modérée",
+        "infos": {
+            "securite_level": "Sûr (Zone Touristique)",
+            "description_fun": "Le road-trip ultime pour ceux qui veulent voir les contrastes saisissants du Nord sans perdre une seconde. De la terre rouge aux eaux turquoises."
+        },
+        "logistique_generale": {
+            "route_etat": "Mixte : 70% Goudron abîmé, 30% Piste latérite",
+            "vehicule_conseil": "4x4 Obligatoire (Chauffeur-Guide recommandé)",
+            "saison_ideale": "Avril à Novembre"
+        },
+        "budgets": {
+            "eco": {
+                "price": "280 €",
+                "desc": "L'aventure authentique. Transport en Taxi-Brousse privatisé ou 4x4 rustique, nuits en éco-lodges et gîtes villageois conviviaux.",
+                "inclus": [
+                    "Hébergement (Gîtes)",
+                    "Guide local",
+                    "Entrées parcs",
+                    "Transport simple"
+                ]
+            },
+            "standard": {
+                "price": "450 €",
+                "desc": "L'équilibre parfait. 4x4 climatisé confortable, hôtels de charme 2-3 étoiles et guidage francophone expérimenté.",
+                "inclus": [
+                    "Hôtels Charme",
+                    "4x4 Climatisé + Chauffeur",
+                    "Guide certifié",
+                    "Tous les repas midi",
+                    "Entrées parcs + Guides locaux"
+                ]
+            },
+            "premium": {
+                "price": "850 €",
+                "desc": "L'exception. Toyota Land Cruiser V8 récent, les meilleurs lodges de la région (ex: Nature Lodge, L'Heure Bleue) et pension complète gastronomique.",
+                "inclus": [
+                    "Lodges de Luxe",
+                    "4x4 V8 Privé",
+                    "Guide Expert Naturaliste",
+                    "Pension Complète",
+                    "Activités exclusives"
+                ]
+            }
+        },
+        "etapes": [
+            {
+                "jour": 1,
+                "titre": "Immersion Coloniale à Diego-Suarez",
+                "logistique": {
+                    "depart": "Aéroport Arrachart",
+                    "arrivee": "Centre Ville / Baie",
+                    "nuit": "Diego-Suarez",
+                    "duree_totale_transport": "45 min"
+                },
+                "transports_details": [
+                    {
+                        "type": "Taxi",
+                        "duree": "20 min",
+                        "info": "Transfert Aéroport"
+                    },
+                    {
+                        "type": "Marche",
+                        "duree": "2h",
+                        "info": "Exploration Urbaine"
+                    }
+                ],
+                "description_expert": "<b>Bienvenue à Diego-Suarez, la perle du Nord.</b><br><br>Dès que vous posez le pied sur le tarmac d'Arrachart, l'air chaud et épicé vous saisit. Vous n'êtes pas simplement arrivés dans une ville, mais dans une époque. Antsiranana possède ce charme suranné des cités qui ont vécu mille vies. En traversant la ville vers l'hôtel, observez les <b>4L jaunes</b>, véritables icônes locales, qui se faufilent entre les tuk-tuks.<br><br>L'architecture ici raconte l'histoire coloniale : colonnades, vérandas, et façades décrépies mais superbes. Ne manquez pas la <b>Rue Colbert</b> pour sentir le pouls de la ville. Le marché est une explosion de couleurs : pyramides de mangues, étals de <i>khat</i>, et surtout, l'odeur des brochettes de zébu qui grillent à chaque coin de rue.<br><br>Mais Diego, c'est surtout sa Baie. La deuxième plus grande au monde après Rio. La lumière de fin d'après-midi sur le 'Pain de Sucre' est un spectacle à elle seule. Ce soir, vous dormirez bercés par le 'Varatraza', cet alizé puissant qui ne quitte jamais la région.",
+                "incontournables": [
+                    {
+                        "id": 600,
+                        "label": "Rue Colbert (Architecture coloniale)"
+                    },
+                    {
+                        "id": 601,
+                        "label": "Ancien Hôtel de la Marine (Ruine photogénique)"
+                    },
+                    {
+                        "id": 602,
+                        "label": "Le Marché Bazarikely (Épices & Vie locale)"
+                    },
+                    {
+                        "id": 603,
+                        "label": "Place Joffre (Vue panoramique sur la Baie)"
+                    }
+                ],
+                "activites_suggested": [
+                    "Boire un verre au coucher du soleil face à la baie",
+                    "Acheter des épices fraîches au marché",
+                    "Balade photo dans le quartier militaire"
+                ],
+                "gourmandise": "Testez absolument les <b>Samosas</b> au coin de la Rue Colbert (les meilleurs de l'île) ou un <i>Romazava</i> royal au restaurant 'Le Venilla'.",
+                "hebergement_options": {
+                    "eco": {
+                        "id": 610,
+                        "text": "Gîte du Voyageur (Convivial & Central)"
+                    },
+                    "standard": {
+                        "id": 611,
+                        "text": "Allamanda Hotel (Pieds dans l'eau, calme)"
+                    },
+                    "premium": {
+                        "id": 612,
+                        "text": "Grand Hotel (Historique & Luxe Old School)"
+                    }
+                },
+                "astuce": "Le vent souffle fort l'après-midi ! Si vous prévoyez une balade en bateau, faites-la le matin. Pour le coucher de soleil, le <b>Grand Hôtel</b> offre une terrasse avec vue imprenable.",
+                "conseil": "Changez vos devises en ville (meilleur taux) plutôt qu'à l'aéroport.",
+                "lieux_ids": [
+                    101,
+                    13
+                ]
+            },
+            {
+                "jour": 2,
+                "titre": "La Forêt d'Ambre et les Tsingy Rouges",
+                "logistique": {
+                    "depart": "Diego-Suarez",
+                    "arrivee": "Joffreville / Montagne",
+                    "nuit": "Joffreville (Montagne d'Ambre)",
+                    "duree_totale_transport": "3h"
+                },
+                "transports_details": [
+                    {
+                        "type": "4x4",
+                        "duree": "1h",
+                        "info": "Vers Montagne d'Ambre"
+                    },
+                    {
+                        "type": "4x4",
+                        "duree": "2h",
+                        "info": "Piste Tsingy Rouges"
+                    }
+                ],
+                "description_expert": "Contraste thermique garanti. On quitte la fournaise de la côte pour la fraîcheur humide de la Montagne d'Ambre (+800m). C'est vert, luxuriant, et peuplé de lémuriens curieux. L'après-midi, c'est Mars sur Terre : les Tsingy Rouges. Un canyon de latérite sculpté par la pluie, aux couleurs irréelles.",
+                "incontournables": [
+                    "Cascade Sacrée (Lieu de culte)",
+                    "Caméléon Brookesia (Minuscule !)",
+                    "Canyon des Tsingy Rouges (Sunset)"
+                ],
+                "gourmandise": "Banane flambée au miel de la montagne.",
+                "hebergement_options": {
+                    "eco": "Chez les guides (Village de Joffreville)",
+                    "standard": "Nature Lodge (Bungalows bois cosy)",
+                    "premium": "Camp Ambre (Lodge de charme en forêt)"
+                },
+                "astuce": "Prenez un K-Way léger, la Montagne d'Ambre a son propre micro-climat pluvieux.",
+                "lieux_ids": [
+                    103,
+                    104
+                ]
+            },
+            {
+                "jour": 3,
+                "titre": "La Route du Cacao vers Ankify",
+                "logistique": {
+                    "depart": "Joffreville",
+                    "arrivee": "Ankify",
+                    "nuit": "Ankify (Bord de mer)",
+                    "duree_totale_transport": "5h"
+                },
+                "transports_details": [
+                    {
+                        "type": "4x4",
+                        "duree": "5h",
+                        "info": "Route Nationale RN6 (Dégradée)"
+                    }
+                ],
+                "description_expert": "Une journée de road-trip à travers la vallée du Sambirano. Le paysage change : rizières, palmiers, et surtout les célèbres plantations de cacao, vanille et ylang-ylang. L'odeur est enivrante par endroits. La route est fatiguante (trous), mais c'est l'aventure malgache.",
+                "incontournables": [
+                    "Plantations de Cacao Millot",
+                    "Villages d'orpailleurs (Ambilobe)",
+                    "Pont de la Mahavavy"
+                ],
+                "gourmandise": "Poulet Coco et fruits tropicaux (Corossol, Jacque) sur la route.",
+                "hebergement_options": {
+                    "eco": "Bungalows simples à Ankify",
+                    "standard": "Dauphin Bleu",
+                    "premium": "Ankify Lodge"
+                },
+                "astuce": "Achetez du chocolat 100% directement à l'usine d'Ambanja.",
+                "lieux_ids": [
+                    301
+                ]
+            },
+            {
+                "jour": 4,
+                "titre": "Traversée vers Nosy Be",
+                "logistique": {
+                    "depart": "Port d'Ankify",
+                    "arrivee": "Hell-Ville (Nosy Be)",
+                    "nuit": "Nosy Be",
+                    "duree_totale_transport": "45 min"
+                },
+                "transports_details": [
+                    {
+                        "type": "Bateau",
+                        "duree": "45 min",
+                        "info": "Coque Rapide (Speedboat)"
+                    }
+                ],
+                "description_expert": "Adieu la Grande Terre. Au port d'Ankify, c'est l'effervescence. On charge les bagages sur des coques rapides. La traversée est superbe, on navigue entre les îles (Kombe, Tanikely). Arrivée à Hell-Ville : changement d'ambiance, c'est plus touristique, plus italien, plus 'vacances'.",
+                "incontournables": [
+                    "Port d'Ankify (Ambiance !)",
+                    "Arrivée au port de Hell-Ville",
+                    "Marché couvert de Hell-Ville"
+                ],
+                "gourmandise": "Cocktail au coucher du soleil à Ambatoloaka.",
+                "hebergement_options": {
+                    "eco": "Chez Senga",
+                    "standard": "L'Heure Bleue",
+                    "premium": "Ravintsara Wellness Hotel"
+                },
+                "astuce": "Prévoyez de la petite monnaie pour les porteurs au port d'Ankify (1000-2000 Ar par valise).",
+                "lieux_ids": [
+                    201
+                ]
+            }
+        ],
+        "budget": "Dès 280 €"
+    }
+}

@@ -151,6 +151,39 @@ window.toggleLieuFavorite = function (id, btn, event) {
    3. NAVIGATION & UI CORE
    ============================================ */
 
+window.navigateToHomeDestinations = function () {
+    console.log("🔄 Navigation Fluide: Retour Destinations...");
+
+    // 1. Hide all sections (Manual Toggle to avoid ScrollTo(0,0))
+    document.querySelectorAll('.page-section').forEach(el => {
+        el.style.display = 'none';
+        el.classList.remove('active');
+        const vid = el.querySelector('video');
+        if (vid) vid.pause();
+    });
+
+    // 2. Show Home
+    const home = document.getElementById('page-accueil');
+    if (home) {
+        home.style.display = 'block';
+        home.classList.add('active');
+
+        // 3. Fluid scroll to anchor
+        // Small delay to ensure layout is painted
+        setTimeout(() => {
+            const target = document.getElementById('home-destinations');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 10);
+    }
+
+    // 4. Update Nav State
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const homeBtn = document.querySelector('.nav-btn[data-page="accueil"]');
+    if (homeBtn) homeBtn.classList.add('active');
+}
+
 window.initNavigation = function () {
     const navBtns = document.querySelectorAll('.nav-btn');
     const shortcuts = document.querySelectorAll('.shortcut-card');
@@ -170,11 +203,30 @@ window.initNavigation = function () {
     });
 }
 
+// Global Context Tracker
+window.previousPageContext = null;
+
 window.navigateToPage = function (pageName) {
     if (!pageName) return;
 
     let targetId = pageName;
     if (!targetId.startsWith('page-')) targetId = 'page-' + pageName;
+
+    // --- CONTEXT TRACKING START ---
+    // Capture CURRENT active page before switching
+    const currentSection = document.querySelector('.page-section.active');
+    if (currentSection) {
+        const currentId = currentSection.id;
+        // Only track if coming FROM a Province page (not Carte, not Accueil)
+        // Exception: If we are already on Carte, don't overwrite context
+        if (currentId !== 'page-carte' && currentId !== 'page-accueil' && currentId.startsWith('page-')) {
+            window.previousPageContext = currentId;
+        } else if (currentId === 'page-accueil') {
+            // Reset if coming from Home
+            window.previousPageContext = null;
+        }
+    }
+    // --- CONTEXT TRACKING END ---
 
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
@@ -192,8 +244,37 @@ window.navigateToPage = function (pageName) {
         newSection.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        if (pageName === 'carte' && window.leafletMap) {
-            setTimeout(() => { if (window.leafletMap) window.leafletMap.invalidateSize(); }, 300);
+        if (pageName === 'carte') { // Logic for Map Page
+            if (window.leafletMap) {
+                setTimeout(() => { if (window.leafletMap) window.leafletMap.invalidateSize(); }, 300);
+            }
+
+            // SHOW BACK BUTTON IF CONTEXT EXISTS
+            const btnContainer = document.getElementById('btn-back-context-container');
+            const btnLabel = document.getElementById('btn-back-context-label');
+
+            if (window.previousPageContext && btnContainer && btnLabel) {
+                // Determine Label
+                let niceName = "Province";
+                if (window.previousPageContext.includes('antsiranana')) niceName = "Diego";
+                else if (window.previousPageContext.includes('nosybe')) niceName = "Nosy Be";
+                else if (window.previousPageContext.includes('mahajanga')) niceName = "Majunga";
+                else if (window.previousPageContext.includes('toamasina')) niceName = "Tamatave";
+                else if (window.previousPageContext.includes('toliara')) niceName = "Tuléar";
+                else if (window.previousPageContext.includes('fianarantsoa')) niceName = "Fianar";
+                else if (window.previousPageContext.includes('antananarivo')) niceName = "Tana";
+                else if (window.previousPageContext.includes('saintemarie')) niceName = "Ste Marie";
+
+                btnLabel.innerText = `Retour à ${niceName}`;
+                btnContainer.style.display = 'block';
+            } else if (btnContainer) {
+                btnContainer.style.display = 'none';
+            }
+
+        } else {
+            // If navigating away from map to anything else (except via back), reset context? 
+            // Actually, navigateToPage is called by menu too.
+            // If I click "Accueil" from Map, context should probably clear or just be ignored next time.
         }
 
         // GSAP: Refresh animations for new page content
@@ -228,7 +309,18 @@ window.navigateToPage = function (pageName) {
         activeBtn.classList.add('active');
         setTimeout(() => activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
     }
-}
+};
+
+// Implement Back Navigation Function
+window.navigateBack = function () {
+    if (window.previousPageContext) {
+        // Strip 'page-' to get the clean name for navigateToPage
+        const rawPage = window.previousPageContext.replace('page-', '');
+        window.navigateToPage(rawPage);
+    } else {
+        window.navigateToPage('accueil');
+    }
+};
 // Alias
 window.showSection = window.navigateToPage;
 
@@ -683,68 +775,493 @@ window.toggleCheckItem = function (id) {
    5. LANGUE & TTS (RESTORED)
    ============================================ */
 
+// ============================================
+// 5. LANGUE & TTS (RESTORED w/ PREMIUM DROPDOWN)
+// ============================================
+
 window.initLanguePage = function () {
     const container = document.getElementById('accordionContainer');
     if (!container || !window.PHRASES_DATA) return;
 
-    let html = '';
+    // Clear container
+    container.innerHTML = '';
 
-    // Check if Array or Object
-    let categories = [];
-    if (Array.isArray(window.PHRASES_DATA)) {
-        categories = [...new Set(window.PHRASES_DATA.map(p => p.categorie))];
-        categories.forEach((cat) => {
-            const phrases = window.PHRASES_DATA.filter(p => p.categorie === cat);
-            html += generateAccordionItem(cat, phrases);
-        });
-    } else {
-        // Object based (Current data/phrases.js structure)
-        for (const [cat, phrases] of Object.entries(window.PHRASES_DATA)) {
-            html += generateAccordionItem(cat, phrases);
-        }
-    }
-
-    container.innerHTML = html;
-}
-
-function generateAccordionItem(cat, phrases) {
-    return `
-        <div class="accordion-item value-prop-card">
-            <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
-                <span class="accordion-title">${cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="accordion-content">
-                ${phrases.map(p => {
-        const text = (p.mg || p.malgache || '').replace(/'/g, "\\'");
-        return `
-                    <div class="phrase-row" onclick="playAudio('${text}')">
-                        <div>
-                            <div class="phrase-fr">${p.fr || p.francais}</div>
-                            <div class="phrase-mg">${p.mg || p.malgache}</div>
-                        </div>
-                        <button class="btn-audio"><i class="fas fa-volume-up"></i></button>
-                    </div>`;
-    }).join('')}
+    // Create Search Bar with Dropdown Container
+    const searchHtml = `
+        <div class="search-container-2026" style="margin-bottom: 30px;">
+            <div class="search-wrapper-2026">
+                <i class="fas fa-search search-icon-left"></i>
+                <input type="text" id="langSearch" class="search-input-2026" autocomplete="off" 
+                       placeholder="Rechercher une expression (ex: Bonjour, Eau...)" 
+                       oninput="filterLanguages(this.value)" 
+                       onfocus="filterLanguages(this.value)">
+                
+                <!-- DROPDOWN RESULTS CONTAINER -->
+                <div id="langSearchResults" class="search-results-2026"></div>
             </div>
         </div>
     `;
-}
+    container.innerHTML = searchHtml;
 
-window.playAudio = function (text) {
-    if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'id-ID'; // Indonesian sounds closest to Malagasy in generic TTS
-        // Try to find a better voice if available
-        // const voices = speechSynthesis.getVoices();
-        // utterance.voice = voices.find(v => v.lang.includes('mg')) || utterance.voice; 
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        const wrapper = document.querySelector('.search-wrapper-2026');
+        const dropdown = document.getElementById('langSearchResults');
+        if (wrapper && !wrapper.contains(e.target) && dropdown) {
+            dropdown.classList.remove('active');
+        }
+    });
 
-        speechSynthesis.cancel(); // Stop valid audio
-        speechSynthesis.speak(utterance);
+    // Create Categories Container
+    const gridContainer = document.createElement('div');
+    gridContainer.id = 'langGridContainer';
+    gridContainer.className = 'lang-sections-wrapper';
+    container.appendChild(gridContainer);
+
+    let html = '';
+
+    // Normalize Data pairs
+    let dataEntries = [];
+    if (Array.isArray(window.PHRASES_DATA)) {
+        dataEntries = window.PHRASES_DATA;
     } else {
-        alert("Audio non supporté sur cet appareil.");
+        dataEntries = Object.entries(window.PHRASES_DATA);
     }
+
+    dataEntries.forEach(([cat, phrases]) => {
+        html += `
+            <div class="accordion-item-2026">
+                <div class="accordion-header-2026" onclick="this.parentElement.classList.toggle('active')">
+                    <span class="accordion-title-2026">${cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                
+                <div class="accordion-content-2026">
+                   <div class="accordion-inner-padding">
+                        <div class="language-grid-2026">
+                            ${phrases.map((p, index) => {
+            const uniqueId = `btn-audio-${cat.replace(/\s+/g, '-')}-${index}`;
+            const audioFile = p.audio || '';
+            const safeAudio = audioFile.replace(/'/g, "\\'");
+
+            return `
+                                <div class="language-card-2026" onclick="playAudio('${safeAudio}', '${uniqueId}')">
+                                    <div class="language-content">
+                                        <div class="lang-fr">${p.fr || p.francais}</div>
+                                        <div class="lang-phonetic">${p.phonetic || ''}</div>
+                                        <div class="lang-mg">${p.mg || p.malgache}</div>
+                                    </div>
+                                    <div id="${uniqueId}" class="btn-play-audio-2026">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>`;
+        }).join('')}
+                        </div>
+                   </div>
+                </div>
+            </div>
+        `;
+    });
+
+    gridContainer.innerHTML = html;
 }
+
+// Global filter function (Dropdown Logic)
+window.filterLanguages = function (query) {
+    const term = query.toLowerCase().trim();
+    const dropdown = document.getElementById('langSearchResults');
+    if (!dropdown) return;
+
+    if (!term) {
+        dropdown.classList.remove('active');
+        return;
+    }
+
+    // Flatten Search
+    let allPhrases = [];
+    Object.entries(window.PHRASES_DATA).forEach(([cat, phrases]) => {
+        phrases.forEach((p, idx) => {
+            allPhrases.push({ ...p, cat, idx });
+        });
+    });
+
+    const matches = allPhrases.filter(p => {
+        return (p.fr && p.fr.toLowerCase().includes(term)) ||
+            (p.mg && p.mg.toLowerCase().includes(term));
+    });
+
+    if (matches.length === 0) {
+        dropdown.innerHTML = `
+            <div class="search-result-item" style="cursor:default;">
+                <div class="search-result-info">
+                    <h4 style="color:white;">Aucun résultat</h4>
+                    <p>Essayez un autre mot...</p>
+                </div>
+            </div>`;
+    } else {
+        dropdown.innerHTML = matches.map(p => {
+            const uniqueId = `search-drop-${p.idx}`;
+            const audioFile = p.audio || '';
+            const safeAudio = audioFile.replace(/'/g, "\\'");
+
+            // Use item styling similar to Home search but adapted for Audio
+            return `
+                <div class="search-result-item" onclick="playAudio('${safeAudio}', '${uniqueId}'); event.stopPropagation();">
+                    <div class="search-result-thumb" style="background:var(--laterite-2026); display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-volume-up" style="color:white;"></i>
+                    </div>
+                    <div class="search-result-info">
+                        <h4 style="color:white;">${p.fr || p.francais}</h4>
+                        <p style="color:#ccc;">${p.mg || p.malgache} <span style="font-size:0.75em; opacity:0.6">(${p.cat})</span></p>
+                    </div>
+                    <div id="${uniqueId}" style="margin-left:auto; color:var(--laterite-2026);">
+                        <i class="fas fa-play-circle" style="font-size:1.5rem;"></i>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    dropdown.classList.add('active');
+}
+
+// Global Audio State
+window.currentAudio = null;
+window.currentBtnId = null;
+
+window.playAudio = function (filename, btnId) {
+    if (!filename) {
+        alert("Audio indisponible.");
+        return;
+    }
+
+    // Stop currently playing
+    if (window.currentAudio) {
+        window.currentAudio.pause();
+        window.currentAudio.currentTime = 0;
+
+        // Reset previous UI
+        if (window.currentBtnId) {
+            const prevBtns = document.querySelectorAll(`[id="${window.currentBtnId}"]`);
+            prevBtns.forEach(btn => {
+                if (btn.classList.contains('btn-play-audio-2026')) {
+                    btn.classList.remove('playing');
+                    btn.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    // Dropdown icon reset
+                    btn.innerHTML = '<i class="fas fa-play-circle" style="font-size:1.5rem;"></i>';
+                }
+            });
+        }
+    }
+
+    const audioPath = `audio/${filename}`;
+    const audio = new Audio(audioPath);
+
+    // UI Update for CURRENT target
+    const clickedBtn = document.getElementById(btnId);
+    if (clickedBtn) {
+        if (clickedBtn.classList.contains('btn-play-audio-2026')) {
+            clickedBtn.classList.add('playing');
+            clickedBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else {
+            // Dropdown style
+            clickedBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size:1.5rem;"></i>';
+        }
+    }
+
+    audio.play().then(() => {
+        // Playing
+        if (clickedBtn && !clickedBtn.classList.contains('btn-play-audio-2026')) {
+            clickedBtn.innerHTML = '<i class="fas fa-stop-circle" style="font-size:1.5rem;"></i>';
+        }
+    }).catch(e => {
+        console.error("Audio error", e);
+        if (clickedBtn) {
+            clickedBtn.classList.remove('playing');
+            clickedBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+        }
+    });
+
+    audio.onended = function () {
+        if (clickedBtn) {
+            if (clickedBtn.classList.contains('btn-play-audio-2026')) {
+                clickedBtn.classList.remove('playing');
+                clickedBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                clickedBtn.innerHTML = '<i class="fas fa-play-circle" style="font-size:1.5rem;"></i>';
+            }
+        }
+        window.currentAudio = null;
+        window.currentBtnId = null;
+    };
+
+    window.currentAudio = audio;
+    window.currentBtnId = btnId;
+}
+
+
+/* ============================================
+   X. CIRCUITS & ITINERAIRES (RESTORED)
+   ============================================ */
+/* ============================================
+   X. CIRCUITS & ITINERAIRES (RESTORED & ENHANCED)
+   ============================================ */
+window.initItinerariesPage = function () {
+    const listContainer = document.getElementById('itineraires-list');
+    if (!listContainer) return;
+
+    if (!window.ITINERAIRES_DATA) {
+        listContainer.innerHTML = '<p style="padding:20px; text-align:center;">Chargement des circuits...</p>';
+        return;
+    }
+
+    // Always convert to array for consistent indexing
+    const itineraries = Array.isArray(window.ITINERAIRES_DATA) ? window.ITINERAIRES_DATA : Object.values(window.ITINERAIRES_DATA);
+
+    listContainer.innerHTML = itineraries.map((itin, index) => {
+        // Safe Property Access
+        const title = itin.nom || itin.titre || 'Circuit Inconnu';
+        // Get generic price or range
+        const price = itin.budgets && itin.budgets.standard ? itin.budgets.standard.price : (itin.budget || 'Sur devis');
+        // Image Fallback
+        const img = itin.image || 'images/placeholders/default.jpg';
+
+        return `
+        <article class="lieu-card" onclick="showItineraryDetails(${index})" style="cursor: pointer;">
+            <div class="lieu-image" style="height:200px; position:relative;">
+                <img src="${img}" alt="${title}" 
+                     style="width:100%; height:100%; object-fit:cover;"
+                     onerror="this.src='images/placeholders/default.jpg'">
+                <div class="lieu-badge" style="position:absolute; bottom:10px; left:10px; background:var(--laterite); color:white; padding:4px 12px; border-radius:4px; font-weight:bold;">
+                    ${itin.duree}
+                </div>
+            </div>
+            <div class="lieu-content" style="padding:15px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                    <h3 style="margin:0; font-size:1.1rem; color:var(--text-primary); font-family:var(--font-display);">${title}</h3>
+                    <span style="background:var(--bg-secondary); padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:600;">${price}</span>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                    ${itin.description}
+                </p>
+                <button class="btn-action-primary" style="width:100%;">Voir le détail</button>
+            </div>
+        </article>
+        `;
+    }).join('');
+};
+
+window.showItineraryDetails = function (index) {
+    // Critical: Re-derive array to match the index passed from initItinerariesPage
+    const itineraries = Array.isArray(window.ITINERAIRES_DATA) ? window.ITINERAIRES_DATA : Object.values(window.ITINERAIRES_DATA);
+    const itin = itineraries[index];
+
+    if (!itin) {
+        console.error("Itinerary not found for index:", index);
+        return;
+    }
+
+    const list = document.getElementById('itineraires-list');
+    const detail = document.getElementById('itineraire-detail');
+    const content = document.getElementById('itineraire-content');
+
+    if (!list || !detail || !content) return;
+
+    // Safe Data Extraction
+    const title = itin.nom || itin.titre || 'Détails du Circuit';
+    const price = itin.budgets && itin.budgets.standard ? itin.budgets.standard.price : (itin.budget || 'Sur devis');
+    const descFull = itin.description_full || itin.description;
+
+    // Logistique Data (FAQ)
+    const logistique = itin.logistique_generale || {};
+    const infos = itin.infos || {};
+
+    // 1. Build Stages Accordion (Premium Timeline Style)
+    let stagesHtml = '<div class="timeline-container">';
+    let routePoints = []; // For the map (unused now but kept for safety if ref needed later, or remove)
+
+    // Note: Old routePoints map removed in favor of visual timeline
+
+    if (itin.etapes && Array.isArray(itin.etapes)) {
+        stagesHtml += itin.etapes.map((step, dayIdx) => {
+            const stepTitle = typeof step === 'string' ? step : (step.titre || `Jour ${step.jour}`);
+            const stepDesc = typeof step === 'string' ? '' : (step.description_expert || step.description || ''); // Prefer Expert Desc
+            const stepLogistique = (typeof step === 'object' && step.logistique) ? step.logistique : null;
+
+            // Image Lookup for Thumbnail & Content
+            let stepImage = 'images/placeholders/default.jpg';
+            let firstLieuId = null;
+            let locationName = "Voir Lieu";
+
+            if (typeof step === 'object' && step.lieux_ids && step.lieux_ids.length > 0) {
+                firstLieuId = step.lieux_ids[0];
+                // Ensure LIEUX_DATA is available
+                const allLieux = window.LIEUX_DATA || [];
+                const lieu = allLieux.find(l => l.id == firstLieuId); // Coercive check (string vs int)
+
+                if (lieu) {
+                    if (lieu.image) stepImage = lieu.image;
+                    locationName = lieu.ville || lieu.nom;
+                } else {
+                    console.warn(`Itineraire Debug: Lieu ID ${firstLieuId} not found in LIEUX_DATA (${allLieux.length} items).`);
+                }
+            }
+
+            // More details for Accordion Content
+            let detailsHtml = '';
+            if (stepLogistique) {
+                detailsHtml += `<div style="margin-top:15px; font-size:0.85rem; color:var(--text-secondary); background:rgba(0,0,0,0.03); padding:12px; border-radius:8px;">
+                     ${step.gourmandise ? `<div style="margin-bottom:6px; color:var(--laterite);"><i class="fas fa-utensils"></i> <strong>Gourmandise:</strong> ${step.gourmandise}</div>` : ''}
+                    ${stepLogistique.depart ? `<div><strong><i class="fas fa-plane-departure"></i> Départ:</strong> ${stepLogistique.depart}</div>` : ''}
+                    ${stepLogistique.arrivee ? `<div><strong><i class="fas fa-map-marker-alt"></i> Arrivée:</strong> ${stepLogistique.arrivee}</div>` : ''}
+                    ${stepLogistique.duree_totale_transport ? `<div><strong><i class="fas fa-stopwatch"></i> Trajet:</strong> ${stepLogistique.duree_totale_transport}</div>` : ''}
+                 </div>`;
+            }
+            if (typeof step === 'object' && step.hebergement_options) {
+                const heb = step.hebergement_options;
+                const hebText = typeof heb === 'string' ? heb : (heb.standard || heb.premium?.text || '');
+                if (hebText) detailsHtml += `<div style="margin-top:8px; font-size:0.85rem; color:var(--text-primary);"><i class="fas fa-bed"></i> <strong>Dodo:</strong> ${hebText}</div>`;
+            }
+
+            // Image Click Handler (Safe)
+            const imageClickAction = firstLieuId ? `onclick="event.stopPropagation(); window.showLieuDetailsByID(${firstLieuId})"` : '';
+            const cardClickAction = firstLieuId ? `onclick="window.showLieuDetailsByID(${firstLieuId})"` : '';
+
+            // Incontournables List
+            let incHtml = '';
+            if (step.incontournables && Array.isArray(step.incontournables)) {
+                incHtml = `
+                    <div style="margin-top:12px;">
+                        <strong style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--laterite);">À ne pas manquer:</strong>
+                        <ul style="margin:5px 0 0 20px; font-size:0.9rem; color:var(--text-secondary);">
+                            ${step.incontournables.map(i => `<li>${typeof i === 'string' ? i : i.label}</li>`).join('')}
+                        </ul>
+                    </div>`;
+            }
+
+            return `
+            <div class="timeline-step">
+                <div class="timeline-marker"></div>
+                <div class="timeline-card">
+                    <!-- HEADER -->
+                    <div class="timeline-header" onclick="this.parentElement.parentElement.classList.toggle('active')">
+                        <div class="timeline-day">J${step.jour || dayIdx + 1}</div>
+                        <div class="timeline-title">${stepTitle}</div>
+                        
+                        <!-- Thumbnail (Clickable) -->
+                        <div class="timeline-thumb-container" ${imageClickAction} title="Voir le lieu">
+                            <img src="${stepImage}" class="timeline-thumb" alt="Etape" onerror="this.style.display='none'">
+                        </div>
+                        
+                        <i class="fas fa-chevron-down timeline-chevron"></i>
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-body-text">
+                                <p style="margin-bottom:10px; font-style:italic;">"${step.astuce || 'Profitez de cette étape...'}"</p>
+                                <p style="margin-bottom:10px;">${stepDesc}</p>
+                                ${incHtml}
+                                ${detailsHtml}
+                            </div>
+
+                            <!-- Large Image (Clickable) -->
+                            <div class="timeline-body-image-container" ${cardClickAction}>
+                                <img src="${stepImage}" class="timeline-body-image" alt="Visualisation Etape" onerror="this.src='images/placeholders/default.jpg'">
+                                <div class="timeline-body-image-overlay">
+                                    <i class="fas fa-map-pin"></i> ${locationName}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+        stagesHtml += '</div>'; // End container
+    }
+
+    // 2. Generate CSS Map (Timeline Style)
+    // Redundant with new Timeline UI - ensuring clean state
+    let mapHtml = '';
+    // Legacy code removed
+
+
+    // 3. Build FAQ / Accordion
+    const faqHtml = `
+        <div class="accordion-item-2026" style="margin-top:20px;">
+           <div class="accordion-header-2026" onclick="this.parentElement.classList.toggle('active')">
+               <span class="accordion-title-2026"><i class="fas fa-info-circle"></i> Infos Pratiques & FAQ</span>
+               <i class="fas fa-chevron-down"></i>
+           </div>
+           <div class="accordion-content-2026">
+                <div class="accordion-inner-padding">
+                    <ul style="list-style:none; padding:0; margin:0;">
+                         ${logistique.saison_ideale ? `<li style="margin-bottom:10px;"><strong><i class="fas fa-sun"></i> Saison Idéale:</strong> ${logistique.saison_ideale}</li>` : ''}
+                        ${logistique.vehicule_conseil ? `<li style="margin-bottom:10px;"><strong><i class="fas fa-car-side"></i> Transport:</strong> ${logistique.vehicule_conseil}</li>` : ''}
+                        ${logistique.route_etat ? `<li style="margin-bottom:10px;"><strong><i class="fas fa-road"></i> État de la route:</strong> ${logistique.route_etat}</li>` : ''}
+                        ${infos.securite_level ? `<li style="margin-bottom:10px;"><strong><i class="fas fa-shield-alt"></i> Sécurité:</strong> ${infos.securite_level}</li>` : ''}
+                        ${infos.description_fun ? `<li style="margin-top:15px; font-style:italic; color:var(--laterite);">"${infos.description_fun}"</li>` : ''}
+                    </ul>
+                </div>
+           </div>
+        </div>
+    `;
+
+    // 4. Render Full View
+    content.innerHTML = `
+        <div class="itin-header" style="margin-bottom:20px;">
+            <img src="${itin.image || 'images/placeholders/default.jpg'}" style="width:100%; height:250px; object-fit:cover; border-radius:12px; margin-bottom:15px; box-shadow:var(--shadow-sm);">
+            
+            <h2 style="color:var(--laterite); margin-bottom:10px; font-family:var(--font-display);">${title}</h2>
+            
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:20px; font-size:0.95rem; color:var(--text-secondary);">
+                <span class="badge-pill"><i class="fas fa-clock"></i> ${itin.duree}</span>
+                <span class="badge-pill"><i class="fas fa-wallet"></i> ${price}</span>
+                <span class="badge-pill"><i class="fas fa-users"></i> Familial & Aventure</span>
+            </div>
+
+            <p style="font-size:1rem; line-height:1.6; margin-bottom:25px;">${descFull}</p>
+
+            <div id="itinerary-dynamic-map" style="height: 400px; width: 100%; border-radius: 12px; margin-bottom: 25px; box-shadow: var(--shadow-sm); z-index: 1; border:1px solid var(--border-color);"></div>
+
+            ${faqHtml}
+        </div>
+        
+        <div class="itin-stages">
+            <h3 style="border-bottom:1px solid var(--border-color); padding-bottom:10px; margin-bottom:20px;">Itinéraire Jour par Jour</h3>
+            ${stagesHtml}
+        </div>
+        
+        <div style="margin-top:30px; text-align:center;">
+             <button class="btn-action-primary" onclick="alert('Réservation bientôt disponible !')" style="padding:15px 30px; font-size:1.1rem; box-shadow:var(--shadow-md);">
+                <i class="fas fa-paper-plane"></i> Demander un Devis Gratuit
+             </button>
+        </div>
+    `;
+
+    // Swap Views
+    list.style.display = 'none';
+    detail.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 5. Initialize Dynamic Map
+    setTimeout(() => {
+        if (window.initItineraryMap) {
+            window.initItineraryMap(itin.etapes);
+        }
+    }, 100); // Short delay to ensure DOM is ready
+};
+
+window.backToItineraries = function () {
+    const list = document.getElementById('itineraires-list');
+    const detail = document.getElementById('itineraire-detail');
+    if (list && detail) {
+        detail.style.display = 'none';
+        list.style.display = 'grid'; // Grid!
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
 
 /* ============================================
    6. SPOTS & DATA RECOVERY
@@ -753,15 +1270,90 @@ window.initSpotsPage = function () {
     const spotsContainer = document.getElementById('spotsContainer');
     if (!spotsContainer) return;
 
-    // Filter logic: spotLocal = true OR type = 'Spot Local' OR is 'Incontournable' BUT not displayed in main lists
-    // Simplified: Just show everything tagged "Spot Local"
-    const spots = window.LIEUX_DATA.filter(l => l.spotLocal === true || l.categorie === 'Spot Local');
+    console.log("🔍 INIT SPOT PAGE (STRICT MODE)...");
+    if (!window.LIEUX_DATA) {
+        console.warn("❌ LIUEX_DATA missing in initSpotsPage");
+        return;
+    }
+
+    // 🔒 STRICT FILTER: ONLY Secret/Authentic Spots
+    // Must have 'secret_spot' tag (added by surgical update)
+    const spots = window.LIEUX_DATA.filter(l =>
+        l.tags && l.tags.includes('secret_spot')
+    );
+
+    console.log(`🕵️ Spots Page: Found ${spots.length} authentic secret spots.`);
 
     if (spots.length === 0) {
-        spotsContainer.innerHTML = "<p style='text-align:center;'>Aucun spot secret trouvé pour le moment.</p>";
+        spotsContainer.innerHTML = "<div style='text-align:center; padding:40px; color:var(--text-secondary);'>Aucun spot secret trouvé (Tag missing?).</div>";
     } else {
-        spotsContainer.innerHTML = spots.map(lieu => createLieuCard(lieu, 'spot')).join('');
+        spotsContainer.innerHTML = spots.map(lieu => {
+            // Force Type Display for Card
+            lieu._forceDisplayType = "Spot Local";
+            return createLieuCard(lieu, 'spot');
+        }).join('');
     }
+
+    // GSAP
+    if (window.GasikaraAnimations) window.GasikaraAnimations.init();
+}
+
+/**
+ * Filter Spots by Region (Ville)
+ * @param {string} region - Name of the city/province (e.g. 'Diego-Suarez') or 'all'
+ * @param {HTMLElement} btn - The button element clicked
+ */
+window.filterSpotsByRegion = function (region, btn) {
+    // 1. Update UI (Active Button)
+    if (btn) {
+        const container = btn.closest('.province-filter-container');
+        if (container) {
+            container.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    }
+
+    // 2. Filter Items in DOM
+    const spotsContainer = document.getElementById('spotsContainer');
+    if (!spotsContainer) return;
+
+    const cards = spotsContainer.querySelectorAll('.lieu-card');
+
+    // Animate Out
+    // We can just hide/show for simplicity or better, filter logic
+    let count = 0;
+
+    cards.forEach(card => {
+        // Use data-ville for reliable filtering
+        const itemVille = (card.dataset.ville || '').toLowerCase().trim();
+        const regionKey = region.toLowerCase();
+
+        let show = false;
+        if (regionKey === 'all') {
+            show = true;
+        } else {
+            // Check inclusions directly against the data attribute
+            if (itemVille.includes(regionKey)) {
+                show = true;
+            }
+            // Mappings (Handle variations in naming)
+            if (regionKey === 'antananarivo' && itemVille.includes('tana')) show = true;
+            if (regionKey === 'mahajanga' && itemVille.includes('majunga')) show = true;
+            if (regionKey === 'toamasina' && itemVille.includes('tamatave')) show = true;
+            if (regionKey === 'toliara' && (itemVille.includes('tuléar') || itemVille.includes('tulear'))) show = true;
+            if (regionKey === 'fianarantsoa' && itemVille.includes('fianar')) show = true;
+        }
+
+        if (show) {
+            card.style.display = 'block';
+            card.style.animation = `fadeInUp 0.3s ease forwards ${count * 0.05}s`;
+            count++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Optional: Show empty state if count === 0
 }
 
 /* ============================================
@@ -773,32 +1365,29 @@ window.initCityPages = function () {
     renderCityData();
 
     // 2. Filter logic for ALL province sections
-    document.querySelectorAll('.province-section, .page-section').forEach(section => {
-        // Exclude non-city sections like home/outils if they have this class, but usually they are specific
-        if (!section.id.startsWith('page-')) return;
+    const citySections = document.querySelectorAll('.province-section, .page-section');
 
+    citySections.forEach(section => {
+        // Exclude non-city sections like home/outils
+        if (!section.id.startsWith('page-')) return;
         const cityKey = section.id.replace('page-', ''); // e.g., 'diego', 'nosybe'
 
-        // Find filter buttons within this section
-        const btnAll = section.querySelector('.filter-btn[data-filter="all"]') || section.querySelector('.nav-pill');
+        // Skip "special" pages that use page- logic but aren't cities
+        const ignored = ['circuit', 'itineraires', 'langue', 'outils', 'carte', 'spots'];
+        if (ignored.some(k => cityKey.includes(k))) return;
+
+        // A. Init Filters
+        const btnAll = section.querySelector('.nav-pill'); // Default first pill
         if (btnAll) {
-            // Initialize with 'All'
             filterProvinceItems(cityKey, 'all', btnAll);
         }
 
-        // Update premium info (weather etc)
+        // B. Update premium info
         updatePremiumInfo(getCityNameFromKey(cityKey), cityKey);
 
-
-        // ✨ AUTO-INJECT BUDGET BUTTONS (Added by ultimate_budget_fix_v2.py)
-        document.querySelectorAll('.province-section, .page-section').forEach(section => {
-            if (!section.id.startsWith('page-')) return;
-
-            const cityKey = section.id.replace('page-', '');
-            const navPills = section.querySelector('.nav-pills');
-
-            if (!navPills || section.querySelector('.budget-pills-container')) return;
-
+        // C. Inject Budget Buttons (Only if missing)
+        const navPills = section.querySelector('.nav-pills');
+        if (navPills && !section.querySelector('.budget-pills-container')) {
             // Create budget buttons container
             const budgetContainer = document.createElement('div');
             budgetContainer.className = 'budget-pills-container';
@@ -834,10 +1423,7 @@ window.initCityPages = function () {
 
             budgetContainer.appendChild(pills);
             navPills.parentNode.insertBefore(budgetContainer, navPills.nextSibling);
-
-            console.log(`✅ Budget buttons injected for: ${cityKey}`);
-        });
-
+        }
     });
 };
 
@@ -902,45 +1488,61 @@ window.renderCityData = function () {
     });
 
     // Populate
-    // Populate
     let count = 0;
-    window.LIEUX_DATA.forEach(lieu => {
-        let v = lieu.ville ? lieu.ville.trim() : 'Inconnu';
+    if (!window.LIEUX_DATA || window.LIEUX_DATA.length === 0) {
+        console.warn("⚠️ LIEUX_DATA is empty in renderCityData!");
+    } else {
+        window.LIEUX_DATA.forEach(lieu => {
+            let v = lieu.ville ? lieu.ville.trim() : 'Inconnu';
 
-        // NORD LOGIC: Both Diego and Nosy Be go to Antsiranana (The Hub)
-        // But we keep original 'v' in data attributes for filtering
-        let gridId = citiesStub[v] || citiesStub[Object.keys(citiesStub).find(k => k.toLowerCase() === v.toLowerCase())];
+            // NORD LOGIC: Both Diego and Nosy Be go to Antsiranana (The Hub) - Logic Adjusted
+            // Using citiesStub for mapping
+            let stubKey = Object.keys(citiesStub).find(k => k.toLowerCase() === v.toLowerCase());
+            let gridId = citiesStub[v] || (stubKey ? citiesStub[stubKey] : null);
 
-        // Specific overrides for the "Nord" Page Hub
-        if (v === 'Diego-Suarez') gridId = 'Antsiranana';
-        // if (v === 'Nosy Be' || v === 'Nosy-Be') gridId = 'Antsiranana'; // REMOVED: Nosy Be is now independent
+            // Specific overrides for consistency with index.html IDs
+            if (v === 'Diego-Suarez') gridId = 'Antsiranana';
+            if (v === 'Nosy Be' || v === 'Nosy-Be') gridId = 'NosyBe';
 
-        // Target Grid
-        if (gridId) {
-            const grid = document.getElementById(`grid-${gridId}`);
-            if (grid) {
-                const card = createLieuCard(lieu);
-                grid.insertAdjacentHTML('beforeend', card);
-                count++;
-            } else {
-                console.warn(`Grid not found for ID: grid-${gridId} (Ville: ${v})`);
+            // Target Grid
+            if (gridId) {
+                const grid = document.getElementById(`grid-${gridId}`);
+                if (grid) {
+                    if (typeof window.createLieuCard === 'function') {
+                        const card = window.createLieuCard(lieu);
+                        grid.insertAdjacentHTML('beforeend', card);
+                        count++;
+                    } else {
+                        console.error("createLieuCard missing!", lieu);
+                    }
+                } else {
+                    // console.warn(`Grid not found for ID: grid-${gridId} (Ville: ${v})`);
+                }
             }
-        } else {
-            console.warn(`No Grid ID mapped for city: ${v}`);
-        }
-    });
-    console.log(`Rendered ${count} locations across city grids. Limits removed.`);
-
-    // Auto-Init Switch if on North Page
-    // initNorthSwitch(); // REMOVED: Nosy Be is independent
+        });
+    }
+    console.log(`✅ Rendered ${count} locations across city grids.`);
 
     // ✨ GSAP: Re-initialize animations after cards are rendered
-    // Fix timing issue where cards are generated after initial GSAP init
     if (window.GasikaraAnimations && typeof window.GasikaraAnimations.init === 'function') {
-        console.log('🎨 Re-initializing GSAP animations for newly rendered cards...');
         window.GasikaraAnimations.init();
     }
 }
+
+// Helper for mapped names
+window.getCityNameFromKey = function (key) {
+    const map = {
+        'antananarivo': 'Antananarivo',
+        'antsiranana': 'Diego-Suarez',
+        'nosybe': 'Nosy Be',
+        'mahajanga': 'Mahajanga',
+        'toamasina': 'Toamasina',
+        'fianarantsoa': 'Fianarantsoa',
+        'toliara': 'Toliara',
+        'saintemarie': 'Sainte Marie'
+    };
+    return map[key] || key.charAt(0).toUpperCase() + key.slice(1);
+};
 
 /* ============================================
    8. THEME MANAGER (Dark/Light)
@@ -1114,8 +1716,23 @@ window.createLieuCard = function (lieu, category = '') {
     const displayTagsWithBudget = budgetBadge ? displayTags + budgetBadge : displayTags;
 
     const isMustSee = lieu.type === 'Incontournable' || (lieu.tags && lieu.tags.includes('Incontournable'));
-    const badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
-    const badgeText = isMustSee ? 'Incontournable' : lieu.type;
+
+    // Determine Badge Text
+    let badgeText = isMustSee ? 'Incontournable' : (lieu._forceDisplayType || lieu.type);
+
+    // Determine Badge Style & Icon
+    let badgeStyle = isMustSee ? 'background: #d35400; color: white;' : 'background: rgba(0,0,0,0.6); color: white;';
+    let badgeIcon = '';
+
+    // SPECIAL: Spot Local Styling (Red + Icon)
+    if (badgeText === 'Spot Local' || (lieu.tags && lieu.tags.includes('secret_spot') && !isMustSee)) {
+        // Force the text if it was generic 'Nature' etc but specifically identified as secret spot in context
+        // But respect isMustSee priority if needed. Here we follow User's target: "vignette où il est écrit spot local"
+        if (badgeText === 'Spot Local') {
+            badgeStyle = 'background: #c0392b; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);';
+            badgeIcon = '<i class="fas fa-fire-alt" style="margin-right:4px;"></i>';
+        }
+    }
 
     // 3. Template (Rich & Premium)
     return `
@@ -1125,7 +1742,7 @@ window.createLieuCard = function (lieu, category = '') {
                  data-tags="${tagsString}" 
                  data-type="${lieu.type}" 
                  data-ville="${lieu.ville}"
-                 style="position: relative; cursor: pointer; display: flex; flex-direction: column; background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s; border: 1px solid var(--border-color);">
+                 style="position: relative; cursor: pointer; display: flex; flex-direction: column; background: var(--bg-secondary); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s; border: 1px solid var(--border-color);">
             
             <!-- Badge Location (Top Left - REQUESTED) -->
             <div class="badge-location" style="position: absolute; top: 10px; left: 10px; z-index: 5; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; backdrop-filter: none;">
@@ -1142,7 +1759,7 @@ window.createLieuCard = function (lieu, category = '') {
             <div class="lieu-image" onclick="showLieuDetailsByID(${lieu.id})" style="position: relative; height: 180px; overflow: hidden;">
                 <img src="${lieu.image}" alt="${lieu.nom.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.src='images/placeholder.jpg'" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
                 <!-- Type Badge (Bottom Left) -->
-                <div class="lieu-badge" style="position: absolute; bottom: 10px; left: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; ${badgeStyle}">${badgeText}</div>
+                <div class="lieu-badge" style="position: absolute; bottom: 10px; left: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; ${badgeStyle}">${badgeIcon}${badgeText}</div>
             </div>
             
             <!-- Content -->
@@ -1283,18 +1900,75 @@ window.openLieuModal = function (lieu) {
             </div>
 
             <!-- 5. CONSEIL -->
-            ${lieu.conseil ? `
+            <!-- 5. SECRET ACCESS / CONSEIL (Premium Accordion) -->
+            ${(lieu.tags && lieu.tags.includes('secret_spot')) ? `
+            <div class="accordion-item-2026" style="border: 1px solid var(--laterite); background: rgba(176, 48, 48, 0.04); margin-top: 20px;">
+                <div class="accordion-header-2026" onclick="this.parentElement.classList.toggle('active')">
+                    <span class="accordion-title-2026" style="color: var(--laterite); font-size: 1.1rem;">
+                        <i class="fas fa-user-secret"></i> ACCÈS LOCAL UNIQUEMENT
+                    </span>
+                    <i class="fas fa-chevron-down" style="color: var(--laterite);"></i>
+                </div>
+                <div class="accordion-content-2026">
+                    <div class="accordion-inner-padding" style="padding-top:0;">
+                        <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-primary); border-bottom:1px solid rgba(176,48,48,0.1); padding-bottom:10px;">
+                            Ce lieu est <strong style="color:var(--laterite)">inaccessible sans contact humain</strong>.
+                        </p>
+
+                        ${lieu.contactLocal ? `
+                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
+                            <div style="background:var(--laterite); color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-address-card" style="font-size:0.9rem;"></i></div>
+                            <div>
+                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Contact Clé</div>
+                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.contactLocal}</div>
+                            </div>
+                        </div>` : ''}
+
+                        ${lieu.acces ? `
+                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
+                            <div style="background:var(--bg-secondary); border:1px solid var(--laterite); color:var(--laterite); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-route" style="font-size:0.9rem;"></i></div>
+                            <div>
+                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Logistique</div>
+                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.acces}</div>
+                            </div>
+                        </div>` : ''}
+
+                        ${lieu.conseil ? `
+                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
+                             <div style="background:var(--bg-secondary); border:1px solid var(--text-secondary); color:var(--text-secondary); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-lightbulb" style="font-size:0.9rem;"></i></div>
+                            <div>
+                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Conseil</div>
+                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.conseil}</div>
+                            </div>
+                        </div>` : ''}
+
+                        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:15px; font-style:italic; background:rgba(0,0,0,0.05); padding:8px; border-radius:6px; text-align:center;">
+                            ⚠️ Respectez strictement les protocoles locaux (Fady).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ` : (lieu.conseil ? `
             <div class="modal-conseil-block">
                 <div class="modal-conseil-title"><i class="fas fa-lightbulb"></i> Conseil du Local</div>
                 <p class="modal-conseil-text">${lieu.conseil}</p>
             </div>
-            ` : ''}
+            ` : '')}
 
             <!-- 6. FOOTER ACTIONS -->
             <div class="modal-footer-actions">
-                <div class="modal-section-title">ACCÈS</div>
+                <div class="modal-section-title">ACCÈS & LOGISTIQUE</div>
                 
-                ${lieu.acces ? `<p style="color:var(--text-secondary); margin-bottom:12px; font-size:0.9rem;">${lieu.acces}</p>` : ''}
+                ${lieu.acces ? `
+                <div class="standard-access-card" style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                    <div style="background: rgba(0,0,0,0.05); color: var(--text-primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-route" style="font-size: 1rem;"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 2px;">Comment y aller ?</div>
+                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem; line-height: 1.4;">${lieu.acces}</p>
+                    </div>
+                </div>` : ''}
 
                 <div class="modal-action-row" style="display:flex; flex-direction:column; gap:10px;">
                     <!-- ACTION LOGIC -->
@@ -1306,7 +1980,7 @@ window.openLieuModal = function (lieu) {
                     </button>
                     ` : `
                     <!-- Button STANDARD: Voir sur carte (Internal) -->
-                     <button class="btn-action secondary" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})"
+                     <button class="btn-action secondary" onclick="locateOnMap(${lieu.id})"
                              style="width:100%; padding:14px; background:var(--bg-secondary); border:2px solid var(--border-color); color:var(--text-primary); border-radius:12px; font-weight:600; cursor:pointer;">
                           <i class="fas fa-map"></i> Voir sur la carte de l'app
                      </button>
@@ -1371,12 +2045,12 @@ window.closeLieuModal = function () {
     }
 };
 
-window.locateOnMap = function (lat, lng) {
+window.locateOnMap = function (id) {
     window.closeLieuModal();
     window.navigateToPage('carte');
     setTimeout(() => {
-        if (window.leafletMap) {
-            window.leafletMap.flyTo([lat, lng], 15);
+        if (window.openMapMarker) {
+            window.openMapMarker(id);
         }
     }, 500);
 };
@@ -1770,7 +2444,7 @@ function showLieuModalDirectly(lieu) {
                         <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
                              style="width: 100%; height: 250px; object-fit: cover;"
                              onerror="this.onerror=null; this.src='images/placeholders/default.jpg'">
-                        <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
+                        <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-secondary), transparent); z-index:2;"></div>
                     </div>
 
                     <div class="modal-title-block">
@@ -1795,7 +2469,7 @@ function showLieuModalDirectly(lieu) {
                     <div class="modal-footer-actions">
                          <div class="modal-action-row" style="display:flex; flex-direction:column; gap:10px;">
                             ${hasYAller ? `<button class="btn-action-red" onclick="window.open('${lieu.y_aller}', '_blank')" style="width:100%; padding:14px; background:var(--laterite); color:white; border:none; border-radius:12px; font-weight:700;">Y aller</button>` :
-            `<button class="btn-action secondary" onclick="locateOnMap(${lieu.lat}, ${lieu.lng})" style="width:100%; padding:14px; background:var(--bg-secondary); border:2px solid var(--border-color); border-radius:12px;">Voir sur la carte</button>`}
+            `<button class="btn-action secondary" onclick="locateOnMap(${lieu.id})" style="width:100%; padding:14px; background:var(--bg-secondary); border:2px solid var(--border-color); border-radius:12px; font-weight:600; cursor:pointer;"><i class="fas fa-map"></i> Voir sur la carte de l'app</button>`}
                         </div>
                     </div>
                     <div style="height:20px;"></div>
@@ -1813,6 +2487,117 @@ function showLieuModalDirectly(lieu) {
 }
 
 // Init when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initGlobalSearch, 500);
+// 9. INITIALIZATION ENTRY POINT
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("🚀 BOOTSTRAP: Starting Application...");
+
+    // 1. Init Data (Async)
+    await window.initData();
+    console.log("✅ Data Loaded.");
+
+    // 2. Init Theme
+    window.initTheme();
+
+    // 3. Init Pages
+    window.initCityPages();       // Provinces buttons/grids
+    window.initItinerariesPage(); // Circuits
+    window.initSpotsPage();       // Spots
+    window.initLanguePage();      // Langue
+    window.initOutilsPage(); // Outils
+
+    // 4. Init Global Search (Legacy)
+    if (typeof initGlobalSearch === 'function') {
+        initGlobalSearch();
+    }
+
+    // 5. Init Map (if map logic exists)
+    if (typeof window.initMapLogic === 'function') {
+        window.initMapLogic();
+    } else {
+        // Fallback or verify map-logic.js
+        console.log("ℹ️ Map logic init skipped (check map-logic.js)");
+    }
+
+    console.log("🚀 Application Ready.");
 });
+
+// ============================================
+// 6. DYNAMIC ITINERARY MAP
+// ============================================
+window.initItineraryMap = function (steps) {
+    const container = document.getElementById('itinerary-dynamic-map');
+    if (!container) return;
+
+    // Cleanup previous map instance if exists
+    if (window.itinMap) {
+        window.itinMap.remove();
+        window.itinMap = null;
+    }
+
+    // Initialize Map
+    // Default center (Madagascar central)
+    const map = L.map('itinerary-dynamic-map', {
+        scrollWheelZoom: false // Prevent scrolling page intereference
+    }).setView([-18.8792, 47.5079], 6);
+
+    window.itinMap = map;
+
+    // Tile Layer (Voyager - Premium Clean Look)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap & CARTO',
+        subdomains: 'abcd',
+        maxZoom: 20
+    }).addTo(map);
+
+    // Collect Data
+    const routeCoords = [];
+
+    if (steps && Array.isArray(steps)) {
+        steps.forEach((step, idx) => {
+            if (step.lieux_ids && step.lieux_ids.length > 0) {
+                const lieuId = step.lieux_ids[0];
+                const lieu = window.LIEUX_DATA ? window.LIEUX_DATA.find(l => l.id == lieuId) : null;
+
+                if (lieu && lieu.lat && lieu.lng) {
+                    const latLng = [lieu.lat, lieu.lng];
+                    routeCoords.push(latLng);
+
+                    // Add Marker (Numbered)
+                    const icon = L.divIcon({
+                        className: 'itin-marker',
+                        html: `<div style="background:var(--laterite); color:white; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.9rem; border:2px solid white; box-shadow:0 3px 6px rgba(0,0,0,0.3); z-index:100;">${idx + 1}</div>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14],
+                        popupAnchor: [0, -14]
+                    });
+
+                    const marker = L.marker(latLng, { icon: icon })
+                        .bindPopup(`
+                            <div style="font-family:var(--font-body); text-align:center;">
+                                <strong style="color:var(--laterite);">Jour ${step.jour || idx + 1}</strong><br>
+                                ${lieu.nom}
+                            </div>
+                        `);
+                    marker.addTo(map);
+                }
+            }
+        });
+    }
+
+    // Draw Route Polyline
+    if (routeCoords.length > 1) {
+        // Create a curved-like visual with simple polyline for now
+        const polyline = L.polyline(routeCoords, {
+            color: '#b03030', // var(--laterite)
+            weight: 4,
+            opacity: 0.8,
+            lineJoin: 'round',
+            dashArray: '10, 10' // Slight dashed effect for "Journey" feel
+        }).addTo(map);
+
+        // Fit Bounds with padding
+        map.fitBounds(polyline.getBounds(), { padding: [50, 50] });
+    } else if (routeCoords.length === 1) {
+        map.setView(routeCoords[0], 10);
+    }
+};

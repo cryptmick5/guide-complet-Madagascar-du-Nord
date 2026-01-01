@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles-map.css" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
@@ -3096,7 +3096,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%); border-left: 4px solid var(--laterite); overflow: visible !important;">
                 <div class="banner-content" style="width: 100%;">
-                    <h2 class="city-title">Bienvenue au Nord</h2>
+                    <h2 class="city-title">Escale en Terres Rouges</h2>
                     <p class="city-desc">Votre guide expert pour explorer les terres rouges.</p>
 
                     <!-- Global Search Bar Premium 2026 -->
@@ -3154,7 +3154,7 @@
                 </div>
 
                 <!-- 1. Hero Grid: Les 6 Provinces -->
-                <div>
+                <div id="home-destinations">
                     <h3
                         style="font-size: 1.2rem; margin-bottom: 16px; color: var(--text-primary); font-weight: 800; margin-left:8px; display:flex; align-items:center; gap:8px;">
                         <i class="fa-solid fa-map-location-dot" style="color:var(--laterite);"></i> Nos Destinations
@@ -3163,7 +3163,7 @@
                     <div class="lieux-grid-hero">
                         <!-- Diego (Antsiranana) -->
                         <div onclick="navigateToPage('antsiranana')" class="province-card-2026">
-                            <img src="images/iles/mer-emeraude.jpg" class="province-image-2026"
+                            <img src="images/pain_de_sucre_premium.jpg" class="province-image-2026"
                                 onerror="this.src='images/placeholders/default.jpg'">
                             <div class="province-overlay-2026"></div>
 
@@ -3310,14 +3310,14 @@
 
         <!-- ITINERAIRES -->
         <section id="page-itineraires" class="page-section">
-            <div class="city-header premium-banner-tout">
-                <div class="banner-content">
-                    <h2 class="city-title">🗺️ Circuits Sur Mesure</h2>
-                    <p class="city-desc">Des itinéraires clés en main, testés et approuvés pour tous les budgets.
-                        Laissez-vous guider étape par étape.</p>
-                </div>
-            </div>
             <div id="itineraires-list" class="lieux-grid">
+                <div class="city-header premium-banner-tout" style="grid-column: 1 / -1; margin-bottom: 30px;">
+                    <div class="banner-content">
+                        <h2 class="city-title">🗺️ Circuits Sur Mesure</h2>
+                        <p class="city-desc">Des itinéraires clés en main, testés et approuvés pour tous les budgets.
+                            Laissez-vous guider étape par étape.</p>
+                    </div>
+                </div>
                 <!-- Injected via JS -->
             </div>
             <div id="itineraire-detail" style="display:none;">
@@ -3330,6 +3330,15 @@
 
         <!-- Page Carte -->
         <section id="page-carte" class="page-section active">
+
+            <!-- Context Back Button (Hidden by default) -->
+            <div id="btn-back-context-container"
+                style="position:absolute; top:80px; left:20px; z-index:1000; display:none;">
+                <button onclick="window.navigateBack()" class="btn-back-map">
+                    <i class="fas fa-arrow-left"></i> <span id="btn-back-context-label">Retour</span>
+                </button>
+            </div>
+
             <!-- Filtres -->
             <!-- Map Container with Overlay Filters -->
             <!-- Map Container with Overlay Filters -->
@@ -3451,90 +3460,7 @@
             </div>
         </section>
 
-        <!-- PAGE DESTINATIONS (DEMO) -->
-        <section id="page-destinations-demo" class="page-section">
-            <div class="city-header premium-banner-tout"
-                style="background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);">
-                <div class="banner-content">
-                    <h2 class="city-title">🏝️ Nos Destinations</h2>
-                    <p class="city-desc">Explorez les 6 provinces emblématiques de Madagascar.</p>
-                </div>
-            </div>
 
-            <!-- GRILLE HERO (PROVINCES) -->
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 20px;">
-
-                <!-- 1. DIEGO-SUAREZ (Nord) -->
-                <div onclick="navigateToPage('antsiranana')" class="province-card">
-                    <div class="card-bg" style="background-image: url('images/villes/diego-suarez.jpg');"></div>
-                    <div class="card-overlay">
-                        <div class="card-title">Diego-Suarez</div>
-                        <div class="card-subtitle">Mers & Tsingy</div>
-                    </div>
-                </div>
-
-                <!-- 2. NOSY BE (L'Ile aux Parfums) -->
-                <div onclick="navigateToPage('nosybe')" class="province-card">
-                    <div class="card-bg" style="background-image: url('images/iles/nosy-komba.jpg');"></div>
-                    <div class="card-overlay">
-                        <div class="card-title">Nosy Be</div>
-                        <div class="card-subtitle">Plages & Luxe</div>
-                    </div>
-                </div>
-
-                <!-- 3. ANTANANARIVO (Capitale) -->
-                <div onclick="navigateToPage('antananarivo')" class="province-card">
-                    <div class="card-bg"
-                        style="background-image: url('images/tana/tana_ambohimanga_royal_hill_1765475311821.png');">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-title">Antananarivo</div>
-                        <div class="card-subtitle">Histoire & Palais</div>
-                    </div>
-                </div>
-
-                <!-- 4. MAHAJANGA (Ouest) -->
-                <div onclick="navigateToPage('mahajanga')" class="province-card">
-                    <div class="card-bg"
-                        style="background-image: url('images/mahajanga/mahajanga_baobab_tree_1765470123908.png');">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-title">Mahajanga</div>
-                        <div class="card-subtitle">Baobabs & Soleil</div>
-                    </div>
-                </div>
-
-                <!-- 5. TOAMASINA (Est) -->
-                <div onclick="navigateToPage('toamasina')" class="province-card">
-                    <div class="card-bg" style="background-image: url('images/iles/ile-aux-nattes.jpg');"></div>
-                    <div class="card-overlay">
-                        <div class="card-title">Tamatave</div>
-                        <div class="card-subtitle">Canal & Forêts</div>
-                    </div>
-                </div>
-
-                <!-- 6. FIANARANTSOA (Sud-Est) -->
-                <div onclick="navigateToPage('fianarantsoa')" class="province-card">
-                    <div class="card-bg" style="background-image: url('images/fianarantsoa/fianar_haute_ville.png');">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-title">Fianarantsoa</div>
-                        <div class="card-subtitle">Vignobles & Train</div>
-                    </div>
-                </div>
-
-                <!-- 7. TULÉAR (Sud) -->
-                <div onclick="navigateToPage('toliara')" class="province-card">
-                    <div class="card-bg" style="background-image: url('images/toliara/toliara_placeholder.png');"></div>
-                    <div class="card-overlay">
-                        <div class="card-title">Tuléar</div>
-                        <div class="card-subtitle">Lagon & Vezo</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
 
         <!-- Pages Provinces (Contenu Riche) -->
@@ -3544,8 +3470,9 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/tana/tana_ambohimanga_royal_hill_1765475311821.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
-                            class="fas fa-arrow-left"></i> Retour</button>
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
                     <h2 class="city-title">Antananarivo</h2>
                     <p class="city-desc">Capitale historique et culturelle.</p>
                 </div>
@@ -3584,8 +3511,9 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/villes/diego-suarez.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
-                            class="fas fa-arrow-left"></i> Retour</button>
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
                     <h2 class="city-title">Diego-Suarez</h2>
                     <p class="city-desc">Merveilles du Nord et Tsingy.</p>
                 </div>
@@ -3626,8 +3554,9 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/nosy-komba.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"><i
-                            class="fas fa-arrow-left"></i> Retour</button>
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
                     <h2 class="city-title">Nosy Be</h2>
                     <p class="city-desc">L'île aux Parfums & Archipel.</p>
                 </div>
@@ -3667,8 +3596,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/fianarantsoa/fianar_haute_ville.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Fianarantsoa</h2>
@@ -3713,8 +3641,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/mahajanga/mahajanga_baobab_tree_1765470123908.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Mahajanga</h2>
@@ -3759,8 +3686,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/ile-aux-nattes.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Toamasina</h2>
@@ -3805,8 +3731,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/toliara_placeholder.png'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Toliara</h2>
@@ -3851,8 +3776,7 @@
             <div class="city-header premium-banner-tout"
                 style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('images/iles/ile-aux-nattes.jpg'); background-size: cover; background-position: center; min-height: 300px !important; display: flex !important;">
                 <div class="banner-content">
-                    <button onclick="navigateToPage('destinations-demo')" class="btn-back-circuits"
-                        style="margin-bottom:10px; background:rgba(255,255,255,0.2); /* no-blur */ border:none;">
+                    <button onclick="navigateToHomeDestinations()" class="btn-back-2026">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
                     <h2 class="city-title">Sainte Marie</h2>
@@ -3899,19 +3823,45 @@
                 Maps,
                 absents des guides touristiques traditionnels.
             </p>
+
+            <!-- Filters for Spots Page -->
+            <div class="province-filter-container"
+                style="margin-bottom: 24px; justify-content: start; overflow-x: auto; padding-bottom: 8px;">
+                <button class="nav-pill active" onclick="window.filterSpotsByRegion('all', this)">
+                    <i class="fas fa-layer-group"></i> Tout
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Antananarivo', this)">
+                    <i class="fas fa-landmark"></i> Tana
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Diego-Suarez', this)">
+                    <i class="fas fa-anchor"></i> Diego
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Nosy Be', this)">
+                    <i class="fas fa-umbrella-beach"></i> Nosy Be
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Mahajanga', this)">
+                    <i class="fas fa-umbrella-beach"></i> Majunga
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Toamasina', this)">
+                    <i class="fas fa-ship"></i> Tamatave
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Toliara', this)">
+                    <i class="fas fa-sun"></i> Tuléar
+                </button>
+                <button class="nav-pill" onclick="window.filterSpotsByRegion('Fianarantsoa', this)">
+                    <i class="fas fa-train"></i> Fianar
+                </button>
+            </div>
             <div id="spotsContainer" class="lieux-grid"></div>
         </section>
 
         <!-- Page Langue -->
         <section id="page-langue" class="page-section">
             <div class="langue-header">
-                <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--text-primary);">🗣️
+                <h2
+                    style="font-family: var(--font-display); font-size: 2rem; color: var(--text-primary); margin-bottom: 20px;">
+                    🗣️
                     Expressions Malgaches</h2>
-                <div class="search-box">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="langueSearch" class="search-input"
-                        placeholder="Rechercher une expression...">
-                </div>
             </div>
 
             <div id="accordionContainer" class="accordion-container"></div>
@@ -4157,12 +4107,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
     <!-- CORE DATA -->
-    <script src="data/lieux.js?v=1767030700"></script>
-    <script src="data/itineraires.js"></script>
-    <script src="data/phrases.js"></script>
+    <script src="data/lieux.js?v=FORCE_RELOAD_FIX_1"></script>
+    <script src="data/itineraires.js?v=Force_RELOAD"></script>
+    <script src="data/phrases.js?v=1767094000"></script>
 
     <!-- App Logic -->
-    <script src="js/app.js?v=FORCE_DEBUG_2"></script>
+    <script src="js/app-data.js?v=FIX_INIT_DATA"></script>
+    <script src="js/app.js?v=FORCE_DEBUG_3"></script>
     <script src="js/map-logic.js?v=FORCE_DEBUG"></script>
 
     <!-- GSAP Animations -->

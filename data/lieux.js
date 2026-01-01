@@ -1,4 +1,116 @@
 window.LIEUX_DATA = [
+  // --- DATA INJECTED FOR CIRCUIT NORD ---
+  {
+    "id": 601,
+    "ville": "Diego-Suarez",
+    "nom": "Diego-Suarez (Antsiranana)",
+    "type": "Ville",
+    "lat": -12.2797,
+    "lng": 49.2917,
+    "image": "images/villes/diego-suarez.jpg",
+    "description": "La plus belle baie du monde (après Rio !). Une ville coloniale au charme suranné.",
+    "tags": ["diego", "explorer"]
+  },
+  {
+    "id": 602,
+    "ville": "Diego-Suarez",
+    "nom": "Mer d'Émeraude",
+    "type": "Incontournable",
+    "lat": -12.164,
+    "lng": 49.352,
+    "image": "images/spots/mer-emeraude.jpg",
+    "description": "Un lagon aux eaux turquoises incroyables.",
+    "tags": ["diego", "mer", "nature"]
+  },
+  {
+    "id": 603,
+    "ville": "Diego-Suarez",
+    "nom": "Tsingy Rouge",
+    "type": "Incontournable",
+    "lat": -12.633,
+    "lng": 49.483,
+    "image": "images/spots/tsingy-rouge.jpg",
+    "description": "Formations géologiques uniques de latérite rouge.",
+    "tags": ["diego", "nature", "explorer"]
+  },
+  {
+    "id": 604,
+    "ville": "Diego-Suarez",
+    "nom": "Montagne d'Ambre",
+    "type": "Nature",
+    "lat": -12.516,
+    "lng": 49.166,
+    "image": "images/spots/montagne-ambre.jpg",
+    "description": "Parc National, forêt humide, caméléons et cascades.",
+    "tags": ["diego", "nature", "randonnee"]
+  },
+  {
+    "id": 605,
+    "ville": "Ambilobe",
+    "nom": "Parc National Ankarana",
+    "type": "Nature",
+    "lat": -12.916,
+    "lng": 49.116,
+    "image": "images/spots/ankarana.jpg",
+    "description": "Tsingy gris affûtés et pont suspendu mythique.",
+    "tags": ["diego", "nature", "aventure"]
+  },
+  {
+    "id": 606,
+    "ville": "Ambanja",
+    "nom": "Plantation Cacao (Ambanja)",
+    "type": "Incontournable",
+    "lat": -13.683,
+    "lng": 48.450,
+    "image": "images/spots/cacao-plantation.jpg",
+    "description": "Berceau du cacao de Madagascar.",
+    "tags": ["ambanja", "culture", "gastronomie"]
+  },
+  {
+    "id": 607,
+    "ville": "Ankify",
+    "nom": "Port d'Ankify",
+    "type": "Spot Local",
+    "lat": -13.533,
+    "lng": 48.366,
+    "image": "images/spots/ankify.jpg",
+    "description": "Point de départ vers Nosy Be.",
+    "tags": ["ambanja", "mer"]
+  },
+  {
+    "id": 610,
+    "ville": "Ambanja",
+    "nom": "Plantations Millot",
+    "type": "Incontournable",
+    "lat": -13.6700,
+    "lng": 48.4600,
+    "image": "images/spots/cacao-plantation.jpg",
+    "description": "Plantation historique de cacao, ylang-ylang et épices.",
+    "tags": ["ambanja", "culture", "nature"]
+  },
+  {
+    "id": 611,
+    "ville": "Ambanja",
+    "nom": "Fleuve Sambirano",
+    "type": "Nature",
+    "lat": -13.7500,
+    "lng": 48.5000,
+    "image": "images/spots/sambirano-river.jpg",
+    "description": "Excursion en pirogue au cœur de la vallée fertile.",
+    "tags": ["ambanja", "nature", "aventure"]
+  },
+  {
+    "id": 201,
+    "ville": "Nosy Be",
+    "nom": "Nosy Be (Hell-Ville)",
+    "type": "Ville",
+    "lat": -13.4000,
+    "lng": 48.2667,
+    "image": "images/villes/nosy-be.jpg",
+    "description": "Capitale de l'île aux parfums.",
+    "tags": ["nosybe", "ville"]
+  },
+
   {
     "id": 1,
     "ville": "Antananarivo",
@@ -94,7 +206,6 @@ window.LIEUX_DATA = [
     "lat": -18.9151,
     "lng": 47.5283,
     "prix": "Gratuit",
-    "prixEur": "Gratuit",
     "prixNum": 0,
     "note": 4,
     "description": "Une source mystique chargée de légendes, vénérée par les habitants du quartier. On dit que son eau possède des vertus purificatrices. C’est un lieu secret, hors des guides touristiques classiques, où l’on ressent la spiritualité quotidienne malgache.",
@@ -105,15 +216,133 @@ window.LIEUX_DATA = [
     "conseil": "Montrez du respect et demandez toujours la permission avant de prendre une photo. Une petite pièce au gardien est appréciée.",
     "duree": "30 min",
     "siteWeb": "https://tourisme-antananarivo.com/",
-    "tags": [
-      "spots",
-      "tana",
-      "budget_1"
-    ],
-    "price": "Gratuit",
-    "rating": 4,
-    "duration": "30 min"
+    "tags": ["tana", "spots", "culture", "budget_1", "secret_spot"]
   },
+  // --- DATA INJECTED FOR CIRCUIT VANILLE (SAVA) ---
+  {
+    "id": 701,
+    "ville": "Sambava",
+    "nom": "Sambava",
+    "type": "Ville",
+    "lat": -14.2667,
+    "lng": 50.1667,
+    "image": "images/villes/sambava.jpg",
+    "description": "Capitale de la vanille, entre mer et montagne.",
+    "tags": ["sava", "ville"]
+  },
+  {
+    "id": 702,
+    "ville": "Andapa",
+    "nom": "Parc National Marojejy",
+    "type": "Nature",
+    "lat": -14.4394,
+    "lng": 49.7392,
+    "image": "images/spots/marojejy.jpg",
+    "description": "Sanctuaire du Sifaka Soyeux, jungle dense et sommets.",
+    "tags": ["sava", "nature", "randonnee"]
+  },
+  {
+    "id": 703,
+    "ville": "Antalaha",
+    "nom": "Antalaha",
+    "type": "Ville",
+    "lat": -14.8833,
+    "lng": 50.2833,
+    "image": "images/villes/antalaha.jpg",
+    "description": "La Mecque de la vanille mondiale. Chic et tropical.",
+    "tags": ["sava", "ville"]
+  },
+  {
+    "id": 704,
+    "ville": "Antalaha",
+    "nom": "Cap Est",
+    "type": "Spot Local",
+    "lat": -15.2667,
+    "lng": 50.4833,
+    "image": "images/spots/cap-est.jpg",
+    "description": "Le point le plus oriental de l'Afrique. Sauvage.",
+    "tags": ["sava", "mer"]
+  },
+  {
+    "id": 705,
+    "ville": "Antalaha",
+    "nom": "Macolline",
+    "type": "Nature",
+    "lat": -14.9083,
+    "lng": 50.2750,
+    "image": "images/spots/macolline.jpg",
+    "description": "Jardin botanique avec vue spectaculaire.",
+    "tags": ["sava", "nature"]
+  },
+
+  // --- DATA INJECTED FOR CIRCUIT NOSY BE ---
+  {
+    "id": 250,
+    "ville": "Nosy Be",
+    "nom": "Nosy Komba",
+    "type": "Incontournable",
+    "lat": -13.4667,
+    "lng": 48.3500,
+    "image": "images/spots/nosy-komba.jpg",
+    "description": "L'île aux lémuriens, artisanat et tranquillité.",
+    "tags": ["nosybe", "ile", "nature"]
+  },
+  {
+    "id": 251,
+    "ville": "Nosy Be",
+    "nom": "Nosy Tanikely",
+    "type": "Incontournable",
+    "lat": -13.4833,
+    "lng": 48.2333,
+    "image": "images/spots/nosy-tanikely.jpg",
+    "description": "Aquarium naturel, snorkeling de classe mondiale.",
+    "tags": ["nosybe", "ile", "mer"]
+  },
+  {
+    "id": 252,
+    "ville": "Nosy Be",
+    "nom": "Mont Passot",
+    "type": "Spot Local",
+    "lat": -13.3222,
+    "lng": 48.2431,
+    "image": "images/spots/mont-passot.jpg",
+    "description": "Le point culminant de l'île. Coucher de soleil 360°.",
+    "tags": ["nosybe", "nature"]
+  },
+  {
+    "id": 253,
+    "ville": "Nosy Be",
+    "nom": "Nosy Iranja",
+    "type": "Incontournable",
+    "lat": -13.5833,
+    "lng": 47.8167,
+    "image": "images/spots/nosy-iranja.jpg",
+    "description": "Deux îles reliées par un banc de sable blanc sublime.",
+    "tags": ["nosybe", "ile", "mer"]
+  },
+  {
+    "id": 254,
+    "ville": "Nosy Be",
+    "nom": "Réserve de Lokobe",
+    "type": "Nature",
+    "lat": -13.4167,
+    "lng": 48.3167,
+    "image": "images/spots/lokobe.jpg",
+    "description": "La dernière forêt primaire protégée de Nosy Be.",
+    "tags": ["nosybe", "nature"]
+  },
+  {
+    "id": 255,
+    "ville": "Nosy Be",
+    "nom": "Plage d'Andilana",
+    "type": "Spot Local",
+    "lat": -13.2667,
+    "lng": 48.1833,
+    "image": "images/spots/andilana.jpg",
+    "description": "La plus belle plage publique de Nosy Be.",
+    "tags": ["nosybe", "mer"]
+  },
+
   {
     "id": 5,
     "ville": "Antananarivo",
@@ -204,7 +433,7 @@ window.LIEUX_DATA = [
     "id": 517,
     "ville": "Antananarivo",
     "nom": "Le Carré",
-    "type": "Restaurant",
+    "type": "Bar",
     "lat": -18.904,
     "lng": 47.526,
     "prix": "35 000 Ar",
@@ -521,7 +750,7 @@ window.LIEUX_DATA = [
     "id": 528,
     "ville": "Antananarivo",
     "nom": "La Teinturerie",
-    "type": "sortir",
+    "type": "Bar",
     "lat": -18.925,
     "lng": 47.535,
     "prix": "10 000 Ar",
@@ -551,7 +780,7 @@ window.LIEUX_DATA = [
     "id": 529,
     "ville": "Antananarivo",
     "nom": "Le Glacier",
-    "type": "sortir",
+    "type": "Bar",
     "lat": -18.908,
     "lng": 47.5255,
     "prix": "15 000 Ar",
@@ -609,7 +838,7 @@ window.LIEUX_DATA = [
     "id": 531,
     "ville": "Ampefy",
     "nom": "Chute de la Lily",
-    "type": "Nature",
+    "type": "Spot Local",
     "lat": -19.05,
     "lng": 46.7333,
     "prix": "2 000 Ar",
@@ -628,7 +857,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "nature",
-      "detente"
+      "detente",
+      "secret_spot"
     ],
     "price": "2 000 Ar",
     "rating": 4.8,
@@ -717,7 +947,7 @@ window.LIEUX_DATA = [
     "id": 535,
     "ville": "Antsirabe",
     "nom": "Cathédrale Notre-Dame de la Salette",
-    "type": "Culture",
+    "type": "Spot Local",
     "lat": -19.8667,
     "lng": 47.0333,
     "prix": "Gratuit",
@@ -775,7 +1005,7 @@ window.LIEUX_DATA = [
     "id": 7,
     "ville": "Diego-Suarez",
     "nom": "Mer d’Émeraude",
-    "type": "Plage",
+    "type": "Spot Local",
     "lat": -12.3333,
     "lng": 49.4833,
     "prix": "80 000 Ar",
@@ -794,7 +1024,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_3",
       "spots",
-      "aventure"
+      "aventure",
+      "secret_spot"
     ],
     "price": "80 000 Ar",
     "rating": 4.8,
@@ -861,7 +1092,7 @@ window.LIEUX_DATA = [
     "id": 10,
     "ville": "Diego-Suarez",
     "nom": "Tsingy Rouge",
-    "type": "Spot Local",
+    "type": "Découverte",
     "lat": -12.9165,
     "lng": 49.2936,
     "prix": "50 000 Ar",
@@ -888,7 +1119,7 @@ window.LIEUX_DATA = [
     "id": 11,
     "ville": "Diego-Suarez",
     "nom": "Windsor Castle",
-    "type": "Spot Local",
+    "type": "Découverte",
     "lat": -12.35,
     "lng": 49.3,
     "prix": "Gratuit",
@@ -1010,7 +1241,7 @@ window.LIEUX_DATA = [
     "prixNum": 40000,
     "note": 4.6,
     "description": "Ce cône volcanique parfait émerge de la baie tel un gardien sacré. Appelé ’Pain de Sucre’ pour sa forme, il est couvert de végétation et abrite des rituels traditionnels. On ne peut généralement pas y débarquer, mais en faire le tour en bateau est magique.",
-    "image": "images/iles/nosy-lonjo.png",
+    "image": "images/pain_de_sucre_premium.jpg",
     "acces": "Excursion bateau depuis Diego (30 min)",
     "horaires": "Matinée recommandée",
     "conseil": "Demandez à votre piroguier de s’approcher doucement pour voir les oiseaux nichant dans la paroi.",
@@ -1031,7 +1262,7 @@ window.LIEUX_DATA = [
     "id": 16,
     "ville": "Diego-Suarez",
     "nom": "Le Melville",
-    "type": "Restaurant",
+    "type": "Nature",
     "lat": -12.282,
     "lng": 49.294,
     "prix": "40 000 Ar",
@@ -1266,7 +1497,7 @@ window.LIEUX_DATA = [
     "id": 56,
     "ville": "Diego-Suarez",
     "nom": "Les Salines de Diego",
-    "type": "Spot Local",
+    "type": "Nature",
     "spotLocal": true,
     "lat": -12.3174,
     "lng": 49.2157,
@@ -1345,7 +1576,7 @@ window.LIEUX_DATA = [
     "id": 602,
     "ville": "Diego-Suarez",
     "nom": "Marché Bazarikely",
-    "type": "Culture",
+    "type": "Spot Local",
     "lat": -12.28,
     "lng": 49.3,
     "prix": "Gratuit",
@@ -1364,7 +1595,8 @@ window.LIEUX_DATA = [
     "price": "Gratuit",
     "rating": 4.4,
     "duration": "1h",
-    "prixNum": 0
+    "prixNum": 0,
+    "local_access_required": true
   },
   {
     "id": 603,
@@ -1493,7 +1725,7 @@ window.LIEUX_DATA = [
     "id": 17,
     "ville": "Nosy Be",
     "nom": "Plage d’Andilana",
-    "type": "Incontournable",
+    "type": "Spot Local",
     "lat": -13.2205,
     "lng": 48.1824,
     "prix": "Gratuit",
@@ -1513,7 +1745,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "nature",
-      "famille"
+      "famille",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -1723,7 +1956,7 @@ window.LIEUX_DATA = [
     "id": 25,
     "ville": "Nosy Be",
     "nom": "Nosy Sakatia",
-    "type": "Nature",
+    "type": "Spot Local",
     "lat": -13.3108,
     "lng": 48.1569,
     "prix": "Gratuit",
@@ -1742,7 +1975,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "spots",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.7,
@@ -1860,7 +2094,8 @@ window.LIEUX_DATA = [
       "nosybe",
       "budget_1",
       "nature",
-      "culture"
+      "culture",
+      "secret_spot"
     ],
     "price": "5 000 Ar",
     "rating": 4.9,
@@ -2158,7 +2393,7 @@ window.LIEUX_DATA = [
     "id": 210,
     "ville": "Nosy Be",
     "nom": "Le Bar de la Plage",
-    "type": "Bar",
+    "type": "Nature",
     "lat": -13.361,
     "lng": 48.2105,
     "prix": "10 000 Ar",
@@ -2327,7 +2562,8 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "majunga",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.7,
@@ -2396,7 +2632,7 @@ window.LIEUX_DATA = [
     "id": 36,
     "ville": "Mahajanga",
     "nom": "Katsepy et le Phare",
-    "type": "Nature",
+    "type": "Bar",
     "lat": -15.7456,
     "lng": 46.2234,
     "prix": "15 000 Ar",
@@ -2425,7 +2661,7 @@ window.LIEUX_DATA = [
     "id": 37,
     "ville": "Mahajanga",
     "nom": "Grotte d’Anjohibe",
-    "type": "Nature",
+    "type": "Spot Local",
     "lat": -15.5234,
     "lng": 46.8567,
     "prix": "35 000 Ar",
@@ -2444,7 +2680,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_2",
       "nature",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "price": "35 000 Ar",
     "rating": 4.7,
@@ -2510,7 +2747,7 @@ window.LIEUX_DATA = [
     "id": 40,
     "ville": "Mahajanga",
     "nom": "Complexe Sportif Ankorondrano",
-    "type": "Culture",
+    "type": "Bar",
     "lat": -15.7234,
     "lng": 46.3212,
     "prix": "5 000 Ar",
@@ -2588,7 +2825,8 @@ window.LIEUX_DATA = [
       "majunga",
       "explorer",
       "budget_1",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -2627,7 +2865,7 @@ window.LIEUX_DATA = [
     "id": 503,
     "ville": "Mahajanga",
     "nom": "Coco Lodge Majunga",
-    "type": "Restaurant",
+    "type": "Bar",
     "lat": -15.718,
     "lng": 46.316,
     "prix": "35 000 Ar",
@@ -2709,7 +2947,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "nature",
-      "detente"
+      "detente",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -2836,7 +3075,7 @@ window.LIEUX_DATA = [
     "id": 511,
     "ville": "Mahajanga",
     "nom": "Club 73 (ex-Shakira)",
-    "type": "Boîte de nuit",
+    "type": "Bar",
     "lat": -15.72,
     "lng": 46.315,
     "prix": "Entrée ~10 000 Ar",
@@ -3027,7 +3266,8 @@ window.LIEUX_DATA = [
       "spots",
       "explorer",
       "budget_1",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -3094,7 +3334,7 @@ window.LIEUX_DATA = [
     "id": 46,
     "ville": "Isalo",
     "nom": "Point de Vue Secret du Canyon",
-    "type": "Spot Local",
+    "type": "Bar",
     "spotLocal": true,
     "lat": -22.5678,
     "lng": 45.3945,
@@ -3124,7 +3364,7 @@ window.LIEUX_DATA = [
     "id": 47,
     "ville": "Ifaty",
     "nom": "Plage d’Ifaty / Mangily",
-    "type": "Plage",
+    "type": "Spot Local",
     "lat": -23.15,
     "lng": 43.6167,
     "prix": "Gratuit",
@@ -3142,7 +3382,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "spots",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -3152,7 +3393,7 @@ window.LIEUX_DATA = [
     "id": 48,
     "ville": "Ifaty",
     "nom": "Forêt de Baobabs de Mangily",
-    "type": "Nature",
+    "type": "Spot Local",
     "lat": -23.1667,
     "lng": 43.6,
     "prix": "15 000 Ar",
@@ -3170,7 +3411,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "nature",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "price": "15 000 Ar",
     "rating": 4.6,
@@ -3200,7 +3442,8 @@ window.LIEUX_DATA = [
       "spots",
       "explorer",
       "budget_1",
-      "gastronomie"
+      "gastronomie",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.9,
@@ -3288,7 +3531,8 @@ window.LIEUX_DATA = [
       "spots",
       "budget_1",
       "culture",
-      "gastronomie"
+      "gastronomie",
+      "secret_spot"
     ],
     "price": "20 000 Ar",
     "rating": 4.8,
@@ -3372,7 +3616,8 @@ window.LIEUX_DATA = [
     "tags": [
       "spots",
       "budget_1",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.8,
@@ -3709,7 +3954,7 @@ window.LIEUX_DATA = [
     "id": 312,
     "ville": "Fianarantsoa",
     "nom": "Discothèque du Soafia",
-    "type": "Boîte de nuit",
+    "type": "Bar",
     "lat": -21.442,
     "lng": 47.081,
     "prix": "15 000 Ar",
@@ -3804,7 +4049,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "spots",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.7,
@@ -3814,7 +4060,7 @@ window.LIEUX_DATA = [
     "id": 316,
     "ville": "Fianarantsoa",
     "nom": "Marché d’Anjoma",
-    "type": "Spot Local",
+    "type": "Bar",
     "spotLocal": true,
     "lat": -21.44,
     "lng": 47.08,
@@ -3858,7 +4104,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "spots",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.6,
@@ -3883,7 +4130,8 @@ window.LIEUX_DATA = [
     "tags": [
       "fianar",
       "spots",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.2,
@@ -3909,7 +4157,8 @@ window.LIEUX_DATA = [
       "fianar",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.5,
@@ -4055,7 +4304,7 @@ window.LIEUX_DATA = [
     "id": 402,
     "ville": "Tuléar",
     "nom": "Plage d’Anakao",
-    "type": "Nature",
+    "type": "Spot Local",
     "lat": -23.65,
     "lng": 43.65,
     "prix": "Gratuit",
@@ -4074,7 +4323,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "spots",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "price": "Gratuit",
     "rating": 4.9,
@@ -4131,7 +4381,8 @@ window.LIEUX_DATA = [
       "tulear",
       "explorer",
       "budget_1",
-      "culture"
+      "culture",
+      "secret_spot"
     ],
     "price": "10 000 Ar",
     "rating": 4.3,
@@ -4798,7 +5049,7 @@ window.LIEUX_DATA = [
     "id": 626,
     "nom": "Bord de Mer",
     "ville": "Mahajanga",
-    "type": "Spot Local",
+    "type": "Bar",
     "prix": "Gratuit",
     "prixNum": 0,
     "note": "4.6",
@@ -4816,7 +5067,8 @@ window.LIEUX_DATA = [
     "lng": 46.3167,
     "price": "Gratuit",
     "rating": "4.6",
-    "duration": "Libre"
+    "duration": "Libre",
+    "local_access_required": true
   },
   {
     "id": 627,
@@ -4866,7 +5118,7 @@ window.LIEUX_DATA = [
     "id": 629,
     "nom": "Grand Pavois",
     "ville": "Mahajanga",
-    "type": "Plage",
+    "type": "Spot Local",
     "prix": "Gratuit",
     "prixNum": 0,
     "note": "4.6",
@@ -4877,13 +5129,15 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "spots",
-      "nature"
+      "nature",
+      "secret_spot"
     ],
     "lat": -15.6,
     "lng": 46.3,
     "price": "Gratuit",
     "rating": "4.6",
-    "duration": "Libre"
+    "duration": "Libre",
+    "local_access_required": true
   },
   {
     "id": 630,
@@ -4912,7 +5166,7 @@ window.LIEUX_DATA = [
     "id": 631,
     "nom": "Canal des Pangalanes",
     "ville": "Toamasina",
-    "type": "Nature",
+    "type": "Spot Local",
     "prix": "40 000 Ar",
     "prixNum": 40000,
     "note": "4.6",
@@ -4923,7 +5177,8 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_2",
       "spots",
-      "culture"
+      "culture",
+      "secret_spot"
     ],
     "lat": -18.1499,
     "lng": 49.4023,
@@ -4962,7 +5217,7 @@ window.LIEUX_DATA = [
     "id": 633,
     "nom": "Île aux Nattes",
     "ville": "Toamasina",
-    "type": "Plage",
+    "type": "Spot Local",
     "prix": "Gratuit",
     "prixNum": 0,
     "note": "4.9",
@@ -4972,19 +5227,21 @@ window.LIEUX_DATA = [
       "tamatave",
       "explorer",
       "budget_1",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "lat": -17,
     "lng": 49.8,
     "price": "Gratuit",
     "rating": "4.9",
-    "duration": "Libre"
+    "duration": "Libre",
+    "local_access_required": true
   },
   {
     "id": 634,
     "nom": "Plage d’Ifaty",
     "ville": "Toliara",
-    "type": "Plage",
+    "type": "Spot Local",
     "prix": "Gratuit",
     "prixNum": 0,
     "note": "4.5",
@@ -4996,13 +5253,15 @@ window.LIEUX_DATA = [
       "budget_1",
       "spots",
       "nature",
-      "detente"
+      "detente",
+      "secret_spot"
     ],
     "lat": -23.15,
     "lng": 43.6167,
     "price": "Gratuit",
     "rating": "4.5",
-    "duration": "Libre"
+    "duration": "Libre",
+    "local_access_required": true
   },
   {
     "id": 635,
@@ -5161,7 +5420,8 @@ window.LIEUX_DATA = [
       "diego",
       "spots",
       "explorer",
-      "budget_1"
+      "budget_1",
+      "secret_spot"
     ]
   },
   {
@@ -5205,7 +5465,7 @@ window.LIEUX_DATA = [
     "lat": -18.1501,
     "lng": 49.4089,
     "note": 4.2,
-    "type": "Street Food",
+    "type": "Restaurant",
     "duree": "1h",
     "conseil": "Allez-y en fin de journée quand l'animation bat son plein. Parfait pour une immersion locale.",
     "acces": "Boulevard Ratsimilaho (bord de mer), entre le port et la Place de l'Indépendance",
@@ -5278,7 +5538,7 @@ window.LIEUX_DATA = [
     "lat": -18.1489,
     "lng": 49.4115,
     "note": 4.2,
-    "type": "Stand",
+    "type": "Nature",
     "duree": "1h",
     "conseil": "Négociez les prix et choisissez vous-même vos fruits de mer. Arrivez avant 11h pour le meilleur choix.",
     "acces": "Zone portuaire, près de l'embarcadère principal",
@@ -5984,14 +6244,15 @@ window.LIEUX_DATA = [
       "budget_2",
       "nature",
       "spots",
-      "detente"
+      "detente",
+      "secret_spot"
     ],
     "prix": "25 000 Ar",
     "prixNum": 25000,
     "lat": -18.1689,
     "lng": 49.4523,
     "note": 4.9,
-    "type": "Île",
+    "type": "Spot Local",
     "duree": "Journée",
     "conseil": "Apportez votre pique-nique et équipement snorkeling. Protégez-vous du soleil.",
     "acces": "Bateau depuis le port de Toamasina (trajet 45min)",
@@ -6087,14 +6348,15 @@ window.LIEUX_DATA = [
       "explorer",
       "budget_1",
       "culture",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "prix": "Gratuit",
     "prixNum": 0,
     "lat": -18.1501,
     "lng": 49.4089,
     "note": 4.2,
-    "type": "Promenade",
+    "type": "Spot Local",
     "duree": "1-2h",
     "conseil": "Allez-y en fin d'après-midi pour le coucher de soleil et l'animation du soir.",
     "acces": "Centre-ville, accessible à pied",
@@ -6113,14 +6375,15 @@ window.LIEUX_DATA = [
       "budget_1",
       "nature",
       "spots",
-      "detente"
+      "detente",
+      "secret_spot"
     ],
     "prix": "5 000 Ar",
     "prixNum": 5000,
     "lat": -18.1498,
     "lng": 49.4201,
     "note": 4.6,
-    "type": "Plage",
+    "type": "Spot Local",
     "duree": "2-3h",
     "conseil": "Négociez le prix de la pirogue aller-retour. Apportez votre pique-nique.",
     "acces": "Pirogue depuis le port (5-10min de traversée)",
@@ -6188,14 +6451,15 @@ window.LIEUX_DATA = [
       "budget_2",
       "nature",
       "aventure",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "prix": "15 000 Ar",
     "prixNum": 15000,
     "lat": -17.7523,
     "lng": 49.5234,
     "note": 4.5,
-    "type": "Plage",
+    "type": "Spot Local",
     "duree": "Journée",
     "conseil": "Louez une planche si vous surfez. Attention aux courants pour la baignade.",
     "acces": "75 km au nord, taxi-brousse ou excursion organisée",
@@ -6316,14 +6580,15 @@ window.LIEUX_DATA = [
       "budget_2",
       "nature",
       "aventure",
-      "spots"
+      "spots",
+      "secret_spot"
     ],
     "prix": "35 000 Ar",
     "prixNum": 35000,
     "lat": -18.1756,
     "lng": 49.4089,
     "note": 4.6,
-    "type": "Activité Nautique",
+    "type": "Spot Local",
     "duree": "Demi-journée ou journée",
     "conseil": "Niveau débutant accepté avec guide. Bidon étanche pour téléphone recommandé.",
     "acces": "Point de départ à 15 km de Toamasina, transfert organisé",
@@ -6661,7 +6926,12 @@ window.LIEUX_DATA = [
     "note": 4.6,
     "description": "Un lieu unique au monde, chargé de mystères. Situé sur l'île aux Forbans, ce cimetière envahi par la végétation abrite les tombes d'anciens pirates légendaires. L'atmosphère y est envoûtante, presque irréelle.",
     "image": "images/iles/ile-aux-nattes.jpg",
-    "tags": ["saintemarie", "culture", "explorer", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "culture",
+      "explorer",
+      "budget_1"
+    ],
     "duree": "1h30",
     "conseil": "À visiter impérativement à marée basse pour accéder à toutes les pierres tombales. Prenez un guide local pour les anecdotes historiques.",
     "acces": "Île aux Forbans, accès en pirogue depuis Ambodifotatra (5 min)",
@@ -6673,7 +6943,7 @@ window.LIEUX_DATA = [
     "id": 702,
     "ville": "Sainte-Marie",
     "nom": "Île aux Nattes",
-    "type": "Plage",
+    "type": "Spot Local",
     "lat": -17.106,
     "lng": 49.808,
     "prix": "Gratuit",
@@ -6681,7 +6951,14 @@ window.LIEUX_DATA = [
     "note": 4.9,
     "description": "Le paradis terrestre. Une petite île sans voiture au sud de Sainte-Marie, avec des plages de sable blanc éblouissant et un lagon turquoise. Idéal pour se déconnecter totalement du monde.",
     "image": "images/iles/ile-aux-nattes.jpg",
-    "tags": ["saintemarie", "nature", "explorer", "budget_1", "spots"],
+    "tags": [
+      "saintemarie",
+      "nature",
+      "explorer",
+      "budget_1",
+      "spots",
+      "secret_spot"
+    ],
     "duree": "Journée",
     "conseil": "Louez un vélo pour faire le tour de l'île par les sentiers, puis finissez par un apéro sunset à la 'Maison Blanche'.",
     "acces": "Pointe Sud, traversée en pirogue depuis l'aéroport (2 min)",
@@ -6694,14 +6971,19 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Piscine Naturelle Ambodiatafana",
     "type": "Nature",
-    "lat": -16.850,
-    "lng": 49.960,
+    "lat": -16.85,
+    "lng": 49.96,
     "prix": "5 000 Ar",
     "prixNum": 5000,
     "note": 4.5,
     "description": "Au nord de l'île, une formation rocheuse crée une piscine naturelle d'eau de mer à l'abri des vagues de l'océan Indien. L'eau y est cristalline et le cadre sauvage est spectaculaire.",
     "image": "images/iles/mer-emeraude.jpg",
-    "tags": ["saintemarie", "nature", "explorer", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "nature",
+      "explorer",
+      "budget_1"
+    ],
     "duree": "Demi-journée",
     "conseil": "Détente absolue garantie. Apportez votre masque et tuba, mais attention aux oursins !",
     "acces": "Nord de l'île, village d'Ambodiatafana (45 min en 4x4 d'Ambodifotatra)",
@@ -6714,14 +6996,19 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Cascade d'Antanandava",
     "type": "Nature",
-    "lat": -16.980,
-    "lng": 49.880,
+    "lat": -16.98,
+    "lng": 49.88,
     "prix": "Interactif",
     "prixNum": 5000,
     "note": 4.4,
     "description": "Une belle chute d'eau accessible après une marche agréable à travers la forêt de girofliers et de vanille. Possibilité de se baigner dans le bassin frais au pied de la cascade.",
     "image": "images/spots/chute-lily.jpg",
-    "tags": ["saintemarie", "nature", "explorer", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "nature",
+      "explorer",
+      "budget_1"
+    ],
     "duree": "2h",
     "conseil": "Profitez-en pour acheter de la vanille fraîche directement aux villageois sur le chemin.",
     "acces": "10km d'Ambodifotatra, puis 20min de marche",
@@ -6734,14 +7021,20 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Safari Baleines",
     "type": "Incontournable",
-    "lat": -17.000,
-    "lng": 49.850,
+    "lat": -17,
+    "lng": 49.85,
     "prix": "150 000 Ar",
     "prixNum": 150000,
-    "note": 5.0,
+    "note": 5,
     "description": "De juillet à septembre, le canal de Sainte-Marie accueille des centaines de baleines à bosse. Une expérience inoubliable pour observer leurs sauts et écouter leur chant. Le spectacle de la nature à l'état pur.",
     "image": "images/iles/nosy-komba.jpg",
-    "tags": ["saintemarie", "nature", "explorer", "budget_3", "incontournable"],
+    "tags": [
+      "saintemarie",
+      "nature",
+      "explorer",
+      "budget_3",
+      "incontournable"
+    ],
     "duree": "Demi-journée",
     "conseil": "Réservez avec un opérateur agréé Cétamada pour une approche respectueuse des animaux. Juillet-Août est le pic.",
     "acces": "Départ du port d'Ambodifotatra ou des hôtels partenaires",
@@ -6761,7 +7054,11 @@ window.LIEUX_DATA = [
     "note": 4.3,
     "description": "Restaurant convivial spécialisé dans les fruits de mer et la cuisine locale. Langoustes, calamars et poissons grillés sont à l'honneur. Ambiance décontractée typique des îles.",
     "image": "images/restaurants/placeholder-resto.jpg",
-    "tags": ["saintemarie", "manger", "budget_2"],
+    "tags": [
+      "saintemarie",
+      "manger",
+      "budget_2"
+    ],
     "duree": "Repas",
     "conseil": "Leur carpaccio de poisson est une tuerie. Ambiance très sympa le soir avec souvent des musiciens.",
     "acces": "Centre-ville Ambodifotatra, rue principale",
@@ -6781,7 +7078,12 @@ window.LIEUX_DATA = [
     "note": 4.6,
     "description": "Restaurant de plage raffiné offrant une cuisine fusion franco-malgache. Le cadre est magnifique pour un déjeuner les pieds dans le sable ou un dîner romantique au coucher du soleil.",
     "image": "images/restaurants/placeholder-resto.jpg",
-    "tags": ["saintemarie", "manger", "gastronomie", "budget_2"],
+    "tags": [
+      "saintemarie",
+      "manger",
+      "gastronomie",
+      "budget_2"
+    ],
     "duree": "Repas",
     "conseil": "Cadre idyllique. Commandez le plateau de fruits de mer royal si vous êtes deux ou plus.",
     "acces": "Plage de l'hôtel Idylle Beach",
@@ -6794,14 +7096,18 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Chez Nath",
     "type": "Restaurant",
-    "lat": -17.100,
-    "lng": 49.810,
+    "lat": -17.1,
+    "lng": 49.81,
     "prix": "20 000 Ar",
     "prixNum": 20000,
     "note": 4.2,
     "description": "Une adresse authentique sur l'Île aux Nattes. Nath cuisine avec amour des plats malgaches généreux (romazava, porc aux brèdes) à prix doux. Simple, bon et chaleureux.",
     "image": "images/restaurants/placeholder-resto.jpg",
-    "tags": ["saintemarie", "manger", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "manger",
+      "budget_1"
+    ],
     "duree": "Repas",
     "conseil": "Ne soyez pas pressés (mora mora), tout est fait minute. Le poulet au coco est le best-seller.",
     "acces": "Île aux Nattes, sentier principal",
@@ -6814,14 +7120,19 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Samaria Lodge Restaurant",
     "type": "Restaurant",
-    "lat": -16.900,
-    "lng": 49.920,
+    "lat": -16.9,
+    "lng": 49.92,
     "prix": "40 000 Ar",
     "prixNum": 40000,
     "note": 4.5,
     "description": "Situé au nord, ce restaurant offre une vue imprenable sur le lagon. Cuisine saine et fraîche, utilisant les produits du potager bio. Parfait pour une pause gourmande lors d'un tour de l'île.",
     "image": "images/restaurants/placeholder-resto.jpg",
-    "tags": ["saintemarie", "manger", "nature", "budget_2"],
+    "tags": [
+      "saintemarie",
+      "manger",
+      "nature",
+      "budget_2"
+    ],
     "duree": "Repas",
     "conseil": "Si vous déjeunez ici, vous avez accès à leur plage privée magnifique.",
     "acces": "Pointe Nord-Est, piste sablonneuse",
@@ -6835,13 +7146,17 @@ window.LIEUX_DATA = [
     "nom": "Le Mora Mora",
     "type": "Bar",
     "lat": -17.008,
-    "lng": 49.850,
+    "lng": 49.85,
     "prix": "10 000 Ar",
     "prixNum": 10000,
     "note": 4.1,
     "description": "Le spot pour boire un verre le soir à Ambodifotatra. Musique, billard et bonne ambiance. C'est le point de rendez-vous des locaux et des voyageurs.",
     "image": "images/placeholder-bar.jpg",
-    "tags": ["saintemarie", "sortir", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "sortir",
+      "budget_1"
+    ],
     "duree": "Soirée",
     "conseil": "Lieu de rencontre incontournable des expats et locaux. La THG (bière pression) y est bien fraîche !",
     "acces": "Port d'Ambodifotatra",
@@ -6854,14 +7169,19 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Princesse Bora Lodge",
     "type": "Hôtel",
-    "lat": -17.040,
-    "lng": 49.820,
+    "lat": -17.04,
+    "lng": 49.82,
     "prix": "600 000 Ar",
     "prixNum": 600000,
     "note": 4.8,
     "description": "Le luxe éco-chic à son apogée. Villas de charme, spa, piscine à débordement et ponton privé. L'hôtel est également très impliqué dans la protection des baleines avec l'association Cétamada.",
     "image": "images/hotels/placeholder-hotel.jpg",
-    "tags": ["saintemarie", "dormir", "luxe", "budget_3"],
+    "tags": [
+      "saintemarie",
+      "dormir",
+      "luxe",
+      "budget_3"
+    ],
     "duree": "Séjour",
     "conseil": "Demandez une Villa Charme. Leur cave à vin est l'une des meilleures de la côte Est.",
     "acces": "Ravoraha, proche aéroport (navette incluse)",
@@ -6874,14 +7194,18 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Libertalia Hotel",
     "type": "Hôtel",
-    "lat": -17.020,
-    "lng": 49.830,
+    "lat": -17.02,
+    "lng": 49.83,
     "prix": "180 000 Ar",
     "prixNum": 180000,
     "note": 4.5,
     "description": "Un excellent rapport qualité-prix. Bungalows confortables face à la mer, sur une petite île reliée par un pont. Le restaurant surplombant l'eau est un atout majeur.",
     "image": "images/hotels/placeholder-hotel.jpg",
-    "tags": ["saintemarie", "dormir", "budget_2"],
+    "tags": [
+      "saintemarie",
+      "dormir",
+      "budget_2"
+    ],
     "duree": "Séjour",
     "conseil": "La vue depuis la piscine infinity est à couper le souffle. Petit-déjeuner buffet excellent.",
     "acces": "Îlot Madame, relié par une digue",
@@ -6894,14 +7218,19 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Soanambo Hotel",
     "type": "Hôtel",
-    "lat": -17.030,
+    "lat": -17.03,
     "lng": 49.825,
     "prix": "450 000 Ar",
     "prixNum": 450000,
     "note": 4.7,
     "description": "Hôtel prestigieux offrant tout le confort moderne. Grande piscine, chambres spacieuses avec vue mer, spa et service impeccable. Idéal pour ceux qui cherchent le standing international.",
     "image": "images/hotels/placeholder-hotel.jpg",
-    "tags": ["saintemarie", "dormir", "luxe", "budget_3"],
+    "tags": [
+      "saintemarie",
+      "dormir",
+      "luxe",
+      "budget_3"
+    ],
     "duree": "Séjour",
     "conseil": "Le Spa est top. Idéal pour les familles car la piscine est très grande et sécurisée.",
     "acces": "Centre-ville à 2km, bord de mer",
@@ -6914,14 +7243,18 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Vohilava",
     "type": "Hôtel",
-    "lat": -17.060,
+    "lat": -17.06,
     "lng": 49.815,
     "prix": "120 000 Ar",
     "prixNum": 120000,
     "note": 4.3,
     "description": "Des bungalows traditionnels en bois et ravinala, pleins de charme, posés sur la plage. Ambiance familiale et détendue à proximité du village.",
     "image": "images/hotels/placeholder-hotel.jpg",
-    "tags": ["saintemarie", "dormir", "budget_2"],
+    "tags": [
+      "saintemarie",
+      "dormir",
+      "budget_2"
+    ],
     "duree": "Séjour",
     "conseil": "Ambiance très 'vacances'. Les bungalows premier rang plage sont à privilégier pour s'endormir avec le bruit des vagues.",
     "acces": "Plage Sud, proche aéroport",
@@ -6934,14 +7267,18 @@ window.LIEUX_DATA = [
     "ville": "Sainte-Marie",
     "nom": "Lakana Hotel",
     "type": "Hôtel",
-    "lat": -17.080,
-    "lng": 49.810,
+    "lat": -17.08,
+    "lng": 49.81,
     "prix": "90 000 Ar",
     "prixNum": 90000,
     "note": 4.2,
     "description": "Bungalows sur pilotis au milieu d'un jardin tropical et du lagon. Une expérience 'Robinson Crusoé' confortable et abordable, très appréciée des amoureux de la nature.",
     "image": "images/hotels/placeholder-hotel.jpg",
-    "tags": ["saintemarie", "dormir", "budget_1"],
+    "tags": [
+      "saintemarie",
+      "dormir",
+      "budget_1"
+    ],
     "duree": "Séjour",
     "conseil": "Authenticité garantie. Pas d'électricité 24/24 (solaire), déconnexion assurée. Le meilleur rapport qualité/prix de l'île.",
     "acces": "Entre aéroport et Île aux Nattes",

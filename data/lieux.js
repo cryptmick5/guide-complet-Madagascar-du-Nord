@@ -63,16 +63,98 @@ window.LIEUX_DATA = [
         "lat": -12.516,
         "lng": 49.166,
         "image": "images/spots/montagne-ambre.jpg",
-        "description": "Parc National, forêt humide, caméléons et cascades.",
+        "description": "Un parc national d'exception où la forêt humide abrite des cascades sacrées et une biodiversité unique. C'est le royaume des caméléons et des lémuriens, offrant une fraîcheur bienvenue à seulement quelques kilomètres de Diego.",
         "tags": [
             "diego",
             "nature",
-            "randonnee"
+            "randonnee",
+            "incontournable"
         ],
-        "conseil": "Prenez un guide local pour repérer la faune et la flore cachée.",
-        "acces": "4x4 recommandé. La piste peut être cahoteuse mais le paysage en vaut la peine.",
-        "horaires": "Accessible toute la journée (Conseillé le matin)",
-        "y_aller": "https://www.google.com/maps/search/?api=1&query=-12.516,49.166"
+        "prix": "45 000 Ar",
+        "prixNum": 45000,
+        "note": 4.7,
+        "duree": "4h à 6h",
+        "conseil": "Prenez un guide local à l'entrée, c'est obligatoire et indispensable pour repérer les caméléons minuscules (Brookesia).",
+        "acces": "Accessible en 4x4 ou taxi-brousse depuis Joffreville (environ 1h de Diego). La piste finale est cahoteuse.",
+        "horaires": "Accessible toute la journée (Conseillé le matin à 7h)",
+        "y_aller": "https://www.google.com/maps/search/?api=1&query=-12.516,49.166",
+        "siteWeb": "https://www.parcs-madagascar.com",
+        "galerie_photos": [
+            { "url": "images/spots/montagne-ambre.jpg", "alt": "Cascade Sacrée", "type": "point_interet" },
+            { "url": "images/spots/montagne-ambre-cameleon.jpg", "alt": "Caméléon Brookesia", "type": "faune" },
+            { "url": "images/spots/montagne-ambre-foret.jpg", "alt": "Forêt tropicale humide", "type": "ambiance" }
+        ],
+        "avis": {
+            "note_globale": 4.7,
+            "nombre_avis": 124,
+            "detail_notes": {
+                "accessibilite": 4.5,
+                "rapport_qualite_prix": 4.8,
+                "experience_globale": 4.7,
+                "authenticite": 5.0
+            },
+            "avis_recents": [
+                {
+                    "auteur": "Marie L.",
+                    "origine": "France",
+                    "date": "2025-11-15",
+                    "note": 5,
+                    "commentaire": "Une forêt magique ! Les cascades sont magnifiques et nous avons vu le Brookesia. Guide local top !",
+                    "verifie": true
+                },
+                {
+                    "auteur": "Rakoto M.",
+                    "origine": "Madagascar",
+                    "date": "2025-10-28",
+                    "note": 4.5,
+                    "commentaire": "Très beau parc. Prévoir de bonnes chaussures car ça glisse quand c'est humide.",
+                    "verifie": true
+                }
+            ]
+        },
+        "actions_principales": {
+            "type_lieu": "parc_national",
+            "cta_principal": {
+                "texte": "Réserver un Guide",
+                "url": "/contact",
+                "couleur": "orange",
+                "icone": "🎫"
+            },
+            "cta_secondaire": {
+                "texte": "Contacter un guide local",
+                "url": "https://wa.me/261340001234",
+                "type": "whatsapp"
+            }
+        },
+        "infos_pratiques": {
+            "horaires": {
+                "lundi_vendredi": "8h-17h",
+                "weekend": "7h-18h",
+                "note": "Dernière entrée 1h avant fermeture"
+            },
+            "meilleure_periode": {
+                "saison_ideale": "Mai à Octobre (saison sèche)",
+                "a_eviter": "Janvier-Mars (pluies intenses)"
+            },
+            "a_prevoir": {
+                "equipement": [
+                    "Bonnes chaussures de randonnée",
+                    "Imperméable léger",
+                    "Appareil photo"
+                ],
+                "budget_supplementaire": "Guide local : 20k-40k Ar"
+            },
+            "important_a_savoir": {
+                "niveau_difficulte": "Modéré",
+                "regles": ["Guide obligatoire", "Respecter les fady"]
+            }
+        },
+        "carte_interactive": {
+            "latitude": -12.516,
+            "longitude": 49.166,
+            "zoom_defaut": 12,
+            "afficher_dans_fiche": true
+        }
     },
     {
         "id": 605,

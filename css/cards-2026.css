@@ -1454,3 +1454,79 @@ body.dark-mode .btn-back-map {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--laterite-2026);
 }
+
+/* =========================================
+   MODAL ENHANCEMENTS 2026 (Gallery & Reviews)
+   ========================================= */
+
+/* Gallery Strip */
+.modal-gallery-strip::-webkit-scrollbar {
+    height: 4px;
+}
+
+.modal-gallery-strip::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-gallery-strip::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: 2px;
+}
+
+/* Primary Actions */
+.btn-action-primary {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-action-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(211, 84, 0, 0.4);
+}
+
+.btn-action-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-action-secondary {
+    transition: background 0.2s;
+}
+
+.btn-action-secondary:hover {
+    background: var(--bg-card);
+    /* Slightly lighter/darker */
+}
+
+/* Accordion 2026 (Secret Spots) */
+.accordion-item-2026 {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-header-2026 {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.accordion-content-2026 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-item-2026.active .accordion-content-2026 {
+    max-height: 500px;
+    /* Arbitrary high numbering */
+}
+
+.accordion-inner-padding {
+    padding: 15px;
+}
+
+.accordion-item-2026.active .accordion-header-2026 i.fa-chevron-down {
+    transform: rotate(180deg);
+}

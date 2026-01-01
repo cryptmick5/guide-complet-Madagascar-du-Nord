@@ -49,6 +49,8 @@ h4 {
     box-shadow: var(--shadow-sm);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border-color);
+    opacity: 1 !important;
+    /* CRITICAL: Ensure cards are always visible */
 }
 
 .lieu-info {
@@ -508,7 +510,8 @@ p {
 /* 1. HERO HEADER FULL WIDTH */
 .modal-hero-header {
     width: 100%;
-    height: 300px;
+    height: 300px !important;
+    min-height: 300px !important;
     position: relative;
     border-radius: 16px 16px 0 0;
     overflow: hidden;

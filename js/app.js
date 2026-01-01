@@ -1794,6 +1794,8 @@ window.createLieuCard = function (lieu, category = '') {
 window.openLieuModal = function (lieu) {
     if (!lieu) return;
 
+    console.log('Opening Modal for:', lieu.nom, lieu); // Debug data
+
     // Remove existing if any
     const existing = document.getElementById('lieu-modal-overlay');
     if (existing) existing.remove();
@@ -1805,192 +1807,239 @@ window.openLieuModal = function (lieu) {
     // Data Prep
     const categoriesPrioritaires = ['Explorer', 'Manger', 'Dormir', 'Sortir', 'Spots'];
     let badgeType = (lieu.type || 'Général');
-
     if (lieu.tags && lieu.tags.length) {
         const catTag = lieu.tags.find(t => categoriesPrioritaires.includes(t));
         if (catTag) badgeType = catTag;
         else badgeType = lieu.tags[0];
     }
 
-    const hasYAller = lieu.y_aller && lieu.y_aller.trim() !== "";
-    const hasWebsite = lieu.siteWeb && lieu.siteWeb.trim() !== "";
+    // New Data Fields
+    const gallery = lieu.galerie_photos || [];
+    const hasGallery = gallery.length > 0;
+    const actions = lieu.actions_principales || {};
+    const infos = lieu.infos_pratiques || {};
+    const avis = lieu.avis || null;
+    const embeddedMap = lieu.carte_interactive || null;
 
     // Grid Data
-    const priceDisplay = lieu.prix || 'Gratuit';
-    const noteDisplay = lieu.note || '-';
+    // Force specific display if available, else fallback
+    const priceDisplay = lieu.prix ? lieu.prix : (lieu.prixNum === 0 ? 'Gratuit' : (lieu.budgetNum ? 'Sur devis' : 'Variable'));
+    const noteDisplay = lieu.note ? `${lieu.note}/5` : '-';
     const dureeDisplay = lieu.duree || 'Variable';
     const villeDisplay = lieu.ville || 'Madagascar';
 
-    const html = `
+    // Website Existence Check
+    const hasWebsite = lieu.siteWeb && lieu.siteWeb.trim() !== "";
+
+    // HTML Construction
+    let html = `
     <div id="lieu-modal-overlay" class="modal-overlay active" style="z-index: 10001;" onclick="if(event.target.id === 'lieu-modal-overlay') window.closeLieuModal();">
-        <div class="modal-content fade-in-up" style="position:relative;">
+        <div class="modal-content fade-in-up" style="position:relative; max-height: 90vh; overflow-y: auto; background: var(--bg-body); border-radius: 16px;">
             
-            <!-- Close Button -->
-            <button class="btn-close-modal-overlay" id="modal-close-btn" onclick="window.closeLieuModal()"
-                    style="position: absolute; top: 15px; right: 15px; z-index: 100000; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary); pointer-events: auto;">
+             <button class="btn-close-modal-overlay" id="modal-close-btn" onclick="window.closeLieuModal()"
+                style="position: absolute; top: 15px; right: 15px; z-index: 100000; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-primary); pointer-events: auto;">
                 <i class="fas fa-times" style="font-size: 1.2rem;"></i>
             </button>
 
             <!-- 1. HERO HEADER -->
-            <div class="modal-hero-header" style="min-height: 200px; background: var(--bg-secondary); position: relative;">
-                <img src="${lieu.image}" alt="${lieu.nom}" class="modal-hero-img" 
-                     style="width: 100%; height: 250px; object-fit: cover;"
-                     onerror="this.onerror=null; this.src=''; this.parentElement.style.background='linear-gradient(135deg, var(--laterite), var(--noir))'; this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify:center;height:100%;color:white;font-size:3rem;&quot;><i class=&quot;fas fa-image&quot;></i></div>' + this.parentElement.innerHTML;">
-                
-                <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top, var(--bg-card), transparent); z-index:2;"></div>
+            <div class="modal-hero-header" style="height: 250px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
+                <img src="${lieu.image}" alt="${lieu.nom}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:100px; background:linear-gradient(to top, var(--bg-body), transparent);"></div>
             </div>
 
-            <!-- 2. TITLE & HEADER -->
-            <div class="modal-title-block">
-                <h2 class="modal-main-title">${lieu.nom}</h2>
-                <span class="modal-category-badge">${badgeType}</span>
-                
-                 <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" 
-                        style="position:absolute; top:15px; left:15px; background:white; color:var(--laterite); width:36px; height:36px; border-radius:50%; border:none; box-shadow:0 4px 6px rgba(0,0,0,0.2); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10;">
-                    ${favIcon}
-                </button>
-            </div>
+            <!-- GALLERY STRIP (New) -->
+            ${hasGallery ? `
+            <div class="modal-gallery-strip" style="display: flex; gap: 8px; padding: 10px 15px; overflow-x: auto; margin-top: -40px; position: relative; z-index: 10; padding-bottom: 20px;">
+                ${gallery.map(img => `
+                    <div onclick="window.open('${img.url}', '_blank')" 
+                         style="width: 80px; height: 60px; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.2); cursor: pointer; flex-shrink: 0; overflow: hidden; background: #eee;">
+                        <img src="${img.url}" alt="${img.alt || 'Galerie'}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    </div>
+                `).join('')}
+            </div>` : ''}
 
-            <!-- 3. INFO GRID -->
-            <div class="modal-info-grid">
-                <div class="modal-info-box">
-                    <span class="modal-info-label">Ville</span>
-                    <span class="modal-info-value"><i class="fas fa-map-marker-alt icon-ville"></i> ${villeDisplay}</span>
+            <div style="padding: 0 20px;">
+                <!-- 2. TITLE & HEADER -->
+                <div class="modal-title-block" style="padding: 10px 0 0; position: relative;">
+                    <h2 class="modal-main-title" style="font-size: 1.6rem; line-height: 1.2; margin-bottom: 8px; font-weight: 800; font-family: var(--font-display); color: var(--text-primary); padding-right: 40px;">${lieu.nom}</h2>
+                    <span class="modal-category-badge" style="background: var(--laterite); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">${badgeType}</span>
+                     
+                     <!-- Fav Button (Moved to float nicely if needed, or stick to absolute) -->
+                     <!-- Kept absolute for consistency but updated style -->
                 </div>
-                <div class="modal-info-box">
-                    <span class="modal-info-label">Prix</span>
-                    <span class="modal-info-value"><i class="fas fa-wallet icon-prix"></i> ${priceDisplay}</span>
+
+                <!-- 3. INFO GRID -->
+                <div class="modal-info-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 25px 0; text-align: center; border-bottom: 1px solid var(--border-color);">
+                    <div class="modal-info-box">
+                        <div style="color:var(--text-secondary); font-size:0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Ville</div>
+                        <div style="font-weight:700; font-size:0.9rem; margin-top: 4px;">${villeDisplay}</div>
+                    </div>
+                    <div class="modal-info-box">
+                         <div style="color:var(--text-secondary); font-size:0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Prix</div>
+                        <div style="font-weight:700; font-size:0.9rem; margin-top: 4px;">${priceDisplay}</div>
+                    </div>
+                    <div class="modal-info-box">
+                         <div style="color:var(--text-secondary); font-size:0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Note</div>
+                        <div style="font-weight:700; font-size:0.9rem; margin-top: 4px; color: #f1c40f;">⭐ ${noteDisplay}</div>
+                    </div>
+                    <div class="modal-info-box">
+                         <div style="color:var(--text-secondary); font-size:0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Durée</div>
+                        <div style="font-weight:700; font-size:0.9rem; margin-top: 4px;">${dureeDisplay}</div>
+                    </div>
                 </div>
-                <div class="modal-info-box">
-                    <span class="modal-info-label">Note</span>
-                    <span class="modal-info-value"><i class="fas fa-star icon-note"></i> ${noteDisplay}</span>
+
+                <!-- ACTIONS PRINCIPALES (New) -->
+                ${actions.cta_principal ? `
+                <div class="modal-actions-container" style="padding: 20px 0; display: flex; gap: 12px;">
+                    <a href="${actions.cta_principal.url}" class="btn-action-primary" style="flex: 2; background: var(--laterite); color: white; text-align: center; padding: 14px; border-radius: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 10px rgba(211, 84, 0, 0.3); transition: transform 0.2s;">
+                        ${actions.cta_principal.icone || ''} ${actions.cta_principal.texte}
+                    </a>
+                    ${actions.cta_secondaire ? `
+                    <a href="${actions.cta_secondaire.url}" target="_blank" class="btn-action-secondary" style="flex: 1; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); text-align: center; padding: 12px; border-radius: 12px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                        <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                    </a>` : ''}
+                </div>` : ''}
+
+                <!-- DESCRIPTION -->
+                <div class="modal-description-text" style="font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 25px;">
+                    ${lieu.description}
                 </div>
-                <div class="modal-info-box">
-                    <span class="modal-info-label">Durée</span>
-                    <span class="modal-info-value"><i class="fas fa-clock icon-duree"></i> ${dureeDisplay}</span>
-                </div>
-            </div>
 
-            <!-- SECTION A: DESCRIPTION -->
-            <div class="modal-description-text">
-                ${lieu.description}
-            </div>
+                 <!-- CONSEIL DU LOCAL -->
+                ${lieu.conseil ? `
+                <div class="modal-conseil-block" style="margin-bottom: 25px; background: rgba(241, 196, 15, 0.1); color: #856404; padding: 16px; border-radius: 12px; border-left: 4px solid #f1c40f;">
+                    <div style="font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; color: #d35400;"><i class="fas fa-lightbulb"></i> Conseil du Local</div>
+                    <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">${lieu.conseil}</p>
+                </div>` : ''}
 
-            <!-- SECTION B: CONSEIL (Local Or Secret Accordion) -->
-            ${(lieu.tags && lieu.tags.includes('secret_spot')) ? `
-            <div class="accordion-item-2026" style="border: 1px solid var(--laterite); background: rgba(176, 48, 48, 0.04); margin-top: 20px;">
-                <div class="accordion-header-2026" onclick="this.parentElement.classList.toggle('active')">
-                    <span class="accordion-title-2026" style="color: var(--laterite); font-size: 1.1rem;">
-                        <i class="fas fa-user-secret"></i> ACCÈS LOCAL UNIQUEMENT
-                    </span>
-                    <i class="fas fa-chevron-down" style="color: var(--laterite);"></i>
-                </div>
-                <div class="accordion-content-2026">
-                    <div class="accordion-inner-padding" style="padding-top:0;">
-                        <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-primary); border-bottom:1px solid rgba(176,48,48,0.1); padding-bottom:10px;">
-                            Ce lieu est <strong style="color:var(--laterite)">inaccessible sans contact humain</strong>.
-                        </p>
+                <!-- INFOS PRATIQUES (New Structure) -->
+                ${(infos.horaires || infos.meilleure_periode || infos.a_prevoir) ? `
+                 <div class="modal-practical-info" style="margin-bottom: 25px; background: var(--bg-secondary); border-radius: 12px; padding: 20px;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 20px; font-family: var(--font-display); color: var(--text-primary);">Infos Pratiques</h3>
+                    
+                    ${infos.horaires ? `
+                    <div style="margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start;">
+                        <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="far fa-clock"></i></div>
+                        <div>
+                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">Horaires</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.horaires.lundi_vendredi || ''}</div>
+                            ${infos.horaires.weekend ? `<div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.horaires.weekend}</div>` : ''}
+                        </div>
+                    </div>` : ''}
 
-                        ${lieu.contactLocal ? `
-                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
-                            <div style="background:var(--laterite); color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-address-card" style="font-size:0.9rem;"></i></div>
-                            <div>
-                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Contact Clé</div>
-                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.contactLocal}</div>
-                            </div>
-                        </div>` : ''}
+                    ${infos.meilleure_periode ? `
+                    <div style="margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start;">
+                        <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="fas fa-sun"></i></div>
+                        <div>
+                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">Meilleure Période</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.meilleure_periode.saison_ideale || ''}</div>
+                        </div>
+                    </div>` : ''}
 
-                        ${lieu.acces ? `
-                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
-                            <div style="background:var(--bg-secondary); border:1px solid var(--laterite); color:var(--laterite); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-route" style="font-size:0.9rem;"></i></div>
-                            <div>
-                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Logistique</div>
-                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.acces}</div>
-                            </div>
-                        </div>` : ''}
+                    ${infos.a_prevoir ? `
+                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                         <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="fas fa-backpack"></i></div>
+                        <div>
+                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">À prévoir</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${Array.isArray(infos.a_prevoir.equipement) ? infos.a_prevoir.equipement.join(', ') : infos.a_prevoir.equipement}</div>
+                        </div>
+                    </div>` : ''}
+                </div>` : ''}
 
-                        ${lieu.conseil ? `
-                        <div style="display:flex; gap:10px; margin-bottom:12px; align-items:flex-start;">
-                             <div style="background:var(--bg-secondary); border:1px solid var(--text-secondary); color:var(--text-secondary); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i class="fas fa-lightbulb" style="font-size:0.9rem;"></i></div>
-                            <div>
-                                <div style="font-weight:700; color:var(--text-primary); font-size:0.9rem;">Conseil</div>
-                                <div style="font-size:0.95rem; color:var(--text-secondary);">${lieu.conseil}</div>
-                            </div>
-                        </div>` : ''}
+                <!-- CARTE INTERACTIVE (Embedded) -->
+                ${embeddedMap ? `
+                <div style="margin-bottom: 25px;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px; font-family: var(--font-display); color: var(--text-primary);">Localisation</h3>
+                    <div id="modal-map-container" style="height: 250px; border-radius: 12px; overflow: hidden; background: #eee; border: 1px solid var(--border-color);"></div>
+                </div>` : ''}
 
-                        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:15px; font-style:italic; background:rgba(0,0,0,0.05); padding:8px; border-radius:6px; text-align:center;">
-                            ⚠️ Respectez strictement les protocoles locaux (Fady).
+                <!-- AVIS -->
+                ${avis ? `
+                <div class="modal-reviews" style="margin-bottom: 25px;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display);">
+                        Avis Voyageurs
+                        <span style="font-size: 0.85rem; color: var(--text-secondary); font-family: var(--font-body); font-weight: 400;">(${avis.nombre_avis} avis)</span>
+                    </h3>
+                    
+                    <div style="margin-bottom: 20px; background: var(--bg-secondary); padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 20px;">
+                        <div style="text-align: center;">
+                             <div style="font-size: 2.5rem; font-weight: 800; color: var(--laterite); line-height: 1;">${avis.note_globale}</div>
+                             <div style="color: #f1c40f; font-size: 0.8rem; margin-top: 5px;">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div style="flex: 1; border-left: 1px solid var(--border-color); padding-left: 20px;">
+                            ${Object.entries(avis.detail_notes || {}).slice(0, 3).map(([key, val]) => `
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
+                                    <span style="text-transform: capitalize; color: var(--text-secondary);">${key.replace(/_/g, ' ')}</span>
+                                    <span style="font-weight: 600;">${val}</span>
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
-                </div>
-            </div>
-            ` : (lieu.conseil ? `
-            <div class="modal-conseil-block">
-                <div class="modal-conseil-title"><i class="fas fa-lightbulb"></i> Conseil du Local</div>
-                <p class="modal-conseil-text">${lieu.conseil}</p>
-            </div>
-            ` : '')}
 
-            <!-- SECTION C: ACCES LOGISTIQUE (Generic) -->
-            ${(lieu.acces && !lieu.tags.includes('secret_spot')) ? `
-            <div style="margin-top:20px;">
-                <div class="modal-section-title">ACCÈS & LOGISTIQUE</div>
-                <div class="standard-access-card" style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                    <div style="background: rgba(0,0,0,0.05); color: var(--text-primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <i class="fas fa-route" style="font-size: 1rem;"></i>
+                    ${(avis.avis_recents || []).slice(0, 2).map(a => `
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <strong style="font-size: 0.95rem;">${a.auteur}</strong>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">${a.date}</span>
+                        </div>
+                        <div style="color: #f1c40f; font-size: 0.8rem; margin-bottom: 8px;">${'⭐'.repeat(Math.round(a.note))}</div>
+                        <p style="font-size: 0.9rem; font-style: italic; color: var(--text-primary); line-height: 1.5;">"${a.commentaire}"</p>
                     </div>
-                    <div>
-                        <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 2px;">Comment y aller ?</div>
-                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem; line-height: 1.4;">${lieu.acces}</p>
-                    </div>
+                    `).join('')}
+                </div>` : ''}
+
+                 <!-- STANDARD FOOTER ACTIONS (FIXED & SIMPLIFIED) -->
+                <div class="modal-footer-actions" style="padding: 20px 0; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--border-color);">
+                    <!-- 1. MAP ACTION: ALWAYS Internal Application Map -->
+                    <a href="/carte?lieu=${lieu.id}" onclick="window.locateOnMap(${lieu.id}); return false;" 
+                       class="btn-action-2026 btn-action-2026-map" 
+                       style="width: 100%; padding: 16px; background: white; color: var(--text-primary); border: 2px solid var(--laterite); border-radius: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none;">
+                        <i class="fas fa-map-marked-alt" style="color: var(--laterite); font-size: 1.2rem;"></i> Voir sur la carte de l'app
+                    </a>
+                    
+                    <!-- 2. WEBSITE ACTION: Display if siteWeb exists -->
+                    ${hasWebsite ? `
+                    <a href="${lieu.siteWeb}" target="_blank" class="btn-action-2026 btn-action-2026-web" 
+                       style="width: 100%; padding: 16px; background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 12px; font-weight: 600; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-globe"></i> Visiter le site web
+                    </a>` : ''}
                 </div>
-            </div>` : ''}
 
-            <!-- SECTION D: BUTTONS (MODERN 2026) -->
-            <div class="modal-action-row" style="margin-top:25px;">
-                <!-- 1. Y ALLER or MAP -->
-                ${hasYAller ? `
-                <button class="btn-action-2026 btn-action-2026-red" onclick="window.open('${lieu.y_aller}', '_blank')">
-                    <i class="fas fa-location-arrow"></i> Y aller (Google Maps)
-                </button>
-                ` : `
-                 <button class="btn-action-2026 btn-action-2026-map" onclick="locateOnMap(${lieu.id})">
-                      <i class="fas fa-map"></i> Voir sur la carte de l'app
-                 </button>
-                `}
-
-                <!-- 2. SITE WEB -->
-                ${hasWebsite ? `
-                <a href="${lieu.siteWeb}" target="_blank" class="btn-action-2026 btn-action-2026-web">
-                    <i class="fas fa-globe"></i> Visiter le site web
-                </a>
-                ` : ''}
+                <div style="height: 50px;"></div>
             </div>
             
-            <!-- SECTION E: HORAIRE -->
-            ${lieu.horaires ? `
-            <div style="margin-top:20px; border-top:1px solid var(--border-color); padding-top:15px;">
-                <div class="modal-section-title" style="margin-bottom:8px;">HORAIRES</div>
-                <p style="color:var(--text-secondary); font-size:0.9rem; display:flex; align-items:center; gap:8px;">
-                    <i class="far fa-clock"></i> ${lieu.horaires}
-                </p>
-            </div>` : ''}
+             <!-- Floating Fav (Fixed Position inside modal content) -->
+            <button onclick="toggleLieuFavorite(${lieu.id}, this, event)" class="btn-favorite-modal ${activeClass}" 
+                   style="position:absolute; top: 15px; left: 15px; background:white; color:var(--laterite); width:40px; height:40px; border-radius:50%; border:none; box-shadow:0 4px 10px rgba(0,0,0,0.2); font-size: 1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:100;">
+               ${favIcon}
+           </button>
 
-            <div style="height:30px;"></div>
         </div>
-    </div>
-    `;
+    </div>`;
 
     document.body.insertAdjacentHTML('beforeend', html);
     document.body.style.overflow = 'hidden';
 
-    // Attach X button listener
-    const closeBtn = document.getElementById('modal-close-btn');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', window.closeLieuModal);
+    // Map Init
+    if (embeddedMap && typeof L !== 'undefined') {
+        setTimeout(() => {
+            const mapContainer = document.getElementById('modal-map-container');
+            if (mapContainer) {
+                const map = L.map('modal-map-container').setView([embeddedMap.latitude || lieu.lat, embeddedMap.longitude || lieu.lng], embeddedMap.zoom_defaut || 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OSM'
+                }).addTo(map);
+                L.marker([embeddedMap.latitude || lieu.lat, embeddedMap.longitude || lieu.lng]).addTo(map)
+                    .bindPopup(lieu.nom)
+                    .openPopup();
+
+                // Disable scroll zoom
+                map.scrollWheelZoom.disable();
+            }
+        }, 600); // Wait for modal animation
     }
 
-    // GSAP
+    // GSAP Animation
     const modal = document.getElementById('lieu-modal-overlay');
     if (modal && window.GasikaraAnimations) {
         window.GasikaraAnimations.openModal(modal);

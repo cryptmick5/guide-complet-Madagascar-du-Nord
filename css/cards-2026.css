@@ -827,9 +827,6 @@ body.dark-mode .back-to-circuits {
     border: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
-background: rgba(176, 48, 48, 0.08);
-}
-
 .language-content {
     flex: 1;
 }

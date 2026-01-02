@@ -304,6 +304,47 @@ window.navigateToPage = function (pageName) {
     }
 
     const rawName = pageName.replace('page-', '');
+
+    // --- LAZY LOADING MODULES ---
+    if (!window._modulesLoaded) window._modulesLoaded = {};
+
+    // 1. Map Module
+    if (rawName === 'carte' && !window._modulesLoaded.map) {
+        console.log("Lazy Loading: Map...");
+        if (typeof initMap === 'function') initMap();
+        else if (typeof window.initMapLogic === 'function') window.initMapLogic();
+        window._modulesLoaded.map = true;
+    }
+
+    // 2. City Pages (Provinces)
+    if (['antsiranana', 'nosybe', 'mahajanga', 'toamasina', 'toliara', 'fianarantsoa', 'antananarivo'].some(p => rawName.includes(p)) && !window._modulesLoaded.cities) {
+        console.log("Lazy Loading: City Pages...");
+        if (typeof initCityPages === 'function') initCityPages();
+        window._modulesLoaded.cities = true;
+    }
+
+    // 3. Itineraries
+    if (rawName === 'itineraires' && !window._modulesLoaded.itineraires) {
+        console.log("Lazy Loading: Itineraries...");
+        if (typeof initItinerariesPage === 'function') initItinerariesPage();
+        window._modulesLoaded.itineraires = true;
+    }
+
+    // 4. Spots
+    if (rawName === 'spots' && !window._modulesLoaded.spots) {
+        console.log("Lazy Loading: Spots...");
+        if (typeof initSpotsPage === 'function') initSpotsPage();
+        window._modulesLoaded.spots = true;
+    }
+
+    // 5. Outils (Taxi, Checklist, etc.)
+    if (rawName === 'outils' && !window._modulesLoaded.outils) {
+        console.log("Lazy Loading: Outils...");
+        if (typeof initOutilsPage === 'function') initOutilsPage();
+        if (typeof initLanguePage === 'function') initLanguePage(); // Often grouped
+        window._modulesLoaded.outils = true;
+    }
+
     const activeBtn = document.querySelector(`.nav-btn[data-page="${rawName}"]`);
     if (activeBtn) {
         activeBtn.classList.add('active');
@@ -2634,44 +2675,11 @@ window.updatePremiumInfo = function (city, provinceKey) {
 /* ============================================
    MAIN ENTRY
    ============================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
-    initData().then(() => {
-        initTheme();
-        if (typeof initMap === 'function') initMap();
-        initLanguePage();
-        initOutilsPage();
-        if (typeof initCityPages === 'function') initCityPages();
-        initItinerariesPage();
-        initSpotsPage();
-        if (typeof initModal === 'function') initModal();
-        if (typeof initInstallPrompt === 'function') initInstallPrompt();
-        if (typeof registerServiceWorker === 'function') registerServiceWorker();
-        if (typeof initGeolocation === 'function') initGeolocation();
-        if (window.initTheme) window.initTheme();
+/* ============================================
+   MAIN ENTRY & OPTIMIZATION (PWA V2)
+   ============================================ */
+// OLD DOMContentLoaded Removed - See Final Block
 
-        // Search
-        const input = document.getElementById('globalSearchInput');
-        const results = document.getElementById('searchResults');
-        if (input && results) {
-            input.addEventListener('input', (e) => {
-                const normalize = str => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                const query = normalize(e.target.value.trim());
-                if (query.length < 2) { results.style.display = 'none'; return; }
-                const matching = window.LIEUX_DATA.filter(l => normalize(l.nom).includes(query));
-                if (matching.length === 0) { results.innerHTML = '<div style="padding:10px;">Rien trouvé.</div>'; results.style.display = 'block'; return; }
-                if (matching.length === 0) { results.innerHTML = '<div style="padding:10px;">Rien trouvé.</div>'; results.style.display = 'block'; return; }
-                // SLICE REMOVED to show all results
-                results.innerHTML = matching.map(l => `<div onclick="window.showLieuDetailsByID(${l.id}); document.getElementById('searchResults').style.display='none';" style="padding:10px; cursor:pointer;">${l.nom}</div>`).join('');
-                results.style.display = 'block';
-                results.style.display = 'block';
-            });
-            document.addEventListener('click', (e) => {
-                if (!input.contains(e.target) && !results.contains(e.target)) results.style.display = 'none';
-            });
-        }
-    });
-});
 /* ============================================
    9. FILTERS & UTILS (RESTORED MAP LOGIC)
    ============================================ */
@@ -2773,30 +2781,7 @@ window.matchesFilters = function (lieu, filters) {
 // ============================================
 // EMERGENCY FIX: FORCED UI LOGIC
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Boutons de la Carte (.filter-chip-map)
-    const mapFilters = document.querySelectorAll('.filter-chip-map');
-    mapFilters.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // Gestion visuelle
-            const parent = btn.parentElement;
-            parent.querySelectorAll('.filter-chip-map').forEach(sib => sib.classList.remove('active'));
-            btn.classList.add('active');
-        });
-    });
-
-    // 2. Boutons des Pages Villes (.nav-pill)
-    const cityFilters = document.querySelectorAll('.nav-pill');
-    cityFilters.forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            // Retirer la classe active de tous les frères
-            const parent = this.parentElement;
-            parent.querySelectorAll('.nav-pill').forEach(sib => sib.classList.remove('active'));
-            // Ajouter au cliqué
-            this.classList.add('active');
-        });
-    });
-});
+// OLD EMERGENCY FIX Removed - See Final Block
 
 
 // --- PATCH FILTRES (TAGS) ---
@@ -2833,91 +2818,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // INITIALISATION AU CHARGEMENT DE LA PAGE
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(' App initialization starting...');
-
-    // Load page city data and init filters 
-    if (typeof initCityPages === 'function') {
-        initCityPages();
-        console.log(' initCityPages() called');
-    } else {
-        console.error(' initCityPages function not found!');
-    }
-});
+// OLD INIT removed - See Final Block
 // ============================================================================
 // FORCED CARD REGENERATION - FIX FOR CACHE ISSUE
 // ============================================================================
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('🔄 FORCING CARD REGENERATION TO FIX CACHE...');
-
-    // Wait for data to load
-    setTimeout(() => {
-        if (window.LIEUX_DATA && window.renderCityData) {
-            // Clear all grids first
-            const grids = document.querySelectorAll('[id^="grid-"]');
-            grids.forEach(grid => {
-                grid.innerHTML = '';
-            });
-
-            // Regenerate with fresh data
-            renderCityData();
-            console.log('✅ Cards regenerated with fresh data');
-        }
-    }, 1000);
-});
+// OLD FORCED REGEN removed - See Final Block
 
 // ============================================================================
 // GLOBAL SEARCH LOGIC (PREMIUM 2026)
+// ============================================================================
+// ============================================================================
+// GLOBAL SEARCH LOGIC (OPTIMIZED PWA)
 // ============================================================================
 function initGlobalSearch() {
     const searchInput = document.getElementById('globalSearchInput');
     const resultsContainer = document.getElementById('searchResults');
 
-    if (!searchInput || !resultsContainer) {
-        console.warn('Global Search elements not found.');
-        return;
-    }
+    if (!searchInput || !resultsContainer) return;
 
     // Close on click outside
     document.addEventListener('click', (e) => {
         if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
             resultsContainer.classList.remove('active');
+            resultsContainer.style.display = 'none';
         }
     });
 
     // Focus input -> show results if not empty
     searchInput.addEventListener('focus', () => {
-        if (searchInput.value.trim().length > 0) {
+        if (searchInput.value.trim().length >= 3) {
+            resultsContainer.style.display = 'block';
             resultsContainer.classList.add('active');
         }
     });
 
-    // Input handler
+    // Input handler with DEBOUNCE
+    let debounceTimer;
     searchInput.addEventListener('input', (e) => {
+        clearTimeout(debounceTimer);
         const query = e.target.value.toLowerCase().trim();
 
-        if (query.length === 0) {
-            resultsContainer.classList.remove('active');
-            resultsContainer.innerHTML = '';
-            return;
-        }
+        debounceTimer = setTimeout(() => {
+            if (query.length < 3) { // Min 3 chars
+                resultsContainer.classList.remove('active');
+                resultsContainer.style.display = 'none';
+                return;
+            }
 
-        if (!window.LIEUX_DATA) return;
+            if (!window.LIEUX_DATA) return;
 
-        // Filter Logic
-        const matches = window.LIEUX_DATA.filter(item => {
-            const name = (item.nom || '').toLowerCase();
-            const city = (item.ville || '').toLowerCase();
-            const tags = (item.tags || []).join(' ').toLowerCase();
-            const type = (item.type || '').toLowerCase();
+            // Filter Logic
+            const matches = window.LIEUX_DATA.filter(item => {
+                const name = (item.nom || '').toLowerCase();
+                const city = (item.ville || '').toLowerCase();
+                const tags = (item.tags || []).join(' ').toLowerCase();
+                const type = (item.type || '').toLowerCase();
 
-            return name.includes(query) ||
-                city.includes(query) ||
-                tags.includes(query) ||
-                type.includes(query);
-        }).slice(0, 10); // Limit to 10 results
+                return name.includes(query) ||
+                    city.includes(query) ||
+                    tags.includes(query) ||
+                    type.includes(query);
+            }).slice(0, 20); // Limit to 20 results (Performance)
 
-        renderSearchResults(matches, resultsContainer);
+            renderSearchResults(matches, resultsContainer);
+            resultsContainer.style.display = 'block';
+        }, 250); // 250ms Debounce
     });
 }
 
@@ -2961,37 +2926,59 @@ window.showLieuModalDirectly = function (lieu) {
 
 // Init when DOM is ready
 // 9. INITIALIZATION ENTRY POINT
+// Init when DOM is ready
+// 9. INITIALIZATION ENTRY POINT (CONSOLIDATED)
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🚀 BOOTSTRAP: Starting Application...");
+    console.log("🚀 PWA BOOTSTRAP: Starting Optimized Application...");
 
-    // 1. Init Data (Async)
+    // 1. Critical Init
+    initNavigation();
+
+    // 2. Data Init (Blocking but necessary for almost everything)
     await window.initData();
     console.log("✅ Data Loaded.");
 
-    // 2. Init Theme
-    window.initTheme();
+    // 3. Theme
+    initTheme();
 
-    // 3. Init Pages
-    window.initCityPages();       // Provinces buttons/grids
-    window.initItinerariesPage(); // Circuits
-    window.initSpotsPage();       // Spots
-    window.initLanguePage();      // Langue
-    window.initOutilsPage(); // Outils
+    // 4. Global Search (Optimized)
+    initGlobalSearch();
 
-    // 4. Init Global Search (Legacy)
-    if (typeof initGlobalSearch === 'function') {
-        initGlobalSearch();
+    // 5. PWA Service Worker (Non-blocking)
+    if (typeof registerServiceWorker === 'function') {
+        if ('window.requestIdleCallback' in window) {
+            requestIdleCallback(() => registerServiceWorker());
+        } else {
+            setTimeout(registerServiceWorker, 1000); // Fallback
+        }
     }
 
-    // 5. Init Map (if map logic exists)
-    if (typeof window.initMapLogic === 'function') {
-        window.initMapLogic();
-    } else {
-        // Fallback or verify map-logic.js
-        console.log("ℹ️ Map logic init skipped (check map-logic.js)");
-    }
+    // 6. Install Prompt & Modals (Low Pri)
+    setTimeout(() => {
+        if (typeof initInstallPrompt === 'function') initInstallPrompt();
+        if (typeof initModal === 'function') initModal();
+        if (typeof initGeolocation === 'function') initGeolocation();
+    }, 500);
 
-    console.log("🚀 Application Ready.");
+    // 7. Event Listeners for Chips (Moved here from old multiple blocks)
+    // Map Buttons
+    document.querySelectorAll('.filter-chip-map').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.filter-chip-map').forEach(sib => sib.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    // City Nav Pills
+    document.querySelectorAll('.nav-pill').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            const parent = this.parentElement;
+            parent.querySelectorAll('.nav-pill').forEach(sib => sib.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    console.log("🚀 Application Ready (Lazy Mode).");
 });
 
 // ============================================

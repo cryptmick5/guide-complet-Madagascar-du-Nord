@@ -2327,11 +2327,14 @@ a[href^="http"].modal-action-btn {
 }
 
 /* MODE NUIT - C'est ça qui manque ! */
+/* MODE NUIT - C'est ça qui manque ! */
 body.dark-mode .back-to-circuits,
 [data-theme="dark"] .back-to-circuits {
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: #000000 !important;
+    /* vrai noir, sans voile */
     color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    /* texte blanc franc */
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
 }

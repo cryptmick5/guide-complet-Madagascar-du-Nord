@@ -1342,14 +1342,20 @@ body.dark-mode .btn-back-map {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.6);
+    margin-top: auto;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: white;
-    font-size: 0.8rem;
+    border-radius: 50px;
     font-weight: 500;
-    display: flex;
-    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    /* FIX MOBILE TOUCH */
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
     gap: 6px;
     backdrop-filter: blur(2px);
 }

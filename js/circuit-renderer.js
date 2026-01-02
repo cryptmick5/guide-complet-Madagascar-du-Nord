@@ -12,6 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const circuit = window.ITINERAIRES_DATA[circuitId];
 
+    // --- THEME INITIALIZATION (Fix 2026) ---
+    function initCircuitTheme() {
+        try {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const currentTheme = savedTheme || (systemDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        } catch (e) {
+            console.warn("Theme init failed", e);
+        }
+    }
+    initCircuitTheme(); // Run immediately
+
+
     // 2. Render Functions
     function render() {
         document.title = `${circuit.nom} - Madagascar du Nord`;

@@ -383,7 +383,7 @@ window.initItinerariesPage = function () {
                 <h3 class="lieu-title">${c.nom}</h3>
                 <div class="lieu-meta"><span class="badge-type">${c.duree}</span><span class="lieu-prix">${c.budget || 'Variable'}</span></div>
                 <p class="lieu-desc">${c.description}</p>
-                <button class="btn-details" ontouchend="event.stopPropagation(); showItineraryDetail('${c.id}')" onclick="event.stopPropagation(); showItineraryDetail('${c.id}')">Voir le programme</button>
+                <a href="circuit.html?id=${c.id}" class="btn-details">Voir le programme</a>
              </div>
         </div>
     `).join('');

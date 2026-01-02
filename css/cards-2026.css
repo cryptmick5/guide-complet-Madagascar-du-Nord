@@ -2301,3 +2301,58 @@ a[href^="http"].modal-action-btn {
     margin-top: auto;
     /* Push button to bottom */
 }
+
+/* ==========================================
+   CIRCUIT PAGE SPECIFIC STYLES (Moved from HTML)
+   ========================================== */
+.back-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #1e293b;
+    /* Enforce dark text in light mode */
+    font-weight: 600;
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.back-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+[data-theme="dark"] .back-nav {
+    background: rgba(30, 30, 30, 0.9);
+    color: white !important;
+    /* Ensure text is white in dark mode */
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .back-nav:hover {
+    background: #2a2a2a;
+    border-color: var(--laterite);
+}
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

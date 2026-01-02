@@ -375,7 +375,7 @@ window.initItinerariesPage = function () {
     const circuits = window.ITINERAIRES_DATA ? Object.values(window.ITINERAIRES_DATA) : [];
 
     container.innerHTML = circuits.map((c, i) => `
-        <div class="lieu-card fade-in-up hover-lift" onclick="showItineraryDetail('${c.id}')" style="cursor:pointer; animation-delay: ${i * 0.1}s;">
+        <div class="lieu-card fade-in-up hover-lift" onclick="handleCircuitCardClick(event, '${c.id}')" style="cursor:pointer; animation-delay: ${i * 0.1}s;">
              <div class="lieu-image" style="${c.image ? `background-image: url('${c.image}'); background-size: cover; background-position: center;` : `background: linear-gradient(to bottom right, var(--laterite), var(--foret)); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;`}">
                 ${!c.image ? '<i class="fas fa-route"></i>' : ''}
              </div>
@@ -384,24 +384,31 @@ window.initItinerariesPage = function () {
                 <div class="lieu-meta"><span class="badge-type">${c.duree}</span><span class="lieu-prix">${c.budget || 'Variable'}</span></div>
                 <p class="lieu-desc">${c.description}</p>
                 <a href="circuit.html?id=${c.id}" class="btn-details" onclick="return handleCircuitClick(event, '${c.id}')">Voir le programme</a>
+                <a href="circuit.html?id=${c.id}" class="btn-details" onclick="handleCircuitClick(event, '${c.id}'); return false;">Voir le programme</a>
              </div>
         </div>
     `).join('');
 }
 
 window.handleCircuitClick = function (e, id) {
-    // Desktop Threshold (Standard iPad Landscape / Laptop starts ~1024)
+    e.stopPropagation(); // CRITICAL: Prevent bubbling to parent card
+    // Desktop Threshold
     if (window.innerWidth >= 1024) {
-        e.preventDefault(); // Stop page load
-        if (typeof showItineraryDetail === 'function') {
-            showItineraryDetail(id); // Open Modal (Original Logic)
-        } else {
-            window.location.href = `circuit.html?id=${id}`; // Fallback
-        }
+        e.preventDefault();
+        showItineraryDetail(id);
         return false;
     }
     // Mobile: Allow default (Go to URL)
     return true;
+};
+
+window.handleCircuitCardClick = function (e, id) {
+    // If clicking the card body (not the button)
+    if (window.innerWidth < 1024) {
+        window.location.href = `circuit.html?id=${id}`;
+    } else {
+        showItineraryDetail(id);
+    }
 };
 
 window.showItineraryDetail = function (id) {

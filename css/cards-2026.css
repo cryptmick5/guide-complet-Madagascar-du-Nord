@@ -2305,45 +2305,41 @@ a[href^="http"].modal-action-btn {
 /* ==========================================
    CIRCUIT PAGE SPECIFIC STYLES (Moved from HTML)
    ========================================== */
+/* Bouton Retour aux Circuits */
 .back-nav {
+    background: rgba(255, 255, 255, 0.95);
+    color: #2c3e50;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    /* Fixed Positioning needed for the floaty button */
     position: fixed;
     top: 20px;
     left: 20px;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 20px;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    color: #1e293b;
-    /* Enforce dark text in light mode */
-    font-weight: 600;
-    font-family: var(--font-body);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
 }
 
-.back-nav:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    background: white;
-}
-
+/* MODE NUIT - C'est ça qui manque ! */
+.dark-mode .back-nav,
 [data-theme="dark"] .back-nav {
-    background: rgba(30, 30, 30, 0.9);
-    color: white !important;
-    /* Ensure text is white in dark mode */
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
 }
 
+.dark-mode .back-nav:hover,
 [data-theme="dark"] .back-nav:hover {
-    background: #2a2a2a;
-    border-color: var(--laterite);
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-2px);
 }
 
 .loading-screen {

@@ -1788,7 +1788,269 @@ window.createLieuCard = function (lieu, category = '') {
     `;
 }
 /* ============================================
-   8. MODAL SYSTEM (CRASH FIX)
+   8. CAROUSEL SYSTEM (MODERN SPOT MEDIA)
+   ============================================ */
+
+/**
+ * Crée le HTML du carrousel d'images pour la modale
+ * @param {string} heroImage - URL de l'image principale
+ * @param {Array} gallery - Tableau d'objets {url, alt}
+ * @returns {string} HTML du carrousel
+ */
+window.createSpotMediaCarousel = function (heroImage, gallery = []) {
+    // Construire le tableau complet d'images
+    const allImages = [
+        { url: heroImage, alt: 'Image principale' },
+        ...gallery
+    ];
+
+    // Debug log
+    console.log('🎨 Carrousel images:', allImages);
+    console.log('🎨 Nombre d\'images:', allImages.length);
+
+    const hasCarousel = allImages.length > 1;
+    const carouselId = 'carousel-' + Date.now();
+
+    let html = `<div class="hero-media modern-carousel" id="${carouselId}">`;
+
+    // Images (toutes rendues, première avec classe active)
+    allImages.forEach((img, index) => {
+        html += `
+            <img src="${img.url}" 
+                 alt="${img.alt || ''}" 
+                 class="hero-image ${index === 0 ? 'active' : ''}" 
+                 data-index="${index}"
+                 onerror="this.onerror=null; this.src='images/placeholder.jpg';">`;
+    });
+
+    // Navigation gauche (seulement si carousel)
+    if (hasCarousel) {
+        html += `
+            <button type="button" 
+                    class="hero-nav hero-nav-left" 
+                    onclick="window.carouselPrev('${carouselId}')"
+                    aria-label="Image précédente">
+                ‹
+            </button>`;
+    }
+
+    // Navigation droite (seulement si carousel)
+    if (hasCarousel) {
+        html += `
+            <button type="button" 
+                    class="hero-nav hero-nav-right" 
+                    onclick="window.carouselNext('${carouselId}')"
+                    aria-label="Image suivante">
+                ›
+            </button>`;
+    }
+
+    // Dots de pagination (seulement si carousel)
+    if (hasCarousel) {
+        html += `<div class="hero-dots">`;
+        allImages.forEach((_, index) => {
+            html += `
+                <button type="button" 
+                        class="hero-dot ${index === 0 ? 'active' : ''}" 
+                        onclick="window.carouselGoTo('${carouselId}', ${index})"
+                        aria-label="Image ${index + 1}">
+                </button>`;
+        });
+        html += `</div>`;
+    }
+
+    html += `</div>`;
+
+    // Initialiser le state du carousel
+    if (hasCarousel) {
+        if (!window.carouselStates) window.carouselStates = {};
+        window.carouselStates[carouselId] = {
+            currentIndex: 0,
+            totalImages: allImages.length,
+            autoPlayInterval: null
+        };
+
+        // Démarrer l'auto-play après un court délai
+        setTimeout(() => {
+            const carousel = document.getElementById(carouselId);
+            if (carousel) {
+                // Forcer l'affichage de la première image
+                const firstImage = carousel.querySelector('.hero-image[data-index="0"]');
+                if (firstImage) {
+                    console.log('🎯 Forcing first image visible');
+                    firstImage.classList.add('active');
+                    firstImage.style.opacity = '1';
+                    firstImage.style.transform = 'scale(1)';
+                }
+                window.initCarouselFeatures(carouselId);
+            }
+        }, 100);
+    } else {
+        // Si une seule image, forcer son affichage
+        setTimeout(() => {
+            const carousel = document.getElementById(carouselId);
+            if (carousel) {
+                const singleImage = carousel.querySelector('.hero-image');
+                if (singleImage) {
+                    console.log('🎯 Forcing single image visible');
+                    singleImage.classList.add('active');
+                    singleImage.style.opacity = '1';
+                    singleImage.style.transform = 'scale(1)';
+                }
+            }
+        }, 50);
+    }
+
+    return html;
+};
+
+/**
+ * Navigation carousel - Previous
+ */
+window.carouselPrev = function (carouselId) {
+    const state = window.carouselStates[carouselId];
+    if (!state) return;
+
+    const newIndex = (state.currentIndex - 1 + state.totalImages) % state.totalImages;
+    window.carouselGoTo(carouselId, newIndex);
+};
+
+/**
+ * Navigation carousel - Next
+ */
+window.carouselNext = function (carouselId) {
+    const state = window.carouselStates[carouselId];
+    if (!state) return;
+
+    const newIndex = (state.currentIndex + 1) % state.totalImages;
+    window.carouselGoTo(carouselId, newIndex);
+};
+
+/**
+ * Navigation carousel - Go to specific index
+ */
+window.carouselGoTo = function (carouselId, index) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+
+    const state = window.carouselStates[carouselId];
+    if (!state) return;
+
+    // Update state
+    state.currentIndex = index;
+
+    // Remove active class from all images
+    const images = carousel.querySelectorAll('.hero-image');
+    images.forEach(img => img.classList.remove('active'));
+
+    // Add active class to current image
+    const currentImage = carousel.querySelector(`.hero-image[data-index="${index}"]`);
+    if (currentImage) currentImage.classList.add('active');
+
+    // Update dots
+    const dots = carousel.querySelectorAll('.hero-dot');
+    dots.forEach((dot, i) => {
+        if (i === index) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+};
+
+/**
+ * Initialisation des fonctionnalités avancées du carrousel
+ * Auto-play, swipe tactile, navigation clavier
+ */
+window.initCarouselFeatures = function (carouselId) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+
+    const state = window.carouselStates[carouselId];
+    if (!state) return;
+
+    // ✨ AUTO-PLAY (5 secondes)
+    const startAutoPlay = () => {
+        stopAutoPlay();
+        state.autoPlayInterval = setInterval(() => {
+            window.carouselNext(carouselId);
+        }, 5000);
+    };
+
+    const stopAutoPlay = () => {
+        if (state.autoPlayInterval) {
+            clearInterval(state.autoPlayInterval);
+            state.autoPlayInterval = null;
+        }
+    };
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+
+    // 📱 SWIPE TACTILE
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                window.carouselNext(carouselId);
+            } else {
+                window.carouselPrev(carouselId);
+            }
+        }
+    }, { passive: true });
+
+    // ⌨️ NAVIGATION CLAVIER
+    const handleKeyboard = (e) => {
+        // Vérifier que la modale est ouverte
+        const modal = carousel.closest('.modal-overlay');
+        if (!modal || !modal.classList.contains('active')) return;
+
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.carouselPrev(carouselId);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            window.carouselNext(carouselId);
+        }
+    };
+
+    document.addEventListener('keydown', handleKeyboard);
+
+    // Nettoyer l'event listener quand la modale se ferme
+    const modal = carousel.closest('.modal-overlay');
+    if (modal) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (!modal.classList.contains('active')) {
+                        stopAutoPlay();
+                        document.removeEventListener('keydown', handleKeyboard);
+                        observer.disconnect();
+                    }
+                }
+            });
+        });
+
+        observer.observe(modal, { attributes: true });
+    }
+
+    // Démarrer l'auto-play
+    startAutoPlay();
+};
+
+/* ============================================
+   9. MODAL SYSTEM (CRASH FIX)
    ============================================ */
 
 window.openLieuModal = function (lieu) {
@@ -1841,28 +2103,13 @@ window.openLieuModal = function (lieu) {
                 <i class="fas fa-times" style="font-size: 1.2rem;"></i>
             </button>
 
-            <!-- 1. HERO HEADER -->
-            <div class="modal-hero-header" style="height: 250px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
-                <img src="${lieu.image}" alt="${lieu.nom}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                <div class="modal-gradient-overlay" style="position:absolute; bottom:0; left:0; right:0; height:100px; background:linear-gradient(to top, var(--bg-body), transparent);"></div>
-            </div>
-
-            <!-- GALLERY STRIP (New) -->
-            ${hasGallery ? `
-            <div class="modal-gallery-strip" style="display: flex; gap: 8px; padding: 10px 15px; overflow-x: auto; margin-top: -40px; position: relative; z-index: 10; padding-bottom: 20px;">
-                ${gallery.map(img => `
-                    <div onclick="window.open('${img.url}', '_blank')" 
-                         style="width: 80px; height: 60px; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.2); cursor: pointer; flex-shrink: 0; overflow: hidden; background: #eee;">
-                        <img src="${img.url}" alt="${img.alt || 'Galerie'}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                    </div>
-                `).join('')}
-            </div>` : ''}
+            <!-- 1. CARROUSEL D'IMAGES (Moderne) -->
+            ${window.createSpotMediaCarousel(lieu.image, lieu.galerie_photos || [])}
 
             <div style="padding: 0 20px;">
-                <!-- 2. TITLE & HEADER -->
                 <div class="modal-title-block" style="padding: 10px 0 0; position: relative;">
                     <h2 class="modal-main-title" style="font-size: 1.6rem; line-height: 1.2; margin-bottom: 8px; font-weight: 800; font-family: var(--font-display); color: var(--text-primary); padding-right: 40px;">${lieu.nom}</h2>
-                    <span class="modal-category-badge" style="background: var(--laterite); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">${badgeType}</span>
+                    <span class="modal-category-badge" style="background: var(--laterite); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">${lieu.ville || badgeType}</span>
                      
                      <!-- Fav Button (Moved to float nicely if needed, or stick to absolute) -->
                      <!-- Kept absolute for consistency but updated style -->
@@ -1901,9 +2148,44 @@ window.openLieuModal = function (lieu) {
                 </div>` : ''}
 
                 <!-- DESCRIPTION -->
-                <div class="modal-description-text" style="font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 25px;">
-                    ${lieu.description}
-                </div>
+                ${(() => {
+            // Système "Lire plus / Lire moins" pour TOUTES les descriptions avec résumé
+            if (lieu.has_expandable_description && lieu.description_summary) {
+                const descData = { summary: lieu.description_summary, hasMore: true };
+
+                if (descData.hasMore) {
+                    return `
+                                <div class="modal-description-text" style="font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 25px;">
+                                    <div id="description-short" style="display: block;">
+                                        ${descData.summary}
+                                    </div>
+                                    <div id="description-full" style="display: none;">
+                                        ${lieu.description}
+                                    </div>
+                                    <button onclick="window.toggleDescription()" 
+                                            id="toggle-description-btn"
+                                            style="background: none; border: none; color: var(--laterite); font-weight: 600; cursor: pointer; padding: 8px 0; margin-top: 4px; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                                        <span id="toggle-text">Lire plus</span>
+                                        <i id="toggle-icon" class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                                    </button>
+                                </div>
+                            `;
+                } else {
+                    return `
+                                <div class="modal-description-text" style="font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 25px;">
+                                    ${lieu.description}
+                                </div>
+                            `;
+                }
+            } else {
+                // Pour toutes les autres fiches, affichage normal
+                return `
+                            <div class="modal-description-text" style="font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 25px;">
+                                ${lieu.description}
+                            </div>
+                        `;
+            }
+        })()}
 
                  <!-- CONSEIL DU LOCAL -->
                 ${lieu.conseil ? `
@@ -1912,39 +2194,71 @@ window.openLieuModal = function (lieu) {
                     <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">${lieu.conseil}</p>
                 </div>` : ''}
 
-                <!-- INFOS PRATIQUES (New Structure) -->
+                <!-- INFOS PRATIQUES - ACCORDÉON 2026 -->
                 ${(infos.horaires || infos.meilleure_periode || infos.a_prevoir) ? `
-                 <div class="modal-practical-info" style="margin-bottom: 25px; background: var(--bg-secondary); border-radius: 12px; padding: 20px;">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 20px; font-family: var(--font-display); color: var(--text-primary);">Infos Pratiques</h3>
+                \u003cdiv class="modal-accordion-section" style="margin-bottom: 25px;"\u003e
+                    \u003cbutton class="accordion-header-2026" onclick="window.toggleAccordion(this)" style="width: 100%; background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(220, 38, 38, 0.02)); border: none; border-left: 4px solid var(--laterite); border-radius: 12px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.3s ease; font-family: var(--font-display);"\u003e
+                        \u003cdiv style="display: flex; align-items: center; gap: 12px;"\u003e
+                            \u003ci class="fas fa-info-circle" style="color: var(--laterite); font-size: 1.2rem;"\u003e\u003c/i\u003e
+                            \u003ch3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-primary);"\u003eInfos Pratiques\u003c/h3\u003e
+                        \u003c/div\u003e
+                        \u003ci class="fas fa-chevron-down accordion-chevron" style="color: var(--laterite); font-size: 0.9rem; transition: transform 0.3s ease;"\u003e\u003c/i\u003e
+                    \u003c/button\u003e
                     
-                    ${infos.horaires ? `
-                    <div style="margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start;">
-                        <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="far fa-clock"></i></div>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">Horaires</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.horaires.lundi_vendredi || ''}</div>
-                            ${infos.horaires.weekend ? `<div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.horaires.weekend}</div>` : ''}
-                        </div>
-                    </div>` : ''}
+                    \u003cdiv class="accordion-content-2026" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; background: var(--bg-secondary); border-radius: 0 0 12px 12px; margin-top: -8px;"\u003e
+                        \u003cdiv style="padding: 20px;"\u003e
+                            ${infos.horaires ? `
+                            \u003cdiv style="margin-bottom: 18px; display: flex; gap: 15px; align-items: flex-start;"\u003e
+                                \u003cdiv style="width: 36px; height: 36px; background: rgba(220, 38, 38, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite); flex-shrink: 0;"\u003e\u003ci class="far fa-clock"\u003e\u003c/i\u003e\u003c/div\u003e
+                                \u003cdiv style="flex: 1;"\u003e
+                                    \u003cstrong style="font-size: 0.95rem; display: block; margin-bottom: 6px; color: var(--text-primary);"\u003eHoraires\u003c/strong\u003e
+                                    \u003cdiv style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;"\u003e
+                                        ${infos.horaires.lundi_vendredi ? `\u003cdiv\u003e${infos.horaires.lundi_vendredi}\u003c/div\u003e` : ''}
+                                        ${infos.horaires.weekend ? `\u003cdiv\u003e${infos.horaires.weekend}\u003c/div\u003e` : ''}
+                                        ${infos.horaires.note ? `\u003cdiv style="font-style: italic; margin-top: 4px; color: var(--laterite);"\u003e${infos.horaires.note}\u003c/div\u003e` : ''}
+                                    \u003c/div\u003e
+                                \u003c/div\u003e
+                            \u003c/div\u003e` : ''}
+                            
+                            ${infos.meilleure_periode ? `
+                            \u003cdiv style="margin-bottom: 18px; display: flex; gap: 15px; align-items: flex-start;"\u003e
+                                \u003cdiv style="width: 36px; height: 36px; background: rgba(220, 38, 38, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite); flex-shrink: 0;"\u003e\u003ci class="fas fa-sun"\u003e\u003c/i\u003e\u003c/div\u003e
+                                \u003cdiv style="flex: 1;"\u003e
+                                    \u003cstrong style="font-size: 0.95rem; display: block; margin-bottom: 6px; color: var(--text-primary);"\u003eMeilleure Période\u003c/strong\u003e
+                                    \u003cdiv style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;"\u003e
+                                        ${infos.meilleure_periode.saison_ideale ? `\u003cdiv\u003e✅ ${infos.meilleure_periode.saison_ideale}\u003c/div\u003e` : ''}
+                                        ${infos.meilleure_periode.eviter || infos.meilleure_periode.a_eviter ? `\u003cdiv style="margin-top: 4px;"\u003e⚠️ ${infos.meilleure_periode.eviter || infos.meilleure_periode.a_eviter}\u003c/div\u003e` : ''}
+                                    \u003c/div\u003e
+                                \u003c/div\u003e
+                            \u003c/div\u003e` : ''}
+                            
+                            ${infos.a_prevoir ? `
+                            \u003cdiv style="display: flex; gap: 15px; align-items: flex-start;"\u003e
+                                \u003cdiv style="width: 36px; height: 36px; background: rgba(220, 38, 38, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite); flex-shrink: 0;"\u003e\u003ci class="fas fa-backpack"\u003e\u003c/i\u003e\u003c/div\u003e
+                                \u003cdiv style="flex: 1;"\u003e
+                                    \u003cstrong style="font-size: 0.95rem; display: block; margin-bottom: 6px; color: var(--text-primary);"\u003eÀ Prévoir\u003c/strong\u003e
+                                    \u003cdiv style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;"\u003e
+                                        ${Array.isArray(infos.a_prevoir.equipement) ? infos.a_prevoir.equipement.map(item => `\u003cdiv style="padding: 3px 0;"\u003e• ${item}\u003c/div\u003e`).join('') : infos.a_prevoir.equipement}
+                                        ${infos.a_prevoir.conseils ? `\u003cdiv style="margin-top: 8px; font-style: italic; color: var(--laterite);"\u003e💡 ${infos.a_prevoir.conseils}\u003c/div\u003e` : ''}
+                                    \u003c/div\u003e
+                                \u003c/div\u003e
+                            \u003c/div\u003e` : ''}
 
-                    ${infos.meilleure_periode ? `
-                    <div style="margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start;">
-                        <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="fas fa-sun"></i></div>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">Meilleure Période</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${infos.meilleure_periode.saison_ideale || ''}</div>
-                        </div>
-                    </div>` : ''}
-
-                    ${infos.a_prevoir ? `
-                    <div style="display: flex; gap: 15px; align-items: flex-start;">
-                         <div style="width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite);"><i class="fas fa-backpack"></i></div>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 4px;">À prévoir</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">${Array.isArray(infos.a_prevoir.equipement) ? infos.a_prevoir.equipement.join(', ') : infos.a_prevoir.equipement}</div>
-                        </div>
-                    </div>` : ''}
-                </div>` : ''}
+                            ${lieu.humour_grok ? `
+                            \u003cdiv style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(220, 38, 38, 0.2);"\u003e
+                                \u003cdiv style="display: flex; gap: 15px; align-items: flex-start;"\u003e
+                                    \u003cdiv style="width: 36px; height: 36px; background: rgba(220, 38, 38, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--laterite); flex-shrink: 0;"\u003e\u003ci class="fas fa-laugh-wink"\u003e\u003c/i\u003e\u003c/div\u003e
+                                    \u003cdiv style="flex: 1;"\u003e
+                                        \u003cstrong style="font-size: 0.95rem; display: block; margin-bottom: 6px; color: var(--text-primary);"\u003eL'Avis Sans Filtre\u003c/strong\u003e
+                                        \u003cdiv style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; font-style: italic;"\u003e
+                                            "${lieu.humour_grok}"
+                                        \u003c/div\u003e
+                                    \u003c/div\u003e
+                                \u003c/div\u003e
+                            \u003c/div\u003e` : ''}
+                        \u003c/div\u003e
+                    \u003c/div\u003e
+                \u003c/div\u003e` : ''}
 
                 <!-- CARTE INTERACTIVE (Embedded) -->
                 ${embeddedMap ? `
@@ -2080,6 +2394,105 @@ window.locateOnMap = function (id) {
 
 window.addToItineraryTemp = function (id) {
     alert("Fonctionnalité 'Ajouter au circuit' bientôt disponible !");
+};
+
+/**
+ * ========================================
+ * FONCTION ACCORDÉON 2026
+ * ========================================
+ */
+window.toggleAccordion = function (button) {
+    const content = button.nextElementSibling;
+    const chevron = button.querySelector('.accordion-chevron');
+    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+    if (isOpen) {
+        content.style.maxHeight = '0';
+        content.style.padding = '0 20px';
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+        button.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(220, 38, 38, 0.02))';
+    } else {
+        content.style.maxHeight = content.scrollHeight + 40 + 'px';
+        content.style.padding = '20px';
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+        button.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05))';
+    }
+};
+
+/**
+ * ========================================
+ * RÉSUMÉ DESCRIPTION
+ * ========================================
+ */
+window.createDescriptionSummary = function (fullDescription, maxChars = 400) {
+    if (!fullDescription || fullDescription.length <= maxChars) {
+        return { summary: fullDescription, hasMore: false };
+    }
+
+    let cutPoint = fullDescription.substring(0, maxChars).lastIndexOf('.');
+
+    if (cutPoint === -1) {
+        cutPoint = fullDescription.substring(0, maxChars).lastIndexOf(' ');
+    }
+
+    const summary = fullDescription.substring(0, cutPoint + 1);
+
+    return {
+        summary: summary.trim(),
+        hasMore: true
+    };
+};
+
+/**
+ * ========================================
+ * TOGGLE DESCRIPTION
+ * ========================================
+ */
+window.toggleDescription = function () {
+    const shortDiv = document.getElementById('description-short');
+    const fullDiv = document.getElementById('description-full');
+    const toggleText = document.getElementById('toggle-text');
+    const toggleIcon = document.getElementById('toggle-icon');
+
+    if (!shortDiv || !fullDiv) return;
+
+    if (shortDiv.style.display === 'none') {
+        shortDiv.style.display = 'block';
+        fullDiv.style.display = 'none';
+        toggleText.textContent = 'Lire plus';
+        toggleIcon.className = 'fas fa-chevron-down';
+    } else {
+        shortDiv.style.display = 'none';
+        fullDiv.style.display = 'block';
+        toggleText.textContent = 'Lire moins';
+        toggleIcon.className = 'fas fa-chevron-up';
+    }
+};
+
+/**
+ * ========================================
+ * FONCTION ACCORDÉON 2026
+ * ========================================
+ * Gère l'ouverture/fermeture des accordéons avec animation fluide
+ */
+window.toggleAccordion = function (button) {
+    const content = button.nextElementSibling;
+    const chevron = button.querySelector('.accordion-chevron');
+    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+    if (isOpen) {
+        // Fermer
+        content.style.maxHeight = '0';
+        content.style.padding = '0 20px';
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+        button.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(220, 38, 38, 0.02))';
+    } else {
+        // Ouvrir
+        content.style.maxHeight = content.scrollHeight + 40 + 'px';
+        content.style.padding = '20px';
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+        button.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05))';
+    }
 };
 
 

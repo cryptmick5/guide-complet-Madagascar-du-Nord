@@ -1,0 +1,26 @@
+# Backups & Archives
+_BACKUPS/
+_ARCHIVES/
+data/_backups/
+data/backups/
+data/ARCHIVE_OLD/
+scripts_archive/
+*.bak
+*.OLD
+
+# Logs
+logs/
+*.log
+
+# System & Environment
+.gemini/
+.gemini_old/
+.vscode/
+.venv/
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -886,6 +886,101 @@ body:not(.dark-mode) .lang-mg {
 }
 
 /* =========================================
+   MODAL FOOTER BUTTONS 2026 - DARK MODE SUPPORT
+   ========================================= */
+
+/* Conteneur des boutons du footer */
+.modal-footer-actions {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Styles de base pour tous les boutons action */
+.btn-action-2026 {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all var(--transition-2026-base);
+    cursor: pointer;
+}
+
+/* Bouton Carte - Light Mode */
+.btn-action-2026-map {
+    background: white;
+    color: var(--text-primary);
+    border: 2px solid var(--laterite-2026);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-action-2026-map i {
+    color: var(--laterite-2026);
+    font-size: 1.2rem;
+}
+
+.btn-action-2026-map:hover {
+    background: rgba(176, 48, 48, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton Carte - Dark Mode */
+[data-theme="dark"] .btn-action-2026-map {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #ef4444 !important;
+    border-color: #ef4444 !important;
+}
+
+[data-theme="dark"] .btn-action-2026-map i {
+    color: #ef4444 !important;
+}
+
+[data-theme="dark"] .btn-action-2026-map:hover {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    border-color: #dc2626 !important;
+}
+
+[data-theme="dark"] .btn-action-2026-map:hover i {
+    color: #ffffff !important;
+}
+
+/* Bouton Site Web - Light Mode */
+.btn-action-2026-web {
+    background: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #d1d5db;
+}
+
+.btn-action-2026-web:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Bouton Site Web - Dark Mode */
+[data-theme="dark"] .btn-action-2026-web {
+    background: #2a2a2a !important;
+    color: #e5e7eb !important;
+    border-color: #4b5563 !important;
+}
+
+[data-theme="dark"] .btn-action-2026-web:hover {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+    border-color: #6b7280 !important;
+}
+
+/* =========================================
    ACCORDIONS PREMIUM 2026
    ========================================= */
 
@@ -1459,7 +1554,207 @@ body.dark-mode .btn-back-map {
    MODAL ENHANCEMENTS 2026 (Gallery & Reviews)
    ========================================= */
 
-/* Gallery Strip */
+/* Hero Media Container - Carrousel Moderne Premium */
+.hero-media {
+    position: relative !important;
+    width: 100%;
+    max-width: 100%;
+    height: 400px !important;
+    min-height: 400px !important;
+    /* Force hauteur même si images ne chargent pas */
+    border-radius: 20px;
+    overflow: hidden;
+    background: #333 !important;
+    /* Debug: fond visible pour vérifier conteneur */
+    margin-bottom: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    display: block !important;
+}
+
+.hero-image {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block !important;
+    /* CRITICAL: évite les espaces blancs */
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.hero-image.active {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    pointer-events: auto;
+    z-index: 10 !important;
+    /* Augmenté pour être au-dessus */
+}
+
+/* Fallback critique : force l'affichage de la première image */
+.hero-image:first-of-type {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+/* Boutons de navigation avec effet glassmorphism premium */
+.hero-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.hero-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hero-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.hero-nav-left {
+    left: 20px;
+}
+
+.hero-nav-right {
+    right: 20px;
+}
+
+/* Indicateurs de pagination - Positionnés sur l'image avec glassmorphism */
+.hero-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    padding: 0;
+}
+
+.hero-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.hero-dot.active {
+    background: white;
+    width: 32px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.hero-dot.active::before {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animation d'entrée */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-media {
+        height: 300px;
+        border-radius: 16px;
+    }
+
+    .hero-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .hero-nav-left {
+        left: 12px;
+    }
+
+    .hero-nav-right {
+        right: 12px;
+    }
+
+    .hero-dots {
+        bottom: 16px;
+        gap: 8px;
+        padding: 6px 12px;
+    }
+
+    .hero-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .hero-dot.active {
+        width: 24px;
+    }
+}
+
+/* Gallery Strip Scrollbar (legacy - à supprimer après migration complète) */
 .modal-gallery-strip::-webkit-scrollbar {
     height: 4px;
 }
@@ -1529,4 +1824,209 @@ body.dark-mode .btn-back-map {
 
 .accordion-item-2026.active .accordion-header-2026 i.fa-chevron-down {
     transform: rotate(180deg);
+}
+
+
+/* ========================================
+   CORRECTIONS CRITIQUES MODE NUIT
+   ======================================== */
+
+/* BOUTONS FOOTER - Mode Nuit Amélioré */
+
+/* Bouton "Voir sur la carte" */
+.modal-footer a[href*="/carte"],
+a[href*="/carte"].modal-action-btn {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #ef4444 !important;
+    border: 2px solid #ef4444 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .modal-footer a[href*="/carte"],
+[data-theme="dark"] a[href*="/carte"].modal-action-btn {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #ef4444 !important;
+    border: 2px solid #ef4444 !important;
+}
+
+[data-theme="dark"] .modal-footer a[href*="/carte"]:hover,
+[data-theme="dark"] a[href*="/carte"].modal-action-btn:hover {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    border-color: #dc2626 !important;
+}
+
+/* Bouton "Visiter le site web" */
+.modal-footer a[href^="http"],
+a[href^="http"].modal-action-btn {
+    background: #2a2a2a !important;
+    color: #e5e7eb !important;
+    border: 2px solid #4b5563 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .modal-footer a[href^="http"],
+[data-theme="dark"] a[href^="http"].modal-action-btn {
+    background: #2a2a2a !important;
+    color: #e5e7eb !important;
+    border: 2px solid #4b5563 !important;
+}
+
+[data-theme="dark"] .modal-footer a[href^="http"]:hover,
+[data-theme="dark"] a[href^="http"].modal-action-btn:hover {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+    border-color: #6b7280 !important;
+}
+
+/* Alternative : Cibler par texte SVG/Icône */
+.modal-footer a:has(svg),
+.modal-footer button:has(svg) {
+    background: #2a2a2a !important;
+    color: #e5e7eb !important;
+    border: 2px solid #4b5563 !important;
+}
+
+[data-theme="dark"] .modal-footer a:has(svg):hover {
+    background: #3a3a3a !important;
+    border-color: #6b7280 !important;
+}
+
+/* CARTE LEAFLET - Overlay sombre en mode nuit */
+[data-theme="dark"] .localisation {
+    position: relative;
+}
+
+[data-theme="dark"] .localisation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5) !important;
+    pointer-events: none;
+    z-index: 999 !important;
+    border-radius: 12px;
+}
+
+/* Alternative avec filtre sur la carte directement */
+[data-theme="dark"] .leaflet-container {
+    filter: brightness(0.7) contrast(1.1) !important;
+}
+
+/* Boutons de zoom restent visibles */
+[data-theme="dark"] .leaflet-control-zoom {
+    background: #2a2a2a !important;
+    border: 1px solid #3a3a3a !important;
+}
+
+[data-theme="dark"] .leaflet-control-zoom a {
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #3a3a3a !important;
+}
+
+[data-theme="dark"] .leaflet-control-zoom a:hover {
+    background: #3a3a3a !important;
+}
+
+/* ========================================
+   CORRECTIONS CRITIQUES MODE NUIT - V2
+   Cibler les liens SANS classe
+   ======================================== */
+
+/* Cibler TOUS les liens footer dans la modal */
+#lieu-modal-overlay>a[href*="/carte"],
+#lieu-modal-overlay>a[href^="http"],
+.modal-content>a[href*="/carte"],
+.modal-content>a[href^="http"] {
+    display: inline-block !important;
+    padding: 14px 24px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    margin: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Bouton "Voir sur la carte" - ROUGE en mode nuit */
+[data-theme="dark"] #lieu-modal-overlay>a[href*="/carte"],
+[data-theme="dark"] .modal-content>a[href*="/carte"] {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #ef4444 !important;
+    border: 2px solid #ef4444 !important;
+}
+
+[data-theme="dark"] #lieu-modal-overlay>a[href*="/carte"]:hover,
+[data-theme="dark"] .modal-content>a[href*="/carte"]:hover {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    border-color: #dc2626 !important;
+}
+
+/* Bouton "Visiter le site web" - GRIS contrasté en mode nuit */
+[data-theme="dark"] #lieu-modal-overlay>a[href^="http"],
+[data-theme="dark"] .modal-content>a[href^="http"] {
+    background: #2a2a2a !important;
+    color: #e5e7eb !important;
+    border: 2px solid #4b5563 !important;
+}
+
+[data-theme="dark"] #lieu-modal-overlay>a[href^="http"]:hover,
+[data-theme="dark"] .modal-content>a[href^="http"]:hover {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+    border-color: #6b7280 !important;
+}
+
+/* ============================================
+   LEAFLET POPUP - MODE NUIT FIX
+   ============================================ */
+
+/* Wrapper du popup */
+.leaflet-popup-content-wrapper {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Contenu du popup */
+.leaflet-popup-content {
+    color: var(--text-primary) !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important;
+    margin: 12px !important;
+}
+
+/* Triangle pointer du popup */
+.leaflet-popup-tip {
+    background: var(--bg-card) !important;
+}
+
+/* Bouton fermer (X) */
+.leaflet-popup-close-button {
+    color: var(--text-primary) !important;
+    font-size: 1.2rem !important;
+    padding: 4px 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+    color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Mode nuit spécifique */
+[data-theme="dark"] .leaflet-popup-content-wrapper {
+    background: #1e1e1e !important;
+    color: #ecf0f1 !important;
+}
+
+[data-theme="dark"] .leaflet-popup-content {
+    color: #ecf0f1 !important;
+}
+
+[data-theme="dark"] .leaflet-popup-tip {
+    background: #1e1e1e !important;
 }

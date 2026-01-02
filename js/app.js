@@ -383,11 +383,26 @@ window.initItinerariesPage = function () {
                 <h3 class="lieu-title">${c.nom}</h3>
                 <div class="lieu-meta"><span class="badge-type">${c.duree}</span><span class="lieu-prix">${c.budget || 'Variable'}</span></div>
                 <p class="lieu-desc">${c.description}</p>
-                <a href="circuit.html?id=${c.id}" class="btn-details">Voir le programme</a>
+                <a href="circuit.html?id=${c.id}" class="btn-details" onclick="return handleCircuitClick(event, '${c.id}')">Voir le programme</a>
              </div>
         </div>
     `).join('');
 }
+
+window.handleCircuitClick = function (e, id) {
+    // Desktop Threshold (Standard iPad Landscape / Laptop starts ~1024)
+    if (window.innerWidth >= 1024) {
+        e.preventDefault(); // Stop page load
+        if (typeof showItineraryDetail === 'function') {
+            showItineraryDetail(id); // Open Modal (Original Logic)
+        } else {
+            window.location.href = `circuit.html?id=${id}`; // Fallback
+        }
+        return false;
+    }
+    // Mobile: Allow default (Go to URL)
+    return true;
+};
 
 window.showItineraryDetail = function (id) {
     const list = document.getElementById('itineraires-list');

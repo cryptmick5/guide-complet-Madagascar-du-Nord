@@ -796,9 +796,38 @@ body:not(.dark-mode) .search-input-2026 {
     background: linear-gradient(to right, var(--bg-secondary), rgba(176, 48, 48, 0.05));
 }
 
-.language-card-2026.active {
-    border-color: var(--laterite-2026);
-    background: rgba(176, 48, 48, 0.08);
+/* =========================================
+   BACK TO CIRCUITS BUTTON
+   ========================================= */
+.back-to-circuits {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: white;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.back-to-circuits:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Force specific dark mode style requested */
+body.dark-mode .back-to-circuits {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+background: rgba(176, 48, 48, 0.08);
 }
 
 .language-content {

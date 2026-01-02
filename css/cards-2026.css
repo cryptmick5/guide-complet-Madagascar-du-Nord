@@ -2264,3 +2264,40 @@ a[href^="http"].modal-action-btn {
 [data-theme="dark"] .checklist-item-2026:hover {
     background: rgba(176, 48, 48, 0.15);
 }
+
+/* ==========================================
+   CIRCUITS GRID LAYOUT (Responsive)
+   ========================================== */
+.circuits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mobile: 1 column */
+    gap: 25px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+    .circuits-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* Desktop: 3 columns */
+    }
+}
+
+.circuits-grid .lieu-card {
+    height: 100%;
+    /* Ensure equal height cards */
+    display: flex;
+    flex-direction: column;
+}
+
+.circuits-grid .lieu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.circuits-grid .btn-details {
+    margin-top: auto;
+    /* Push button to bottom */
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Epopee Grand Nord - Détail</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles (Point to Parent Dir) -->
+    <link rel="stylesheet" href="../css/styles-premium.css">
+    <link rel="stylesheet" href="../css/cards-2026.css">
+
+    <style>
+        body {
+            background: var(--bg-primary);
+            padding-bottom: 40px;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Back Nav -->
+    <a href="../index.html#itineraires" class="back-nav">
+        <i class="fas fa-arrow-left"></i> Retour
+    </a>
+
+    <!-- Loading -->
+    <div id="loading" class="loading-screen">
+        <i class="fas fa-compass fa-spin fa-3x" style="color:var(--laterite); margin-bottom: 20px;"></i>
+        <p>Chargement...</p>
+    </div>
+
+    <!-- Content -->
+    <div id="circuit-content" style="display:none;"></div>
+
+    <!-- DATA & LOGIC -->
+    <script>
+        // CONFIGURATION DU CIRCUIT
+        window.CIRCUIT_ID = 'circuit-nord';
+    </script>
+    <script src="../data/itineraires.js"></script>
+    <script src="../js/circuit-renderer.js"></script>
+
+</body>
+
+</html>

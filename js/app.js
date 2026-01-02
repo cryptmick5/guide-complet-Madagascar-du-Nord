@@ -374,8 +374,15 @@ window.initItinerariesPage = function () {
     if (!container) return;
     const circuits = window.ITINERAIRES_DATA ? Object.values(window.ITINERAIRES_DATA) : [];
 
+    const slugMap = {
+        'circuit-nord': 'circuits/epopee-grand-nord.html',
+        'circuit-cacao': 'circuits/route-du-cacao.html',
+        'circuit-vanille': 'circuits/cote-de-la-vanille.html',
+        'circuit-nosybe': 'circuits/archipel-nosy-be.html'
+    };
+
     container.innerHTML = circuits.map((c, i) => `
-        <div class="lieu-card fade-in-up hover-lift" onclick="handleCircuitCardClick(event, '${c.id}')" style="cursor:pointer; animation-delay: ${i * 0.1}s;">
+        <div class="lieu-card fade-in-up hover-lift" style="animation-delay: ${i * 0.1}s;">
              <div class="lieu-image" style="${c.image ? `background-image: url('${c.image}'); background-size: cover; background-position: center;` : `background: linear-gradient(to bottom right, var(--laterite), var(--foret)); display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;`}">
                 ${!c.image ? '<i class="fas fa-route"></i>' : ''}
              </div>
@@ -383,33 +390,15 @@ window.initItinerariesPage = function () {
                 <h3 class="lieu-title">${c.nom}</h3>
                 <div class="lieu-meta"><span class="badge-type">${c.duree}</span><span class="lieu-prix">${c.budget || 'Variable'}</span></div>
                 <p class="lieu-desc">${c.description}</p>
-                <a href="circuit.html?id=${c.id}" class="btn-details" onclick="return handleCircuitClick(event, '${c.id}')">Voir le programme</a>
-                <a href="circuit.html?id=${c.id}" class="btn-details" onclick="handleCircuitClick(event, '${c.id}'); return false;">Voir le programme</a>
+                <a href="${slugMap[c.id] || '#'}" class="btn-details">Voir le détail</a>
              </div>
         </div>
     `).join('');
 }
 
-window.handleCircuitClick = function (e, id) {
-    e.stopPropagation(); // CRITICAL: Prevent bubbling to parent card
-    // Desktop Threshold
-    if (window.innerWidth >= 1024) {
-        e.preventDefault();
-        showItineraryDetail(id);
-        return false;
-    }
-    // Mobile: Allow default (Go to URL)
-    return true;
-};
+// DEPRECATED HANDLERS REMOVED
+// window.handleCircuitClick & window.handleCircuitCardClick removed to force standard navigation.
 
-window.handleCircuitCardClick = function (e, id) {
-    // If clicking the card body (not the button)
-    if (window.innerWidth < 1024) {
-        window.location.href = `circuit.html?id=${id}`;
-    } else {
-        showItineraryDetail(id);
-    }
-};
 
 window.showItineraryDetail = function (id) {
     const list = document.getElementById('itineraires-list');

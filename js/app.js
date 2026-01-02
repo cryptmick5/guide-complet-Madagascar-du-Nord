@@ -738,36 +738,137 @@ function initTaxiTool() {
     }
 }
 
+const DEFAULT_CHECKLIST_DEFS = [
+    { id: 'passeport', text: 'Passeport (validité 6 mois)' },
+    { id: 'visa', text: 'Visa (à l\'arrivée ou e-visa)' },
+    { id: 'billet', text: 'Billets d\'avion imprimés' },
+    { id: 'cash', text: 'Euros en espèces (pour le change)' },
+    { id: 'vete_leger', text: 'Vêtements légers (coton/lin)' },
+    { id: 'pull', text: 'Un pull léger (soirées/avion)' },
+    { id: 'chaussure', text: 'Chaussures de marche confortables' },
+    { id: 'maillot', text: 'Maillot de bain & Serviette' },
+    { id: 'pharmacie', text: 'Trousse à pharmacie (base + antipalu)' },
+    { id: 'moustique', text: 'Répulsif moustique (Zone Tropiques)' },
+    { id: 'creme', text: 'Crème solaire (SPF 50)' },
+    { id: 'lunettes', text: 'Lunettes de soleil & Chapeau' },
+    { id: 'adaptateur', text: 'Adaptateur universel (optionnel)' },
+    { id: 'batterie', text: 'Batterie externe (Powerbank)' }
+];
+
 function initChecklist() {
     const listContainer = document.getElementById('checklistContainer');
-    if (!listContainer || !window.CHECKLIST_ITEMS) return;
+    if (!listContainer) return;
+
+    // Apply 2026 Container Class
+    listContainer.className = 'checklist-container-2026';
+
+    // Load Defs
+    let currentDefs = DEFAULT_CHECKLIST_DEFS;
+    try {
+        const savedDefs = localStorage.getItem('checklist_definitions');
+        if (savedDefs) currentDefs = JSON.parse(savedDefs);
+    } catch (e) { console.warn("Checklist defs load error", e); }
+
+    // Store globally for add/remove access
+    window.currentChecklistDefs = currentDefs;
 
     function renderChecklist() {
-        listContainer.innerHTML = window.CHECKLIST_ITEMS.map(item => {
+        const total = window.currentChecklistDefs.length;
+        const checkedCount = window.checklist.length;
+        const percent = total === 0 ? 0 : Math.round((checkedCount / total) * 100);
+
+        // Header & Progress
+        let html = `
+            <div class="checklist-stats">
+                <span>${checkedCount}/${total} complétés</span>
+                <span>${percent}%</span>
+            </div>
+            <div class="checklist-progress-container">
+                <div class="checklist-progress-bar" style="width: ${percent}%"></div>
+            </div>
+            <div class="checklist-items-grid">
+        `;
+
+        // Items
+        html += window.currentChecklistDefs.map(item => {
             const isChecked = window.checklist.includes(item.id);
             return `
-                <div class="checklist-item ${isChecked ? 'completed' : ''}" onclick="toggleCheckItem('${item.id}')">
-                    <i class="fas ${isChecked ? 'fa-check-circle' : 'fa-circle'}" style="color:${isChecked ? 'var(--success)' : '#ccc'}"></i>
-                    <span>${item.text}</span>
+                <div class="checklist-item-2026 ${isChecked ? 'completed' : ''}" onclick="toggleCheckItem('${item.id}')">
+                    <div class="custom-checkbox">
+                        <i class="fas fa-check" style="opacity: ${isChecked ? 1 : 0}; transform: scale(${isChecked ? 1 : 0.5}); transition: all 0.2s ease;"></i>
+                    </div>
+                    <span class="checklist-text">${item.text}</span>
+                    <button class="btn-delete-item" onclick="deleteChecklistItem('${item.id}', event)" title="Supprimer">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </div>
             `;
         }).join('');
+
+        html += `</div>`; // Close grid
+
+        // Add Input Section
+        html += `
+            <div class="checklist-add-container">
+                <input type="text" id="newChecklistItemInput" class="input-add-item" placeholder="Ajouter un élément..." onkeypress="handleChecklistInput(event)">
+                <button class="btn-add-item" onclick="addChecklistItem()"><i class="fas fa-plus"></i></button>
+            </div>
+        `;
+
+        listContainer.innerHTML = html;
     }
     renderChecklist();
-    window.renderChecklist = renderChecklist; // export
+    window.renderChecklist = renderChecklist; // export export
 }
 
 window.toggleCheckItem = function (id) {
     const idx = window.checklist.indexOf(id);
     if (idx === -1) {
         window.checklist.push(id);
-        // Haptic feedback if supported
         if (navigator.vibrate) navigator.vibrate(10);
     } else {
         window.checklist.splice(idx, 1);
     }
     localStorage.setItem('checklist', JSON.stringify(window.checklist));
     if (window.renderChecklist) window.renderChecklist();
+}
+
+window.addChecklistItem = function () {
+    const input = document.getElementById('newChecklistItemInput');
+    if (!input || !input.value.trim()) return;
+
+    const text = input.value.trim();
+    const id = 'custom_' + Date.now();
+
+    window.currentChecklistDefs.push({ id, text });
+    localStorage.setItem('checklist_definitions', JSON.stringify(window.currentChecklistDefs));
+
+    // Clear input and re-render
+    input.value = '';
+    if (window.renderChecklist) window.renderChecklist();
+}
+
+window.deleteChecklistItem = function (id, event) {
+    if (event) event.stopPropagation();
+
+    if (!confirm("Supprimer cet élément ?")) return;
+
+    // Remove from defs
+    window.currentChecklistDefs = window.currentChecklistDefs.filter(i => i.id !== id);
+    localStorage.setItem('checklist_definitions', JSON.stringify(window.currentChecklistDefs));
+
+    // Also custom cleanup from checked status
+    const idx = window.checklist.indexOf(id);
+    if (idx !== -1) {
+        window.checklist.splice(idx, 1);
+        localStorage.setItem('checklist', JSON.stringify(window.checklist));
+    }
+
+    if (window.renderChecklist) window.renderChecklist();
+}
+
+window.handleChecklistInput = function (e) {
+    if (e.key === 'Enter') window.addChecklistItem();
 }
 
 

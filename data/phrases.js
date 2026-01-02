@@ -68,15 +68,4 @@ const PHRASES_DATA = {
     ]
 };
 
-const CHECKLIST_ITEMS = [
-    "SIM locale Telma",
-    "Argent liquide (CB rare)",
-    "Adaptateur prise C/E",
-    "Crème solaire SPF50+",
-    "Lampe frontale",
-    "Carnet + stylo",
-    "Powerbank 20 000 mAh",
-    "Sac étanche",
-    "Répulsif anti-moustiques",
-    "Trousse premiers secours"
-];
+
